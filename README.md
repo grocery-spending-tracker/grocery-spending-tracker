@@ -9,7 +9,7 @@ Date of project start: September 17, 2023
 With the ever-rising cost of living, the financial burden of everyday purchases is constantly growing. This is especially true for groceries which puts spending on food at an all time high. This is a problem for all households but is especially true for low-income individuals such a students. As a result, the emphasis on managing personal finance and spending has only grown. To assist these individuals, we want to develop an app to help them better understand their spending habits and make well-informed consumer decisions. 
 
 The objectives of this app would be to:
-- allow users to track and categorize personal spending via photos
+- allow users to track and categorize grocery spending via photos of receipts
 - track and analyze personal spending trends based on receipts
 - utilize other receipts from other users to recommend cheaper alternatives for similarly purchased grocery items
 
