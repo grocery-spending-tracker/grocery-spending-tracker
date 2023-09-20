@@ -3,6 +3,8 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 
+\def\code#1{\texttt{#1}}
+
 \title{Development Plan\\\progname}
 
 \author{\authname}
@@ -23,7 +25,7 @@
 \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
 Sept. 19, 2023 & Ryan Yeh & Wrote initial Team Communication Plan\\
-Date2 & Name(s) & Description of changes\\
+Sept. 20, 2023 & Sawyer Tang & Workflow Plan\\
 ... & ... & ...\\
 \bottomrule
 \end{tabularx}
@@ -49,11 +51,24 @@ If urgent contact with group members is required, \emph{SMS} should be used.
 
 \section{Workflow Plan}
 
-\begin{itemize}
-	\item How will you be using git, including branches, pull request, etc.?
-	\item How will you be managing issues, including template issues, issue
-	classificaiton, etc.?
-\end{itemize}
+We will be using git as a version control software with GitHub as our remote repository. The root branch will be \code{master} and development branch mased on \code{master} will be \code{dev}. The developer will branch off from \code{dev} to work on issues. There will be a new branch for each issue and will be named comtaining the issue number and name detailed below. Continuous Inntegration is set up between all branches \code{dev}, \code{master}, and Issues.
+
+Issues are used to track tasks and meetings related to the project. Meeting issues will be created before each meeting according to the \textbf{MeetingIssueTemplate.md} template. These include addentance, minutes, and action items from the meeting. These notes can be referenced from other issues and PRs for tracability. 
+Feature issues are used to track tasks. They can be referenced in PRs and meetings and outline the tesk that the developer must fullfill in their PR. 
+Issues can be assigned to a Milestone which tracks issues related to deliverables. These are useful for filtering issues and also tracking due dates.
+Issues can be assigned labels which give information of which part of the project the issue related to. These can denote issue types as well as issue severity or complexity. Useful for filtering.
+
+\subsection{Version Control Developer Step-By-Step}
+
+\begin{enumerate}
+	\item Granted Issue ticket with issue number.
+	\item Open branch with name \{IssueNumber\}/\{issue-name\}. (eg. \code{135/add-user-endpoint})
+	\item Solve issue, git add, git commit, git push.
+	\item Open Pull Request on GitHub following the \textbf{PRTemplate.md} template, thus mapping the PR to the Issue.
+	\item Await 2 reviewers.
+	\item Fix reviewer comments.
+	\item Merge to dev.
+\end{enumerate}
 
 \section{Proof of Concept Demonstration Plan}
 
