@@ -1,7 +1,7 @@
 # Meeting --/--/23 
 
-Chair: @Tanger71 
-Scribe: @r-yeh 
+Chair: @
+Scribe: @
 Attendance: ST JN RY AF
 
 ## Minutes 
@@ -18,5 +18,5 @@ Attendance: ST JN RY AF
 
 ## Next Meeting
 
-Chair: 
-Scribe: 
+Chair: @
+Scribe: @
