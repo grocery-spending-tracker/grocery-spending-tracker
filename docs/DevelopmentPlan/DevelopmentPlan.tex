@@ -25,7 +25,7 @@
 \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
 Sept. 19, 2023 & Ryan Yeh & Wrote initial Team Communication Plan\\
-Sept. 20, 2023 & Sawyer Tang & Workflow Plan\\
+20/09/23 & Sawyer Tang & Workflow Plan\\
 ... & ... & ...\\
 \bottomrule
 \end{tabularx}
@@ -51,12 +51,23 @@ If urgent contact with group members is required, \emph{SMS} should be used.
 
 \section{Workflow Plan}
 
-We will be using git as a version control software with GitHub as our remote repository. The root branch will be \code{master} and development branch mased on \code{master} will be \code{dev}. The developer will branch off from \code{dev} to work on issues. There will be a new branch for each issue and will be named comtaining the issue number and name detailed below. Continuous Inntegration is set up between all branches \code{dev}, \code{master}, and Issues.
+We will be using git as a version control software with GitHub as our remote repository. The root branch will be \code{master} and development branch based on \code{master} will be \code{dev}. The developer will branch off from \code{dev} to work on issues. There will be a new branch for each issue and will be named comtaining the issue number and name detailed below. Continuous Integration is set up between all branches \code{dev}, \code{master}, and Issues. Once the milestone is finished to the degree we are happy to be graded, the \code{dev} branch will be merged into \code{master}.
 
-Issues are used to track tasks and meetings related to the project. Meeting issues will be created before each meeting according to the \textbf{MeetingIssueTemplate.md} template. These include addentance, minutes, and action items from the meeting. These notes can be referenced from other issues and PRs for tracability. 
-Feature issues are used to track tasks. They can be referenced in PRs and meetings and outline the tesk that the developer must fullfill in their PR. 
+Issues are used to track tasks and meetings related to the project. Meeting issues will be created before each meeting according to the \textbf{MeetingIssueTemplate.md} template. These include attendance, minutes, and action items from the meeting. These notes can be referenced from other issues and PRs for traceability.
+Feature issues are used to track tasks. They can be referenced in PRs and meetings to outline the task that the developer must fulfill in their PR.
 Issues can be assigned to a Milestone which tracks issues related to deliverables. These are useful for filtering issues and also tracking due dates.
-Issues can be assigned labels which give information of which part of the project the issue related to. These can denote issue types as well as issue severity or complexity. Useful for filtering.
+Issues can be assigned labels which give information on which part of the project the issue related to. These can denote issue types as well as issue severity or complexity and allows filtering.
+
+\subsection{Some signifigant labels:}
+
+\begin{itemize}
+	\item \textbf{documentation}: used for all issues related to building or maintaining the documentation for our project (including, but not limited to, LaTeX related issues).
+	\item \textbf{dev-ops}: used for all issues related to code production, integration, or conventions.
+	\item \textbf{meeting}: used to denote an issue is for a meeting.
+	\item \textbf{lecture}: used to denote an issue is for a lecture.
+	\item \textbf{bug}: used for issues that describe a bug that needs to be fixed. ``ew!!!"
+	\item \textbf{feature}: used for issues that describe a new code feature to be implemented.
+\end{itemize}
 
 \subsection{Version Control Developer Step-By-Step}
 
