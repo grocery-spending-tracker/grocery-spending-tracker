@@ -3,6 +3,8 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 
+\def\code#1{\texttt{#1}}
+
 \title{Development Plan\\\progname}
 
 \author{\authname}
@@ -23,13 +25,17 @@
 \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
 19/09/23 & Ryan Yeh & Wrote initial Team Communication Plan\\
+20/09/23 & Allan Fang & Added team member roles\\
 20/09/23 & Ryan Yeh & Revised Team Communication Plan based on examples\\
+20/09/23 & Sawyer Tang & Workflow Plan\\
 20/09/23 & Jason Nam & Added Team Meeting Plan Section for Development Plan Doc\\
+20/09/23 & Allan Fang & Added document introduction\\
+21/09/23 & Ryan Yeh & Wrote initial Project Scheduling\\
 \bottomrule
 \end{tabularx}
 \end{table}
 
-\wss{Put your introductory blurb here.}
+This document describes the necessary aspects for the effective execution of the 'Grocery Spending Tracker' project including team organization, communication, technical details, and project timelines.
 
 \section{Team Meeting Plan}
 
@@ -67,14 +73,64 @@ keeping track of work items using the issue tracker. The issue tracker will also
 all group meetings.
 
 \section{Team Member Roles}
+Individuals will take leadership in their respective assigned areas. In development, all members are responsible for adjusting and filling roles as the project evolves. All team meetings will have a scrum master and a scribe, rotated on a per meeting basis.
+	\subsection{Allan Fang - Developer}
+        \begin{itemize}
+            \item Lead on mobile and user interface development
+            \item Lead on optical character recognition research and development
+            \item Graphics design and creation specialist
+        \end{itemize}
+    \subsection{Jason Nam - Developer}
+        \begin{itemize}
+            \item Lead on research and development concerning language models
+            \item Lead on backend development
+            \item Lead data engineer
+        \end{itemize}
+    \subsection{Sawyer Tang - Developer}
+        \begin{itemize}
+            \item Responsible for server setup
+            \item Responsible for DevOps and version control
+            \item Graphics design and creation specialist
+            \item Lead on backend development
+        \end{itemize}
+    \subsection{Ryan Yeh - Developer}
+        \begin{itemize}
+            \item Lead on project documentation
+            \item Lead on testing and quality assurance
+            \item Primary contact for external communications
+        \end{itemize}
 
 \section{Workflow Plan}
 
+We will be using git as a version control software with GitHub as our remote repository. The root branch will be \code{master} and development branch based on \code{master} will be \code{dev}. The developer will branch off from \code{dev} to work on issues. There will be a new branch for each issue and will be named containing the issue number and name detailed below. Continuous Integration is set up between all branches \code{dev}, \code{master}, and Issues. Once the milestone is finished to the degree we are happy to be graded, the \code{dev} branch will be merged into \code{master}.
+
+Issues are used to track tasks and meetings related to the project. Meeting issues will be created before each meeting according to the \textbf{MeetingIssueTemplate.md} template. These include attendance, minutes, and action items from the meeting. These notes can be referenced from other issues and PRs for traceability.
+Feature issues are used to track tasks. They can be referenced in PRs and meetings to outline the task that the developer must fulfill in their PR.
+Issues can be assigned to a Milestone which tracks issues related to deliverables. These are useful for filtering issues and also tracking due dates.
+Issues can be assigned labels which give information on which part of the project the issue related to. These can denote issue types as well as issue severity or complexity and allows filtering.
+
+\subsection{Some signifigant labels:}
+
 \begin{itemize}
-	\item How will you be using git, including branches, pull request, etc.?
-	\item How will you be managing issues, including template issues, issue
-	classificaiton, etc.?
+	\item \textbf{documentation}: used for all issues related to building or maintaining the documentation for our project (including, but not limited to, LaTeX related issues).
+	\item \textbf{dev-ops}: used for all issues related to code production, integration, or conventions.
+	\item \textbf{meeting}: used to denote an issue is for a meeting.
+	\item \textbf{lecture}: used to denote an issue is for a lecture.
+	\item \textbf{bug}: used for issues that describe a bug that needs to be fixed.
+	\item \textbf{feature}: used for issues that describe a new code feature to be implemented.
 \end{itemize}
+
+\subsection{Version Control Developer Step-By-Step}
+
+\begin{enumerate}
+	\item Granted Issue ticket with issue number.
+	\item Open branch with name \{IssueNumber\}/\{issue-name\}. (eg. \code{135/add-user-endpoint})
+	\item Commit with format: \{IssueNumber\}:\{commit message\}. (eg. \code{"135: updated yaml for add-user-endpoint"})
+	\item Open Pull Request on GitHub following the \textbf{PRTemplate.md} template, thus mapping the PR to the Issue.
+	\item Await 2 reviewers.
+	\item Fix reviewer comments.
+	\item Developer will merge their \emph{own} branch to dev.
+\end{enumerate}
 
 \section{Proof of Concept Demonstration Plan}
 
@@ -101,6 +157,24 @@ you will be able to overcome this risk?
 
 \section{Project Scheduling}
 
-\wss{How will the project be scheduled?}
+The general scheduling of the project will follow a weekly sprint format. At the beginning
+of each week, a plan will be made based on the deliverables due and progress made from previous sprints. The
+work will then be distributed afterwards such that all members have tasks they have
+to work on. This structure will ensure feasibility regarding weekly
+objectives and maintaining focus on certain goals rather than scope creeping over
+a longer development period. This will also allow more flexibility among the team to adjust workload
+based on other responsibilities. \par
+
+Regarding course deliverables specifically, scheduling will follow closely to the deadlines written in the
+course outline. The goal for each deliverable will be to have them finished a couple days
+prior to the actual deadline in order to account for any problems or changes that may
+need to be made. As requirements are created and planning gets done for different project features,
+more technical tasks will be added via the \emph{Github} Issue Tracker and these too will be
+integrated into the weekly sprints as they become available. This will especially be true during
+extended deadlines such as the period of time between the Proof of Concept Demonstration and
+the Design Document Revision 0 deadline. \par
+
+Overall, this scheduling structure should promote a steady output of work allowing the team
+to meet all deadlines and produce a better end product.
 
 \end{document}
