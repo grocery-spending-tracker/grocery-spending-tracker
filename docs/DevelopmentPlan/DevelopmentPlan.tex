@@ -3,6 +3,8 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 
+\def\code#1{\texttt{#1}}
+
 \title{Development Plan\\\progname}
 
 \author{\authname}
@@ -22,9 +24,12 @@
 \toprule
 \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
-Sept. 19, 2023 & Ryan Yeh & Wrote initial Team Communication Plan\\
+19/09/23 & Ryan Yeh & Wrote initial Team Communication Plan\\
+20/09/23 & Allan Fang & Added team member roles\\
+20/09/23 & Ryan Yeh & Revised Team Communication Plan based on examples\\
+20/09/23 & Sawyer Tang & Workflow Plan\\
+20/09/23 & Jason Nam & Added Team Meeting Plan Section for Development Plan Doc\\
 20/09/23 & Allan Fang & Added document introduction\\
-... & ... & ...\\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -33,27 +38,98 @@ This document describes the necessary aspects for the effective execution of the
 
 \section{Team Meeting Plan}
 
+\begin{itemize}
+	\item Standup meetings are scheduled weekly from \textbf{12:30 PM to 1:30 PM every Wednesday}. The primary meeting location is the \emph{H.G. Thode Library of Science \& Engineering}. However, in specific circumstances and within certain limitations, the meeting location may be shifted to \emph{Discord}.
+    	\item Sprint review meetings are scheduled weekly from \textbf{5:00 PM to 6:00 PM every Sunday}. The meeting location is \emph{Discord}.
+    	\item The roles and agendas for the next meeting will be decided in the final minutes of each meeting.
+    	\item Requests for additional meetings outside of regular scheduled meetings must be made and communicated at least \textbf{1 day in advance}.
+   	\item The Chair of the meeting is responsible for preparing the task backlog and identifying any relevant issues prior to the meeting.
+\end{itemize}
+
 \section{Team Communication Plan}
 
-The primary means for communication will be the team \emph{Discord} server. In an effort to 
+\subsection{Discord}
+
+The primary means for communication will be the team \emph{Discord} server. In an effort to
 ensure team members are up-to-date with messages and discussion, everyone is expected to check \emph{Discord}
 at least once per day and respond to direct messages within 24 hours.
-Additionally, the server has been organized in such a way that different topics are separated into different channels. 
-For general  discussion and planning, the \emph{general} channel will be used. When requesting reviewers on pull requests, 
-the \emph{pull-request} channel should be used. Any bugs and issues that require group consultation will go 
-into the \emph{bugs-issues} channel. Discussion of progress updates for upcoming deliverables will go into the
+Additionally, the server has been organized in such a way that different topics are separated into different channels.
+For general  discussion and planning, the \emph{general} channel will be used. When requesting reviewers on pull requests,
+the \emph{pull-request} channel should be used. Discussion surrounding bugs and issues will be brought up in the
+\emph{bugs-issues} channel. Discussion of progress updates for upcoming deliverables will go into the
 \emph{status-updates} channel and lastly, any requests for help regarding work items will go into the \emph{help} channel.
-If urgent contact with group members is required, \emph{SMS} should be used.
+
+\subsection{SMS}
+
+Should the team require urgent or time sensitive contact with any members, \emph{SMS} will be used as the method
+of communication. \emph{SMS} should facilitate faster and more efficient communication compared to \emph{Discord}
+and will be used in events such as unforeseen issues with meeting availability or last-minute changes for deadlines.
+
+\subsection{Github}
+
+Github will be used to facilitate more technical code-related discussions via pull requests in addition to
+keeping track of work items using the issue tracker. The issue tracker will also be used to store notes from
+all group meetings.
 
 \section{Team Member Roles}
+Individuals will take leadership in their respective assigned areas. In development, all members are responsible for adjusting and filling roles as the project evolves. All team meetings will have a scrum master and a scribe, rotated on a per meeting basis.
+	\subsection{Allan Fang - Developer}
+        \begin{itemize}
+            \item Lead on mobile and user interface development
+            \item Lead on optical character recognition research and development
+            \item Graphics design and creation specialist
+        \end{itemize}
+    \subsection{Jason Nam - Developer}
+        \begin{itemize}
+            \item Lead on research and development concerning language models
+            \item Lead on backend development
+            \item Lead data engineer
+        \end{itemize}
+    \subsection{Sawyer Tang - Developer}
+        \begin{itemize}
+            \item Responsible for server setup
+            \item Responsible for DevOps and version control
+            \item Graphics design and creation specialist
+            \item Lead on backend development
+        \end{itemize}
+    \subsection{Ryan Yeh - Developer}
+        \begin{itemize}
+            \item Lead on project documentation
+            \item Lead on testing and quality assurance
+            \item Primary contact for external communications
+        \end{itemize}
 
 \section{Workflow Plan}
 
+We will be using git as a version control software with GitHub as our remote repository. The root branch will be \code{master} and development branch based on \code{master} will be \code{dev}. The developer will branch off from \code{dev} to work on issues. There will be a new branch for each issue and will be named containing the issue number and name detailed below. Continuous Integration is set up between all branches \code{dev}, \code{master}, and Issues. Once the milestone is finished to the degree we are happy to be graded, the \code{dev} branch will be merged into \code{master}.
+
+Issues are used to track tasks and meetings related to the project. Meeting issues will be created before each meeting according to the \textbf{MeetingIssueTemplate.md} template. These include attendance, minutes, and action items from the meeting. These notes can be referenced from other issues and PRs for traceability.
+Feature issues are used to track tasks. They can be referenced in PRs and meetings to outline the task that the developer must fulfill in their PR.
+Issues can be assigned to a Milestone which tracks issues related to deliverables. These are useful for filtering issues and also tracking due dates.
+Issues can be assigned labels which give information on which part of the project the issue related to. These can denote issue types as well as issue severity or complexity and allows filtering.
+
+\subsection{Some signifigant labels:}
+
 \begin{itemize}
-	\item How will you be using git, including branches, pull request, etc.?
-	\item How will you be managing issues, including template issues, issue
-	classificaiton, etc.?
+	\item \textbf{documentation}: used for all issues related to building or maintaining the documentation for our project (including, but not limited to, LaTeX related issues).
+	\item \textbf{dev-ops}: used for all issues related to code production, integration, or conventions.
+	\item \textbf{meeting}: used to denote an issue is for a meeting.
+	\item \textbf{lecture}: used to denote an issue is for a lecture.
+	\item \textbf{bug}: used for issues that describe a bug that needs to be fixed.
+	\item \textbf{feature}: used for issues that describe a new code feature to be implemented.
 \end{itemize}
+
+\subsection{Version Control Developer Step-By-Step}
+
+\begin{enumerate}
+	\item Granted Issue ticket with issue number.
+	\item Open branch with name \{IssueNumber\}/\{issue-name\}. (eg. \code{135/add-user-endpoint})
+	\item Commit with format: \{IssueNumber\}:\{commit message\}. (eg. \code{"135: updated yaml for add-user-endpoint"})
+	\item Open Pull Request on GitHub following the \textbf{PRTemplate.md} template, thus mapping the PR to the Issue.
+	\item Await 2 reviewers.
+	\item Fix reviewer comments.
+	\item Developer will merge their \emph{own} branch to dev.
+\end{enumerate}
 
 \section{Proof of Concept Demonstration Plan}
 
