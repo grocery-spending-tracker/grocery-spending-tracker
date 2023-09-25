@@ -29,12 +29,9 @@
 20/09/23 & Ryan Yeh & Revised Team Communication Plan based on examples\\
 20/09/23 & Sawyer Tang & Workflow Plan\\
 20/09/23 & Jason Nam & Added Team Meeting Plan Section for Development Plan Doc\\
-<<<<<<< HEAD
-24/09/23 & Jason Nam & Added Technology section of Development Plan Doc\\
-=======
 20/09/23 & Allan Fang & Added document introduction\\
 21/09/23 & Ryan Yeh & Wrote initial Project Scheduling\\
->>>>>>> 7b0df7f320c974a3b2f95df59b892693739fdfbc
+24/09/23 & Jason Nam & Added Technology section of Development Plan Doc\\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -149,7 +146,7 @@ you will be able to overcome this risk?
         \item The team will utilize \textbf{VSCode} source-code editor.
         \begin{itemize}
             \item VSCode is very flexible and well documented.
-            \item The team has many experiences working with VSCode.
+            \item The team has plenty of experiences working with VSCode.
         \end{itemize}
         \item The team will utilize \textbf{NodeJS} as their back-end programming language.
         \begin{itemize}
@@ -179,10 +176,14 @@ you will be able to overcome this risk?
 \subsection{Code Coverage Measuring Tools}
     \begin{itemize}
         \item The team will utilize \textbf{coverage-node} to run and report code coverage for back-end NodeJS code.
+        \begin{itemize}
+            \item coverage-node allows code coverage report with zero configurations.
+            \item Package is lean and simple to use.
+        \end{itemize}
         \item The team will utilize Flutter's coverage extension in VSCode to measure front-end code coverage.
     \end{itemize}
 \subsection{Plans for Continuous Integration (CI)}
-    The team will utilize \textbf{Linter}, \textbf{Github}, and general automated testing on merge to implement Continuous Integration (CI).
+    The team will utilize \textbf{Github} for Continuous Integration with automated testing and linting being integrated into the pipeline.
 \subsection{Performance Measuring Tools}
     \begin{itemize}
         \item The team will utilize \textbf{Flutter Performance Profiling}, part  of  Flutter DevTools, for debugging front-end performance issues.
@@ -199,6 +200,9 @@ you will be able to overcome this risk?
             \item PostgreSQL is a flexible database witth high levels of control.
         \end{itemize}
         \item The team will utilize \textbf{node-rsa} to encrypt data and provide security for the system.
+        \begin{itemize}
+            \item node-rsa is widely used for encrypting back-end database using node.js.
+        \end{itemize}
     \end{itemize}
 
 \section{Coding Standard}
