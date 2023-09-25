@@ -25,6 +25,7 @@
 19/09/23 & Ryan Yeh & Wrote initial Team Communication Plan\\
 20/09/23 & Ryan Yeh & Revised Team Communication Plan based on examples\\
 20/09/23 & Jason Nam & Added Team Meeting Plan Section for Development Plan Doc\\
+24/09/23 & Jason Nam & Added Technology section of Development Plan Doc\\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -84,18 +85,62 @@ you will be able to overcome this risk?
 
 \section{Technology}
 
-\begin{itemize}
-\item Specific programming language
-\item Specific linter tool (if appropriate)
-\item Specific unit testing framework
-\item Investigation of code coverage measuring tools
-\item Specific plans for Continuous Integration (CI), or an explanation that CI
-  is not being done
-\item Specific performance measuring tools (like Valgrind), if
-  appropriate
-\item Libraries you will likely be using?
-\item Tools you will likely be using?
-\end{itemize}
+\subsection{Programming Language}
+    \begin{itemize}
+        \item The team will utilize \textbf{VSCode} source-code editor.
+        \begin{itemize}
+            \item VSCode is very flexible and well documented.
+            \item The team has many experiences working with VSCode.
+        \end{itemize}
+        \item The team will utilize \textbf{NodeJS} as their back-end programming language.
+        \begin{itemize}
+            \item NodeJS is very popular and well documented.
+            \item NodeJS has a reliable and flexible coding environment.
+        \end{itemize}
+        \item The team will utilize \textbf{Flutter} (Dart) as their front-end programming language.
+        \begin{itemize}
+            \item Flutter is a mainstream and modern open-source UI software development kit created by Google.
+            \item Flutter ports well with web, Android, and IOS operating systems.
+        \end{itemize}
+    \end{itemize}
+\subsection{Linter Tool}
+    \begin{itemize}
+        \item The team will utilize \textbf{flutter\_lints} for front-end programming language which is built on top of Dart's recommended sets of lints from Official Dart lint rules.
+        \item The team will utilize \textbf{ESLint} tool for identifying and reporting on patterns found in ECMAScript/JavaScript code.
+    \end{itemize}
+\subsection{Unit Testing Framework}
+    \begin{itemize}
+        \item The team will use Flutter's integrated unit testing framework for front-end unit testing purposes.
+        \item The team will use \textbf{Postman} and \textbf{Mocha} frameworks for back-end unit testing purposes.
+        \begin{itemize}
+            \item The team has extensive experiences working with Postman.
+            \item Postman is a popular choice for testing back-end database queries.
+        \end{itemize}
+    \end{itemize}
+\subsection{Code Coverage Measuring Tools}
+    \begin{itemize}
+        \item The team will utilize \textbf{coverage-node} to run and report code coverage for back-end NodeJS code.
+        \item The team will utilize Flutter's coverage extension in VSCode to measure front-end code coverage.
+    \end{itemize}
+\subsection{Plans for Continuous Integration (CI)}
+    The team will utilize \textbf{Linter}, \textbf{Github}, and general automated testing on merge to implement Continuous Integration (CI).
+\subsection{Performance Measuring Tools}
+    \begin{itemize}
+        \item The team will utilize \textbf{Flutter Performance Profiling}, part  of  Flutter DevTools, for debugging front-end performance issues.
+    \end{itemize}
+\subsection{Libraries and Other Tools}
+    \begin{itemize}
+        \item The team will utilize \textbf{node-tesseract-ocr} to handle OCR on back-end.
+        \begin{itemize}
+            \item node-tesseract-ocr compiles well with node.
+            \item node-tesseract-ocr is popular and well documented.
+        \end{itemize}
+        \item The team will utilize \textbf{PostgreSQL} relational database to persist and aggregate data on demand.
+        \begin{itemize}
+            \item PostgreSQL is a flexible database witth high levels of control.
+        \end{itemize}
+        \item The team will utilize \textbf{node-rsa} to encrypt data and provide security for the system.
+    \end{itemize}
 
 \section{Coding Standard}
 
