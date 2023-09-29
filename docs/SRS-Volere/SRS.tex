@@ -8,7 +8,10 @@
 
 \usepackage{booktabs}
 \usepackage{tabularx}
+\usepackage{graphicx}
 \usepackage{hyperref}
+\usepackage{float}
+\graphicspath{ {./res/} }
 \hypersetup{
     bookmarks=true,         % show bookmarks bar?
       colorlinks=true,      % false: boxed links; true: colored links
@@ -108,7 +111,12 @@ involved in the Project}
 
 \section{The Scope of the Work}
 \subsection{The Current Situation}
-\lips
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{currentsituation}
+    \caption{Current Situation Activity Diagram}
+    \label{fig:currentsituation}
+\end{figure}
 \subsection{The Context of the Work}
 \lips
 \subsection{Work Partitioning}
