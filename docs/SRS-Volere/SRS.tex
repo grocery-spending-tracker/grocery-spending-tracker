@@ -8,7 +8,10 @@
 
 \usepackage{booktabs}
 \usepackage{tabularx}
+\usepackage{graphicx}
 \usepackage{hyperref}
+\usepackage{float}
+\graphicspath{ {./res/} }
 \hypersetup{
     bookmarks=true,         % show bookmarks bar?
       colorlinks=true,      % false: boxed links; true: colored links
@@ -137,41 +140,49 @@ involved in the Project}
 
 \section{The Scope of the Product}
 \subsection{Product Boundary}
-\lips
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{use_case_diagram}
+  \caption{Use Case Diagram}
+  \label{fig:use_case_diagram}
+\end{figure}
+
 \pagebreak
 \subsection{Product Use Case Table}
 
-\begin{center}
-\begin{tabular}{ |c|p{3.5cm}|c|p{3.5cm}| } 
-\hline
-\textbf{PUC No} & \textbf{PUC Name} & \textbf{Actor/s} & \textbf{Input/Output} \\ 
-\hline
-1 & Register for an account & User, System & User account data (in), Created user account (out) \\
-\hline
-2 & Sign into application & User, System & User account data (in), Sign in authentication (out) \\
-\hline
-3 & Enter spending goals & User & User spending preferences (in) \\
-\hline
-4 & Enter location preferences & User & User location preferences (in) \\
-\hline
-5 & Enter budgeting preferences & User & User budgeting preferences (in) \\
-\hline
-6 & Enter receipt data & User & Photo of receipt (in) \\
-\hline
-7 & Record user inputs & System & Inputs stored in database (out) \\
-\hline
-8 & Process receipt & System & Receipt data stored in database (out) \\
-\hline
-9 & Map receipt data to database & System & Individual product data properly stored in database (out) \\
-\hline
-10 & Display analyzed spending data & System & Visualized spending data (out) \\
-\hline
-11 & Provide budgeting suggestion & System & Budgeting suggestion (out) \\
-\hline
-12 & Suggest cheaper grocery alternatives & System & Item, price, and location of cheaper alternative (out) \\
-\hline
-\end{tabular}
-\end{center}
+\begin{table}[H]
+  \caption{Product Use Case Table}
+  \centering
+  \begin{tabular}{ |c|p{3.5cm}|c|p{3.5cm}| } 
+  \hline
+  \textbf{PUC No} & \textbf{PUC Name} & \textbf{Actor/s} & \textbf{Input/Output} \\ 
+  \hline
+  1 & Register for an account & User, System & User account data (in), Created user account (out) \\
+  \hline
+  2 & Sign into application & User, System & User account data (in), Sign in authentication (out) \\
+  \hline
+  3 & Enter spending goals & User & User spending preferences (in) \\
+  \hline
+  4 & Enter location preferences & User & User location preferences (in) \\
+  \hline
+  5 & Enter budgeting preferences & User & User budgeting preferences (in) \\
+  \hline
+  6 & Enter receipt data & User & Photo of receipt (in) \\
+  \hline
+  7 & Record user inputs & System & Inputs stored in database (out) \\
+  \hline
+  8 & Process receipt & System & Receipt data stored in database (out) \\
+  \hline
+  9 & Map receipt data to database & System & Individual product data properly stored in database (out) \\
+  \hline
+  10 & Display analyzed spending data & System & Visualized spending data (out) \\
+  \hline
+  11 & Provide budgeting suggestion & System & Budgeting suggestion (out) \\
+  \hline
+  12 & Suggest cheaper grocery alternatives & System & Item, price, and location of cheaper alternative (out) \\
+  \hline
+  \end{tabular}
+\end{table}
 
 \pagebreak
 \subsection{Individual Product Use Cases (PUC's)}
@@ -228,6 +239,80 @@ involved in the Project}
 \begin{enumerate}
   \item User enters price range and budgeting preferences for the application to consider.
   \item System records the entered budgeting preferences into the database.
+\end{enumerate}
+
+\medskip
+\noindent \textbf{Title:} Enter receipt data\\
+\textbf{Trigger:} User wants to enter a receipt to add new spending data\\
+\textbf{Pre-condition:} User is signed into an account and has a receipt to use\\
+\textbf{Outcome:}
+\begin{enumerate}
+  \item User takes a photo of the receipt.
+  \item System processes data from the receipt \textit{(see Individual Product
+  Use Case for "Process receipt")} and stores data in the database \textit{(see Individual
+  Product Use Case for "Map receipt data to database")}.
+\end{enumerate}
+
+\pagebreak
+\noindent \textbf{Title:} Process receipt\\
+\textbf{Trigger:} User enters a photo of a receipt to be analyzed by the application\\
+\textbf{Pre-condition:} The receipt photo has already been taken and submitted to the application\\
+\textbf{Outcome:}
+\begin{enumerate}
+  \item System searches the receipt looking for purchase date, time, and location information.
+  \item System searches for products purchased and their prices.
+  \item Products are mapped \textit{(see Individual Product Use Case for "Map receipt
+  data to database")} and purchase data is recorded in the database.
+\end{enumerate}
+
+\medskip
+\noindent \textbf{Title:} Map receipt data to database\\
+\textbf{Trigger:} User enters a photo of a receipt to be analyzed by the application\\
+\textbf{Pre-condition:} The receipt has already been processed by the system\\
+\textbf{Outcome:}
+\begin{enumerate}
+  \item System goes through each found product on the receipt and
+  checks if it exists in the database.
+  \item If an entry in the database exists for the product, the date, time, location,
+  and purchase price are recorded in that entry.
+  \item If no entry for the product exists in the database, an entry is created and the
+  date, time, location, and purchase price are recorded.
+\end{enumerate}
+
+\medskip
+\noindent \textbf{Title:} Display analyzed spending data\\
+\textbf{Trigger:} User wants to check their spending data\\
+\textbf{Pre-condition:} The user is logged in and has spending data already entered into the application\\
+\textbf{Outcome:}
+\begin{enumerate}
+  \item The system checks the user's purchases in the database.
+  \item The system displays a visual representation of the user's purchase history and
+  data is provided on what was purchased and when.
+\end{enumerate}
+
+\medskip
+\noindent \textbf{Title:} Provide budgeting suggestion\\
+\textbf{Trigger:} User exceeds budgeting preferences submitted\\
+\textbf{Pre-condition:} The user is logged in and has entered their budgeting preferences into the application\\
+\textbf{Outcome:}
+\begin{enumerate}
+  \item The system analyzes purchase history and compares it to the user's
+  budgeting preferences
+  \item The system suggests items to stop purchasing and/or cheaper grocery alternatives
+  if they exist \textit{(see Individual Product Use Case for "Suggest cheaper grocery
+  alternatives")}.
+\end{enumerate}
+
+\medskip
+\noindent \textbf{Title:} Suggest cheaper grocery alternatives\\
+\textbf{Trigger:} A recently purchased item by the user is purchased at a cheaper price\\
+\textbf{Pre-condition:} A database entry for the recently purchased item and spending data exist\\
+\textbf{Outcome:}
+\begin{enumerate}
+  \item The system analyzes recent purchase history of the item as well as purchase location from different users.
+  \item If the location is within the current user's location preferences, the item, price and location are
+  prompted to the user.
+  \item If the location is not within the current user's location preferences, no prompt is created.
 \end{enumerate}
 
 \section{Functional Requirements}
