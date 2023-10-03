@@ -8,7 +8,11 @@
 
 \usepackage{booktabs}
 \usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{graphicx}
 \usepackage{hyperref}
+\usepackage{float}
+\graphicspath{ {./res/} }
 \hypersetup{
     bookmarks=true,         % show bookmarks bar?
       colorlinks=true,      % false: boxed links; true: colored links
@@ -131,9 +135,86 @@ involved in the Project}
 
 \section{Business Data Model and Data Dictionary}
 \subsection{Business Data Model}
-\lips
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{classdiagram}
+    \caption{Class Diagram}
+    \label{fig:classdiagram}
+\end{figure}
 \subsection{Data Dictionary}
-\lips
+\begin{longtable}{| >{\raggedright\arraybackslash}p{.20\textwidth} | >{\raggedright\arraybackslash}p{.55\textwidth} | >{\raggedright\arraybackslash}p{.15\textwidth} |}
+        \hline
+        \textbf{Name} & \textbf{Content} & \textbf{Type} \\
+        \hline
+        User Profile & Username + Password + Purchases + Objectives + User Preference + User Location & Class \\
+        \hline
+        Objective & Objective Id + Period + Budget + Target Product + Target Category & Class \\
+        \hline
+        Purchase & Datetime + Purchased Product + Price Per Unit + Quantity + Unit & Class \\
+        \hline
+        Product & Product Name + Category & Class \\
+        \hline
+        Preference & Accessible Radius + Ignore Stores + Prefer Stores + Prefer Units & Class \\
+        \hline
+        Store & Store Location + Store Name & Class \\
+        \hline
+        Location & X-Coordinate + Y-Coordinate & Class \\
+        \hline
+        Username & *Unique String* & Attribute\\
+        \hline
+        Password & *String* & Attribute \\
+        \hline
+        Purchases & *List of Purchase class* & Attribute \\
+        \hline
+        Objectives & *List of Objective class* & Attribute \\
+        \hline
+        User Preference & *Preference class* & Attribute \\
+        \hline
+        User Location & *Location class* & Attribute \\
+        \hline
+        Objective Id & *String* & Attribute \\
+        \hline
+        Period & *String: day/week/month/year* & Attribute\\
+        \hline
+        Budget & *Currency amount measured by Double to 2 decimals* & Attribute \\
+        \hline
+        Target Product & *String product name* & Attribute \\
+        \hline 
+        Target Category & *String category name* & Attribute \\
+        \hline 
+        Datetime & *YYYY-MM-DD HH:MM:SS* & Attribute \\
+        \hline 
+        Purchased Product & *String Product name* & Attribute \\
+        \hline 
+        Price Per Unit & *Int price per unit of product* & Attribute \\
+        \hline 
+        Unit & *String* & Attribute \\
+        \hline 
+        Quantity & *Double* & Attribute \\
+        \hline 
+        Product Name & *String* & Attribute \\
+        \hline 
+        Category & *String* & Attribute \\
+        \hline 
+        Accessible Radius & *Integer* & Attribute \\
+        \hline 
+        Ignore Stores & *List of Stores to ignore* & Attribute \\
+        \hline 
+        Prefer Stores & *List of Stores to prioritise* & Attribute \\
+        \hline 
+        Prefer Units & *String: metric/imperial* & Attribute \\
+        \hline
+        Store Location & *Location class* & Attribute \\
+        \hline 
+        Store Name & *String* & Attribute \\
+        \hline 
+        X Coordinate & *Double* & Attribute \\
+        \hline 
+        Y Coordinate & *Double* & Attribute \\
+        \hline 
+        \caption{Business Event List}
+        \label{tab:businesseventlist}
+    \end{longtable}
 
 \section{The Scope of the Product}
 \subsection{Product Boundary}
