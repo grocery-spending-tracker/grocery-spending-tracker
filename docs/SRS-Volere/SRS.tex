@@ -140,6 +140,7 @@ involved in the Project}
 \lips
 \pagebreak
 \subsection{Product Use Case Table}
+
 \begin{center}
 \begin{tabular}{ |c|p{3.5cm}|c|p{3.5cm}| } 
 \hline
@@ -147,34 +148,87 @@ involved in the Project}
 \hline
 1 & Register for an account & User, System & User account data (in), Created user account (out) \\
 \hline
-2 & Sign into application & User, System & User account data (in), Sign in approval status (out) \\
+2 & Sign into application & User, System & User account data (in), Sign in authentication (out) \\
 \hline
-3 & Sign into application & User, System & User account data (in), Sign in approval status (out) \\
+3 & Enter spending goals & User & User spending preferences (in) \\
 \hline
-4 & Enter spending goals & User & User spending preferences (in) \\
+4 & Enter location preferences & User & User location preferences (in) \\
 \hline
-5 & Enter location preferences & User & User location preferences (in) \\
+5 & Enter budgeting preferences & User & User budgeting preferences (in) \\
 \hline
-6 & Enter budgeting goals & User & User budgeting preferences (in) \\
+6 & Enter receipt data & User & Photo of receipt (in) \\
 \hline
-7 & Enter receipt data & User & Photo of receipt (in) \\
+7 & Record user inputs & System & Inputs stored in database (out) \\
 \hline
-8 & Record user inputs & System & Inputs stored in database (out) \\
+8 & Process receipt & System & Receipt data stored in database (out) \\
 \hline
-9 & Process receipt & System & Receipt data stored in database (out) \\
+9 & Map receipt data to database & System & Individual product data properly stored in database (out) \\
 \hline
-10 & Map receipt data to database & System & Individual product data properly stored in database (out) \\
+10 & Display analyzed spending data & System & Visualized spending data (out) \\
 \hline
-11 & Display analyzed spending data & System & Visualized spending data (out) \\
+11 & Provide budgeting suggestion & System & Budgeting suggestion (out) \\
 \hline
-12 & Provide budgeting suggestion & System & Budgeting suggestion (out) \\
-\hline
-13 & Suggest cheaper grocery alternatives & System & Item, price, and location of cheaper alternative (out) \\
+12 & Suggest cheaper grocery alternatives & System & Item, price, and location of cheaper alternative (out) \\
 \hline
 \end{tabular}
 \end{center}
+
+\pagebreak
 \subsection{Individual Product Use Cases (PUC's)}
-\lips
+
+\textbf{Title:} Register for an account\\
+\textbf{Trigger:} User wants to create an account for the application\\
+\textbf{Pre-condition:} User has necessary information requested by the system\\
+\textbf{Outcome:}
+\begin{enumerate}
+  \item User enters their email and password when prompted and submits the data.
+  \item System validates the data.
+  \item If valid, system stores user data in the database and creates the account.
+  \item If invalid, system prompts user with an error.
+\end{enumerate}
+
+\medskip
+\noindent \textbf{Title:} Sign into application\\
+\textbf{Trigger:} User wants to sign into their account\\
+\textbf{Pre-condition:} User has an account for the application\\
+\textbf{Outcome:}
+\begin{enumerate}
+  \item User enters their email and password when prompted and submits the data.
+  \item System looks for any accounts with matching credentials.
+  \item If a match is found, system authentication is successful and user is granted application access.
+  \item If no match is found, system authentication fails and user is prompted with an error.
+\end{enumerate}
+
+\medskip
+\noindent \textbf{Title:} Enter spending goals\\
+\textbf{Trigger:} User wants to enter their spending goals for the application\\
+\textbf{Pre-condition:} User is signed into an account\\
+\textbf{Outcome:}
+\begin{enumerate}
+  \item User enters information regarding their spending objectives and outcomes for application.
+  \item System records the entered spending goals into the database.
+\end{enumerate}
+
+\medskip
+\noindent \textbf{Title:} Enter location preferences\\
+\textbf{Trigger:} User wants to enter their location preferences for the application to consider\\
+\textbf{Pre-condition:} User is signed into an account\\
+\textbf{Outcome:}
+\begin{enumerate}
+  \item User enters information regarding their current location and preferred area of coverage for the app.
+  \item User enters store preferences as well as stores for the application to ignore.
+  \item System records the entered location preferences into the database.
+\end{enumerate}
+
+\medskip
+\noindent \textbf{Title:} Enter budgeting preferences\\
+\textbf{Trigger:} User wants to enter their budgeting preferences for the application to consider\\
+\textbf{Pre-condition:} User is signed into an account\\
+\textbf{Outcome:}
+\begin{enumerate}
+  \item User enters price range and budgeting preferences for the application to consider.
+  \item System records the entered budgeting preferences into the database.
+\end{enumerate}
 
 \section{Functional Requirements}
 \subsection{Functional Requirements}
