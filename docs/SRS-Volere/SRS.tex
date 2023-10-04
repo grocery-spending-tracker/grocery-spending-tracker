@@ -9,6 +9,7 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
+\usepackage{float}
 \hypersetup{
     bookmarks=true,         % show bookmarks bar?
       colorlinks=true,      % false: boxed links; true: colored links
@@ -251,48 +252,54 @@ Inhibit the New Product}
 \subsection{Project Planning}
 % pretty much just follow the schedule with deadlines here and break into pre-proof of concept (dev phase 1)
 % and post-proof of concept (dev phase 2). potentially add dev phase 3 for revision 1 after post-proof of concept.
-\underline{Development Phase 1}
-\begin{center}
-\begin{tabular}{ |c|c| } 
-\hline
-\textbf{Deliverable} & \textbf{Deadline} \\ 
-\hline
-Hazard Analysis Revision 0 & October 20 \\
-\hline
-V\&V Plan Revision 0 & November 3 \\ 
-\hline
-Proof of Concept Demonstration & November 13-24 \\ 
-\hline
-\end{tabular}
-\end{center}
+\begin{table}[H]
+  \centering
+  \begin{tabular}{ |c|c| } 
+  \hline
+  \textbf{Deliverable} & \textbf{Deadline} \\ 
+  \hline
+  Hazard Analysis Revision 0 & October 20 \\
+  \hline
+  V\&V Plan Revision 0 & November 3 \\ 
+  \hline
+  Proof of Concept Demonstration & November 13-24 \\ 
+  \hline
+  \end{tabular}
+  \caption{Development Phase 1}
+  \label{tab:developmentphase1}
+\end{table}
 
-\noindent \underline{Development Phase 2}
-\begin{center}
-\begin{tabular}{ |c|c| } 
-\hline
-\textbf{Deliverable} & \textbf{Deadline} \\ 
-\hline
-Design Document Revision 0 & January 17 \\
-\hline
-Revision 0 Demonstration & February 5-February 16 \\ 
-\hline
-\end{tabular}
-\end{center}
+\begin{table}[H]
+  \centering
+  \begin{tabular}{ |c|c| } 
+  \hline
+  \textbf{Deliverable} & \textbf{Deadline} \\ 
+  \hline
+  Design Document Revision 0 & January 17 \\
+  \hline
+  Revision 0 Demonstration & February 5-February 16 \\ 
+  \hline
+  \end{tabular}
+  \caption{Development Phase 2}
+  \label{tab:developmentphase2}
+\end{table}
 
-\noindent \underline{Development Phase 3}
-\begin{center}
-\begin{tabular}{ |c|c| } 
-\hline
-\textbf{Deliverable} & \textbf{Deadline} \\ 
-\hline
-V\&V Report Revision 0 & March 6 \\ 
-\hline
-Final Demonstration (Revision 1) & March 16-March 29 \\
-\hline
-Final Documentation (Revision 1) & April 4 \\ 
-\hline
-\end{tabular}
-\end{center}
+\begin{table}[H]
+  \centering
+  \begin{tabular}{ |c|c| } 
+  \hline
+  \textbf{Deliverable} & \textbf{Deadline} \\ 
+  \hline
+  V\&V Report Revision 0 & March 6 \\ 
+  \hline
+  Final Demonstration (Revision 1) & March 16-March 29 \\
+  \hline
+  Final Documentation (Revision 1) & April 4 \\ 
+  \hline
+  \end{tabular}
+  \caption{Development Phase 3}
+  \label{tab:developmentphase3}
+\end{table}
 \subsection{Planning of the Development Phases}
 
 Development is being split into three phases based on an overarching goal for each: the Proof of Concept build,
