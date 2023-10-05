@@ -6,6 +6,8 @@
 % Risks are removed because they are covered by the Hazard Analysis
 \documentclass[12pt]{article}
 
+\usepackage{graphicx} 
+\graphicspath{ {./res/} }
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{longtable}
@@ -140,22 +142,44 @@ From an elicitation perspective, a sample of users will be responsible for provi
 
 \section{Mandated Constraints}
 \subsection{Solution Constraints}
-\lips
-\subsection{Implementation Environment of the Current System}
-\lips
-\subsection{Partner or Collaborative Applications}
-\lips
-\subsection{Off-the-Shelf Software}
-\lips
-\subsection{Anticipated Workplace Environment}
-\lips
-\subsection{Schedule Constraints}
-\lips
-\subsection{Budget Constraints}
-\lips
-\subsection{Enterprise Constraints}
-\lips
+\textbf{Mobile Device}\\
+\underline{Description}: User will interact with the system through an app on their mobile device (smartphone).\\
+\underline{Rationale}: Mobile devices are widely used and ubiquitous. While at a grocery store, users may need access to the system.\\
+\underline{Fit Criterion}: User interface will run entirely on a mobile device.\\
+\\
+\textbf{Internet access}\\ %%todo: is this too solution specific?
+\underline{Description}: User must have internet access.\\
+\underline{Rationale}: System servers and databases are used to store collective user data and process that data. User's devices are required to communicate with the servers and databases via internet access.\\
+\underline{Fit Criterion}: User interface will have internet access.\\
+\\
+\textbf{Device with Camera}\\
+\underline{Description}: User must be equipped with a device that has a camera. This should be quite common as most smartphones have a camera.\\
+\underline{Rationale}: Users will be using the system while they are out on their grocery trips. Thus, the system needs to have a quick and easy method of data input. This also makes it easier for those who have their hands full or do not have the finger mobility to effectively type on their phone keyboards.\\
+\underline{Fit Criterion}: System must have access to a mobile camera.\\
 
+\subsection{Implementation Environment of the Current System}
+\includegraphics[width=\textwidth]{ImplementationEnvironment.png}
+
+\subsection{Partner or Collaborative Applications}
+N/A
+\subsection{Off-the-Shelf Software}
+The system requires the following off-the-shelf software:
+\begin{itemize}
+  \item \href{https://github.com/tesseract-ocr/tesseract}{Tesseract} OCR.
+  \item \href{https://flutter.dev/}{Flutter} for Front-end.
+  \item \href{https://nodejs.org/en}{NodeJS} for Back-end.
+  \item \href{https://www.npmjs.com/package/express}{Express} REST API.
+  \item \href{https://www.postgresql.org/}{PostgreSQL} as Relational Database.
+\end{itemize}
+
+\subsection{Anticipated Workplace Environment}
+N/A
+\subsection{Schedule Constraints}
+The schedule for this project is in adherance with the milestones implemented by our course instructor. Found \href{https://gitlab.cas.mcmaster.ca/courses/capstone/-/blob/main/CourseOutline/Capstone_Outline.pdf}{here}.
+\subsection{Budget Constraints}
+The project budget is \$750 paid for directly by the developers.
+\subsection{Enterprise Constraints}
+N/A
 \section{Naming Conventions and Terminology}
 \subsection{Glossary of All Terms, Including Acronyms, Used by Stakeholders
 involved in the Project}
