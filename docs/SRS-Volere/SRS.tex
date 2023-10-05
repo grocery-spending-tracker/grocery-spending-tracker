@@ -500,27 +500,6 @@ involved in the Project}
 \subsection{Formal Specification}
 In regards to identifying roles and functions for project:
 \begin{itemize}
-    \item \textbf{Employee must respond to users.}\\
-    For all users `a' who are employees, and for all users `b' who are regular users and send a message to `a':
-    \[
-    \begin{split}
-        \forall a \in \text{users} \quad (& a.\text{role} = \text{``employee"} \\ 
-        & \land \forall b \in \text{users} \quad (b.\text{role} = \text{``user"} \Rightarrow a.\text{respondTo}(b) \Rightarrow \text{true}))
-    \end{split}
-    \]
-
-    \item \textbf{Owners must respond to employees.}\\
-    For all users `a' who are owners, and for all users `x' who are employees and send a message to `a':
-    \[
-    \begin{split}
-        \forall a \in \text{users} \quad (& a.\text{role} = \text{``owner"} \\
-        & \begin{split} 
-            \land \forall x \in \text{users} \quad (& x.\text{role} = \text{``employee"}\\
-            & \Rightarrow a.\text{respondTo}(x) \Rightarrow \text{true}))
-        \end{split}
-    \end{split}
-    \]
-    
     \item \textbf{User must provide data to application.}\\
     For all users `a' who are regular users:
     \[
