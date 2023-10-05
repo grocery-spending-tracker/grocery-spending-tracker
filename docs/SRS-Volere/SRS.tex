@@ -9,6 +9,7 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
+\usepackage{amsmath, mathtools}
 \hypersetup{
     bookmarks=true,         % show bookmarks bar?
       colorlinks=true,      % false: boxed links; true: colored links
@@ -201,6 +202,87 @@ involved in the Project}
 \textbf{Description:} The system must retrieve and display a visual representation of the user's purchase history, including details on items purchased and their respective timestamps.\\
 \textbf{Rationale:} This requirement enables users to monitor their spending habits and make informed financial decisions by providing a clear view of their purchase history.\\
 \textbf{Fit Criterion:} The system should present the user's purchase history accurately and in a user-friendly manner.\\
+
+\subsection{Formal Specification}
+In regards to identifying roles and functions for project:
+\begin{itemize}
+    \item \textbf{Employees cannot view other employee profiles.}\\ 
+    For all users `a' and `b' who are both employees, and `a' is not equal to `b':
+    \[
+    \begin{split}
+        \forall a, b \in \text{users} \quad (& a.\text{role} = \text{``employee"}\\ 
+        & \land b.\text{role} = \text{``employee"} \\ 
+        & \land a \neq b \Rightarrow a.\text{view}(b.\text{profile}) \Rightarrow \text{false})
+    \end{split}
+    \]
+    
+    \item \textbf{Employees cannot modify or edit user.}\\
+    For all users `a' and `b' where `a' is an employee and `b' is any user (employee, owner, or regular user), and `a' is not equal to `b':
+    \[
+    \begin{split}
+        \forall a, b \in \text{users} \quad (& a.\text{role} = \text{``employee"} \\ 
+        & \land a \neq b \Rightarrow a.\text{edit}(b) \Rightarrow \text{false})
+    \end{split}
+    \]
+
+    \item \textbf{Owner can view and edit employee profiles.}\\
+    For all users `a' who are owners and for all users `x' who are employees working under the same shop as `a':
+    \[
+    \begin{split}
+        \forall a \in \text{users} \quad (& a.\text{role} = \text{``owner"} \\ 
+        & \begin{split} 
+            \land \: \forall x \in \text{users} \quad (& x.\text{shop} = a.\text{shop} \Rightarrow a.\text{edit}(x) \\ & \land a.\text{view}(x.\text{profile}) \Rightarrow \text{true}))
+        \end{split}
+    \end{split}
+    \]
+    
+    \item \textbf{Employee must respond to users.}\\
+    For all users `a' who are employees, and for all users `b' who are regular users and send a message to `a':
+    \[
+    \begin{split}
+        \forall a \in \text{users} \quad (& a.\text{role} = \text{``employee"} \\ 
+        & \land \forall b \in \text{users} \quad (b.\text{role} = \text{``user"} \Rightarrow a.\text{respondTo}(b) \Rightarrow \text{true}))
+    \end{split}
+    \]
+
+    \item \textbf{Owners must respond to employees.}\\
+    For all users `a' who are owners, and for all users `x' who are employees and send a message to `a':
+    \[
+    \begin{split}
+        \forall a \in \text{users} \quad (& a.\text{role} = \text{``owner"} \\
+        & \begin{split} 
+            \land \forall x \in \text{users} \quad (& x.\text{role} = \text{``employee"}\\
+            & \Rightarrow a.\text{respondTo}(x) \Rightarrow \text{true}))
+        \end{split}
+    \end{split}
+    \]
+    
+    \item \textbf{User must provide data to application.}\\
+    For all users `a' who are regular users:
+    \[
+    \begin{split}
+        \forall a \in \text{users} \quad (& a.\text{role} = \text{``user"}\\
+        & \Rightarrow a.\text{inputDataToApplication}() \Rightarrow \text{true})
+    \end{split}
+    \]
+
+    \item \textbf{All data must be stored in database.}\\
+    For all data `d' generated or used by the application:
+    \[
+    \begin{split}
+        \forall d \quad (d.\text{storeInDatabase}() \Rightarrow \text{true})
+    \end{split}
+    \]
+    
+    \item \textbf{All user data must be encrypted in database.}\\
+    For all user data `ud' stored in the database:
+    \[
+    \begin{split}
+        \forall ud \quad (ud.\text{encryptInDatabase}() \Rightarrow \text{true})
+    \end{split}
+    \]
+    
+\end{itemize}
 
 \section{Look and Feel Requirements}
 \subsection{Appearance Requirements}
