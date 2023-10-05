@@ -8,7 +8,11 @@
 
 \usepackage{booktabs}
 \usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{graphicx}
 \usepackage{hyperref}
+\usepackage{float}
+\graphicspath{ {./res/} }
 \hypersetup{
     bookmarks=true,         % show bookmarks bar?
       colorlinks=true,      % false: boxed links; true: colored links
@@ -167,13 +171,143 @@ involved in the Project}
 
 \section{The Scope of the Work}
 \subsection{The Current Situation}
-\lips
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{currentsituation}
+    \caption{Current Situation Activity Diagram}
+    \label{fig:currentsituation}
+\end{figure}
 \subsection{The Context of the Work}
-\lips
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{workcontext}
+    \caption{Work Context Model}
+    \label{fig:workcontext}
+\end{figure}
 \subsection{Work Partitioning}
-\lips
+    \begin{longtable}{| >{\raggedright\arraybackslash}p{.30\textwidth} | >{\raggedright\arraybackslash}p{.30\textwidth} | >{\raggedright\arraybackslash}p{.30\textwidth} |}
+        \hline
+        \textbf{Event Name} & \textbf{Input/output} & \textbf{Summary of BUC} \\
+        \hline
+        User inputs user profile credentials & User Credentials (in) & Initialize user profile from received credentials \\
+        \hline
+        Consumer inputs spending objectives & Spending objectives (in) & Records the objectives and the owner \\
+        \hline
+        Consumer inputs purchase record & Purchase record (in) & Records the purchase and the owner of the purchase \\
+        \hline
+        User requests purchasing analytics & Purchasing analytics (out) & Report compiled and computed information from available data for the user profile \\
+        \hline
+        User requests personal purchase history & Purchase history (out) & Report compiled user purchasing history\\
+        \hline
+        User requests information on a product & Current nearby market rates (out) & Report market rates for a product that is accessible to the user \\
+        \hline
+        Compiling market information relevant to a user & Nearby markets (in) & Record information for accessible markets based on criteria \\
+        \hline
+        Request information on markets & Market query (out) & Send request for market information under a set of specified parameters \\
+        \hline
+        Database transmits product information & Product information (out) & Record information on product \\
+        \hline
+        New mapping received & Mapping Data (out) & Send new good/service mapping to database \\
+        \hline
+        Database transmits requested mapping data & Product mappings (in) & Record the product mappings \\
+        \hline
+        Send purchase record to database & New purchase record (out) &  Send purchase record to database \\
+        \hline
+        Database transmits requested user profile data & User profiles (in) &  Record the user profile data \\
+        \hline
+        Send user profile data & New user profile (out) &  Send a user profile to database \\
+        \hline
+        Send product query to database & Product query (out) & Request relevant data based on product query from database \\
+        \hline
+        Send mapping query to database  & Mapping query (out) &  Request relevant data based on mapping query from database \\
+        \hline 
+        \caption{Business Event List}
+        \label{tab:businesseventlist}
+    \end{longtable}
 \subsection{Specifying a Business Use Case (BUC)}
-\lips
+\textbf{Title:} Create a new profile\\
+\textbf{Trigger:} User creates a new profile\\
+\textbf{Pre-condition:} User has application running\\
+\textbf{Outcome: } 
+\begin{enumerate}
+    \item User creates an profile identified by a username and a password
+    \item System creates new profile entry in database
+\end{enumerate}
+\textbf{Title:} Log in to user profile\\
+\textbf{Trigger:} User submits profile credentials \\
+\textbf{Pre-condition:} Profile exists in database \\
+\textbf{Outcome: } 
+\begin{enumerate}
+    \item System checks if profile credentials exists
+    \item If exists, system allows loads user profile
+    \item If not exists, systems shows error message
+\end{enumerate}
+\textbf{Title:} Record user objectives \\
+\textbf{Trigger:} User submits personal objectives \\
+\textbf{Pre-condition:} User is logged into profile \\
+\textbf{Outcome: } 
+\begin{enumerate}
+    \item System stores user budgeting objectives of budget with associated product or product groups
+\end{enumerate}
+\textbf{Title:} Input purchase records \\
+\textbf{Trigger:} User submits image or manual entry of purchase record \\
+\textbf{Pre-condition:} User is logged into profile \\
+\textbf{Outcome: } 
+\begin{enumerate}
+    \item System reads and translates records to Strings
+    \item System maps input records to database objects
+    \item If mapping does not exist, make guesses and prompt user for feedback
+    \item Save records to database
+\end{enumerate}
+\textbf{Title:} Create new mapping feedback \\
+\textbf{Trigger:} Product mapping is not found in database \\
+\textbf{Pre-condition:} Product record has been submitted \\
+\textbf{Outcome: } 
+\begin{enumerate}
+    \item Create mapping guesses using language model
+    \item Prompt user with guesses for feedback
+    \item User inputs feedback
+    \item Process and screen user feedback
+    \item If mapping is eligible, create new mapping entry in database
+\end{enumerate}
+\textbf{Title:} Create user profile analytics \\
+\textbf{Trigger:} User requests purchasing analytics \\
+\textbf{Pre-condition:} User is logged into profile \\
+\textbf{Outcome: } 
+\begin{enumerate}
+    \item Retrieve user data from database
+    \item Transform user profile data into graphics
+    \item Display graphics in application
+\end{enumerate}
+\textbf{Title:} Retrieve profile purchase history \\
+\textbf{Trigger:} User requests purchase history\\
+\textbf{Pre-condition:} User is logged into profile\\
+\textbf{Outcome: } 
+\begin{enumerate}
+    \item Retrieve user purchase history from database
+    \item Transform user purchase history into graphics
+    \item Display graphics in application
+\end{enumerate}
+\textbf{Title:} Retrieve product information \\
+\textbf{Trigger:} User requests product information\\
+\textbf{Pre-condition:} User is logged into profile and has current location information set \\
+\textbf{Outcome: } 
+\begin{enumerate}
+    \item Retrieve user purchase history from database relevant to the product
+    \item Retrieve markets accessible to the user from map service
+    \item Retrieve product information belonging to the accessible markets from database
+    \item Transform data into graphics
+    \item Display graphics in application
+\end{enumerate}
+\textbf{Title:} Set location information \\
+\textbf{Trigger:} User sets location information \\
+\textbf{Pre-condition:} User is logged into profile and location information is available \\
+\textbf{Outcome: } 
+\begin{enumerate}
+    \item User sets initial location
+    \item User sets accessibility radius
+    \item Information is stored locally on device
+\end{enumerate}
 
 \section{Business Data Model and Data Dictionary}
 \subsection{Business Data Model}
