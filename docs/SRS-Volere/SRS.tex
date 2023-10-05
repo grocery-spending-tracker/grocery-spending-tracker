@@ -132,7 +132,75 @@ involved in the Project}
 
 \section{Functional Requirements}
 \subsection{Functional Requirements}
-\lips
+\medskip
+\noindent \textbf{Requirement ID:} FR1\\
+\textbf{Use Case:} 1\\
+\textbf{Description:} The system must provide a user-friendly interface for users to enter their email and password when creating an account.\\
+\textbf{Rationale:} This requirement ensures that users can easily provide their registration information.\\
+\textbf{Fit Criterion:} Users should be able to successfully enter their email and password without encountering errors during the registration process.\\
+
+\medskip
+\noindent \textbf{Requirement ID:} FR2\\
+\textbf{Use Case:} 2\\
+\textbf{Description:} The system must validate user credentials (email and password) when a user attempts to sign in.\\
+\textbf{Rationale:} This requirement is necessary to fulfill the authentication process for registered users.\\
+\textbf{Fit Criterion:} Users with valid credentials should be granted access to the application, while users with invalid credentials should receive an error message.\\
+
+\medskip
+\noindent \textbf{Requirement ID:} FR3\\
+\textbf{Use Case:} 6, 7, 8, 9\\
+\textbf{Description:} The system must support the functionality to capture and process receipt data from user-submitted photos.\\
+\textbf{Rationale:} This requirement allows users to add new spending data.\\
+\textbf{Fit Criterion:} Users should be able to submit a photo of a receipt, and the system should successfully process the data from the receipt and store it in the database.\\
+
+\medskip
+\noindent \textbf{Requirement ID:} FR4\\
+\textbf{Use Case:} 4, 7\\
+\textbf{Description:} The system must offer a user interface for users to input their current location and preferred area of coverage.\\
+\textbf{Rationale:} This requirement allows users to specify their location preferences.\\
+\textbf{Fit Criterion:} Users should be able to enter their location preferences, including selecting stores they prefer and stores they want to ignore.\\
+
+\medskip
+\noindent \textbf{Requirement ID:} FR5\\
+\textbf{Use Case:} 3, 7\\
+\textbf{Description:} The system must provide a form or input fields for users to enter their spending objectives and outcomes.\\
+\textbf{Rationale:} This requirement will allow users to provide their spending preferences.\\
+\textbf{Fit Criterion:} Users should be able to input their spending goals and see them stored in the application.\\
+
+\medskip
+\noindent \textbf{Requirement ID:} FR6\\
+\textbf{Use Case:} 5, 7\\
+\textbf{Description:} The system must provide options for users to input their price range and budgeting preferences.\\
+\textbf{Rationale:} This requirement enables users to set their budgeting preferences.\\
+\textbf{Fit Criterion:} Users should be able to set their budgeting preferences, and the system should store this information.\\
+
+\medskip
+\noindent \textbf{Requirement ID:} FR7\\
+\textbf{Use Case:} 8, 9\\
+\textbf{Description:} The system must check each product found on a user-submitted receipt and update the database with relevant purchase information.\\
+\textbf{Rationale:} This requirement ensures that the application accurately records and maintains the user's spending history, which is essential for budgeting and spending analysis.\\
+\textbf{Fit Criterion:} The system should successfully update the database with purchase information, including date, time, location, and purchase price for each product on the receipt.\\
+
+\medskip
+\noindent \textbf{Requirement ID:} FR8\\
+\textbf{Use Case:} 11, 12\\
+\textbf{Description:} The system must analyze the user's purchase history and compare it to the budgeting preferences the user has submitted. It should suggest items to stop purchasing or recommend cheaper grocery alternatives when the user exceeds their budget.\\
+\textbf{Rationale:} This requirement supports the application's goal of helping users manage their expenses by providing personalized budgeting suggestions.\\
+\textbf{Fit Criterion:} The system should provide relevant budgeting suggestions based on the user's purchase history and budgeting preferences.\\
+
+\medskip
+\noindent \textbf{Requirement ID:} FR9\\
+\textbf{Use Case:} 12\\
+\textbf{Description:} When a recently purchased item by the user is found at a lower price, the system should prompt the user with information about the item, its price, and the location where it is available at a lower cost.\\
+\textbf{Rationale:} This requirement enhances user experience by helping users save money by identifying opportunities for cost savings.\\
+\textbf{Fit Criterion:} The system should prompt the user with information about cheaper alternatives when available within the user's location preferences.\\
+
+\medskip
+\noindent \textbf{Requirement ID:} FR10\\
+\textbf{Use Case:} 10\\
+\textbf{Description:} The system must retrieve and display a visual representation of the user's purchase history, including details on items purchased and their respective timestamps.\\
+\textbf{Rationale:} This requirement enables users to monitor their spending habits and make informed financial decisions by providing a clear view of their purchase history.\\
+\textbf{Fit Criterion:} The system should present the user's purchase history accurately and in a user-friendly manner.\\
 
 \section{Look and Feel Requirements}
 \subsection{Appearance Requirements}
