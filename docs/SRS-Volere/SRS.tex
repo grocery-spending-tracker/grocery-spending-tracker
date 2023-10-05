@@ -54,9 +54,22 @@ Date 2 & 1.1 & Notes\\
 ~\newpage
 \section{Purpose of the Project}
 \subsection{User Business}
-\lips
+
+With the world currently facing record high inflation, cost-of-living is at the highest
+it has ever been. This affects all daily necessities but is especially true for food and groceries.
+As a whole, all households are affected but there is particular financial strain on those with lower-incomes.
+As a result, interest in personal finance has grown and become more important in peoples' everyday lives.
+To assist these individuals, we are developing an application that can help users better understand their
+spending habits and make smarter financial decisions. This application will allow users to
+take photos of grocery receipts and track their overall spending, analyze spending trends, and receive
+suggestions on cheaper alternatives for purchased grocery items. Overall, we believe this application
+will help users stay more informed and reduce grocery spending in the long-term.
+
 \subsection{Goals of the Project}
-\lips
+\begin{itemize}
+  \item The created application will help users save money on groceries over time.
+  \item The application will provide accurate spending data and suggestions to end users.
+\end{itemize}  
 \section{Stakeholders}
 \subsection{Client}
 \lips
@@ -136,37 +149,80 @@ involved in the Project}
 
 \section{Look and Feel Requirements}
 \subsection{Appearance Requirements}
-\lips
+\begin{itemize}
+  \item \textbf{AR1}: The app should have a consistent colour scheme throughout.
+  \item \textbf{AR2}: The app should have self-descriptive icons to convey to users what the related feature is.
+  \item \textbf{AR3}: The user interface should avoid clutter and balance features with available space.
+\end{itemize}
 \subsection{Style Requirements}
-\lips
+\begin{itemize}
+  \item \textbf{SR1}: All app features and options should be in consistent locations.
+  \item \textbf{SR2}: Navigation options should always be available regardless of the application page.
+  \item \textbf{SR3}: Features and options should be grouped based on relation to each other to improve intuitiveness.
+  \item \textbf{SR4}: The number of clicks to access different features should be minimized.
+  \item \textbf{SR5}: The app should utilize indicators and messages to communicate information to users.
+\end{itemize}
 
 \section{Usability and Humanity Requirements}
 \subsection{Ease of Use Requirements}
-\lips
+\begin{itemize}
+  \item \textbf{EUR1}: The app should save states between use in order to minimize user input.
+  \item \textbf{EUR2}: The app should allow users to undo changes made.
+\end{itemize}
 \subsection{Personalization and Internationalization Requirements}
-\lips
+\begin{itemize}
+  \item \textbf{PIR1}: English will be supported.
+  \item \textbf{PIR2}: The app should have dark and light mode colour schemes.
+  \item \textbf{PIR3}: The app should allow users to enable/disable external notifications.
+\end{itemize}
 \subsection{Learning Requirements}
-\lips
+\begin{itemize}
+  \item \textbf{LR1}: The app should have an FAQ or Help page to assist users.
+  \item \textbf{LR2}: The app should have a tutorial to assist users in learning the available
+  features.
+\end{itemize}
 \subsection{Understandability and Politeness Requirements}
-\lips
+\begin{itemize}
+  \item \textbf{UPR1}: The app should use common language found in the English dictionary.
+\end{itemize}
 \subsection{Accessibility Requirements}
-\lips
+\begin{itemize}
+  \item \textbf{ACR1}: The app should allow users to change text size.
+  \item \textbf{ACR2}: The app should have multiple colour schemes to help those with visual impairment.
+\end{itemize}
 
 \section{Performance Requirements}
 \subsection{Speed and Latency Requirements}
-\lips
+\begin{itemize}
+  \item \textbf{SLR1}: The app should take on average 1 second to complete backend tasks and at worst should never
+  exceed 12 seconds.
+  \item \textbf{SLR2}: The navigation of the app should be smooth, taking no more than 1 second render and handle page changes.
+\end{itemize}
 \subsection{Safety-Critical Requirements}
-\lips
+\begin{itemize}
+  \item N/A
+\end{itemize}
 \subsection{Precision or Accuracy Requirements}
-\lips
+\begin{itemize}
+  \item \textbf{PAR1}: The app should be able to correctly read user inputs with 99\% accuracy.
+  \item \textbf{PAR2}: The app should return data to the user with correctness within 99\% of the intended value.
+\end{itemize}
 \subsection{Robustness or Fault-Tolerance Requirements}
-\lips
+\begin{itemize}
+  \item \textbf{RFR1}: The app should have proper error-handling against improper user input.
+\end{itemize}
 \subsection{Capacity Requirements}
-\lips
+\begin{itemize}
+  \item \textbf{CR1}: The app should take up no more than 1GB of space.
+\end{itemize}
 \subsection{Scalability or Extensibility Requirements}
-\lips
+\begin{itemize}
+  \item N/A
+\end{itemize}
 \subsection{Longevity Requirements}
-\lips
+\begin{itemize}
+  \item N/A
+\end{itemize}
 
 \section{Operational and Environmental Requirements}
 \subsection{Expected Physical Environment}
@@ -279,5 +335,90 @@ graduate attribute of Lifelong Learning.  Please answer the following questions:
   mastering the skill?  Of the identified approaches, which will each team
   member pursue, and why did they make this choice?
 \end{enumerate}
+
+\section*{Added Section - Appendix - Stakeholder Requirements Elicitation Notes}
+
+\begin{itemize}
+  \item Consider your favourite or most used mobile apps, what elements of the UI
+  stand out? What in your opinion makes an appealing user interface?
+    \begin{itemize}
+      \item Minimize options to create a cleaner UI.
+      \item Utilization of easily accessible menu bars (like Instagram) to improve navigation UX.
+      \item Consistent and cohesive colour theme throughout.
+      \item Use of icons that clearly convey what the option is meant for.
+      \item Put options in consistent locations to minimize hand movements (easy to tap interface).
+    \end{itemize}
+  \item When you think of intuitive applications, what about the application makes
+  the UI or UX intuitive?
+    \begin{itemize}
+      \item Many apps borrow UI layouts from each other, helps with familiarity in terms of navigation.
+      \item Always accessible navigation options.
+      \item Proper organizing of features (unrelated features should be separated on the UI).
+      \item Swipe navigation and minimal long presses.
+      \item Saving state when closed to minimize user input on future uses.
+    \end{itemize}
+  \item How important do you consider application feedback and what feedback would you
+  expect from an application? (i.e. loading indicators)
+    \begin{itemize}
+      \item High importance to communicate errors and loading to users.
+      \item Should always convey when issues happen or something is being done.
+      \item When fetching information or other longer duration tasks, loading bar should be utilized.
+      \item Utilization of messages or pop ups if resources are unavailable or something goes wrong.
+    \end{itemize}
+  \item When learning a new app, how long would you consider a reasonable amount of time
+  to consider an app easy-to-use?
+    \begin{itemize}
+      \item Average acceptable time to consider an app intuitive would be to be able to figure
+      out basic functionality within 15 minutes.
+    \end{itemize}
+  \item What features would you want to help with the learning experience of a new app?
+    \begin{itemize}
+      \item The use of a tutorial on first launch to take users through the UI and different features.
+      \item The use of tooltips for certain options and features.
+      \item A button that users can press to access a Help menu or FAQ.
+    \end{itemize}
+  \item How do you usually go about learning a new application?
+    \begin{itemize}
+      \item All participants said they tend to brute force applications in order to learn
+      (i.e. clicking around and seeing how the application responds).
+      \item As an addition to this brute force approach, participants explained how useful an
+      undo feature would be as well as always accessible navigation.
+    \end{itemize}
+  \item If you were using an application, what personalizations/accessibility settings
+  would you consider a must?
+    \begin{itemize}
+      \item Dark/Light mode.
+      \item Ability to  change text sizes.
+      \item Multiple language support.
+      \item Allowing users to enable or disable notifications if used.
+      \item Alternate color palettes to help with those with visual impairment like color blindness.
+    \end{itemize}
+  \item Consider an app you use often, generally, how long would you say you wait for operations
+  to complete? How long would you be willing to wait for an application before closing the app?
+    \begin{itemize}
+      \item Ideally, regular operations should take a second or less.
+      \item At most, participants would wait an average of 12 seconds before closing the app or
+      thinking something went wrong.
+    \end{itemize}
+  \item What kind of phone do you use? (Apple/Android/Other)
+    \begin{itemize}
+      \item All participants used Apple devices.
+    \end{itemize}
+  \item On a scale of 1-10, for an app of this nature, how important would you consider accuracy
+  of the system and data? How important would you consider responsiveness on the same scale?
+    \begin{itemize}
+      \item All participants considered accuracy of the features and data to be the most important (10) due
+      to the financial aspect of the app.
+      \item Responsiveness was considered important (8) in order to ensure a positive user experience. If the
+      app does not feel good to use, most participants said they would find another app instead.
+    \end{itemize}
+  \item How much do you consider the size of an application you install? How big of an app would you
+  consider reasonable?
+    \begin{itemize}
+      \item Most participants said they did not pay much attention to the size of applications when installing
+      them.
+      \item Participants said they would consider anything over 1GB unreasonable for an app of this nature.
+    \end{itemize}
+\end{itemize}
 
 \end{document}
