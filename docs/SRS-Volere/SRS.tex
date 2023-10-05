@@ -206,36 +206,6 @@ involved in the Project}
 \subsection{Formal Specification}
 In regards to identifying roles and functions for project:
 \begin{itemize}
-    \item \textbf{Employees cannot view other employee profiles.}\\ 
-    For all users `a' and `b' who are both employees, and `a' is not equal to `b':
-    \[
-    \begin{split}
-        \forall a, b \in \text{users} \quad (& a.\text{role} = \text{``employee"}\\ 
-        & \land b.\text{role} = \text{``employee"} \\ 
-        & \land a \neq b \Rightarrow a.\text{view}(b.\text{profile}) \Rightarrow \text{false})
-    \end{split}
-    \]
-    
-    \item \textbf{Employees cannot modify or edit user.}\\
-    For all users `a' and `b' where `a' is an employee and `b' is any user (employee, owner, or regular user), and `a' is not equal to `b':
-    \[
-    \begin{split}
-        \forall a, b \in \text{users} \quad (& a.\text{role} = \text{``employee"} \\ 
-        & \land a \neq b \Rightarrow a.\text{edit}(b) \Rightarrow \text{false})
-    \end{split}
-    \]
-
-    \item \textbf{Owner can view and edit employee profiles.}\\
-    For all users `a' who are owners and for all users `x' who are employees working under the same shop as `a':
-    \[
-    \begin{split}
-        \forall a \in \text{users} \quad (& a.\text{role} = \text{``owner"} \\ 
-        & \begin{split} 
-            \land \: \forall x \in \text{users} \quad (& x.\text{shop} = a.\text{shop} \Rightarrow a.\text{edit}(x) \\ & \land a.\text{view}(x.\text{profile}) \Rightarrow \text{true}))
-        \end{split}
-    \end{split}
-    \]
-    
     \item \textbf{Employee must respond to users.}\\
     For all users `a' who are employees, and for all users `b' who are regular users and send a message to `a':
     \[
