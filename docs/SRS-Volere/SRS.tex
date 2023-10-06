@@ -32,7 +32,7 @@
 
 \begin{document}
 
-\title{Software Requirements Specification for \progname: subtitle describing software} 
+\title{Software Requirements Specification for \progname: An application to help users save on grocery spending.} 
 \author{\authname}
 \date{\today}
 	
@@ -51,8 +51,7 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\textbf{Date}} & {\textbf{Version}} & {\textbf{Notes}}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+06/10/23 & 1.0 & Initial version of the SRS\\
 \bottomrule
 \end{tabularx}
 
@@ -85,9 +84,9 @@ Outlined in the above Client section.
 \subsection{Other Stakeholders}
 \begin{itemize}
   \item Grocery stores in the area
-  \item Household members (people who the groceies are being purchased for)
-  \item Mobile application store (ios app store, google play store)
-  \item Any invidividual who wants to save on groceries
+  \item Household members (people who the groceries are being purchased for)
+  \item Mobile application stores (iOS app store, Google Play Store)
+  \item Any individuals who wants to save on groceries
 \end{itemize}
 
 \subsection{Hands-On Users of the Project}
@@ -139,7 +138,7 @@ Everyday users will provide their shopping data to the community database. This 
 
 From an elicitation perspective, a sample of users will be responsible for providing usability, look, and feel requirements feedback. This will be done at various stages in development.
 \subsection{Maintenance Users and Service Technicians}
-*** N/A
+N/A
 
 \section{Mandated Constraints}
 \subsection{Solution Constraints}
@@ -148,7 +147,7 @@ From an elicitation perspective, a sample of users will be responsible for provi
 \underline{Rationale}: Mobile devices are widely used and ubiquitous. While at a grocery store, users may need access to the system.\\
 \underline{Fit Criterion}: User interface will run entirely on a mobile device.\\
 \\
-\textbf{Internet access}\\ %%todo: is this too solution specific?
+\textbf{Internet Access}\\ %%todo: is this too solution specific?
 \underline{Description}: User must have internet access.\\
 \underline{Rationale}: System servers and databases are used to store collective user data and process that data. User's devices are required to communicate with the servers and databases via internet access.\\
 \underline{Fit Criterion}: User interface will have internet access.\\
@@ -159,7 +158,12 @@ From an elicitation perspective, a sample of users will be responsible for provi
 \underline{Fit Criterion}: System must have access to a mobile camera.\\
 
 \subsection{Implementation Environment of the Current System}
-\includegraphics[width=\textwidth]{ImplementationEnvironment.png}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{ImplementationEnvironment.png}
+  \caption{Implementation Environment}
+  \label{fig:ImplementationEnvironment}
+\end{figure}
 
 \subsection{Partner or Collaborative Applications}
 N/A
@@ -220,9 +224,7 @@ involved in the Project}
     \item Some shoppers prefer to buy groceries in bulk to save money in the long run, while others may opt for smaller, more frequent purchases.
 \end{enumerate}
 \subsection{Business Rules}
-\begin{itemize}
-    \item N/A
-\end{itemize}
+N/A
 \subsection{Assumptions}
 \begin{enumerate}
     \item It is assumed that users will provide access to their personal spending data, location data, and historical shopping information voluntarily.
@@ -439,7 +441,7 @@ involved in the Project}
         \hline 
         Ignore Stores & *List of Stores to ignore* & Attribute \\
         \hline 
-        Prefer Stores & *List of Stores to prioritise* & Attribute \\
+        Prefer Stores & *List of Stores to prioritize* & Attribute \\
         \hline 
         Prefer Units & *String: metric/imperial* & Attribute \\
         \hline
@@ -743,7 +745,7 @@ In regards to identifying functions for project:
 \end{itemize}
 
 \section{Look and Feel Requirements}
-In this section, any references to an \textit{E\#} refers elicitation notes in the Appendix. \textit{E\#} corresponds
+In this section, any references to an \textit{E\#} refers to elicitation notes in Appendix B. \textit{E\#} corresponds
 to the label for the relevant question.
 
 \subsection{Appearance Requirements}
@@ -762,7 +764,7 @@ to the label for the relevant question.
 \end{itemize}
 
 \section{Usability and Humanity Requirements}
-In this section, any references to an \textit{E\#} refers elicitation notes in the Appendix. \textit{E\#} corresponds
+In this section, any references to an \textit{E\#} refers to elicitation notes in Appendix B. \textit{E\#} corresponds
 to the label for the relevant question.
 
 \subsection{Ease of Use Requirements}
@@ -794,7 +796,7 @@ to the label for the relevant question.
 \end{itemize}
 
 \section{Performance Requirements}
-In this section, any references to an \textit{E\#} refers elicitation notes in the Appendix. \textit{E\#} corresponds
+In this section, any references to an \textit{E\#} refers to elicitation notes in Appendix B. \textit{E\#} corresponds
 to the label for the relevant question.
 
 \subsection{Speed and Latency Requirements}
@@ -856,7 +858,7 @@ to the label for the relevant question.
 \end{itemize}
 \subsection{Release Requirements}
 \begin{itemize}
-   \item \textbf{RER1}: The application shall undergo thorough testing and quality control procedures prior to each application releases and updates. The project will aim for 80\% code coverage.
+    \item \textbf{RER1}: The application shall undergo thorough testing and quality control procedures prior to each application releases and updates. The project will aim for 80\% code coverage.
     \item \textbf{RER2}: The application shall identify and resolve defects or issues prior to application releases and updates.
     \item \textbf{RER3}: The application will be subject to a Final Demonstration from March 18 to March 29 of 2024.
 \end{itemize}
@@ -904,7 +906,7 @@ to the label for the relevant question.
 \end{itemize}
 
 \section{Cultural Requirements}
-In this section, any references to an \textit{E\#} refers elicitation notes in the Appendix. \textit{E\#} corresponds to the label for the relevant question.
+In this section, any references to an \textit{E\#} refers to elicitation notes in Appendix B. \textit{E\#} corresponds to the label for the relevant question.
 \subsection{Cultural Requirements}
 \begin{itemize}
     \item \textbf{CUR1:} The app should allow users to use the metric system, imperial system, or a combination of the two (Canadian) as requested in \textit{E12}
@@ -915,14 +917,14 @@ In this section, any references to an \textit{E\#} refers elicitation notes in t
 \section{Compliance Requirements}
 \subsection{Legal Requirements}
 \begin{itemize}
-    \item \textbf{LR1:} The app should comply with the app distribution platform guidelines: Play Store for Android, App Store for iOS
+    \item \textbf{LR1:} The app should comply with the app distribution platform guidelines: Google Play Store for Android, App Store for iOS
     \item \textbf{LR2:} The app should comply with local privacy laws (PIPEDA for Canada) [1]
 \end{itemize}
 \subsection{Standards Compliance Requirements}
 N/A
 
 \section{Open Issues}
-\lips
+There are currently no open issues for this project.
 
 \section{Off-the-Shelf Solutions}
 \subsection{Ready-Made Products}
@@ -1048,7 +1050,9 @@ N/A
 N/A
 
 \section{Costs}
-\lips
+The team currently has no intention of spending money and aims to utilize free software and technology
+for this project.
+
 \section{User Documentation and Training}
 \subsection{User Documentation Requirements}
 \begin{itemize}
@@ -1076,7 +1080,7 @@ Some initial ideas for the implementation that the team came up with are as foll
 \end{itemize}
 
 \newpage{}
-\section*{Appendix --- Reflection}
+\section*{Appendix A --- Reflection}
 
 The information in this section will be used to evaluate the team members on the
 graduate attribute of Lifelong Learning.  Please answer the following questions:
@@ -1188,7 +1192,7 @@ graduate attribute of Lifelong Learning.  Please answer the following questions:
 
 \end{enumerate}
 
-\section*{Added Section - Appendix - Stakeholder Requirements Elicitation Notes}
+\section*{Added Section - Appendix B --- Stakeholder Requirements Elicitation Notes}
 
 \begin{itemize}
   \item \textbf{E1:} Consider your favourite or most used mobile apps, what elements of the UI
@@ -1280,7 +1284,7 @@ graduate attribute of Lifelong Learning.  Please answer the following questions:
     \end{itemize}
 \end{itemize}
 
-\section*{Added Section - Appendix - Bibliography}
+\section*{Added Section - Appendix C --- Bibliography}
 
 [1] Office of the Privacy Commissioner of Canada, “Seizing opportunity: Good privacy practices for developing mobile apps,” Office of the Privacy Commissioner of Canada, \url{https://www.priv.gc.ca/en/privacy-topics/technology/mobile-and-digital-devices/mobile-apps/gd_app_201210/} (accessed Oct. 4, 2023). 
 \end{document}
