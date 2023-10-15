@@ -3,6 +3,14 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
+\usepackage{pdflscape}
+\usepackage{float}
+\usepackage{adjustbox}
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{longtable}
+\usepackage[round]{natbib}
+\usepackage[autostyle]{csquotes}
 
 \hypersetup{
     colorlinks=true,       % false: boxed links; true: colored links
@@ -60,6 +68,19 @@ Date2 & Name(s) & Description of changes\\
 \section{Scope and Purpose of Hazard Analysis}
 
 \section{System Boundaries and Components}
+The system that this hazard analysis will be conducted on consists of the following components:
+\begin{itemize}
+    \item The front-end and back-end components of the application:
+        \begin{itemize}
+            \item Authentication
+            \item Purchase data input (including optical recognition and language models)
+            \item Nearby alternatives recommendations
+            \item Purchase history reports
+            \item Spending objectives
+        \end{itemize}
+    \item User mobile device
+    \item The database storing all application data
+\end{itemize}
 
 \section{Critical Assumptions}
 
@@ -68,7 +89,22 @@ minimize the number of assumptions that remove potential hazards.  For instance,
 you could assume a part will never fail, but it is generally better to include
 this potential failure mode.}
 
-\section{Failure Mode and Effect Analysis}
+\newpage
+\begin{landscape}
+    \section{Failure Mode and Effect Analysis}
+    \begin{longtable}{|p{0.15\textwidth}|p{0.15\textwidth}|p{0.25\textwidth}|p{0.25\textwidth}|p{0.35\textwidth}|p{0.1\textwidth}|p{0.05\textwidth}|}
+        \caption{Failure Mode and Effect Analysis Table}  \\
+		\hline
+        \multicolumn{1}{|c|}{\textbf{Component}}
+		& \multicolumn{1}{|c|}{\textbf{Failure Modes}}
+		& \multicolumn{1}{|c|}{\textbf{Effects of Failure}}
+		& \multicolumn{1}{|c|}{\textbf{Causes of Failure}}
+		& \multicolumn{1}{|c|}{\textbf{Recommended Action}}
+		& \multicolumn{1}{|c|}{\textbf{SR}}
+		& \multicolumn{1}{|c|}{\textbf{Ref.}}  \\
+		\hline
+    \end{longtable}
+\end{landscape}    
 
 \wss{Include your FMEA table here}
 
