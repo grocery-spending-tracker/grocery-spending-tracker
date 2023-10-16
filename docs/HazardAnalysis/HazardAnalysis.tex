@@ -125,10 +125,103 @@ this potential failure mode.}
         \end{enumerate}
         & HA2 \\
         \hline
+        Purchase Data Input
+        & Application improperly reads user's inputted receipt
+        & Inaccurate data is stored to the database affecting application analytics and suggestions
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item OCR interprets certain characters incorrectly from the input
+            \item OCR is unable to read certain words or characters from the input
+        \end{enumerate}
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item Utilize natural language processing to clean and correct output produced by the OCR
+            \item Prompt user to take another photo if input is unclear
+        \end{enumerate}
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item SR3
+            \item SR4
+        \end{enumerate}
+        & HB1 \\
+        \cline{2-7}
+        & User is unable to input or take a photo of their receipt
+        & User cannot record their recent shopping data and analytics become outdated
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item Application does not have permissions to access device camera or photo gallery
+        \end{enumerate}
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item Prompt user to give permissions to the application to access camera and photo gallery
+        \end{enumerate}
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item SR5
+        \end{enumerate}
+        & HB2 \\
+        \hline
+        Nearby Alternatives Recommendation
+        & Unable to determine user's location
+        & App is unable to provide nearby alternative recommendations
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item Invalid location data entered by user
+            \item Database failure
+        \end{enumerate}
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item Utilize validation and protection on location inputs to ensure valid location input
+            \item Utilize automatic database backups on a regular basis
+        \end{enumerate}
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item SR6
+            \item SR7
+        \end{enumerate}
+        & HC1 \\
+        \hline
+        Purchase History Reports
+        & Incorrect data is returned in the reports
+        & User could make incorrect financial decisions based on inaccurate data
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item Problem occurred when writing to database
+            \item Database failure
+        \end{enumerate}
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item Implement validation to check whether data is written correctly
+            \item Refer to HC1-b
+        \end{enumerate}
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item SR7
+            \item SR8
+        \end{enumerate}
+        & HD1 \\
+        \hline
+        Spending Objectives
+        & Invalid spending objectives input by user
+        & Incorrect or invalid budgeting suggestions provided by the application
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item Invalid data entered by user
+            \item Database failure
+        \end{enumerate}
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item Add input protection and validation on budgeting inputs
+            \item Refer to HC1-b
+        \end{enumerate}
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item SR7
+            \item SR9
+        \end{enumerate}
+        & HE1 \\
+        \hline
+        Database
+        & Application unable to access database
+        & Major features in the application will no longer work
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item User does not have an internet connection
+        \end{enumerate}
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item Prompt user to connect to the internet if no connection
+        \end{enumerate}
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item SR10
+        \end{enumerate}
+        & HF1 \\
+        \hline
     \end{longtable}
-\end{landscape}    
-
-\wss{Include your FMEA table here}
+\end{landscape}
 
 \section{Safety and Security Requirements}
 
