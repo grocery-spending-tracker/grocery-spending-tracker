@@ -44,8 +44,8 @@
 \toprule
 \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
-Date1 & Name(s) & Description of changes\\
-Date2 & Name(s) & Description of changes\\
+16/10/23 & Ryan Yeh & Added List of Tables, List of Figures\\
+16/10/23 & Ryan Yeh & Added Failure Mode and Effect Analyis\\
 ... & ... & ...\\
 \bottomrule
 \end{tabularx}
@@ -56,6 +56,12 @@ Date2 & Name(s) & Description of changes\\
 \tableofcontents
 
 ~\newpage
+
+\listoftables
+
+\listoffigures
+
+\newpage
 
 \pagenumbering{arabic}
 
@@ -89,7 +95,36 @@ this potential failure mode.}
 		& \multicolumn{1}{|c|}{\textbf{Recommended Action}}
 		& \multicolumn{1}{|c|}{\textbf{SR}}
 		& \multicolumn{1}{|c|}{\textbf{Ref.}}  \\
-		\hline
+        \hline
+        Authenti\-cation
+        & User is unable to login
+        & User cannot access their account and application features
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item User entered incorrect credentials
+        \end{enumerate}
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item Allow users to reset their password
+        \end{enumerate}
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item SR1
+        \end{enumerate}
+        & HA1 \\
+        \cline{2-7}
+        & User's account is hacked by a third-party
+        & User's data can be read and modified by third-party
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item Third-party gains access to the  user's account without their permission
+        \end{enumerate}
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item Allow users to reset their password
+            \item Limit the number of login attempts a person has for a given time period
+        \end{enumerate}
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item SR1
+            \item SR2
+        \end{enumerate}
+        & HA2 \\
+        \hline
     \end{longtable}
 \end{landscape}    
 
