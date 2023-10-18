@@ -96,7 +96,7 @@ trying to break the application or use it maliciously.
 \newpage
 \begin{landscape}
     \section{Failure Mode and Effect Analysis}
-    \begin{longtable}{|>{\raggedright\arraybackslash}p{0.15\textwidth}|>{\raggedright\arraybackslash}p{0.15\textwidth}|>{\raggedright\arraybackslash}p{0.25\textwidth}|>{\raggedright\arraybackslash}p{0.25\textwidth}|>{\raggedright\arraybackslash}p{0.35\textwidth}|>{\raggedright\arraybackslash}p{0.1\textwidth}|>{\raggedright\arraybackslash}p{0.05\textwidth}|}
+    \begin{longtable}{|>{\raggedright\arraybackslash}p{0.15\textwidth}|>{\raggedright\arraybackslash}p{0.15\textwidth}|>{\raggedright\arraybackslash}p{0.25\textwidth}|>{\raggedright\arraybackslash}p{0.25\textwidth}|>{\raggedright\arraybackslash}p{0.35\textwidth}|>{\raggedright\arraybackslash}p{0.12\textwidth}|>{\raggedright\arraybackslash}p{0.03\textwidth}|}
         \caption{Failure Mode and Effect Analysis Table}  \\
 		\hline
         \multicolumn{1}{|c|}{\textbf{Component}}
@@ -117,7 +117,7 @@ trying to break the application or use it maliciously.
             \item Allow users to reset their password
         \end{enumerate}
         & \begin{enumerate}[label=\alph*., leftmargin=*]
-            \item SR1
+            \item SSR1
         \end{enumerate}
         & HA1 \\
         \cline{2-7}
@@ -131,8 +131,8 @@ trying to break the application or use it maliciously.
             \item Limit the number of login attempts a person has for a given time period
         \end{enumerate}
         & \begin{enumerate}[label=\alph*., leftmargin=*]
-            \item SR1
-            \item SR2
+            \item SSR1
+            \item SSR2
         \end{enumerate}
         & HA2 \\
         \hline
@@ -149,9 +149,9 @@ trying to break the application or use it maliciously.
             \item Allow user to manually input grocery item
         \end{enumerate}
         & \begin{enumerate}[label=\alph*., leftmargin=*]
-            \item SR3
-            \item SR4
-            \item SR5
+            \item SSR3
+            \item SSR4
+            \item SSR5
         \end{enumerate}
         & HB1 \\
         \cline{2-7}
@@ -164,7 +164,7 @@ trying to break the application or use it maliciously.
             \item Prompt user to give permissions to the application to access camera and photo gallery
         \end{enumerate}
         & \begin{enumerate}[label=\alph*., leftmargin=*]
-            \item SR6
+            \item SSR6
         \end{enumerate}
         & HB2 \\
         \hline
@@ -180,8 +180,8 @@ trying to break the application or use it maliciously.
             \item Utilize automatic database backups on a regular basis
         \end{enumerate}
         & \begin{enumerate}[label=\alph*., leftmargin=*]
-            \item SR7
-            \item SR8
+            \item SSR7
+            \item SSR8
         \end{enumerate}
         & HC1 \\
         \cline{2-7}
@@ -194,7 +194,7 @@ trying to break the application or use it maliciously.
             \item Prompt user to connect to the internet
         \end{enumerate}
         & \begin{enumerate}[label=\alph*., leftmargin=*]
-            \item SR9
+            \item SSR9
         \end{enumerate}
         & HC2 \\
         \hline
@@ -202,16 +202,16 @@ trying to break the application or use it maliciously.
         & Incorrect data is returned in the reports
         & User could make incorrect financial decisions based on inaccurate data
         & \begin{enumerate}[label=\alph*., leftmargin=*]
-            \item Problem occurred when writing to database
             \item Database failure
+            \item Problem occurred when writing to database
         \end{enumerate}
         & \begin{enumerate}[label=\alph*., leftmargin=*]
-            \item Implement validation to check whether data is written correctly
             \item Refer to HC1-b
+            \item Implement validation to check whether data is written correctly
         \end{enumerate}
         & \begin{enumerate}[label=\alph*., leftmargin=*]
-            \item SR8
-            \item SR10
+            \item SSR8
+            \item SSR10
         \end{enumerate}
         & HD1 \\
         \hline
@@ -219,16 +219,16 @@ trying to break the application or use it maliciously.
         & Invalid spending objectives input by user
         & Incorrect or invalid budgeting suggestions provided by the application
         & \begin{enumerate}[label=\alph*., leftmargin=*]
-            \item Invalid data entered by user
             \item Database failure
+            \item Invalid data entered by user
         \end{enumerate}
         & \begin{enumerate}[label=\alph*., leftmargin=*]
-            \item Add input protection and validation on budgeting inputs
             \item Refer to HC1-b
+            \item Add input protection and validation on budgeting inputs
         \end{enumerate}
         & \begin{enumerate}[label=\alph*., leftmargin=*]
-            \item SR8
-            \item SR11
+            \item SSR8
+            \item SSR11
         \end{enumerate}
         & HE1 \\
         \hline
@@ -242,7 +242,7 @@ trying to break the application or use it maliciously.
             \item Refer to HC2-a
         \end{enumerate}
         & \begin{enumerate}[label=\alph*., leftmargin=*]
-            \item SR9
+            \item SSR9
         \end{enumerate}
         & HF1 \\
         \hline
