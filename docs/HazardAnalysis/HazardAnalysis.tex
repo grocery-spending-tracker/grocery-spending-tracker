@@ -133,6 +133,7 @@ trying to break the application or use it maliciously.
         & \begin{enumerate}[label=\alph*., leftmargin=*]
             \item Utilize natural language processing to clean and correct output produced by the OCR
             \item Prompt user to take another photo if input is unclear
+            \item Allow user to manually input grocery item
         \end{enumerate}
         & \begin{enumerate}[label=\alph*., leftmargin=*]
             \item SR3
@@ -169,6 +170,19 @@ trying to break the application or use it maliciously.
             \item SR7
         \end{enumerate}
         & HC1 \\
+        \cline{2-7}
+        & Unable to connect to map/location API
+        & Nearby alternatives recommendation feature fails to work
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item User does not have an internet connection
+        \end{enumerate}
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item Prompt user to connect to the internet
+        \end{enumerate}
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item SR8
+        \end{enumerate}
+        & HC2 \\
         \hline
         Purchase History Reports
         & Incorrect data is returned in the reports
@@ -183,7 +197,7 @@ trying to break the application or use it maliciously.
         \end{enumerate}
         & \begin{enumerate}[label=\alph*., leftmargin=*]
             \item SR7
-            \item SR8
+            \item SR9
         \end{enumerate}
         & HD1 \\
         \hline
@@ -200,7 +214,7 @@ trying to break the application or use it maliciously.
         \end{enumerate}
         & \begin{enumerate}[label=\alph*., leftmargin=*]
             \item SR7
-            \item SR9
+            \item SR10
         \end{enumerate}
         & HE1 \\
         \hline
@@ -211,10 +225,10 @@ trying to break the application or use it maliciously.
             \item User does not have an internet connection
         \end{enumerate}
         & \begin{enumerate}[label=\alph*., leftmargin=*]
-            \item Prompt user to connect to the internet if no connection
+            \item Refer to HC2-a
         \end{enumerate}
         & \begin{enumerate}[label=\alph*., leftmargin=*]
-            \item SR10
+            \item SR8
         \end{enumerate}
         & HF1 \\
         \hline
