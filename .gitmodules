@@ -1,3 +1,9 @@
 [submodule "docs/SRS-Meyer"]
 	path = docs/SRS-Meyer
 	url = https://github.com/ace-lectures/cas-handbook-req-template.git
+[submodule "src/receipt-data-extractor"]
+	path = src/receipt-data-extractor
+	url = https://github.com/jason-nam/receipt-data-extractor.git
+[submodule "src/receipt-data-parser"]
+	path = src/receipt-data-parser
+	url = https://github.com/jason-nam/receipt-data-parser.git
