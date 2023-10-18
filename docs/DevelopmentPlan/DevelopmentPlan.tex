@@ -46,37 +46,37 @@ This document describes the necessary aspects for the effective execution of the
 	\item Standup meetings are scheduled weekly from \textbf{12:30 PM to 1:30 PM every Wednesday}. The primary meeting location is the \emph{H.G. Thode Library of Science \& Engineering}. However, in specific circumstances and within certain limitations, the meeting location may be shifted to \emph{Discord}.
     	\item Sprint review meetings are scheduled weekly from \textbf{5:00 PM to 6:00 PM every Sunday}. The meeting location is \emph{Discord}.
     	\item The roles and agendas for the next meeting will be decided in the final minutes of each meeting.
-    	\item Requests for additional meetings outside of regular scheduled meetings must be made and communicated at least \textbf{1 day in advance}.
-   	\item The Chair of the meeting is responsible for preparing the task backlog and identifying any relevant issues prior to the meeting.
+    	\item Requests for additional meetings outside of regularly scheduled meetings must be made and communicated at least \textbf{1 day in advance}.
+   	\item The Chair of the meeting is responsible for preparing the task backlog and identifying any relevant issues before the meeting.
 \end{itemize}
 
 \section{Team Communication Plan}
 
 \subsection{Discord}
 
-The primary means for communication will be the team \emph{Discord} server. In an effort to
+The primary means for communication will be the team \emph{Discord} server. To
 ensure team members are up-to-date with messages and discussion, everyone is expected to check \emph{Discord}
 at least once per day and respond to direct messages within 24 hours.
 Additionally, the server has been organized in such a way that different topics are separated into different channels.
-For general  discussion and planning, the \emph{general} channel will be used. When requesting reviewers on pull requests,
+For general discussion and planning, the \emph{general} channel will be used. When requesting reviewers on pull requests,
 the \emph{pull-request} channel should be used. Discussion surrounding bugs and issues will be brought up in the
 \emph{bugs-issues} channel. Discussion of progress updates for upcoming deliverables will go into the
 \emph{status-updates} channel and lastly, any requests for help regarding work items will go into the \emph{help} channel.
 
 \subsection{SMS}
 
-Should the team require urgent or time sensitive contact with any members, \emph{SMS} will be used as the method
+Should the team require urgent or time-sensitive contact with any members, \emph{SMS} will be used as the method
 of communication. \emph{SMS} should facilitate faster and more efficient communication compared to \emph{Discord}
 and will be used in events such as unforeseen issues with meeting availability or last-minute changes for deadlines.
 
-\subsection{Github}
+\subsection{GitHub}
 
-Github will be used to facilitate more technical code-related discussions via pull requests in addition to
+GitHub will be used to facilitate more technical code-related discussions via pull requests in addition to
 keeping track of work items using the issue tracker. The issue tracker will also be used to store notes from
 all group meetings.
 
 \section{Team Member Roles}
-Individuals will take leadership in their respective assigned areas. In development, all members are responsible for adjusting and filling roles as the project evolves. All team meetings will have a scrum master and a scribe, rotated on a per meeting basis.
+Individuals will take leadership in their respective assigned areas. In development, all members are responsible for adjusting and filling roles as the project evolves. All members will participate in all tasks including but not limited to development, testing, and documentation. Sprint tasks will be assigned and reviewed bi-weekly at meetings. All team meetings will have a scrum master and a scribe, rotated on a per-meeting basis.
 	\subsection{Allan Fang - Developer}
         \begin{itemize}
             \item Lead on mobile and user interface development
@@ -105,14 +105,14 @@ Individuals will take leadership in their respective assigned areas. In developm
 
 \section{Workflow Plan}
 
-We will be using git as a version control software with GitHub as our remote repository. The root branch will be \code{master} and development branch based on \code{master} will be \code{dev}. The developer will branch off from \code{dev} to work on issues. There will be a new branch for each issue and will be named containing the issue number and name detailed below. Continuous Integration is set up between all branches \code{dev}, \code{master}, and Issues. Once the milestone is finished to the degree we are happy to be graded, the \code{dev} branch will be merged into \code{master}.
+We will be using Git as a version control software with GitHub as our remote repository. The root branch will be \code{master} and the development branch based on \code{master} will be \code{dev}. The developer will branch off from \code{dev} to work on issues. There will be a new branch for each issue and will be named containing the issue number and name detailed below. Continuous Integration is set up between all branches \code{dev}, \code{master}, and Issues. Once the milestone is finished to the degree we are happy to be graded, the \code{dev} branch will be merged into \code{master}.
 
 Issues are used to track tasks and meetings related to the project. Meeting issues will be created before each meeting according to the \textbf{MeetingIssueTemplate.md} template. These include attendance, minutes, and action items from the meeting. These notes can be referenced from other issues and PRs for traceability.
-Feature issues are used to track tasks. They can be referenced in PRs and meetings to outline the task that the developer must fulfill in their PR.
-Issues can be assigned to a Milestone which tracks issues related to deliverables. These are useful for filtering issues and also tracking due dates.
-Issues can be assigned labels which give information on which part of the project the issue related to. These can denote issue types as well as issue severity or complexity and allows filtering.
+Feature issues are used to track tasks. They can be referenced in PRs and meetings to outline the tasks that the developer must fulfill in their PR.
+Issues can be assigned to a Milestone which tracks issues related to deliverables. These are useful for filtering issues and tracking due dates.
+Issues can be assigned labels that give information on which part of the project the issue is related to. These can denote issue types as well as issue severity or complexity and allow filtering.
 
-\subsection{Some signifigant labels:}
+\subsection{Some significant labels:}
 
 \begin{itemize}
 	\item \textbf{documentation}: used for all issues related to building or maintaining the documentation for our project (including, but not limited to, LaTeX related issues).
@@ -126,7 +126,7 @@ Issues can be assigned labels which give information on which part of the projec
 \subsection{Version Control Developer Step-By-Step}
 
 \begin{enumerate}
-	\item Granted Issue ticket with issue number.
+	\item Granted issue ticket with the issue number.
 	\item Open branch with name \{IssueNumber\}/\{issue-name\}. (eg. \code{135/add-user-endpoint})
 	\item Commit with format: \{IssueNumber\}:\{commit message\}. (eg. \code{"135: updated yaml for add-user-endpoint"})
 	\item Open Pull Request on GitHub following the \textbf{PRTemplate.md} template, thus mapping the PR to the Issue.
@@ -147,7 +147,7 @@ the same item differently. As such, a major task will be coming up with a way to
 map to the same database entry. To show that these risks can be overcome, the Proof of Concept Demo will involve a very
 simple application with just the OCR functionality implemented. Then, two receipts with the same items will be scanned
 and the database will be shown as it updates with the new information. Ideally, the results of the demonstration
-will show that the OCR can accurately read the receipts and items on both receipts map appropriately in the database.
+will show that the OCR can accurately read the receipts and items on both receipts and maps appropriately in the database.
 
 \section{Technology}
 
@@ -155,12 +155,12 @@ will show that the OCR can accurately read the receipts and items on both receip
     \begin{itemize}
         \item The team will utilize \textbf{VSCode} source-code editor.
         \begin{itemize}
-            \item VSCode is very flexible and well documented.
+            \item VSCode is very flexible and well-documented.
             \item The team has plenty of experience working with VSCode.
         \end{itemize}
         \item The team will utilize \textbf{NodeJS} as their back-end programming language.
         \begin{itemize}
-            \item NodeJS is very popular and well documented.
+            \item NodeJS is very popular and well-documented.
             \item NodeJS has a reliable and flexible coding environment.
         \end{itemize}
         \item The team will utilize \textbf{Flutter} (Dart) as their front-end programming language.
@@ -179,7 +179,7 @@ will show that the OCR can accurately read the receipts and items on both receip
         \item The team will use Flutter's integrated unit testing framework for front-end unit testing purposes.
         \item The team will use \textbf{Postman} and \textbf{Mocha} frameworks for back-end unit testing purposes.
         \begin{itemize}
-            \item The team has extensive experiences working with Postman.
+            \item The team has extensive experience working with Postman.
             \item Postman is a popular choice for testing back-end database queries.
         \end{itemize}
     \end{itemize}
@@ -196,7 +196,7 @@ will show that the OCR can accurately read the receipts and items on both receip
     The team will utilize \textbf{Github} for Continuous Integration with automated testing and linting being integrated into the pipeline.
 \subsection{Performance Measuring Tools}
     \begin{itemize}
-        \item The team will utilize \textbf{Flutter Performance Profiling}, part  of  Flutter DevTools, for debugging front-end performance issues.
+        \item The team will utilize \textbf{Flutter Performance Profiling}, part of  Flutter DevTools, for debugging front-end performance issues.
     \end{itemize}
 \subsection{Libraries and Other Tools}
     \begin{itemize}
@@ -207,11 +207,11 @@ will show that the OCR can accurately read the receipts and items on both receip
         \end{itemize}
         \item The team will utilize \textbf{PostgreSQL} relational database to persist and aggregate data on demand.
         \begin{itemize}
-            \item PostgreSQL is a flexible database witth high levels of control.
+            \item PostgreSQL is a flexible database with high levels of control.
         \end{itemize}
         \item The team will utilize \textbf{node-rsa} to encrypt data and provide security for the system.
         \begin{itemize}
-            \item node-rsa is widely used for encrypting back-end database using node.js.
+            \item node-rsa is widely used for encrypting back-end databases using node.js.
         \end{itemize}
     \end{itemize}
 
@@ -226,19 +226,19 @@ will show that the OCR can accurately read the receipts and items on both receip
 
 The general scheduling of the project will follow a weekly sprint format. At the beginning
 of each week, a plan will be made based on the deliverables due and progress made from previous sprints. The
-work will then be distributed afterwards such that all members have tasks they have
+work will then be distributed afterward such that all members have tasks they have
 to work on. This structure will ensure feasibility regarding weekly
-objectives and maintaining focus on certain goals rather than scope creeping over
+objectives and maintain focus on certain goals rather than scope creep over
 a longer development period. This will also allow more flexibility among the team to adjust workload
 based on other responsibilities. \par
 
 Regarding course deliverables specifically, scheduling will follow closely to the deadlines written in the
-course outline. The goal for each deliverable will be to have them finished a couple days
-prior to the actual deadline in order to account for any problems or changes that may
+course outline. The goal for each deliverable will be to have them finished a couple of days
+before the actual deadline to account for any problems or changes that may
 need to be made. As requirements are created and planning gets done for different project features,
-more technical tasks will be added via the \emph{Github} Issue Tracker and these too will be
+more technical tasks will be added via the \emph{GitHub} Issue Tracker and these too will be
 integrated into the weekly sprints as they become available. This will especially be true during
-extended deadlines such as the period of time between the Proof of Concept Demonstration and
+extended deadlines such as the period between the Proof of Concept Demonstration and
 the Design Document Revision 0 deadline. \par
 
 Overall, this scheduling structure should promote a steady output of work allowing the team
