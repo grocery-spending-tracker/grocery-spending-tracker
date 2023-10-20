@@ -45,7 +45,9 @@
 \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
 19/10/23 & Sawyer Tang & Initial Version of Safety and Security Requirements\\
-... & ... & ...\\
+16/10/23 & Ryan Yeh & Added List of Tables, List of Figures, and Failure Mode and Effect Analyis\\
+16/10/23 & Allan Fang & Added sections 1, 2, 3\\
+17/10/23 & Ryan Yeh & Added Critical Assumptions\\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -56,15 +58,21 @@
 
 ~\newpage
 
+\listoftables
+
+\listoffigures
+
+\newpage
+
 \pagenumbering{arabic}
 
 \wss{You are free to modify this template.}
 
 \section{Introduction}
-
-\wss{You can include your definition of what a hazard is here.}
+This document details the hazards and the associated hazard controls for the Grocery Spending Tracker system to mitigate and eliminate unsafe behaviour. The Grocery Spending Tracker will assist users in making smart grocery decisions to better manage household and grocery expenses.  A hazard is defined as some system condition(s) that, together with some environmental condition(s) has the potential to cause loss of some value to stakeholders. A hazard control is a measure to mitigate the hazard.
 
 \section{Scope and Purpose of Hazard Analysis}
+The scope of the document is to identify possible hazards within the system components, the steps to mitigate the hazards, and the resulting safety and security requirements.
 
 \section{System Boundaries and Components}
 The system that this hazard analysis will be conducted on consists of the following components:
@@ -83,15 +91,13 @@ The system that this hazard analysis will be conducted on consists of the follow
 
 \section{Critical Assumptions}
 
-\wss{These assumptions that are made about the software or system.  You should
-minimize the number of assumptions that remove potential hazards.  For instance,
-you could assume a part will never fail, but it is generally better to include
-this potential failure mode.}
+The primary assumption being made by the team is that primary users are not intentionally
+trying to break the application or use it maliciously.
 
 \newpage
 \begin{landscape}
     \section{Failure Mode and Effect Analysis}
-    \begin{longtable}{|p{0.15\textwidth}|p{0.15\textwidth}|p{0.25\textwidth}|p{0.25\textwidth}|p{0.35\textwidth}|p{0.1\textwidth}|p{0.05\textwidth}|}
+    \begin{longtable}{|>{\raggedright\arraybackslash}p{0.15\textwidth}|>{\raggedright\arraybackslash}p{0.15\textwidth}|>{\raggedright\arraybackslash}p{0.25\textwidth}|>{\raggedright\arraybackslash}p{0.25\textwidth}|>{\raggedright\arraybackslash}p{0.35\textwidth}|>{\raggedright\arraybackslash}p{0.12\textwidth}|>{\raggedright\arraybackslash}p{0.03\textwidth}|}
         \caption{Failure Mode and Effect Analysis Table}  \\
 		\hline
         \multicolumn{1}{|c|}{\textbf{Component}}
@@ -99,13 +105,150 @@ this potential failure mode.}
 		& \multicolumn{1}{|c|}{\textbf{Effects of Failure}}
 		& \multicolumn{1}{|c|}{\textbf{Causes of Failure}}
 		& \multicolumn{1}{|c|}{\textbf{Recommended Action}}
-		& \multicolumn{1}{|c|}{\textbf{SR}}
+		& \multicolumn{1}{|c|}{\textbf{Req ID}}
 		& \multicolumn{1}{|c|}{\textbf{Ref.}}  \\
-		\hline
+        \hline
+        Authenti\-cation
+        & User is unable to login
+        & User cannot access their account and application features
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item User entered incorrect credentials
+        \end{enumerate}
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item Allow users to reset their password
+        \end{enumerate}
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item SSR1
+        \end{enumerate}
+        & HA1 \\
+        \cline{2-7}
+        & User's account is hacked by a third-party
+        & User's data can be read and modified by third-party
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item Third-party gains access to the  user's account without their permission
+        \end{enumerate}
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item Refer to HA1-a
+            \item Limit the number of login attempts a person has for a given time period
+        \end{enumerate}
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item SSR1
+            \item SSR2
+        \end{enumerate}
+        & HA2 \\
+        \hline
+        Purchase Data Input
+        & Application improperly reads user's inputted receipt
+        & Inaccurate data is stored to the database affecting application analytics and suggestions
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item OCR interprets certain characters incorrectly from the input
+            \item OCR is unable to read certain words or characters from the input
+        \end{enumerate}
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item Utilize natural language processing to clean and correct output produced by the OCR
+            \item Prompt user to take another photo if input is unclear
+            \item Allow user to manually input grocery item
+        \end{enumerate}
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item SSR3
+            \item SSR4
+            \item SSR5
+        \end{enumerate}
+        & HB1 \\
+        \cline{2-7}
+        & User is unable to input or take a photo of their receipt
+        & User cannot record their recent shopping data and analytics become outdated
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item Application does not have permissions to access device camera or photo gallery
+        \end{enumerate}
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item Prompt user to give permissions to the application to access camera and photo gallery
+        \end{enumerate}
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item SSR6
+        \end{enumerate}
+        & HB2 \\
+        \hline
+        Nearby Alternatives Recommendation
+        & Unable to determine user's location
+        & App is unable to provide nearby alternative recommendations
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item Invalid location data entered by user
+            \item Database failure
+        \end{enumerate}
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item Utilize front-end and back-end validation on user inputs
+            \item Utilize automatic database backups on a regular basis
+        \end{enumerate}
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item SSR7
+            \item SSR8
+        \end{enumerate}
+        & HC1 \\
+        \cline{2-7}
+        & Unable to connect to map/location API
+        & Nearby alternatives recommendation feature fails to work
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item User does not have an internet connection
+        \end{enumerate}
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item Prompt user to connect to the internet
+        \end{enumerate}
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item SSR9
+        \end{enumerate}
+        & HC2 \\
+        \hline
+        Purchase History Reports
+        & Incorrect data is returned in the reports
+        & User could make incorrect financial decisions based on inaccurate data
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item Database failure
+            \item Problem occurred when writing to database
+        \end{enumerate}
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item Refer to HC1-b
+            \item Implement validation to check whether data is written correctly
+        \end{enumerate}
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item SSR8
+            \item SSR10
+        \end{enumerate}
+        & HD1 \\
+        \hline
+        Spending Objectives
+        & Invalid spending objectives input by user
+        & Incorrect or invalid budgeting suggestions provided by the application
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item Invalid data entered by user
+            \item Database failure
+        \end{enumerate}
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item Refer to HC1-a
+            \item Refer to HC1-b
+        \end{enumerate}
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item SSR7
+            \item SSR8
+        \end{enumerate}
+        & HE1 \\
+        \hline
+        General
+        & Application unable to access database
+        & Major features in the application will no longer work
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item User does not have an internet connection
+        \end{enumerate}
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item Refer to HC2-a
+        \end{enumerate}
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item SSR9
+        \end{enumerate}
+        & HF1 \\
+        \hline
     \end{longtable}
-\end{landscape}    
-
-\wss{Include your FMEA table here}
+\end{landscape}
 
 \section{Safety and Security Requirements}
 
