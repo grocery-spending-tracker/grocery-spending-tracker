@@ -3,6 +3,14 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
+\usepackage{pdflscape}
+\usepackage{float}
+\usepackage{adjustbox}
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{longtable}
+\usepackage[round]{natbib}
+\usepackage[autostyle]{csquotes}
 
 \hypersetup{
     colorlinks=true,       % false: boxed links; true: colored links
@@ -36,9 +44,11 @@
 \toprule
 \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
-Date1 & Name(s) & Description of changes\\
-Date2 & Name(s) & Description of changes\\
-... & ... & ...\\
+16/10/23 & Ryan Yeh & Added List of Tables, List of Figures, and Failure Mode and Effect Analyis\\
+16/10/23 & Allan Fang & Added sections 1, 2, 3\\
+17/10/23 & Ryan Yeh & Added Critical Assumptions\\
+19/10/23 & Sawyer Tang & Initial Version of Safety and Security Requirements\\
+19/10/23 & Ryan Yeh & Added Roadmap\\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -49,37 +59,250 @@ Date2 & Name(s) & Description of changes\\
 
 ~\newpage
 
+\listoftables
+
+\listoffigures
+
+\newpage
+
 \pagenumbering{arabic}
 
-\wss{You are free to modify this template.}
-
 \section{Introduction}
-
-\wss{You can include your definition of what a hazard is here.}
+This document details the hazards and the associated hazard controls for the Grocery Spending Tracker system to mitigate and eliminate unsafe behaviour. The Grocery Spending Tracker will assist users in making smart grocery decisions to better manage household and grocery expenses.  A hazard is defined as some system condition(s) that, together with some environmental condition(s) has the potential to cause loss of some value to stakeholders. A hazard control is a measure to mitigate the hazard.
 
 \section{Scope and Purpose of Hazard Analysis}
+The scope of the document is to identify possible hazards within the system components, the steps to mitigate the hazards, and the resulting safety and security requirements.
 
 \section{System Boundaries and Components}
+The system that this hazard analysis will be conducted on consists of the following components:
+\begin{itemize}
+    \item The front-end and back-end components of the application:
+        \begin{itemize}
+            \item Authentication
+            \item Purchase data input (including optical recognition and language models)
+            \item Nearby alternatives recommendations
+            \item Purchase history reports
+            \item Spending objectives
+        \end{itemize}
+    \item User mobile device
+    \item The database storing all application data
+\end{itemize}
 
 \section{Critical Assumptions}
 
-\wss{These assumptions that are made about the software or system.  You should
-minimize the number of assumptions that remove potential hazards.  For instance,
-you could assume a part will never fail, but it is generally better to include
-this potential failure mode.}
+The primary assumption being made by the team is that primary users are not intentionally
+trying to break the application or use it maliciously.
 
-\section{Failure Mode and Effect Analysis}
-
-\wss{Include your FMEA table here}
+\newpage
+\begin{landscape}
+    \section{Failure Mode and Effect Analysis}
+    \begin{longtable}{|>{\raggedright\arraybackslash}p{0.15\textwidth}|>{\raggedright\arraybackslash}p{0.15\textwidth}|>{\raggedright\arraybackslash}p{0.25\textwidth}|>{\raggedright\arraybackslash}p{0.25\textwidth}|>{\raggedright\arraybackslash}p{0.35\textwidth}|>{\raggedright\arraybackslash}p{0.12\textwidth}|>{\raggedright\arraybackslash}p{0.03\textwidth}|}
+        \caption{Failure Mode and Effect Analysis Table}  \\
+		\hline
+        \multicolumn{1}{|c|}{\textbf{Component}}
+		& \multicolumn{1}{|c|}{\textbf{Failure Modes}}
+		& \multicolumn{1}{|c|}{\textbf{Effects of Failure}}
+		& \multicolumn{1}{|c|}{\textbf{Causes of Failure}}
+		& \multicolumn{1}{|c|}{\textbf{Recommended Action}}
+		& \multicolumn{1}{|c|}{\textbf{Req ID}}
+		& \multicolumn{1}{|c|}{\textbf{Ref.}}  \\
+        \hline
+        Authenti\-cation
+        & User is unable to login
+        & User cannot access their account and application features
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item User entered incorrect credentials
+        \end{enumerate}
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item Allow users to reset their password
+        \end{enumerate}
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item SSR1
+        \end{enumerate}
+        & HA1 \\
+        \cline{2-7}
+        & User's account is hacked by a third-party
+        & User's data can be read and modified by third-party
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item Third-party gains access to the  user's account without their permission
+        \end{enumerate}
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item Refer to HA1-a
+            \item Limit the number of login attempts a person has for a given time period
+        \end{enumerate}
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item SSR1
+            \item SSR2
+        \end{enumerate}
+        & HA2 \\
+        \hline
+        Purchase Data Input
+        & Application improperly reads user's inputted receipt
+        & Inaccurate data is stored to the database affecting application analytics and suggestions
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item OCR interprets certain characters incorrectly from the input
+            \item OCR is unable to read certain words or characters from the input
+        \end{enumerate}
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item Utilize natural language processing to clean and correct output produced by the OCR
+            \item Prompt user to take another photo if input is unclear
+            \item Allow user to manually input grocery item
+        \end{enumerate}
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item SSR3
+            \item SSR4
+            \item SSR5
+        \end{enumerate}
+        & HB1 \\
+        \cline{2-7}
+        & User is unable to input or take a photo of their receipt
+        & User cannot record their recent shopping data and analytics become outdated
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item Application does not have permissions to access device camera or photo gallery
+        \end{enumerate}
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item Prompt user to give permissions to the application to access camera and photo gallery
+        \end{enumerate}
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item SSR6
+        \end{enumerate}
+        & HB2 \\
+        \hline
+        Nearby Alternatives Recommendation
+        & Unable to determine user's location
+        & Application is unable to provide nearby alternative recommendations
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item Invalid location data entered by user
+            \item Database failure
+        \end{enumerate}
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item Utilize front-end and back-end validation on user inputs
+            \item Utilize automatic database backups on a regular basis
+        \end{enumerate}
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item SSR7
+            \item SSR8
+        \end{enumerate}
+        & HC1 \\
+        \cline{2-7}
+        & Unable to connect to map/location API
+        & Nearby alternatives recommendation feature fails to work
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item User does not have an internet connection
+        \end{enumerate}
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item Prompt user to connect to the internet
+        \end{enumerate}
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item SSR9
+        \end{enumerate}
+        & HC2 \\
+        \hline
+        Purchase History Reports
+        & Incorrect data is returned in the reports
+        & User could make incorrect financial decisions based on inaccurate data
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item Database failure
+            \item Problem occurred when writing to database
+        \end{enumerate}
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item Refer to HC1-b
+            \item Implement validation to check whether data is written correctly
+        \end{enumerate}
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item SSR8
+            \item SSR10
+        \end{enumerate}
+        & HD1 \\
+        \hline
+        Spending Objectives
+        & Invalid spending objectives input by user
+        & Incorrect or invalid budgeting suggestions provided by the application
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item Invalid data entered by user
+            \item Database failure
+        \end{enumerate}
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item Refer to HC1-a
+            \item Refer to HC1-b
+        \end{enumerate}
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item SSR7
+            \item SSR8
+        \end{enumerate}
+        & HE1 \\
+        \hline
+        General
+        & Application unable to access database
+        & Major features in the application will no longer work
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item User does not have an internet connection
+        \end{enumerate}
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item Refer to HC2-a
+        \end{enumerate}
+        & \begin{enumerate}[label=\alph*., leftmargin=*]
+            \item SSR9
+        \end{enumerate}
+        & HF1 \\
+        \hline
+    \end{longtable}
+\end{landscape}
 
 \section{Safety and Security Requirements}
 
-\wss{Newly discovered requirements.  These should also be added to the SRS.  (A
-rationale design process how and why to fake it.)}
+\begin{enumerate}[label=SSR\arabic*.]
+
+    \item The system shall allow users to reset their password without logging in and without knowledge of their current password.
+    \item[] \emph{Rationale:} Users cannot be relied on to remember their login credentials correctly. There must be a method of allowing the user to access their account despite this as well as recover their accounts should a malicious third-party gain access.
+    \item[] \emph{Associated Hazards:} HA1, HA2
+
+    \item The system shall limit the number of login attempts to 5 times within 10 minutes before login is disabled for a 1 hour cooldown period.
+    \item[] \emph{Rationale:} Malicious actors may gain access to an account by a brute-force attack. This requirement significantly reduces this possibility.
+    \item[] \emph{Associated Hazards:} HA2
+
+    \item The system shall use natural language processing to reduce the error generated by OCR reading of the receipt.
+    \item[] \emph{Rationale:} OCR can sometimes return an inaccurate reading of its input. Natural language processing can reduce this by interpreting the reading using its model rather than its literal reading.
+    \item[] \emph{Associated Hazards:} HB1
+
+    \item The system shall prompt the user to retake a photo if the receipt reading is unclear.
+    \item[] \emph{Rationale:} OCR will return incorrect data to the rest of the system if the photo is unclear. Thus requesting the user to retake the photo can mitigate this issue.
+    \item[] \emph{Associated Hazards:} HB1
+
+    \item The system shall allow the user to manually input grocery items.
+    \item[] \emph{Rationale:} Should the OCR and language model not read or recognize an item properly, the user can eliminate this error state by manually reviewing and inputting their items.
+    \item[] \emph{Associated Hazards:} HB1
+
+    \item The system shall prompt the user to grant system access to the device camera and the photo gallery.
+    \item[] \emph{Rationale:} If the application does not have camera access, it cannot take a photo. The prompt will notify the user that they must grant access before the application can take or import a photo.
+    \item[] \emph{Associated Hazards:} HB2
+
+    \item The system shall perform data validation on both front-end and back-end for user inputs.
+    \item[] \emph{Rationale:} If data between modules is incorrect, a type/correctness validation can eliminate or mitigate the risk of unpredictable behaviour or error.
+    \item[] \emph{Associated Hazards:} HC1, HE1
+
+    \item The system shall perform database backups on a regular basis.
+    \item[] \emph{Rationale:} If the database has a failure and loses data or is offline, the system will be unable to perform some of its functions. Backing up the database will ensure swift recovery and limited data loss.
+    \item[] \emph{Associated Hazards:} HC1, HD1, HE1
+
+    \item The system shall prompt the user to connect to the internet if the system is not connected to the internet.
+    \item[] \emph{Rationale:} The system will not function correctly without internet connection. Prompting the user to obtain internet connection will notify that user what the problem is and how they might address it.
+    \item[] \emph{Associated Hazards:} HC2, HF1
+
+    \item The system shall validate that the information in the database is correct.
+    \item[] \emph{Rationale:} If there is a mistake in an operation on the database, it can provide the user with false insights. By validating the database after it is augmented, the error state can be mitigated.
+    \item[] \emph{Associated Hazards:} HD1
+
+
+\end{enumerate}
 
 \section{Roadmap}
 
-\wss{Which safety requirements will be implemented as part of the capstone timeline?
-Which requirements will be implemented in the future?}
+Many Safety and Security Requirements were identified however due to time constraints,
+not all of them will be addressed by the team for the Revision 1 version. The requirements
+that the team will be prioritizing are SSR3, SSR5, SSR6, and SSR9. Should the team find themselves
+with extra time before this deadline, other requirements may be considered however these four
+would be essential for the core application functionality. In general, the remaining requirements
+will be implemented at a future date.
 
 \end{document}
