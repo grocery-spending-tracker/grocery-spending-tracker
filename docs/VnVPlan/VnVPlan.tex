@@ -69,55 +69,87 @@ in.}
   \toprule		
   \textbf{symbol} & \textbf{description}\\
   \midrule 
-  T & Test\\
+  SRS & Software Requirements Specification\\
+  OCR & Optical Character Recognition\\
+  HA & Hazard Analysis\\
+  VnV & Verification and Validation\\
+  MG & Moduel Guide\\
   \bottomrule
 \end{tabular}\\
-
-\wss{symbols, abbreviations, or acronyms --- you can simply reference the SRS
-  \citep{SRS} tables, if appropriate}
-
-\wss{Remove this section if it isn't needed}
 
 \newpage
 
 \pagenumbering{arabic}
 
-This document ... \wss{provide an introductory blurb and roadmap of the
-  Verification and Validation plan}
+This document outlines the verification and validation plan for the Grocery Spending Tracker.
+The document will cover some basic information about the application as well as go over the plans
+the team has for testing its requirements and features throughout development. It will also cover
+the different system tests and unit tests that the team will employ to go about validating
+the software.
 
 \section{General Information}
 
+This section will give a general overview of the application as well as the objectives
+the team has for performing validation and verification. This section will also include any
+relevant document related to the overall testing plan.
+
 \subsection{Summary}
 
-\wss{Say what software is being tested.  Give its name and a brief overview of
-  its general functions.}
+The Grocery Spending Tracker is a mobile application being developed to help
+users save money on groceries. The main feature is allowing users to input photos of receipts
+which the application will then parse. Once parsed, the items and their corresponding prices will then be recorded.
+This data will then be used to show analytics regarding their purchase history over time.
+Additionally, the application will also allow users to get budgeting suggestions based on personal spending preferences
+as well as recommendations for alternative nearby grocery stores where recently purchased items
+can be obtained for cheaper.
 
 \subsection{Objectives}
 
-\wss{State what is intended to be accomplished.  The objective will be around
-  the qualities that are most important for your project.  You might have
-  something like: ``build confidence in the software correctness,''
-  ``demonstrate adequate usability.'' etc.  You won't list all of the qualities,
-  just those that are most important.}
+In regards to the application's primary functionality, testing will be done to build confidence
+in the correctness and accuracy of all main features such as the OCR for receipt input as well as analytic
+data being returned. This also holds for any budgeting suggestions and alternative grocery store suggestions.
+Due to the nature of this application focusing on user finances, the accuracy and correctness of all
+main features are paramount to this application's success.
+Additionally, qualities that are important for an enjoyable user experience
+will also be emphasized in this VnV Plan. Testing should verify that the application demonstrates
+acceptable levels of usability and performance according to stakeholder expectations. \\
 
-\wss{You should also list the objectives that are out of scope.  You don't have 
-the resources to do everything, so what will you be leaving out.  For instance, 
-if you are not going to verify the quality of usability, state this.  It is also 
-worthwhile to justify why the objectives are left out.}
-
-\wss{The objectives are important because they highlight that you are aware of 
-limitations in your resources for verification and validation.  You can't do everything, 
-so what are you going to prioritize?  As an example, if your system depends on an 
-external library, you can explicitly state that you will assume that external library 
-has already been verified by its implementation team.}
+In general, a majority of the requirements set by the
+\href{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/SRS/SRS.pdf}{SRS} and
+\href{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/HazardAnalysis/HazardAnalysis.pdf}{HA} will be considered
+during validation and verification. Maintainability, adaptability, and compliance tests however will be placed out of scope
+due to them having less direct impact on the main user experience. The primary focus during
+this development period will be to build a prototype application with all primary features and qualities rather than a
+full consumer product. With this in mind, these qualities seemed less relevant to this overall goal.
+Additionally, several features will leverage external libraries as part of the overall workflow and these components will
+be excluded from testing as well on a unit level. The team will assume that these libraries have already
+been tested extensively by the original developers and other users.
 
 \subsection{Relevant Documentation}
 
-\wss{Reference relevant documentation.  This will definitely include your SRS
-  and your other project documents (design documents, like MG, MIS, etc).  You
-  can include these even before they are written, since by the time the project
-  is done, they will be written.}
+% \wss{Reference relevant documentation.  This will definitely include your SRS
+%   and your other project documents (design documents, like MG, MIS, etc).  You
+%   can include these even before they are written, since by the time the project
+%   is done, they will be written.}
 
+Listed below are the relevant documents referred to in this VnV Plan:
+
+\begin{itemize}
+  \item \href{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/SRS/SRS.pdf}{Software Requirements Specification} \citet{GrocerySRS}
+  \begin{itemize}
+    \item The SRS contains the primary functional and non-functional requirements that are being used as the basis for many of the tests
+    in this document.
+  \end{itemize}
+  \item \href{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/HazardAnalysis/HazardAnalysis.pdf}{Hazard Analysis} \citet{GroceryHA}
+  \begin{itemize}
+    \item The HA contains a number of safety requirements that were identified to help mitigate risk that were also considered
+    for testing in this document.
+  \end{itemize}
+  \item \href{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/Design/SoftArchitecture/MG.pdf}{Module Guide}
+  \begin{itemize}
+    \item The MG references the different modules that make up the overall application in which the VnV Plan tests.
+  \end{itemize}
+\end{itemize}
 \citet{SRS}
 
 \wss{Don't just list the other documents.  You should explain why they are relevant and 
