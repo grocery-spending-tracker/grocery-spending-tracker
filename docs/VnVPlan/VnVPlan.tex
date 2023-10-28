@@ -69,7 +69,8 @@ in.}
   \toprule		
   \textbf{symbol} & \textbf{description}\\
   \midrule 
-  T & Test\\
+  SRS & Software Requirements Specification\\
+  VnV & Verification and Validation\\
   \bottomrule
 \end{tabular}\\
 
@@ -125,39 +126,65 @@ how they relate to your VnV efforts.}
 
 \section{Plan}
 
-\wss{Introduce this section.   You can provide a roadmap of the sections to
-  come.}
+The following will outline a series of plans and processes that will be used for the verification and validation of the software solution and documentation the Grocery Spending Tracker project. The sections are as follows:
+\begin{itemize}
+    \item Verification and Validation Team: the team members their involvement in the verification and validation efforts 
+    \item SRS Verification Plan: the approaches to be used for SRS verification
+    \item Design Verification Plan: plans for design verification
+    \item Verification and Validation Plan Verification Plan: plans for VnV verification
+    \item Implementation Verification Plan: dynamic and static tests for verification of the implementation
+    \item Automated Testing and Verification Tools: tools and metrics to be used for testing and verification of the implementation
+    \item Software Validation Plan: plans for verification of the software requirements
+\end{itemize}
 
 \subsection{Verification and Validation Team}
-
-\wss{Your teammates.  Maybe your supervisor.
-  You should do more than list names.  You should say what each person's role is
-  for the project's verification.  A table is a good way to summarize this information.}
+\begin{table}[htbp]
+    \centering
+    \begin{tabularx}{\textwidth}{|>{\hsize=.36\hsize}X|>{\hsize=1.64\hsize}X|}
+        \hline
+        \textbf{Name} & \textbf{Role}\\
+        \hline
+        Allan Fang & Developer: \\
+        \hline
+        Jason Nam & Developer: \\
+        \hline
+        Ryan Yeh & Developer: \\
+        \hline
+        Sawyer Tang & Developer: \\
+        \hline
+    \end{tabularx}
+    \caption{VnV Team}
+    \label{tab:vnvteam}
+\end{table}
 
 \subsection{SRS Verification Plan}
-
-\wss{List any approaches you intend to use for SRS verification.  This may include
-  ad hoc feedback from reviewers, like your classmates, or you may plan for 
-  something more rigorous/systematic.}
-
-\wss{Maybe create an SRS checklist?}
+The design documentation will be verified with an informal walk-through by stakeholders (individuals who are members of low-income households in Hamilton and students from McMaster University) and peers of the SFWRENG 4G06 course who will provide ad-hoc review as well as an inspection by the development team. The inspection will address the following issues and be tracked by the checklist:
+\begin{itemize}
+    \item Correctness: the SRS accurately represents the software expectations
+    \item Ambiguity: the requirements and contents convey an unambiguous meaning
+    \item Completeness: the SRS covers all necessary functional and non-functional requirements
+    \item Verifiability: the requirements are testable and quantifiable
+    \item Traceability: the requirements have clear source references
+    \item Clarity: the document is written in a clear, concise, and unambiguous manner
+\end{itemize}
 
 \subsection{Design Verification Plan}
-
-\wss{Plans for design verification}
-
-\wss{The review will include reviews by your classmates}
-
-\wss{Create a checklists?}
+The SRS will be verified with an informal walk-through by stakeholders (individuals who are members of low-income households in Hamilton and students from McMaster University) and peers of the SFWRENG 4G06 course who will provide ad-hoc review as well as an inspection by the development team. The review will address the following issues and be guided by the checklist:
+\begin{itemize}
+    \item Design adequacy and conformance to software requirements: assess whether the design adequately meets the specified requirements (SRS)
+    \item Internal consistency: different components of the design are coherent
+    \item External consistency: the design aligns with external interfaces, standards, and environments
+    \item Feasibility: whether the design can be practically realized within technical and resource constraints
+    \item Maintenance: whether the design can be easily updated, modified, or repaired
+\end{itemize}
 
 \subsection{Verification and Validation Plan Verification Plan}
-
-\wss{The verification and validation plan is an artifact that should also be
-verified.  Techniques for this include review and mutation testing.}
-
-\wss{The review will include reviews by your classmates}
-
-\wss{Create a checklists?}
+The VnV plan will be verified with an informal walk-through by stakeholders (individuals who are members of low-income households in Hamilton and students from McMaster University) and peers of the SFWRENG 4G06 course who will provide ad-hoc review as well as an inspection by the development team. The reviews will address the following issues and be guided by the checklist:
+\begin{itemize}
+    \item Completeness: the VnV plan covers all necessary documentation, functional requirements, and non-functional requirements
+    \item Feasibility: whether the actions that the VnV plan details can be practically realized within technical and resource constraints
+    \item Clarity: the document is written in a clear, concise, and unambiguous manner
+\end{itemize}
 
 \subsection{Implementation Verification Plan}
 
