@@ -6,7 +6,7 @@
 % Risks are removed because they are covered by the Hazard Analysis
 \documentclass[12pt]{article}
 
-\usepackage{graphicx}
+\usepackage{graphicx} 
 \graphicspath{ {./res/} }
 \usepackage{booktabs}
 \usepackage{tabularx}
@@ -32,10 +32,10 @@
 
 \begin{document}
 
-\title{Software Requirements Specification for \progname: An application to help users save on grocery spending.}
+\title{Software Requirements Specification for \progname: An application to help users save on grocery spending.} 
 \author{\authname}
 \date{\today}
-
+	
 \maketitle
 
 ~\newpage
@@ -75,7 +75,7 @@ will help users stay more informed and reduce grocery spending in the long-term.
 \begin{itemize}
   \item The created application will help users save money on groceries over time.
   \item The application will provide accurate spending data and suggestions to end users.
-\end{itemize}
+\end{itemize}  
 \section{Stakeholders}
 \subsection{Client}
 Both the client and customer will be the users of the system. These primary stakeholders are made up of low-income households of Hamilton and university students from McMaster who want to save money on groceries. The stakeholders will make decisions that influence the system through surveys, studies, and focus groups.
@@ -90,7 +90,7 @@ Outlined in the above Client section.
 \end{itemize}
 
 \subsection{Hands-On Users of the Project}
-Low income households and individuals who are budget constrained on their groceries. The archetypal customer will have access to a device with a camera and have access to the internet. This entails adults or young adults who are responsible for making decisions on grocery items. Customers want to reduce the cost of their grocery items whilst maximizing the convenience of their grocery shopping trip.
+Low income households and individuals who are budget constrained on their groceries. The archetypal customer will have access to a device with a camera and have access to the internet. This entails adults or young adults who are responsible for making decisions on grocery items. Customers want to reduce the cost of their grocery items whilst maximizing the convenience of their grocery shopping trip. 
 \begin{itemize}
   \item Low or single income households in Hamilton
   \begin{itemize}
@@ -285,7 +285,7 @@ N/A
         Send product query to database & Product query (out) & Request relevant data based on product query from database \\
         \hline
         Send mapping query to database  & Mapping query (out) &  Request relevant data based on mapping query from database \\
-        \hline
+        \hline 
         \caption{Business Event List}
         \label{tab:businesseventlist}
     \end{longtable}
@@ -293,7 +293,7 @@ N/A
 \textbf{Title:} Create a new profile\\
 \textbf{Trigger:} User creates a new profile\\
 \textbf{Pre-condition:} User has application running\\
-\textbf{Outcome: }
+\textbf{Outcome: } 
 \begin{enumerate}
     \item User creates an profile identified by a username and a password
     \item System creates new profile entry in database
@@ -301,7 +301,7 @@ N/A
 \textbf{Title:} Log in to user profile\\
 \textbf{Trigger:} User submits profile credentials \\
 \textbf{Pre-condition:} Profile exists in database \\
-\textbf{Outcome: }
+\textbf{Outcome: } 
 \begin{enumerate}
     \item System checks if profile credentials exists
     \item If exists, system allows loads user profile
@@ -310,14 +310,14 @@ N/A
 \textbf{Title:} Record user objectives \\
 \textbf{Trigger:} User submits personal objectives \\
 \textbf{Pre-condition:} User is logged into profile \\
-\textbf{Outcome: }
+\textbf{Outcome: } 
 \begin{enumerate}
     \item System stores user budgeting objectives of budget with associated product or product groups
 \end{enumerate}
 \textbf{Title:} Input purchase records \\
 \textbf{Trigger:} User submits image or manual entry of purchase record \\
 \textbf{Pre-condition:} User is logged into profile \\
-\textbf{Outcome: }
+\textbf{Outcome: } 
 \begin{enumerate}
     \item System reads and translates records to Strings
     \item System maps input records to database objects
@@ -327,7 +327,7 @@ N/A
 \textbf{Title:} Create new mapping feedback \\
 \textbf{Trigger:} Product mapping is not found in database \\
 \textbf{Pre-condition:} Product record has been submitted \\
-\textbf{Outcome: }
+\textbf{Outcome: } 
 \begin{enumerate}
     \item Create mapping guesses using language model
     \item Prompt user with guesses for feedback
@@ -338,7 +338,7 @@ N/A
 \textbf{Title:} Create user profile analytics \\
 \textbf{Trigger:} User requests purchasing analytics \\
 \textbf{Pre-condition:} User is logged into profile \\
-\textbf{Outcome: }
+\textbf{Outcome: } 
 \begin{enumerate}
     \item Retrieve user data from database
     \item Transform user profile data into graphics
@@ -347,7 +347,7 @@ N/A
 \textbf{Title:} Retrieve profile purchase history \\
 \textbf{Trigger:} User requests purchase history\\
 \textbf{Pre-condition:} User is logged into profile\\
-\textbf{Outcome: }
+\textbf{Outcome: } 
 \begin{enumerate}
     \item Retrieve user purchase history from database
     \item Transform user purchase history into graphics
@@ -356,7 +356,7 @@ N/A
 \textbf{Title:} Retrieve product information \\
 \textbf{Trigger:} User requests product information\\
 \textbf{Pre-condition:} User is logged into profile and has current location information set \\
-\textbf{Outcome: }
+\textbf{Outcome: } 
 \begin{enumerate}
     \item Retrieve user purchase history from database relevant to the product
     \item Retrieve markets accessible to the user from map service
@@ -367,7 +367,7 @@ N/A
 \textbf{Title:} Set location information \\
 \textbf{Trigger:} User sets location information \\
 \textbf{Pre-condition:} User is logged into profile and location information is available \\
-\textbf{Outcome: }
+\textbf{Outcome: } 
 \begin{enumerate}
     \item User sets initial location
     \item User sets accessibility radius
@@ -420,39 +420,39 @@ N/A
         Budget & *Currency amount measured by Double to 2 decimals* & Attribute \\
         \hline
         Target Product & *String product name* & Attribute \\
-        \hline
+        \hline 
         Target Category & *String category name* & Attribute \\
-        \hline
+        \hline 
         Datetime & *YYYY-MM-DD HH:MM:SS* & Attribute \\
-        \hline
+        \hline 
         Purchased Product & *String Product name* & Attribute \\
-        \hline
+        \hline 
         Price Per Unit & *Int price per unit of product* & Attribute \\
-        \hline
+        \hline 
         Unit & *String* & Attribute \\
-        \hline
+        \hline 
         Quantity & *Double* & Attribute \\
-        \hline
+        \hline 
         Product Name & *String* & Attribute \\
-        \hline
+        \hline 
         Category & *String* & Attribute \\
-        \hline
+        \hline 
         Accessible Radius & *Integer* & Attribute \\
-        \hline
+        \hline 
         Ignore Stores & *List of Stores to ignore* & Attribute \\
-        \hline
+        \hline 
         Prefer Stores & *List of Stores to prioritize* & Attribute \\
-        \hline
+        \hline 
         Prefer Units & *String: metric/imperial* & Attribute \\
         \hline
         Store Location & *Location class* & Attribute \\
-        \hline
+        \hline 
         Store Name & *String* & Attribute \\
-        \hline
+        \hline 
         X Coordinate & *Double* & Attribute \\
-        \hline
+        \hline 
         Y Coordinate & *Double* & Attribute \\
-        \hline
+        \hline 
         \caption{Business Event List}
         \label{tab:businesseventlist}
     \end{longtable}
@@ -471,9 +471,9 @@ N/A
 
 \begin{table}[H]
   \centering
-  \begin{tabular}{ |c|p{3.5cm}|c|p{3.5cm}| }
+  \begin{tabular}{ |c|p{3.5cm}|c|p{3.5cm}| } 
   \hline
-  \textbf{PUC No} & \textbf{PUC Name} & \textbf{Actor/s} & \textbf{Input/Output} \\
+  \textbf{PUC No} & \textbf{PUC Name} & \textbf{Actor/s} & \textbf{Input/Output} \\ 
   \hline
   1 & Register for an account & User, System & User account data (in), Created user account (out) \\
   \hline
@@ -640,72 +640,72 @@ N/A
 \medskip
 \noindent \textbf{Requirement ID:} FR1\\
 \textbf{Use Case:} 1\\
-\textbf{Description:} The system must provide a clear and intuitive interface for account creation, where users can easily enter their email and password.\\
-\textbf{Rationale:} A registration interface is crucial for reducing the entry barrier for new users, enhancing user satisfaction, and decreasing the likelihood of registration abandonment.\\
-\textbf{Fit Criterion:} The interface should allow users to enter their email and password and complete the registration in no more than three steps, with each step clearly delineated.\\
+\textbf{Description:} The system must provide a user-friendly interface for users to enter their email and password when creating an account.\\
+\textbf{Rationale:} This requirement ensures that users can easily provide their registration information.\\
+\textbf{Fit Criterion:} Users should be able to successfully enter their email and password without encountering errors during the registration process.\\
 
 \medskip
 \noindent \textbf{Requirement ID:} FR2\\
 \textbf{Use Case:} 2\\
-\textbf{Description:} The system must securely validate user credentials like email and password during the sign-in process.\\
-\textbf{Rationale:}  Secure and reliable authentication is essential for protecting user accounts and sensitive data from unauthorized access and complying with data protection regulations.\\
-\textbf{Fit Criterion:} Users with valid credentials must be granted access to the application, while users with invalid credentials must be denied access and receive a clear, non-ambiguous error message regarding the specific authentication failure within 3 seconds of their attempt.\\
+\textbf{Description:} The system must validate user credentials (email and password) when a user attempts to sign in.\\
+\textbf{Rationale:} This requirement is necessary to fulfill the authentication process for registered users.\\
+\textbf{Fit Criterion:} Users with valid credentials should be granted access to the application, while users with invalid credentials should receive an error message.\\
 
 \medskip
 \noindent \textbf{Requirement ID:} FR3\\
 \textbf{Use Case:} 6, 7, 8, 9\\
-\textbf{Description:} The system must support the capture and digitization of receipt data from user-uploaded photos. This involves the ability to accurately recognize, extract, and process text and numerical data from various receipt formats and layouts.\\
-\textbf{Rationale:} Enabling users to upload photos of receipts and automatically converting these into digital spending data significantly enhances user convenience by reducing manual data entry.\\
-\textbf{Fit Criterion:} The system must successfully recognize and extract data from uploaded receipt photos with an accuracy rate of at least 90\% under typical lighting and photo quality conditions.\\
+\textbf{Description:} The system must support the functionality to capture and process receipt data from user-submitted photos.\\
+\textbf{Rationale:} This requirement allows users to add new spending data.\\
+\textbf{Fit Criterion:} Users should be able to submit a photo of a receipt, and the system should successfully process the data from the receipt and store it in the database.\\
 
 \medskip
 \noindent \textbf{Requirement ID:} FR4\\
 \textbf{Use Case:} 4, 7\\
-\textbf{Description:} The system must offer an interface that allows users to specify and update their current physical location and set a desired radius for area coverage.\\
-\textbf{Rationale:} Enabling users to input and adjust their location and area of coverage is vital for providing customized and relevant information, services, or offers specific to their locale.\\
-\textbf{Fit Criterion:} Users must be able to set and update their location and preferred area of coverage, with changes reflected in the system within 3 seconds.\\
+\textbf{Description:} The system must offer a user interface for users to input their current location and preferred area of coverage.\\
+\textbf{Rationale:} This requirement allows users to specify their location preferences.\\
+\textbf{Fit Criterion:} Users should be able to enter their location preferences, including selecting stores they prefer and stores they want to ignore.\\
 
 \medskip
 \noindent \textbf{Requirement ID:} FR5\\
 \textbf{Use Case:} 3, 7\\
-\textbf{Description:} The system must provide structured input fields where users can input and modify their grocery objectives and desired outcomes.\\
-\textbf{Rationale:} Enabling users to set and alter their spending goals directly in the application allows improved grocery planning and encourages healthier grocery spending habits.\\
-\textbf{Fit Criterion:} Users must be able to input and change their spending goals with the updated information displayed instantly after change.\\
+\textbf{Description:} The system must provide a form or input fields for users to enter their spending objectives and outcomes.\\
+\textbf{Rationale:} This requirement will allow users to provide their spending preferences.\\
+\textbf{Fit Criterion:} Users should be able to input their spending goals and see them stored in the application.\\
 
 \medskip
 \noindent \textbf{Requirement ID:} FR6\\
 \textbf{Use Case:} 5, 7\\
-\textbf{Description:} The system must offer a feature where users can specify their preferred price ranges for goods and set comprehensive budgeting parameters.\\
-\textbf{Rationale:} Providing users with the ability to define their price ranges and budgeting preferences is necessary for personalized shopping experience to match user constraints.\\
-\textbf{Fit Criterion:} The system must reflect user's preferences in filtering and recommending products with an accuracy rate of at least 90\%.\\
+\textbf{Description:} The system must provide options for users to input their price range and budgeting preferences.\\
+\textbf{Rationale:} This requirement enables users to set their budgeting preferences.\\
+\textbf{Fit Criterion:} Users should be able to set their budgeting preferences, and the system should store this information.\\
 
 \medskip
 \noindent \textbf{Requirement ID:} FR7\\
 \textbf{Use Case:} 8, 9\\
-\textbf{Description:} The system must process each item listed on a receipt by identifying each item details. It must update the user's spending log in the database.\\
-\textbf{Rationale:} Accurately capturing detailed purchase information from receipts is important for informing users with a comprehensive overview of their grocery spending habits.\\
-\textbf{Fit Criterion:} The system should accurately extract and parse grocery item details from receipts, achieving a data accuracy of at least 90\%.\\
+\textbf{Description:} The system must check each product found on a user-submitted receipt and update the database with relevant purchase information.\\
+\textbf{Rationale:} This requirement ensures that the application accurately records and maintains the user's spending history, which is essential for budgeting and spending analysis.\\
+\textbf{Fit Criterion:} The system should successfully update the database with purchase information, including date, time, location, and purchase price for each product on the receipt.\\
 
 \medskip
 \noindent \textbf{Requirement ID:} FR8\\
 \textbf{Use Case:} 11, 12\\
-\textbf{Description:} The system must analyze the user's purchase history and compare it to the budgeting preferences the user has submitted. It must also alert or recommend cheaper grocery alternatives when the user exceeds their budget.\\
-\textbf{Rationale:} This functionality allows users to make informed decisions and encourages them towards making well informed grocery purchases.\\
-\textbf{Fit Criterion:} Suggestions should be considered relevant and useful in user feedback surveys, with at least 70\% positive response rate.\\
+\textbf{Description:} The system must analyze the user's purchase history and compare it to the budgeting preferences the user has submitted. It should suggest items to stop purchasing or recommend cheaper grocery alternatives when the user exceeds their budget.\\
+\textbf{Rationale:} This requirement supports the application's goal of helping users manage their expenses by providing personalized budgeting suggestions.\\
+\textbf{Fit Criterion:} The system should provide relevant budgeting suggestions based on the user's purchase history and budgeting preferences.\\
 
 \medskip
 \noindent \textbf{Requirement ID:} FR9\\
 \textbf{Use Case:} 12\\
-\textbf{Description:} The system must actively monitor prices of items that a user has purchased within the last 10 days. When it detects that an item is available at a lower price, it should promptly notify the user.\\
-\textbf{Rationale:} Notifying users about lower price alternatives on grocery items they recently purchased enlightens users about potential cost saving alternatives and emphasizes the usefulness of the application.\\
-\textbf{Fit Criterion:} Notifications on lower price alternatives must be delivered to the user within 24 hours of detection.\\
+\textbf{Description:} When a recently purchased item by the user is found at a lower price, the system should prompt the user with information about the item, its price, and the location where it is available at a lower cost.\\
+\textbf{Rationale:} This requirement enhances user experience by helping users save money by identifying opportunities for cost savings.\\
+\textbf{Fit Criterion:} The system should prompt the user with information about cheaper alternatives when available within the user's location preferences.\\
 
 \medskip
 \noindent \textbf{Requirement ID:} FR10\\
 \textbf{Use Case:} 10\\
-\textbf{Description:} The system must fetch and display a visual representation of the user's grocery purchase history, including details on items purchased and their respective timestamps.\\
-\textbf{Rationale:} Providing a visual representation of grocery purchase history converts unprocessed data into a comprehensive and easily understandable format for users.\\
-\textbf{Fit Criterion:} The system should present the user's purchase history data with over 95\% accuracy.\\
+\textbf{Description:} The system must retrieve and display a visual representation of the user's purchase history, including details on items purchased and their respective timestamps.\\
+\textbf{Rationale:} This requirement enables users to monitor their spending habits and make informed financial decisions by providing a clear view of their purchase history.\\
+\textbf{Fit Criterion:} The system should present the user's purchase history accurately and in a user-friendly manner.\\
 
 \begin{figure}[H]
   \centering
@@ -733,7 +733,7 @@ In regards to identifying functions for project:
         \forall d \quad (d.\text{storeInDatabase}() \Rightarrow \text{true})
     \end{split}
     \]
-
+    
     \item \textbf{All user data must be encrypted in database.}\\
     For all user data `ud' stored in the database:
     \[
@@ -741,7 +741,7 @@ In regards to identifying functions for project:
         \forall ud \quad (ud.\text{encryptInDatabase}() \Rightarrow \text{true})
     \end{split}
     \]
-
+    
 \end{itemize}
 
 \section{Look and Feel Requirements}
@@ -840,12 +840,12 @@ to the label for the relevant question.
 \begin{itemize}
     \item \textbf{EPER1} The application is expected to be compatible with smart mobile devices running Android.
     \item \textbf{EPER2} The application is expected to be compatible with smart mobile devices running IOS.
-    \item \textbf{EPER3} The application is expected to be compatible with tablet devices running iPadOS or Android.
+    \item \textbf{EPER3} The application is expected to be compatible with tablet devices running iPadOS or Android. 
 \end{itemize}
 \subsection{Wider Environment Requirements}
 \begin{itemize}
     \item \textbf{WER1}: The application is designed to operate on devices equipped with camera peripherals.
-    \item \textbf{WER2}: The application is designed to operate on devices that have access to the internet.
+    \item \textbf{WER2}: The application is designed to operate on devices that have access to the internet. 
 \end{itemize}
 \subsection{Requirements for Interfacing with Adjacent Systems}
 \begin{itemize}
@@ -878,13 +878,13 @@ to the label for the relevant question.
 \subsection{Adaptability Requirements}
 \begin{itemize}
   \item \textbf{APR1}: System must operate on IOS and Android Devices.
-  \item \textbf{APR2}: System is intended to be used when the user is out of their home.
+  \item \textbf{APR2}: System is intended to be used when the user is out of their home. 
 \end{itemize}
 
 \section{Security Requirements}
 \subsection{Access Requirements}
 \begin{itemize}
-    \item \textbf{ACR1}: The application shall require acceptance of terms and services to allow access to application's database at all times.
+    \item \textbf{ACR1}: The application shall require acceptance of terms and services to allow access to application's database at all times. 
 \end{itemize}
 \subsection{Integrity Requirements}
 \begin{itemize}
@@ -974,15 +974,15 @@ Inhibit the New Product}
 \subsection{Project Planning}
 \begin{table}[H]
   \centering
-  \begin{tabular}{ |c|c| }
+  \begin{tabular}{ |c|c| } 
   \hline
-  \textbf{Deliverable} & \textbf{Deadline} \\
+  \textbf{Deliverable} & \textbf{Deadline} \\ 
   \hline
   Hazard Analysis Revision 0 & October 20 \\
   \hline
-  V\&V Plan Revision 0 & November 3 \\
+  V\&V Plan Revision 0 & November 3 \\ 
   \hline
-  Proof of Concept Demonstration & November 13-24 \\
+  Proof of Concept Demonstration & November 13-24 \\ 
   \hline
   \end{tabular}
   \caption{Development Phase 1}
@@ -991,13 +991,13 @@ Inhibit the New Product}
 
 \begin{table}[H]
   \centering
-  \begin{tabular}{ |c|c| }
+  \begin{tabular}{ |c|c| } 
   \hline
-  \textbf{Deliverable} & \textbf{Deadline} \\
+  \textbf{Deliverable} & \textbf{Deadline} \\ 
   \hline
   Design Document Revision 0 & January 17 \\
   \hline
-  Revision 0 Demonstration & February 5-February 16 \\
+  Revision 0 Demonstration & February 5-February 16 \\ 
   \hline
   \end{tabular}
   \caption{Development Phase 2}
@@ -1006,15 +1006,15 @@ Inhibit the New Product}
 
 \begin{table}[H]
   \centering
-  \begin{tabular}{ |c|c| }
+  \begin{tabular}{ |c|c| } 
   \hline
-  \textbf{Deliverable} & \textbf{Deadline} \\
+  \textbf{Deliverable} & \textbf{Deadline} \\ 
   \hline
-  V\&V Report Revision 0 & March 6 \\
+  V\&V Report Revision 0 & March 6 \\ 
   \hline
   Final Demonstration (Revision 1) & March 16-March 29 \\
   \hline
-  Final Documentation (Revision 1) & April 4 \\
+  Final Documentation (Revision 1) & April 4 \\ 
   \hline
   \end{tabular}
   \caption{Development Phase 3}
@@ -1108,7 +1108,7 @@ graduate attribute of Lifelong Learning.  Please answer the following questions:
     \item Writing proper software documentation
     \item Familiarity and experience with software testing/coverage
     \item Presentation and communication skills for elicitation and demos
-  \end{enumerate}
+  \end{enumerate}  
 
   \item \textbf{For each of the knowledge areas and skills identified in the previous
   question, what are at least two approaches to acquiring the knowledge or
@@ -1171,7 +1171,7 @@ graduate attribute of Lifelong Learning.  Please answer the following questions:
   \medskip
   \textbf{Sawyer Tang}\\
   \textit{Chosen Skills: (a), (b), (d), (h)} \\
-  For this project, I was assigned to backend development. In following this, I am choosing to improve my abilities in \textit{NodeJS} and \textit{SQL}. I have used some of these technologies in brevity over my past internship positions but I am looking to deepen my experience with them further with the hopes of bringing this experience to future personal projects and jobs.
+  For this project, I was assigned to backend development. In following this, I am choosing to improve my abilities in \textit{NodeJS} and \textit{SQL}. I have used some of these technologies in brevity over my past internship positions but I am looking to deepen my experience with them further with the hopes of bringing this experience to future personal projects and jobs. 
   In addition to wanting to improve my backend skills, I also want to dive into front end. More specifically, mobile development in \textit{Flutter}. This is something that I have always had an interest in learning and this project seems to me like a perfect opportunity.
   Finally, I believe that being able to effectively communicate your ideas is an invaluable skill and it is something that I am always looking to improve for myself and career. \par
   My approach to gaining these frontend and backend skills will be to consume public documentation, online forums, and \textit{YouTube} video tutorials. For communication skills, I practice them every day during meetings or when working with team members. I also look to improve these skills during our team presentations and demos.
@@ -1277,7 +1277,7 @@ graduate attribute of Lifelong Learning.  Please answer the following questions:
     \end{itemize}
   \item \textbf{E12:} For an app of this nature, what features or points of interest come to mind based on your identity as a Canadian?
     \begin{itemize}
-      \item Participant stated imperial and metric units are hard to navigate as Canada uses a unique mix.
+      \item Participant stated imperial and metric units are hard to navigate as Canada uses a unique mix. 
       them.
       \item Participant stated that culturally unique grocery items (such as Chinese vegetables) need to be included.
       \item Participant stated that the app should consider USD vs CAD as purchases from the United States are common when living in Canada
@@ -1286,5 +1286,5 @@ graduate attribute of Lifelong Learning.  Please answer the following questions:
 
 \section*{Added Section - Appendix C --- Bibliography}
 
-[1] Office of the Privacy Commissioner of Canada, “Seizing opportunity: Good privacy practices for developing mobile apps,” Office of the Privacy Commissioner of Canada, \url{https://www.priv.gc.ca/en/privacy-topics/technology/mobile-and-digital-devices/mobile-apps/gd_app_201210/} (accessed Oct. 4, 2023).
+[1] Office of the Privacy Commissioner of Canada, “Seizing opportunity: Good privacy practices for developing mobile apps,” Office of the Privacy Commissioner of Canada, \url{https://www.priv.gc.ca/en/privacy-topics/technology/mobile-and-digital-devices/mobile-apps/gd_app_201210/} (accessed Oct. 4, 2023). 
 \end{document}
