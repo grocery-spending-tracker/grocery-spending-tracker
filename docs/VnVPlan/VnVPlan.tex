@@ -206,6 +206,10 @@ as a Rev 0 demo for the supervisor.}
 \wss{This section might reference back to the SRS verification section.}
 
 \section{System Test Description}
+
+This section will provide an outline of the various system tests that will be performed
+by the team during development. The system tests will primarily be based on the requirements
+recorded in the {https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/SRS/SRS.pdf}{SRS}.
 	
 \subsection{Tests for Functional Requirements}
 
@@ -274,7 +278,7 @@ How test will be performed:
 \wss{Static tests, review, inspections, and walkthroughs, will not follow the
 format for the tests given below.}
 
-\subsubsection{Area of Testing1}
+\subsubsection{Look and Feel Requirements}
 		
 \paragraph{Title for Test}
 
@@ -306,9 +310,80 @@ How test will be performed:
 
 \end{enumerate}
 
-\subsubsection{Area of Testing2}
+\subsubsection{Usability and Humanity Requirements}
 
-...
+\begin{enumerate}
+  \item{NFRT-UH1\\}
+
+  Type: Manual, Dynamic
+            
+  How test will be performed: A meeting will be held with testers where they are presented with the
+  application and given a brief overview of its purpose. They will then be given 15 minutes to use the application
+  without instruction from the team. After the time limit, the user will be asked to navigate to and explain
+  each of the application's major functions based on functional requirements in the
+  {https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/SRS/SRS.pdf}{SRS}.
+
+  \item{NFRT-UH2\\}
+
+  Type: Dynamic, Manual
+					
+  Initial State: Application is opened on a device and logged in to a user's account.
+					
+  Input: The user attempts to input a receipt but cancels the process.
+					
+  Output: No changes should be made to the user's account data.
+  
+  How test will be performed: Testers will be given a receipt to input and asked to input it into the application.
+  Testers will then be asked to cancel the input before the process completes.
+
+  \item{NFRT-UH3\\}
+
+  Type: Dynamic, Manual
+					
+  Initial State: Application is opened on a device and logged in to a user's account.
+					
+  Input: The user tries changing the application's font size.
+					
+  Output: The font size should be changed throughout the application without negatively impacting functionality.
+  
+  How test will be performed: Testers will be asked to change the font size to their desired size and
+  navigate through the application to check usability.
+
+  \item{NFRT-UH4\\}
+
+  Type: Dynamic, Manual
+					
+  Initial State: Application is opened on a device and logged in to a user's account.
+					
+  Input: The user changes the accessibility colour scheme.
+					
+  Output: The colour scheme should be changed throughout the application without negatively impacting functionality.
+  
+  How test will be performed: Testers will be asked to change the accessibility colour scheme to their desired setting and
+  navigate through the application to check usability.
+
+  \item{NFRT-UH5\\}
+
+  Type: Dynamic, Manual
+					
+  Initial State: Application is opened on a device and logged in to a user's account with accessibility settings
+  being changed.
+					
+  Input: The user closes the application.
+					
+  Output: When re-opened, the application should still be logged into the user's account and accessibility
+  settings should still be in place.
+  
+  How test will be performed: Testers will be asked to close the application on their device while logged in and
+  re-open it afterwards.
+
+  \item{NFRT-UH6\\}
+
+  Type: Manual
+
+  How test will be performed: A survey will be presented to testers to evaluate the overall usability of the
+  application. The questions asked will be as written in Section 6.2 of this document.
+\end{enumerate}
 
 \subsection{Traceability Between Test Cases and Requirements}
 
@@ -457,7 +532,20 @@ Their values are defined in this section for easy maintenance.
 
 \subsection{Usability Survey Questions?}
 
-\wss{This is a section that would be appropriate for some projects.}
+\begin{enumerate}
+  \item On a scale of 1-10, how useful was the introductory walkthrough tutorial in your learning of the application?
+  \item On a scale of 1-10, how useful was the FAQ in your learning of the application?
+  \item What parts of the application were easiest for you to understand/learn?
+  \item What parts of the application do you feel additional explanation or clarity could be provided?
+  \item Was the language and wording used in the application understandable and inoffensive? If not, please
+  provide where and how the wording could be improved?
+  \item Were there any issues you encountered while using the application?
+  \item Did you have any issues with navigating the application? If you made a mistake, were you able to navigate
+  back to where you started?
+  \item How was your experience with the available accessibility settings? Do you have any feedback or suggestions for
+  improvements that could be made.
+  \item On a scale of 1-10, how would you rate the usability and intuitiveness of the application?
+\end{enumerate}
 
 \newpage{}
 \section*{Appendix --- Reflection}
