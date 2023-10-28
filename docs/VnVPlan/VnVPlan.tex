@@ -280,34 +280,44 @@ format for the tests given below.}
 
 \subsubsection{Look and Feel Requirements}
 		
-\paragraph{Title for Test}
+% \paragraph{Title for Test} -- not sure if this needs to be used
 
 \begin{enumerate}
+  \item{NFRT-LF1\\}
 
-\item{test-id1\\}
+  Type: Manual, Dynamic
+            
+  How test will be performed: Testers will be presented with the application and guided through navigation of various
+  pages available and asked to take note of the aesthetics, appearance and feel of the application. A survey
+  will then be provided to evaluate these qualities which can be found in Section 6.2 of this document.
+            
+  \item{NFRT-LF2\\}
 
-Type: Functional, Dynamic, Manual, Static etc.
-					
-Initial State: 
-					
-Input/Condition: 
-					
-Output/Result: 
-					
-How test will be performed: 
-					
-\item{test-id2\\}
+  Type: Manual
+            
+  How test will be performed: Testers will be given a list of features for the application and a list of
+  unlabelled icons corresponding to each of the features. They will be asked to match which feature
+  they believe pairs with which icon.
 
-Type: Functional, Dynamic, Manual, Static etc.
-					
-Initial State: 
-					
-Input: 
-					
-Output: 
-					
-How test will be performed: 
+  \item{NFRT-LF3\\}
 
+  Type: Manual, Static
+
+  How test will be performed: Walkthroughs will be performed on the code of each of the frontend pages
+  using the \textit{Flutter Inspector} to check size of components and layouts. This will be to ensure no more than
+  85\% of the page is occupied and a numerical balance is achieved in the layout.
+
+  \item{NFRT-LF4\\}
+
+  Type: Manual, Dynamic
+
+  Initial State: Application is opened on a device and logged into a user's account with internet access available.
+
+  Input: The user disconnects from the internet.
+
+  Output: The application should notify the user that they do not have internet connection.
+
+  How test will be performed: Testers will be asked to disconnect from the internet while the application is open.
 \end{enumerate}
 
 \subsubsection{Usability and Humanity Requirements}
@@ -317,17 +327,17 @@ How test will be performed:
 
   Type: Manual, Dynamic
             
-  How test will be performed: A meeting will be held with testers where they are presented with the
+  How test will be performed: Testers will be presented with the
   application and given a brief overview of its purpose. They will then be given 15 minutes to use the application
   without instruction from the team. After the time limit, the user will be asked to navigate to and explain
   each of the application's major functions based on functional requirements in the
-  {https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/SRS/SRS.pdf}{SRS}.
+  \href{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/SRS/SRS.pdf}{SRS}.
 
   \item{NFRT-UH2\\}
 
-  Type: Dynamic, Manual
+  Type: Manual, Dynamic
 					
-  Initial State: Application is opened on a device and logged in to a user's account.
+  Initial State: Application is opened on a device and logged into a user's account with internet access available.
 					
   Input: The user attempts to input a receipt but cancels the process.
 					
@@ -338,33 +348,35 @@ How test will be performed:
 
   \item{NFRT-UH3\\}
 
-  Type: Dynamic, Manual
+  Type: Manual, Dynamic
 					
-  Initial State: Application is opened on a device and logged in to a user's account.
+  Initial State: Application is opened on a device and logged into a user's account with internet access available.
 					
   Input: The user tries changing the application's font size.
 					
-  Output: The font size should be changed throughout the application without negatively impacting functionality.
+  Output: The font size should be changed throughout the application without negatively impacting readability
+  or general functionality.
   
   How test will be performed: Testers will be asked to change the font size to their desired size and
   navigate through the application to check usability.
 
   \item{NFRT-UH4\\}
 
-  Type: Dynamic, Manual
+  Type: Manual, Dynamic
 					
-  Initial State: Application is opened on a device and logged in to a user's account.
+  Initial State: Application is opened on a device and logged in to a user's account with internet access available.
 					
   Input: The user changes the accessibility colour scheme.
 					
-  Output: The colour scheme should be changed throughout the application without negatively impacting functionality.
+  Output: The colour scheme should be changed throughout the application without negatively impacting readability
+  or general functionality.
   
   How test will be performed: Testers will be asked to change the accessibility colour scheme to their desired setting and
   navigate through the application to check usability.
 
   \item{NFRT-UH5\\}
 
-  Type: Dynamic, Manual
+  Type: Manual, Dynamic
 					
   Initial State: Application is opened on a device and logged in to a user's account with accessibility settings
   being changed.
@@ -382,7 +394,7 @@ How test will be performed:
   Type: Manual
 
   How test will be performed: A survey will be presented to testers to evaluate the overall usability of the
-  application. The questions asked will be as written in Section 6.2 of this document.
+  application. The questions asked will be as written in Section 6.3 of this document.
 \end{enumerate}
 
 \subsection{Traceability Between Test Cases and Requirements}
@@ -529,6 +541,19 @@ This is where you can place additional information.
 
 The definition of the test cases will call for SYMBOLIC\_CONSTANTS.
 Their values are defined in this section for easy maintenance.
+
+\subsection{Look and Feel Survey Questions}
+
+\begin{enumerate}
+  \item Did you feel the colour scheme was cohesive and consistent throughout the application?
+  \item On a scale of 1-10, how would you rate the general layouts of each of the pages?
+  \item Were there any pages that felt too cluttered or too sparse?
+  \item Did the general layouts of the application pages appear consistent throughout navigation?
+  \item On a scale of 1-10, how would you rate how features were organized?
+  \item Were there any features that seemed out of place relative to the pages they were present on?
+  \item Were there any places where you expected loading indicators but there weren't any or vice versa?
+  \item Do you have any feedback on the overall look and feel of the application?
+\end{enumerate}
 
 \subsection{Usability Survey Questions}
 
