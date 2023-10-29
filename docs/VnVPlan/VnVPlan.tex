@@ -397,6 +397,46 @@ format for the tests given below.}
   application. The questions asked will be as written in Section 6.3 of this document.
 \end{enumerate}
 
+\subsubsection{Performance Requirements}
+
+\begin{enumerate}
+  \item{NFRT-PR1\\}
+
+  Type: Manual, Dynamic
+
+  How test will be performed: The application will be navigated through while using \textit{Flutter Performance Profiling}
+  in order to verify frontend rendering and performance is within expectation.
+
+  \item{NFRT-PR2\\}
+
+  Type: Automatic, Dynamic
+
+  How test will be performed: A test suite will be executed with \textit{Postman} and server response times will be recorded
+  to verify backend performance.
+
+  \item{NFRT-PR3\\}
+
+  Type: Automatic, Dynamic
+
+  How test will be performed: Error test cases will be sent to the backend using \textit{Postman} to verify that the
+  backend can withstand incorrect types and inputs.
+
+  % Precision requirements here should refer to FR Tests above
+
+  \item{NFRT-PR4\\}
+
+  Type: Manual % would this be defined as a Static test?
+
+  Initial State: Device is used that does not have the application installed.
+
+  Input: Application is installed onto the device.
+
+  Output: Device storage should indicate that the application uses less than 1GB of storage.
+
+  How test will be performed: Tester will install the application onto a device without the application currently
+  installed.
+\end{enumerate}
+
 \subsection{Traceability Between Test Cases and Requirements}
 
 \wss{Provide a table that shows which test cases are supporting which
