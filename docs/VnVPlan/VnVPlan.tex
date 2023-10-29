@@ -75,6 +75,7 @@ in.}
   VnV & Verification and Validation\\
   MG & Module Guide\\
   MIS & Module Interface Specification\\
+  DP & Development Plan\\
   \bottomrule
 \end{tabular}\\
 
@@ -137,24 +138,16 @@ been tested extensively by the original developers and other users.
 Listed below are the relevant documents referred to in this VnV Plan:
 
 \begin{itemize}
-  \item \href{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/SRS/SRS.pdf}{Software Requirements Specification} \citet{GrocerySRS}
-  \begin{itemize}
-    \item The SRS contains the primary functional and non-functional requirements that are being used as the basis for many of the tests
-    in this document.
-  \end{itemize}
-  \item \href{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/HazardAnalysis/HazardAnalysis.pdf}{Hazard Analysis} \citet{GroceryHA}
-  \begin{itemize}
-    \item The HA contains a number of safety requirements that were identified to help mitigate risk that were also considered
-    for testing in this document.
-  \end{itemize}
-  \item \href{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/Design/SoftArchitecture/MG.pdf}{Module Guide}
-  \begin{itemize}
-    \item The MG references the different modules that make up the general overall application in which the VnV Plan tests.
-  \end{itemize}
-  \item \href{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/Design/SoftDetailedDes/MIS.pdf}{Module Interface Specification}
-  \begin{itemize}
-    \item The MIS contains detailed information on each of the application modules which form the basis for the unit tests.
-  \end{itemize}
+  \item \href{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/SRS/SRS.pdf}{Software Requirements Specification} \citet{GrocerySRS}\\
+  The SRS contains the primary functional and non-functional requirements that are being used as the basis for many of the tests in this document.
+  \item \href{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/HazardAnalysis/HazardAnalysis.pdf}{Hazard Analysis} \citet{GroceryHA}\\
+  The HA contains a number of safety requirements that were identified to help mitigate risk that were also considered for testing in this document.
+  \item \href{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/Design/SoftArchitecture/MG.pdf}{Module Guide}\\
+  The MG references the different modules that make up the general overall application in which the VnV Plan tests.
+  \item \href{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/Design/SoftDetailedDes/MIS.pdf}{Module Interface Specification}\\
+  The MIS contains detailed information on each of the application modules which form the basis for the unit tests.
+  \item \href{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/DevelopmentPlan/DevelopmentPlan.pdf}{Development Plan}\\
+  The DP describes a roadmap for the project including timelines, communication plans, and technical details.
 \end{itemize}
 
 \section{Plan}
@@ -220,50 +213,13 @@ The VnV plan will be verified with an informal walk-through by stakeholders (ind
 \end{itemize}
 
 \subsection{Implementation Verification Plan}
-
-\wss{You should at least point to the tests listed in this document and the unit
-  testing plan.}
-
-\wss{In this section you would also give any details of any plans for static
-  verification of the implementation.  Potential techniques include code
-  walkthroughs, code inspection, static analyzers, etc.}
+The verification of the implementation will be done with static and dynamic tests. Dynamic tests will be done according to sections 4 and 5 of this document. For static tests, the development team will conduct a code walk-through to check for incorrect code along with using the linter and coding standards detailed in section 3.6.
 
 \subsection{Automated Testing and Verification Tools}
-
-\wss{What tools are you using for automated testing.  Likely a unit testing
-  framework and maybe a profiling tool, like ValGrind.  Other possible tools
-  include a static analyzer, make, continuous integration tools, test coverage
-  tools, etc.  Explain your plans for summarizing code coverage metrics.
-  Linters are another important class of tools.  For the programming language
-  you select, you should look at the available linters.  There may also be tools
-  that verify that coding standards have been respected, like flake9 for
-  Python.}
-
-\wss{If you have already done this in the development plan, you can point to
-that document.}
-
-\wss{The details of this section will likely evolve as you get closer to the
-  implementation.}
+Refer to sections 6 and 7 of the \href{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/DevelopmentPlan/DevelopmentPlan.pdf}{Development Plan} for the automated testing and verification tools the team will be using.
 
 \subsection{Software Validation Plan}
-
-\wss{If there is any external data that can be used for validation, you should
-  point to it here.  If there are no plans for validation, you should state that
-  here.}
-
-\wss{You might want to use review sessions with the stakeholder to check that
-the requirements document captures the right requirements.  Maybe task based
-inspection?}
-
-\wss{For those capstone teams with an external supervisor, the Rev 0 demo should 
-be used as an opportunity to validate the requirements.  You should plan on 
-demonstrating your project to your supervisor shortly after the scheduled Rev 0 demo.  
-The feedback from your supervisor will be very useful for improving your project.}
-
-\wss{For teams without an external supervisor, user testing can serve the same purpose 
-as a Rev 0 demo for the supervisor.}
-
-\wss{This section might reference back to the SRS verification section.}
+A task-based inspection process with stakeholders will be used to validate the software. The inspection will be conducted according to the business events and user flows described in sections 6 and 8 of the \href{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/SRS/SRS.pdf}{SRS}.
 
 \section{System Test Description}
 	
