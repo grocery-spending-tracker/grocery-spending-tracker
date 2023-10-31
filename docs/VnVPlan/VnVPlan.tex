@@ -225,7 +225,7 @@ This section outlines the testing plan for the functional requirements deteailed
   covers tests for input constraints, you should reference the data constraints
   table in the SRS.}
 
-% TODO
+The following sections pertain to all tests that have to do with the user logging into and gaining access to the system.
 
 \paragraph{Authentication interface}
 
@@ -424,6 +424,10 @@ How test will be performed: Tester will revoke application access to device came
 
 These tests pertain to all the functional requirements related to the users account preferences, goals, or details that effect the system's performance.
 
+\paragraph{Location based recommendations}
+
+These tests pertain to all the functional requirements related to the users location and how it effects their grocery recommendations.
+
 \begin{enumerate}
 
 \item{\textbf{FRT-FR4-1}}
@@ -468,6 +472,53 @@ Test Case Derivation: User wants location based grocery recommendations from a m
           
 How test will be performed: Will go to preferences and opt to use manually provided home location. Validate that the system is providing correct grocery recommendations for the manually inputted location and radius.
 
+%% could mby add a few more where system already has manual location and user wishes to change it.. .stuff like that
+
+\end{enumerate}
+
+\paragraph{User objectives}
+
+These tests pertain to all the functional requirements related to the users grocery and spending objectives.
+
+\begin{enumerate}
+
+\item{\textbf{FRT-FR5-1}}
+
+Control: Manual
+          
+Initial State: The system has no user spending goals stored.
+
+Input: 
+          
+Output: 
+
+Test Case Derivation: 
+          
+How test will be performed: 
+
+\end{enumerate}
+
+\paragraph{...} % smth
+
+These tests pertain to all the functional requirements related to the users price ranges etc. % more
+
+\begin{enumerate}
+
+\item{\textbf{...}}
+
+\end{enumerate}
+
+\subsubsection{System Behaviour and Recommendations}
+
+These tests pertain to all the functional requirements related to how the system responds to the data that is provided to it. Including the recommendations provided to the user.
+
+\paragraph{Receiving Grocery Data}
+
+These tests pertain to all the functional requirements related to how the system shall treat and handle data it receives.
+
+\begin{enumerate}
+
+\item{\textbf{...}}
 
 \end{enumerate}
 
