@@ -2,6 +2,7 @@
 
 \usepackage{booktabs}
 \usepackage{tabularx}
+\usepackage{float}
 \usepackage{hyperref}
 \hypersetup{
     colorlinks,
@@ -146,7 +147,7 @@ Listed below are the relevant documents referred to in this VnV Plan:
   The MG references the different modules that make up the general overall application in which the VnV Plan tests.
   \item \href{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/Design/SoftDetailedDes/MIS.pdf}{Module Interface Specification}\\
   The MIS contains detailed information on each of the application modules which form the basis for the unit tests.
-  \item \href{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/DevelopmentPlan/DevelopmentPlan.pdf}{Development Plan}\\
+  \item \href{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/DevelopmentPlan/DevelopmentPlan.pdf}{Development Plan} \citet{GroceryDP}\\
   The DP describes a roadmap for the project including timelines, communication plans, and technical details.
 \end{itemize}
 
@@ -162,9 +163,10 @@ The following will outline a series of plans and processes that will be used for
     \item Automated Testing and Verification Tools: tools and metrics to be used for testing and verification of the implementation
     \item Software Validation Plan: plans for verification of the software requirements
 \end{itemize}
+The stakeholders referred to in this document are individuals who are members of low-income households in Hamilton and students from McMaster University as described in section 2 of the \href{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/SRS/SRS.pdf}{SRS}. As the primary client, their involvement in the VnV ensures that the system aligns with the needs and goals of the intended users.
 
 \subsection{Verification and Validation Team}
-\begin{table}[htbp]
+\begin{table}[H]
     \centering
     \begin{tabularx}{\textwidth}{|>{\hsize=.36\hsize}X|>{\hsize=1.64\hsize}X|}
         \hline
@@ -184,7 +186,7 @@ The following will outline a series of plans and processes that will be used for
 \end{table}
 
 \subsection{SRS Verification Plan}
-The design documentation will be verified with an informal walk-through by stakeholders (individuals who are members of low-income households in Hamilton and students from McMaster University) and peers of the SFWRENG 4G06 course who will provide ad-hoc review as well as an inspection by the development team. The inspection will address the following issues and be tracked by the checklist:
+The design documentation will be verified with an informal walk-through by stakeholders and peers of the SFWRENG 4G06 course who will provide ad-hoc review as well as an inspection by the development team. The inspection will address the following issues and be tracked by the checklist:
 \begin{itemize}
     \item Correctness: the SRS accurately represents the software expectations
     \item Ambiguity: the requirements and contents convey an unambiguous meaning
@@ -195,9 +197,9 @@ The design documentation will be verified with an informal walk-through by stake
 \end{itemize}
 
 \subsection{Design Verification Plan}
-The SRS will be verified with an informal walk-through by stakeholders (individuals who are members of low-income households in Hamilton and students from McMaster University) and peers of the SFWRENG 4G06 course who will provide ad-hoc review as well as an inspection by the development team. The review will address the following issues and be guided by the checklist:
+The design documentation will be verified with an informal walk-through by stakeholders and peers of the SFWRENG 4G06 course who will provide ad-hoc review as well as an inspection by the development team. The review will address the following issues and be guided by the checklist:
 \begin{itemize}
-    \item Design adequacy and conformance to software requirements: assess whether the design adequately meets the specified requirements (SRS)
+    \item Design adequacy and conformance to software requirements: assess whether the design adequately meets the specified requirements (\href{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/SRS/SRS.pdf}{SRS})
     \item Internal consistency: different components of the design are coherent
     \item External consistency: the design aligns with external interfaces, standards, and environments
     \item Feasibility: whether the design can be practically realized within technical and resource constraints
@@ -205,7 +207,7 @@ The SRS will be verified with an informal walk-through by stakeholders (individu
 \end{itemize}
 
 \subsection{Verification and Validation Plan Verification Plan}
-The VnV plan will be verified with an informal walk-through by stakeholders (individuals who are members of low-income households in Hamilton and students from McMaster University) and peers of the SFWRENG 4G06 course who will provide ad-hoc review as well as an inspection by the development team. The reviews will address the following issues and be guided by the checklist:
+The VnV plan will be verified with an informal walk-through by stakeholders and peers of the SFWRENG 4G06 course who will provide ad-hoc review as well as an inspection by the development team. The reviews will address the following issues and be guided by the checklist:
 \begin{itemize}
     \item Completeness: the VnV plan covers all necessary documentation, functional requirements, and non-functional requirements
     \item Feasibility: whether the actions that the VnV plan details can be practically realized within technical and resource constraints
@@ -213,7 +215,7 @@ The VnV plan will be verified with an informal walk-through by stakeholders (ind
 \end{itemize}
 
 \subsection{Implementation Verification Plan}
-The verification of the implementation will be done with static and dynamic tests. Dynamic tests will be done according to sections 4 and 5 of this document. For static tests, the development team will conduct a code walk-through to check for incorrect code along with using the linter and coding standards detailed in section 3.6.
+The verification of the implementation will be done with static and dynamic tests as well as surveys and interviews with stakeholders. Dynamic tests will be done according to sections 4 and 5 of this document. For static tests, the development team will conduct a code walk-through to check for incorrect code along with using the linter and coding standards detailed in section 3.6.
 
 \subsection{Automated Testing and Verification Tools}
 Refer to sections 6 and 7 of the \href{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/DevelopmentPlan/DevelopmentPlan.pdf}{Development Plan} for the automated testing and verification tools the team will be using.
