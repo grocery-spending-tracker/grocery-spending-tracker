@@ -420,6 +420,57 @@ How test will be performed: Tester will revoke application access to device came
 
 \end{enumerate}
 
+\subsubsection{Account Goals and Preferences}
+
+These tests pertain to all the functional requirements related to the users account preferences, goals, or details that effect the system's performance.
+
+\begin{enumerate}
+
+\item{\textbf{FRT-FR4-1}}
+
+Control: Manual
+          
+Initial State: The system does not have access to the users device location.
+
+Input: System has no location access on device.
+          
+Output: User is prompted that the system has no location access and given the option to manual enter their general home location and desired recommendation radius.
+
+Test Case Derivation: User wants location based grocery recommendations.
+          
+How test will be performed: Tester will revoke application access to location  and then attempt to receive location based grocery recommendations. Validate that system provides prompt.
+
+\item{\textbf{FRT-FR4-2}}
+
+Control: Manual
+          
+Initial State: The system has access to the users device location but user wants to manually set a different one.
+
+Input: System has location access on device.
+          
+Output: System provides accurate location based recommendations.
+
+Test Case Derivation: User wants location based grocery recommendations from a manually determined location.
+          
+How test will be performed: Will go to preferences and opt to use manually provided home location and recommendation radius. Validate that the system is providing correct grocery recommendations for the manually inputted location and radius.
+
+\item{\textbf{FRT-FR4-3}}
+
+Control: Manual
+          
+Initial State: The system has access to the users device location.
+
+Input: System has location access on device.
+          
+Output: User is prompted that the system has no location access and given the option to manual enter their general home location and desired recommendation radius.
+
+Test Case Derivation: User wants location based grocery recommendations from a manually determined location and radius.
+          
+How test will be performed: Will go to preferences and opt to use manually provided home location. Validate that the system is providing correct grocery recommendations for the manually inputted location and radius.
+
+
+\end{enumerate}
+
 ...
 
 \subsection{Tests for Nonfunctional Requirements}
