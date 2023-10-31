@@ -225,6 +225,28 @@ This section outlines the testing plan for the functional requirements deteailed
   covers tests for input constraints, you should reference the data constraints
   table in the SRS.}
 
+\paragraph{Authentication interface}
+
+These tests pertain to all the functional requirements related to the authentication interface.
+
+\begin{enumerate}
+
+\item{\textbf{FRT-FR1-1}}
+
+Control: Manual
+          
+Initial State: 
+          
+Input: 
+
+Output: 
+
+Test Case Derivation: 
+          
+How test will be performed: 
+
+\end{enumerate}
+
 
 \paragraph{Log-in and Authentication}
 
@@ -232,7 +254,7 @@ These tests pertain to all the functional requirements related to authentication
 
 \begin{enumerate}
 
-\item{\textbf{FRT-FR1-1}}
+\item{\textbf{FRT-FR2-1}}
 
 Control: Manual
 					
@@ -246,19 +268,91 @@ Test Case Derivation: New user wants to create an account with valid account cre
 					
 How test will be performed: Tester will run system and attempt to create a new account with the pertaining credentials and details. 
 					
-\item{FRT-FR1-2\\}
+\item{\textbf{FRT-FR2-2}}
 
-Control: Manual versus Automatic
+Control: Manual
 					
-Initial State: 
+Initial State: User with no existing account on file.
 					
-Input: 
+Input: User signs up for account with valid name, phone-number, and password. But an invalid email.
 					
-Output: \wss{The expected result for the given inputs}
+Output: Error message detailing an invalid email.
 
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
+Test Case Derivation: New user wants to create an account with invalid email.
 
-How test will be performed: 
+How test will be performed: Tester will run system and attempt to create a new account with the pertaining credentials and details. 
+
+\item{\textbf{FRT-FR2-3}}
+
+Control: Manual
+          
+Initial State: User with no existing account on file.
+          
+Input: User signs up for account with valid name, email, and password. But an invalid phone number.
+          
+Output: Error message detailing an invalid phone number.
+
+Test Case Derivation: New user wants to create an account with invalid phone number.
+
+How test will be performed: Tester will run system and attempt to create a new account with the pertaining credentials and details. 
+
+\item{\textbf{FRT-FR2-4}}
+
+Control: Manual
+          
+Initial State: User with no existing account on file.
+          
+Input: User signs up for account with valid name, email, and phone-number. But an invalid password.
+          
+Output: Error message detailing an invalid password.
+
+Test Case Derivation: New user wants to create an account with invalid password.
+
+How test will be performed: Tester will run system and attempt to create a new account with the pertaining credentials and details. 
+
+
+
+\item{\textbf{FRT-FR2-5}}
+
+Control: Manual
+          
+Initial State: User with existing account on file.
+          
+Input: User signs into their account with valid email and password.
+          
+Output: User is directed to landing page.
+
+Test Case Derivation: Existing user wants to sign into account with valid account details and credentials.
+          
+How test will be performed: Tester will run system and attempt to sign into an account with the pertaining credentials.
+          
+\item{\textbf{FRT-FR2-6}}
+
+Control: Manual
+          
+Initial State: User with existing account on file.
+          
+Input: User signs into their account with valid password and invalid email.
+          
+Output: User is provided an error message detailing invalid email.
+
+Test Case Derivation: Existing user wants to sign into account with invalid email.
+          
+How test will be performed: Tester will run system and attempt to sign into an account with the pertaining credentials.
+
+\item{\textbf{FRT-FR2-7}}
+
+Control: Manual
+          
+Initial State: User with existing account on file.
+          
+Input: User signs into their account with valid email and invalid password.
+          
+Output: User is provided an error message detailing invalid password. Prompt to reset password is highlighted.
+
+Test Case Derivation: Existing user wants to sign into account with invalid password.
+          
+How test will be performed: Tester will run system and attempt to sign into an account with the pertaining credentials.
 
 \end{enumerate}
 
