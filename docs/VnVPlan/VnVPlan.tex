@@ -209,6 +209,8 @@ as a Rev 0 demo for the supervisor.}
 	
 \subsection{Tests for Functional Requirements}
 
+This section outlines the testing plan for the functional requirements deteailed in the \href{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/SRS/SRS.pdf}{Software Requirements Specification}.
+
 \wss{Subsets of the tests may be in related, so this section is divided into
   different areas.  If there are no identifiable subsets for the tests, this
   level of document structure can be removed.}
@@ -216,32 +218,35 @@ as a Rev 0 demo for the supervisor.}
 \wss{Include a blurb here to explain why the subsections below
   cover the requirements.  References to the SRS would be good here.}
 
-\subsubsection{Area of Testing1}
+\subsubsection{erwevefvqe}
 
 \wss{It would be nice to have a blurb here to explain why the subsections below
   cover the requirements.  References to the SRS would be good here.  If a section
   covers tests for input constraints, you should reference the data constraints
   table in the SRS.}
-		
-\paragraph{Title for Test}
+
+
+\paragraph{Log-in and Authentication}
+
+These tests pertain to all the functional requirements related to authentication and the user logging in to the system.
 
 \begin{enumerate}
 
-\item{test-id1\\}
+\item{\textbf{FRT-FR1-1}}
 
-Control: Manual versus Automatic
+Control: Manual
 					
-Initial State: 
+Initial State: User with no existing account on file.
 					
-Input: 
+Input: User signs up for account with valid name, email, phone-number, and password.
 					
-Output: \wss{The expected result for the given inputs}
+Output: User is directed to landing page. Account is successfully created and verification email is sent.
 
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
+Test Case Derivation: New user wants to create an account with valid account creation details and credentials.
 					
-How test will be performed: 
+How test will be performed: Tester will run system and attempt to create a new account with the pertaining credentials and details. 
 					
-\item{test-id2\\}
+\item{FRT-FR1-2\\}
 
 Control: Manual versus Automatic
 					
