@@ -218,12 +218,14 @@ This section outlines the testing plan for the functional requirements deteailed
 \wss{Include a blurb here to explain why the subsections below
   cover the requirements.  References to the SRS would be good here.}
 
-\subsubsection{erwevefvqe}
+\subsubsection{User Authentication}
 
 \wss{It would be nice to have a blurb here to explain why the subsections below
   cover the requirements.  References to the SRS would be good here.  If a section
   covers tests for input constraints, you should reference the data constraints
   table in the SRS.}
+
+% TODO
 
 \paragraph{Authentication interface}
 
@@ -248,9 +250,9 @@ How test will be performed:
 \end{enumerate}
 
 
-\paragraph{Log-in and Authentication}
+\paragraph{Log-in and Authentication Credentials}
 
-These tests pertain to all the functional requirements related to authentication and the user logging in to the system.
+These tests pertain to all the functional requirements related to authentication credentials and the user logging in to the system.
 
 \begin{enumerate}
 
@@ -276,7 +278,7 @@ Initial State: User with no existing account on file.
 					
 Input: User signs up for account with valid name, phone-number, and password. But an invalid email.
 					
-Output: Error message detailing an invalid email.
+Output: Error message detailing an invalid email within 3 seconds.
 
 Test Case Derivation: New user wants to create an account with invalid email.
 
@@ -290,7 +292,7 @@ Initial State: User with no existing account on file.
           
 Input: User signs up for account with valid name, email, and password. But an invalid phone number.
           
-Output: Error message detailing an invalid phone number.
+Output: Error message detailing an invalid phone number within 3 seconds.
 
 Test Case Derivation: New user wants to create an account with invalid phone number.
 
@@ -304,13 +306,11 @@ Initial State: User with no existing account on file.
           
 Input: User signs up for account with valid name, email, and phone-number. But an invalid password.
           
-Output: Error message detailing an invalid password.
+Output: Error message detailing an invalid password within 3 seconds.
 
 Test Case Derivation: New user wants to create an account with invalid password.
 
 How test will be performed: Tester will run system and attempt to create a new account with the pertaining credentials and details. 
-
-
 
 \item{\textbf{FRT-FR2-5}}
 
@@ -334,7 +334,7 @@ Initial State: User with existing account on file.
           
 Input: User signs into their account with valid password and invalid email.
           
-Output: User is provided an error message detailing invalid email.
+Output: User is provided an error message detailing invalid email within 3 seconds.
 
 Test Case Derivation: Existing user wants to sign into account with invalid email.
           
@@ -348,7 +348,7 @@ Initial State: User with existing account on file.
           
 Input: User signs into their account with valid email and invalid password.
           
-Output: User is provided an error message detailing invalid password. Prompt to reset password is highlighted.
+Output: User is provided an error message detailing invalid password. Prompt to reset password is highlighted within 3 seconds.
 
 Test Case Derivation: Existing user wants to sign into account with invalid password.
           
@@ -356,7 +356,69 @@ How test will be performed: Tester will run system and attempt to sign into an a
 
 \end{enumerate}
 
-\subsubsection{Area of Testing2}
+\subsubsection{Receipt Scanning}
+
+These tests pertain to all the functional requirements related to the scanning of receipts and inputting grocery data.
+
+\begin{enumerate}
+
+\item{\textbf{FRT-FR3-1}}
+
+Control: Manual
+          
+Initial State: User has physical receipt and the system has access to the device camera.
+          
+Input: A photo of a physical receipt. User takes photo of receipt with their device.
+          
+Output: User is provided with a list of all their grocery items and prices on the receipt as well as an option to manually enter or edit them.
+
+Test Case Derivation: User wants to input their grocery spending data into the system.
+          
+How test will be performed: In good lighting, tester will run the system and photograph a receipt. They will then validate that the systems interpretation of the photograph matches that of the physical receipt with above 90\% precision.
+
+\item{\textbf{FRT-FR11-1}}
+
+Control: Manual
+          
+Initial State: User has physical receipt and the system has access to the device camera.
+
+Input: User scans a physical receipt in bad conditions.
+          
+Output: User is provided with a list of all the scanned grocery items and prices on the receipt as a strong recommendation to retake the photo in better conditions or manually enter or edit them.
+
+Test Case Derivation: User wants to input their grocery spending data into the system.
+          
+How test will be performed: In poor lighting and with bad photo quality, tester will run the system and photograph a receipt. They will then validate that the system prompts the user to retake the photo or manually review all scanned items.
+
+\item{\textbf{FRT-FR11-2}}
+
+Control: Manual
+          
+Initial State: User has no physical receipt.
+
+Input: User prompts the system that they do not have a receipt to scan.
+          
+Output: User is prompted to manually enter their grocery items and prices.
+
+Test Case Derivation: User wants to input their grocery spending data into the system.
+          
+How test will be performed: Tester will prompt the system interface that they have no receipt. Tester will validate they are able to manually enter their items.
+
+\item{\textbf{FRT-FR11-3}}
+
+Control: Manual
+          
+Initial State: The system does not have access to the device camera.
+
+Input: System has no camera access.
+          
+Output: User is prompted to manually enter their grocery items and prices and informed that the system has no access to the device camera.
+
+Test Case Derivation: User wants to input their grocery spending data into the system.
+          
+How test will be performed: Tester will revoke application access to device camera and then attempt to scan a receipt. Verify that the system prompts the user to manual input.
+
+\end{enumerate}
 
 ...
 
