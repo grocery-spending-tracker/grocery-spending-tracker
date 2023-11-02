@@ -274,36 +274,45 @@ How test will be performed:
 \wss{Static tests, review, inspections, and walkthroughs, will not follow the
 format for the tests given below.}
 
-\subsubsection{Area of Testing1}
-		
-\paragraph{Title for Test}
+\subsubsection{Cultural Requirements}
 
 \begin{enumerate}
 
-\item{test-id1\\}
+\item{NFRT-CUR1\\}
 
-Type: Functional, Dynamic, Manual, Static etc.
+Type: Functional, Dynamic
 					
-Initial State: 
+Initial State: The app is running and set to the default system of measurement (e.g., metric).
 					
-Input/Condition: 
+Input/Condition: The user selects their preferred units of measurement from the app settings.
 					
-Output/Result: 
+Output/Result: The app interface and displayed measurements change to the selected units of measurement as per the user's choice.
 					
-How test will be performed: 
+How test will be performed: The tester will change the units of measurement from the app settings and verify that the interface and displayed measurements switch to the selected units.
 					
-\item{test-id2\\}
+\item{NFRT-CUR2\\}
 
-Type: Functional, Dynamic, Manual, Static etc.
+Type: Functional, Dynamic
 					
-Initial State: 
+Initial State: The app contains common purchase items in the product database.
 					
-Input: 
+Input: The user searches attempts to add a purchase item not present in the database.
 					
-Output: 
+Output: The app successfully adds the new purchase item to the user's purchase history.
 					
-How test will be performed: 
+How test will be performed: The tester will attempt to add a product not present in app product database to the purchase history and verify that the item is added without any issues.
 
+\item{NFRT-CUR2\\}
+
+Type: Functional, Dynamic
+					
+Initial State: The app is set to the default currency (e.g., CAD).
+					
+Input: The user selects the American currency in the app settings.
+					
+Output: The app logs all future purchases all in USD based on the user's selection and will not compare the prices of similar products nearby of a different currency.
+					
+How test will be performed: The tester will access the app's settings, change the currency to USD. The tester will then verify that all prices of future purchases are logged in USD and similar products priced with CAD are not compared.
 \end{enumerate}
 
 \subsubsection{Area of Testing2}
