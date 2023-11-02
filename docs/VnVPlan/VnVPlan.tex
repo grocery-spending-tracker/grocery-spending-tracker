@@ -237,15 +237,21 @@ These tests pertain to all the functional requirements related to the authentica
 
 Control: Manual
           
-Initial State: 
+Initial State: User is not logged into the system.
           
-Input: 
+Input: User attempts to log into the system with the correct username and credentials.
 
-Output: 
+Output: User is successfully logged in and on the application landing page in no more than three steps.
 
-Test Case Derivation: 
+Test Case Derivation: The interface should allow users to enter their email and password and complete the registration in no more than three steps.
           
-How test will be performed: 
+How test will be performed: Tester will attempt to log into the system. Validate that it takes less than four steps to reach the landing page.
+
+\item{\textbf{FRT-FR1-2}}
+
+Control: Manual
+          
+How test will be performed: Survey is presented to the user for them to respond how easy it is to log into the system. A success is determined by at least a 70\% positive response. The survey question is detailed in \textit{section 6.2.1}.
 
 \end{enumerate}
 
@@ -478,7 +484,7 @@ How test will be performed: Will go to preferences and opt to use manually provi
 
 \paragraph{User objectives}
 
-These tests pertain to all the functional requirements related to the users grocery and spending objectives.
+These tests pertain to all the functional requirements related to the users goals and spending objectives.
 
 \begin{enumerate}
 
@@ -486,25 +492,57 @@ These tests pertain to all the functional requirements related to the users groc
 
 Control: Manual
           
-Initial State: The system has no user spending goals stored.
+Initial State: The system has no user goals and desired outcomes stored in the system.
 
-Input: 
+Input: User navigates to the preferences of their application.
           
-Output: 
+Output: The system provides a space for the user to input their spending goals.
 
-Test Case Derivation: 
+Test Case Derivation: The system must provide an interface for the user to input their spending goals.
           
-How test will be performed: 
+How test will be performed: Tester will navigate to the application preferences and validate that an interface exists for inputting user goals.
 
-\end{enumerate}
+\item{\textbf{FRT-FR5-2}}
 
-\paragraph{...} % smth
+Control: Manual
+          
+Initial State: The system has existing user goals and desired outcomes stored in the system. The system displayed the current user goals.
 
-These tests pertain to all the functional requirements related to the users price ranges etc. % more
+Input: User navigates to the preferences of their application and changes their goals.
+          
+Output: The system is updated to reflect the new user goals.
 
-\begin{enumerate}
+Test Case Derivation: The system must provide an interface for the user to view and edit their spending goals.
+          
+How test will be performed: Tester will navigate to the application preferences and validate that the existing goals are displayed and that they can be changed.
 
-\item{\textbf{...}}
+\item{\textbf{FRT-FR6-1}}
+
+Control: Manual
+          
+Initial State: The system has no budgeting constraints stored.
+
+Input: User navigates to the preferences of their application.
+          
+Output: The system provides a space for the user to input their budgeting constraints.
+
+Test Case Derivation: The system must provide an interface for the user to input their budgeting constraints.
+          
+How test will be performed: Tester will navigate to the application preferences and validate that an interface exists for inputting user budgeting constraints.
+
+\item{\textbf{FRT-FR6-2}}
+
+Control: Manual
+          
+Initial State: The system has existing budgeting constraints stored.
+
+Input: User navigates to the preferences of their application and changes their budgeting constraints.
+          
+Output: The system displays the new budgeting constraints.
+
+Test Case Derivation: The system must provide an interface for the user to view and edit their budgeting constraints.
+
+How test will be performed: Tester will navigate to the application preferences and validate that the existing goals are displayed and that they can be changed.
 
 \end{enumerate}
 
@@ -586,7 +624,7 @@ How test will be performed: Tester will submit luxury items that exceed the user
 
 Control: Manual
 
-How test will be performed: Survey is presented to the user for them to respond how useful the system recommendations are. A success is determined by at least a 70\% positive response. The survey question is detailed in \textit{section 6.2.1}.
+How test will be performed: Survey is presented to the user for them to respond how useful the system recommendations are. A success is determined by at least a 70\% positive response. The survey question is detailed in \textit{section 6.2.2}.
 
 \item{\textbf{FRT-FR9-1}}
 
@@ -853,6 +891,11 @@ Their values are defined in this section for easy maintenance.
 \subsection{Usability Survey Questions?}
 
 \wss{This is a section that would be appropriate for some projects.}
+
+\subsubsection{Survey questions for \textbf{FRT-FR1-2}.}
+
+\noindent \textbf{Question 1:} How easy was it to log into the application?
+Responses: \{(not easy) 1, 2, 3, 4, 5 (very easy)\} \\
 
 \subsubsection{Survey questions for \textbf{FRT-FR8-2}.}
 
