@@ -518,7 +518,102 @@ These tests pertain to all the functional requirements related to how the system
 
 \begin{enumerate}
 
-\item{\textbf{...}}
+\item{\textbf{FRT-FR7-1}}
+
+Control: Automatic
+          
+Initial State: Test database is empty.
+
+Input: API calls from client (front-end) to back-end containing receipt data.
+          
+Output: Database contains correctly organized items.
+
+Test Case Derivation: System back-end must accurately map and sort receipt entries provided, keeping a record of each item all users purchase.
+          
+How test will be performed: Begin with an empty testing database. Test cases comprised of items and prices are sent through an API call to the system back-end by testing client. Then an additional API call will be called from the testing client against the system back-end to validate that the items and prices are correctly stored in the database.
+
+\item{\textbf{FRT-FR7-2}}
+
+Control: Automatic
+          
+Initial State: Test database is populated.
+
+Input: API calls from client (front-end) to back-end containing receipt data.
+          
+Output: Database contains correctly organized items.
+
+Test Case Derivation: System back-end must accurately map and sort receipt entries provided, keeping a record of each item all users purchase.
+          
+How test will be performed: Begin with a populated testing database. Test cases comprised of items and prices are sent through an API call to the system back-end by testing client. Then an additional API call will be called from the testing client against the system back-end to validate that the items and prices are correctly stored in the database.
+
+\item{\textbf{FRT-FR7-3}}
+
+Control: Automatic
+          
+Initial State: Test database is populated.
+
+Input: API calls from client (front-end) to back-end containing receipt data. Data containing items that are the same as existing items in the database but with slightly different names.
+          
+Output: Database contains correctly organized items and understanding the relationship between like items.
+
+Test Case Derivation: System back-end must accurately map and sort receipt entries provided, keeping a record of each item all users purchase.
+          
+How test will be performed: Begin with a populated testing database. Test cases comprised of items and prices are sent through an API call to the system back-end by testing client. Then an additional API call will be called from the testing client against the system back-end to validate that the items and prices are correctly stored in the database.
+
+\end{enumerate}
+
+\paragraph{Grocery Recommendations}
+
+These tests pertain to all the functional requirements related to the systems grocery recommendations based on grocery data received from user and their preferences.
+
+\begin{enumerate}
+
+\item{\textbf{FRT-FR8-1}}
+
+Control: Manual
+          
+Initial State: User has set budget information.
+
+Input: User submits receipt containing luxury items that are out of budget.
+          
+Output: System provides recommendation to stop purchasing some items that are too expensive and (if available) recommend alternatives that are more in-line with the users budget.
+
+Test Case Derivation: System must be aware of the users purchasing activity and recommend the user with cheaper items that are similar.
+          
+How test will be performed: Tester will submit luxury items that exceed the users set budget. Tester will validate that the system recommends the user with cheaper alternatives to the luxury items.
+
+
+\item{\textbf{FRT-FR9-1}}
+
+Control: Manual
+          
+Initial State: User finds submits that same item for cheap price from location X.
+
+Input: User submits receipt containing items that are expensive from location Y.
+          
+Output: System provides recommendation to purchase item from location X.
+
+Test Case Derivation: System must be aware of the users purchasing activity and recommend the user with cheaper alternative locations for the same item.
+          
+How test will be performed: Tester will submit items purchased for a cheap price on one user account (A) and then submit the same item for an expensive amount from a different store with another user account (B). Tester verifies that user B receives a recommendation from the system to go to the same place as user A.
+
+\item{\textbf{FRT-FR9-2}}
+
+Control: Manual
+          
+Initial State: User finds submits that same item for expensive price from location X.
+
+Input: User submits receipt containing items that are cheap from location Y.
+          
+Output: System provides recommendation to purchase item from location Y.
+
+Test Case Derivation: System must be aware of the users purchasing activity and recommend the user with cheaper alternative locations for the same item.
+          
+How test will be performed: Tester will submit items purchased for an expensive price on one user account (A) and then submit the same item for a cheap amount from a different store with another user account (B). Tester verifies that user A receives a recommendation from the system to go to the same place as user B.
+
+\item{\textbf{FRT-FR10-1}}
+
+
 
 \end{enumerate}
 
