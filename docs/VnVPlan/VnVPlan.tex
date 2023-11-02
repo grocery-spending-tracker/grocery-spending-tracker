@@ -225,7 +225,7 @@ These tests pertain to all the functional requirements related to the authentica
 
 Control: Manual
           
-Initial State: User is not logged into the system.
+Initial State: User is not signed into the system.
           
 Input: User attempts to sign into the system with the correct username and credentials.
 
@@ -375,13 +375,14 @@ Input: A photo of a physical receipt. User takes photo of receipt with their dev
           
 Output: User is provided with a list of all their grocery items and prices on the receipt as well as an option to manually enter or edit them.
 
-Test Case Derivation: Assuming optimal conditions, the application should be able to record 
+Test Case Derivation: Assuming optimal conditions, the application should be able to capture the items and corresponding prices
+of each. The user should then have the opportunity to review the data and make changes before submitting.
           
 How test will be performed: In even lighting, tester will run the system and photograph a receipt. They will then validate that the systems interpretation of the photograph matches that of the physical receipt with above 90\% precision.
 
 \item{\textbf{FRT-FR11-1}}
 
-Control: Manual, Dynamic
+Control: Manual
           
 Initial State: User has physical receipt and the system has access to the device camera.
 
@@ -389,13 +390,14 @@ Input: User scans a physical receipt in bad conditions.
           
 Output: User is provided with a list of all the scanned grocery items and prices on the receipt with a strong recommendation to retake the photo in better conditions or manually enter or edit them.
 
-Test Case Derivation: User wants to input their grocery spending data into the system.
+Test Case Derivation: In poor lighting conditions where the receipt is not clearly visible by the camera, the application should still
+attempt to scan the receipt but should prompt the user to retake the photo in better conditions to ensure accuracy of the data.
           
-How test will be performed: In dark environment, tester will run the system and photograph a receipt. They will then validate that the system prompts the user to retake the photo or manually review all scanned items.
+How test will be performed: In a dark environment, tester will run the system and photograph a receipt. They will then validate that the system prompts the user to retake the photo or manually review all scanned items.
 
 \item{\textbf{FRT-FR11-2}}
 
-Control: Manual, Dynamic
+Control: Manual
           
 Initial State: User has no physical receipt.
 
@@ -403,13 +405,14 @@ Input: User prompts the system that they do not have a receipt to scan.
           
 Output: User is prompted to manually enter their grocery items and prices.
 
-Test Case Derivation: User wants to input their grocery spending data into the system.
+Test Case Derivation: If the user does not have a usable receipt that they can scan, the system should allow users to manually
+enter data if necessary.
           
 How test will be performed: Tester will prompt the system interface that they have no receipt. Tester will validate they are able to manually enter their items.
 
 \item{\textbf{FRT-FR11-3}}
 
-Control: Manual, Dynamic
+Control: Manual
           
 Initial State: The system does not have access to the device camera.
 
@@ -417,7 +420,8 @@ Input: User attempts to scan a receipt.
           
 Output: User is prompted to give permissions for the application to access camera. If not given, user is asked to manually enter grocery items and prices.
 
-Test Case Derivation: User wants to input their grocery spending data into the system.
+Test Case Derivation: Without permissions, the application will not work properly. Therefore, the application should prompt the user to give
+camera access and restrict users to manual receipt entry if not given.
           
 How test will be performed: Tester will revoke application access to device camera and then attempt to scan a receipt. Verify that the system prompts the user for camera access and asks the user for manual input if not given.
 
@@ -435,7 +439,7 @@ These tests pertain to all the functional requirements related to the user's loc
 
 \item{\textbf{FRT-FR4-1}}
 
-Control: Manual, Dynamic
+Control: Manual
           
 Initial State: The system does not have access to the user's device location.
 
@@ -443,13 +447,14 @@ Input: User prevents location access for the application
           
 Output: User is prompted that the system has no location access and given the option to manually enter their general home location and desired recommendation radius.
 
-Test Case Derivation: User wants location-based grocery recommendations.
+Test Case Derivation: If the application is not given access to the device's location, then the application should allow for
+manual entry by the user to prevent feature disruption.
           
 How test will be performed: Tester will revoke application access to location  and then attempt to receive location-based grocery recommendations. Validate that system provides prompt.
 
 \item{\textbf{FRT-FR4-2}}
 
-Control: Manual, Dynamic
+Control: Manual
           
 Initial State: The system has access to the user's device location but user wants to manually set a different one.
 
@@ -457,13 +462,14 @@ Input: User changes preferences to use manually entered home location and recomm
           
 Output: System provides accurate location-based recommendations regarding the manually entered location.
 
-Test Case Derivation: User wants location-based grocery recommendations from a manually determined location.
+Test Case Derivation: If the user wishes to use a manually set location rather than their device's location, then the
+application should still function the same in both scenarios.
           
 How test will be performed: Tester will go to preferences and opt to use manually provided home location and recommendation radius. Validate that the system is providing correct grocery recommendations for the manually inputted location and radius.
 
 \item{\textbf{FRT-FR4-3}}
 
-Control: Manual, Dynamic
+Control: Manual
           
 Initial State: The system has access to the user's device location.
 
@@ -471,7 +477,8 @@ Input: System has location access on device.
           
 Output: Application provides recommendations to the user for stored that are within the default radius of their location.
 
-Test Case Derivation: User wants location-based grocery recommendations automatically determined location and radius.
+Test Case Derivation: Should the application have access to the device location, then all location preferences should be
+relative to the device's active location.
           
 How test will be performed: Tester will enable location services for the application and validate that the system is providing correct grocery recommendations for the current device location.
 
@@ -485,7 +492,7 @@ These tests pertain to all the functional requirements related to the user's goa
 
 \item{\textbf{FRT-FR5-1}}
 
-Control: Manual, Dynamic
+Control: Manual
           
 Initial State: The system has no spending goals and desired outcomes stored in the system.
 
@@ -499,7 +506,7 @@ How test will be performed: Tester will navigate to the application preferences 
 
 \item{\textbf{FRT-FR5-2}}
 
-Control: Manual, Dynamic
+Control: Manual
           
 Initial State: The system has existing spending goals and desired outcomes stored in the system. The system displayed the current spending goals.
 
@@ -507,13 +514,14 @@ Input: User navigates to the preferences of their application and changes their 
           
 Output: The system is updated to reflect the new spending goals.
 
-Test Case Derivation: The system must provide an interface for the user to view and edit their spending goals.
+Test Case Derivation: If spending goals are ever updated, then the application should take the new spending goals into account
+for correctness.
           
 How test will be performed: Tester will navigate to the application preferences and validate that the existing spending goals are displayed. They will then attempt to change the values of the spending goals and then save the changes.
 
 \item{\textbf{FRT-FR6-1}}
 
-Control: Manual, Dynamic
+Control: Manual
           
 Initial State: The system has no budgeting constraints stored.
 
@@ -527,7 +535,7 @@ How test will be performed: Tester will navigate to the application preferences 
 
 \item{\textbf{FRT-FR6-2}}
 
-Control: Manual, Dynamic
+Control: Manual
           
 Initial State: The system has existing budgeting constraints stored.
 
@@ -535,7 +543,8 @@ Input: User navigates to the preferences of their application and changes their 
           
 Output: The system displays the new budgeting constraints.
 
-Test Case Derivation: The system must provide an interface for the user to view and edit their budgeting constraints.
+Test Case Derivation: If budgeting constraints are ever updated, then the application should take the new constraints into account
+for correctness.
 
 How test will be performed: Tester will navigate to the application preferences and validate that the existing goals are displayed. They will then attempt to change the budgeting constraints values and save the changes.
 
@@ -553,11 +562,11 @@ These tests pertain to all the functional requirements related to how the system
 
 \item{\textbf{FRT-FR7-1}}
 
-Control: Automatic, Dynamic
+Control: Automatic
           
 Initial State: Test database is empty.
 
-Input: API calls from client (front-end) to back-end containing receipt data. Receipt data is comprised of an array of \textit{Item(string name, int cents, string date, string purchaseLocation, int userID)}.
+Input: API calls from client (front-end) to back-end containing receipt data. Receipt data is comprised of an array of \textit{Item(string name, double price, string date, string purchaseLocation, int userID)}.
           
 Output: Database contains correctly organized items. The user's database table should include all items they purchased.
 
@@ -567,11 +576,11 @@ How test will be performed: Begin with an empty testing database. Test cases com
 
 \item{\textbf{FRT-FR7-2}}
 
-Control: Automatic, Dynamic
+Control: Automatic
           
 Initial State: Test database is populated.
 
-Input: API calls from client (front-end) to back-end containing receipt data. Receipt data only contains items that are not already in the database. Receipt data is comprised of an array of \textit{Item(string name, int cents, string date, string purchaseLocation, int userID)}.
+Input: API calls from client (front-end) to back-end containing receipt data. Receipt data only contains items that are not already in the database. Receipt data is comprised of an array of \textit{Item(string name, double price, string date, string purchaseLocation, int userID)}.
           
 Output: System back-end must accurately map and sort receipt entries provided, keeping a record of the user who purchased each item while preserving existing data.
 
@@ -581,11 +590,12 @@ How test will be performed: Begin with a populated testing database. Test cases 
 
 \item{\textbf{FRT-FR7-3}}
 
-Control: Automatic, Dynamic
+Control: Automatic
           
 Initial State: Test database is populated.
 
-Input: API calls from client (front-end) to back-end containing receipt data. Data containing items that are the same as existing items in the database but with different name identifiers. An example of this would be a difference of "Rtz Crackers" or "Ritz Cracker"). Receipt data is comprised of an array of \textit{Item(string name, int cents, string date, string purchaseLocation, int userID)}.
+Input: API calls from client (front-end) to back-end containing receipt data. Data containing items that are the same as existing items in the database but with different name identifiers.
+An example of this would be a difference of "Rtz Crackers" or "Ritz Cracker". Receipt data is comprised of an array of \textit{Item(string name, int cents, double price, string purchaseLocation, int userID)}.
           
 Output: Database contains correctly organized items and understanding the relationship between like items. If like products are added to the database, the database correctly maps them to the existing items of the same type, even if the name string is different. The database also keeps track of which users purchase items.
 
@@ -603,7 +613,7 @@ These tests pertain to all the functional requirements related to the system's g
 
 \item{\textbf{FRT-FR8-1}}
 
-Control: Manual, Dynamic
+Control: Manual
           
 Initial State: User has set budget information.
 
@@ -611,19 +621,20 @@ Input: User submits a receipt containing commonly purchased items plus a new hig
           
 Output: The system should identify the newly purchased item as the cause for the user going over budget and will recommend that the user stop purchasing it. If available, the system will also recommend alternatives that are in-line with the user's budget.
 
-Test Case Derivation: System must be aware of the users purchasing activity and recommend the user with cheaper items that are similar.
+Test Case Derivation: System must be aware of the users purchasing activity and budget. If the user ever goes over budget when entering
+a receipt, the system should identify why they went over budget and offer some advice.
           
 How test will be performed: Tester will input receipt meeting the above conditions. The tester will then validate that the new item is correctly identified as putting the user over budget and confirm if they get a recommendation for an alternative.
 
 \item{\textbf{FRT-FR8-2}}
 
-Control: Manual, Dynamic
+Control: Manual
 
 How test will be performed: Survey is presented to the user for them to respond how useful the system recommendations are. A success is determined by at least a 70\% positive response. The survey question is detailed in \textit{Section 6.2.2}.
 
 \item{\textbf{FRT-FR9-1}}
 
-Control: Manual, Dynamic
+Control: Manual
           
 Initial State: The database has an entry for a grocery item that is purchased from a location X.
 
@@ -631,13 +642,14 @@ Input: User inputs a receipt containing the grocery item in the database but at 
           
 Output: System provides recommendation to purchase item from location X.
 
-Test Case Derivation: System must be aware of the users purchasing activity and recommend the user with cheaper alternative locations for the same item.
+Test Case Derivation: System must be aware of the users purchasing activity and recommend the user with cheaper alternative locations for
+the same item.
           
 How test will be performed: Tester will submit items purchased for a cheap price on one user account (A) and then submit the same item purchased at a greater price from a different store with another user account (B). Tester verifies that user B receives a recommendation from the system to go to the same place as user A.
 
 \item{\textbf{FRT-FR9-2}}
 
-Control: Manual, Dynamic
+Control: Manual
           
 Initial State: The database has an entry for a grocery item that is purchased from a location X.
 
@@ -645,7 +657,8 @@ Input: User submits a receipt containing the grocery item in the database but at
           
 Output: The database should be updated such that the cheapest price, location, and purchase date for that item are equal to the input data. Location Y should then be recommended to users who purchase that item.
 
-Test Case Derivation: System must be aware of the users purchasing activity and recommend the user with cheaper alternative locations for the same item.
+Test Case Derivation: System must be aware of the users purchasing activity and recommend the user with cheaper alternative locations for
+the same item.
           
 How test will be performed: Tester will submit an item purchased for some amount on one user account (A) and then submit the same item for a cheaper amount from a different store with another user account (B). Tester verifies that user A receives a recommendation from the system to go to the same place as user B.
 
@@ -659,7 +672,7 @@ These tests pertain to all the functional requirements related to the system's g
 
 \item{\textbf{FRT-FR10-1}}
 
-Control: Manual, Dynamic
+Control: Manual
           
 Initial State: User has no spending data or submitted items.
 
@@ -673,7 +686,7 @@ How test will be performed: Tester will submit a receipt and then verify to see 
 
 \item{\textbf{FRT-FR10-2}}
 
-Control: Manual, Dynamic
+Control: Manual
           
 Initial State: User has existing spending data and submitted items.
 
@@ -686,8 +699,6 @@ Test Case Derivation: System must provide the user with all of the data that the
 How test will be performed: Tester will submit a receipt and then verify to see that the items have been added in the purchases interface along with all of the preexisting items.
 
 \end{enumerate}
-
-...
 
 \subsection{Tests for Nonfunctional Requirements}
 
