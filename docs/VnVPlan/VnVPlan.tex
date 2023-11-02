@@ -404,22 +404,32 @@ format for the tests given below.}
 
   Type: Manual, Dynamic
 
-  How test will be performed: The application will be navigated through while using \textit{Flutter Performance Profiling}
-  in order to verify frontend rendering and performance is within expectation.
+  How test will be performed: All major pages of the application will be navigated through while using the
+  \textit{Flutter Performance Profiling} tools. Times for rendering and frontend loading will then be recorded
+  to ensure that frontend performance is within expectation.
 
   \item{NFRT-PR2\\}
 
-  Type: Automatic, Dynamic
+  Type: Automatic, Dynamic, Manual
 
-  How test will be performed: A test suite will be executed with \textit{Postman} and server response times will be recorded
-  to verify backend performance.
+  How test will be performed: Requests will be sent to all major backend endpoints via \textit{Postman} and after
+  all requests are sent, the times for each request will be recorded. The team will then manually confirm that
+  the backend performs within expectation.
 
   \item{NFRT-PR3\\}
 
   Type: Automatic, Dynamic
 
-  How test will be performed: Error test cases will be sent to the backend using \textit{Postman} to verify that the
-  backend can withstand incorrect types and inputs.
+  Initial State: The backend server is running and operational.
+
+  Input: For all endpoints, incorrect data types and incorrect inputs (such as empty inptus) will be passed.
+
+  Output: The server should have appropriate error handling where no invalid data is accepted and the server
+  remains operational.
+
+  How test will be performed: A test suite with invalid data for the major endpoints will be created with
+  \textit{Postman}. The test suite will then be automatically executed by \textit{Postman} and the results
+  will be analyzed after.
 
   % Precision requirements here should refer to FR Tests above
 
