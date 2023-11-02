@@ -235,7 +235,7 @@ These tests pertain to all the functional requirements related to the authentica
 
 \item{\textbf{FRT-FR1-1}}
 
-Control: Manual, Dynamic
+Control: Manual
           
 Initial State: User is not logged into the system.
           
@@ -243,15 +243,16 @@ Input: User attempts to log into the system with the correct username and creden
 
 Output: User is successfully logged in and on the application landing page in no more than three steps.
 
-Test Case Derivation: The interface should allow users to enter their email and password and complete the registration in no more than three steps.
+Test Case Derivation: If the login credentials are correct and match a user in the database, then login should be simple and successful.
           
 How test will be performed: Tester will attempt to log into the system. Validate that it takes less than four steps to reach the landing page.
 
 \item{\textbf{FRT-FR1-2}}
 
-Control: Manual, Dynamic
+Control: Manual
           
-How test will be performed: Survey is presented to the user for them to respond how easy it is to log into the system. A success is determined by at least a 70\% positive response. The survey question is detailed in \textit{section 6.2.1}.
+How test will be performed: Survey is presented to the user for them to respond how easy it is to log into the system.
+A success is determined by at least a 70\% positive response. The survey question is detailed in \textit{section 6.2.1}.
 
 \end{enumerate}
 
@@ -264,7 +265,7 @@ These tests pertain to all the functional requirements related to authentication
 
 \item{\textbf{FRT-FR2-1}}
 
-Control: Manual, Dynamic
+Control: Manual
 					
 Initial State: User with no existing account on file.
 					
@@ -272,69 +273,76 @@ Input: User signs up for account with valid name, email, phone-number, and passw
 					
 Output: User is directed to landing page. Account is successfully created and verification email is sent.
 
-Test Case Derivation: New user wants to create an account with valid account creation details and credentials.
+Test Case Derivation: As long as all fields required for sign up are filled with the appropriate data types and formats,
+then sign up should be completed successfully.
 					
 How test will be performed: Tester will run system and attempt to create a new account with the pertaining credentials and details. 
 					
 \item{\textbf{FRT-FR2-2}}
 
-Control: Manual, Dynamic
+Control: Manual
 					
 Initial State: User with no existing account on file.
 					
-Input: User signs up for account with valid name, phone-number, and password. But an invalid email.
+Input: User signs up for account with valid name, phone-number, and password however
+an invalid email is used (i.e. not following the format of a prefix prior to the @ symbol and a domain afterwards).
 					
-Output: Error message detailing an invalid email within 3 seconds.
+Output: Error message appears on the screen detailing an invalid email within 3 seconds.
 
-Test Case Derivation: New user wants to create an account with invalid email.
+Test Case Derivation: If incorrect/invalid data is used during sign up, the user should be notified and sign up should
+not be allowed.
 
 How test will be performed: Tester will run system and attempt to create a new account with the pertaining credentials and details. 
 
 \item{\textbf{FRT-FR2-3}}
 
-Control: Manual, Dynamic
+Control: Manual
           
 Initial State: User with no existing account on file.
           
-Input: User signs up for account with valid name, email, and password. But an invalid phone number.
+Input: User signs up for account with valid name, email, and password however an
+invalid phone number is used, for instance, a number less than 10 digits.
           
-Output: Error message detailing an invalid phone number within 3 seconds.
+Output: Error message appears on the screen detailing an invalid phone number within 3 seconds.
 
-Test Case Derivation: New user wants to create an account with invalid phone number.
+Test Case Derivation: If incorrect/invalid data is used during sign up, the user should be notified and sign up should
+not be allowed.
 
 How test will be performed: Tester will run system and attempt to create a new account with the pertaining credentials and details. 
 
 \item{\textbf{FRT-FR2-4}}
 
-Control: Manual, Dynamic
+Control: Manual
           
 Initial State: User with no existing account on file.
           
-Input: User signs up for account with valid name, email, and phone-number. But an invalid password.
+Input: User signs up for account with valid name, email, and phone-number however an invalid password
+is used, such as an empty string.
           
-Output: Error message detailing an invalid password within 3 seconds.
+Output: Error message appears on the screen detailing an invalid password within 3 seconds.
 
-Test Case Derivation: New user wants to create an account with invalid password.
+Test Case Derivation: If incorrect/invalid data is used during sign up, the user should be notified and sign up should
+not be allowed.
 
 How test will be performed: Tester will run system and attempt to create a new account with the pertaining credentials and details. 
 
 \item{\textbf{FRT-FR2-5}}
 
-Control: Manual, Dynamic
+Control: Manual
           
 Initial State: User with existing account on file.
           
-Input: User signs into their account with valid email and password.
+Input: User signs into their account with an email and password that matches a user in the database.
           
 Output: User is directed to landing page.
 
-Test Case Derivation: Existing user wants to sign into account with valid account details and credentials.
+Test Case Derivation: If a user signs in using credentials that match an existing user, sign in should be successful.
           
 How test will be performed: Tester will run system and attempt to sign into an account with the pertaining credentials.
           
 \item{\textbf{FRT-FR2-6}}
 
-Control: Manual, Dynamic
+Control: Manual
           
 Initial State: User with existing account on file.
           
