@@ -728,47 +728,122 @@ How test will be performed: Tester will submit a receipt and then verify to see 
 
 \subsection{Tests for Nonfunctional Requirements}
 
-\wss{The nonfunctional requirements for accuracy will likely just reference the
-  appropriate functional tests from above.  The test cases should mention
-  reporting the relative error for these tests.  Not all projects will
-  necessarily have nonfunctional requirements related to accuracy}
-
-\wss{Tests related to usability could include conducting a usability test and
-  survey.  The survey will be in the Appendix.}
-
-\wss{Static tests, review, inspections, and walkthroughs, will not follow the
-format for the tests given below.}
-
-\subsubsection{Area of Testing1}
-		
-\paragraph{Title for Test}
+\subsubsection{Look and Feel Requirements}
 
 \begin{enumerate}
+  \item{NFRT-LF1\\}
 
-\item{test-id1\\}
+  Type: Manual, Dynamic
+            
+  How test will be performed: Testers will be presented with the application and guided through navigation of various
+  pages available and asked to take note of the aesthetics, appearance and feel of the application. A survey
+  will then be provided to evaluate these qualities which can be found in Section 6.3 of this document.
+            
+  \item{NFRT-LF2\\}
 
-Type: Functional, Dynamic, Manual, Static etc.
-					
-Initial State: 
-					
-Input/Condition: 
-					
-Output/Result: 
-					
-How test will be performed: 
-					
-\item{test-id2\\}
+  Type: Manual
+            
+  How test will be performed: Testers will be given a list of features for the application and a list of
+  unlabelled icons corresponding to each of the features. They will be asked to match which feature
+  they believe pairs with which icon.
 
-Type: Functional, Dynamic, Manual, Static etc.
-					
-Initial State: 
-					
-Input: 
-					
-Output: 
-					
-How test will be performed: 
+  \item{NFRT-LF3\\}
 
+  Type: Manual, Static
+
+  How test will be performed: Walkthroughs will be performed on the code of each of the frontend pages
+  using the \textit{Flutter Inspector} to check size of components and layouts. This will be to ensure no more than
+  85\% of the page is occupied and a numerical balance is achieved in the layout.
+
+  \item{NFRT-LF4\\}
+
+  Type: Manual, Dynamic
+
+  Initial State: The application is opened on a device and logged into a user's account with internet access available.
+
+  Input: The user disconnects from the internet.
+
+  Output: The application should notify the user that they do not have internet connection.
+
+  How test will be performed: Testers will be asked to disconnect from the internet while the application is open.
+\end{enumerate}
+
+\subsubsection{Usability and Humanity Requirements}
+
+\begin{enumerate}
+  \item{NFRT-UH1\\}
+
+  Type: Manual, Dynamic
+            
+  How test will be performed: Testers will be presented with the
+  application and given a brief overview of its purpose. They will then be given 15 minutes to use the application
+  under supervision by the team but without instruction. After that time period, the testers will be asked to input
+  a receipt and navigate to the purchase analytics.
+
+  \item{NFRT-UH2\\}
+
+  Type: Manual, Dynamic
+					
+  Initial State: The application is opened on a device and logged into a user's account with internet access available.
+					
+  Input: The user attempts to input a receipt but cancels the process.
+					
+  Output: No changes should be made to the user's account data.
+  
+  How test will be performed: Testers will be given a receipt to input and asked to input it into the application.
+  Testers will then be asked to cancel the input before the process completes.
+
+  \item{NFRT-UH3\\}
+
+  Type: Manual, Dynamic
+					
+  Initial State: The application is opened on a device and logged into a user's account with internet access available.
+					
+  Input: The user tries changing the application's font size.
+					
+  Output: The font size should be changed throughout the application without negatively impacting readability
+  or general functionality.
+  
+  How test will be performed: Testers will be asked to change the font size to their desired size and
+  navigate through the application to check usability.
+
+  \item{NFRT-UH4\\}
+
+  Type: Manual, Dynamic
+					
+  Initial State: The application is opened on a device and logged in to a user's account with internet access available.
+					
+  Input: The user changes the accessibility colour scheme.
+					
+  Output: The colour scheme should be changed throughout the application without negatively impacting readability
+  or general functionality.
+  
+  How test will be performed: Testers will be asked to change the accessibility colour scheme to their desired setting and
+  navigate through the application to check usability.
+
+  \item{NFRT-UH5\\}
+
+  Type: Manual, Dynamic
+					
+  Initial State: The application is opened on a device and logged in to a user's account with accessibility settings
+  having been changed.
+					
+  Input: The user closes the application.
+					
+  Output: When re-opened, the application should still be logged into the user's account and accessibility
+  settings should still be in place.
+  
+  How test will be performed: Following \textit{NFRT-UH4} and \textit{NFRT-UH5}, testers will be asked to
+  close the application on their device while logged in and re-open it afterwards.
+
+  \item{NFRT-UH6\\}
+
+  Type: Manual
+
+  How test will be performed: A survey will be presented to testers to evaluate the overall usability of the
+  application after first going through \textit{NFRT-UH1}. Afterwards, the team will show them any remaining features
+  they had not yet experienced and given the opportunity to freely experiment with the applications. A survey will then be
+  provided to them. The questions asked will be as written in Section 6.4 of this document.
 \end{enumerate}
 
 \subsubsection{Performance Requirements}
@@ -819,6 +894,48 @@ How test will be performed:
 
   How test will be performed: The tester will install the application onto a device without the application currently
   installed.
+\end{enumerate}
+
+\subsubsection{Cultural Requirements}
+
+\begin{enumerate}
+
+\item{NFRT-CUR1\\}
+
+Type: Functional, Dynamic
+					
+Initial State: The app is running and set to the default system of measurement (e.g., metric).
+					
+Input: The user selects their preferred units of measurement from the app settings.
+					
+Output: The app interface and displayed measurements change to the selected units of measurement as per the user's choice.
+					
+How test will be performed: The tester will change the units of measurement from the app settings and verify that the interface and displayed measurements switch to the selected units.
+					
+\item{NFRT-CUR2\\}
+
+Type: Functional, Dynamic
+					
+Initial State: The app contains common purchase items in the product database.
+					
+Input: The user attempts to add a purchase item to purchase history that is not present in the database.
+					
+Output: The app successfully adds the new purchase item to the user's purchase history.
+					
+How test will be performed: The tester will attempt to add a product not present in the app product database to the purchase history and verify that the item is added without any issues.
+
+\item{NFRT-CUR3\\}
+
+Type: Functional, Dynamic
+					
+Initial State: The app is set to the default currency (e.g., CAD).
+					
+Input: The user selects the American currency in the app settings.
+					
+Output: The app logs all future purchases all in USD based on the user's selection and will not compare the prices of similar products nearby of a different currency.
+					
+How test will be performed: The tester will access the app's settings, change the currency to USD. The tester will then verify that all prices of future purchases are logged in USD and similar products priced with CAD are not compared.
+
 \end{enumerate}
 
 \subsection{Traceability Between Test Cases and Requirements}
@@ -966,6 +1083,20 @@ This is where you can place additional information.
 The definition of the test cases will call for SYMBOLIC\_CONSTANTS.
 Their values are defined in this section for easy maintenance.
 
+\subsection{Functional Requirement Survey Questions}
+\subsubsection{Survey questions for \textbf{FRT-FR1-2}.}
+
+\noindent \textbf{Question 1:} How easy was it to log into the application?
+Responses: \{(not easy) 1, 2, 3, 4, 5 (very easy)\} \\
+
+\subsubsection{Survey questions for \textbf{FRT-FR8-2}.}
+
+\noindent \textbf{Question 1:} How useful would you say that the application recommendations are to you?
+Responses: \{(not useful) 1, 2, 3, 4, 5 (very useful)\} \\
+
+\noindent \textbf{Question 2:} How likely are you to act the recommendation provided to you by the application?
+Responses: \{(not likely) 1, 2, 3, 4, 5 (very likely)\}
+
 \subsection{Look and Feel Survey Questions}
 
 \begin{enumerate}
@@ -981,7 +1112,20 @@ Their values are defined in this section for easy maintenance.
 
 \subsection{Usability Survey Questions}
 
-\wss{This is a section that would be appropriate for some projects.}
+\begin{enumerate}
+  \item On a scale of 1-10, how useful was the introductory walkthrough tutorial in your learning of the application?
+  \item On a scale of 1-10, how useful was the FAQ in your learning of the application?
+  \item What parts of the application were easiest for you to understand/learn?
+  \item What parts of the application do you feel additional explanation or clarity could be provided?
+  \item Was the language and wording used in the application understandable and inoffensive? If not, please
+  provide where and how the wording could be improved?
+  \item Were there any issues you encountered while using the application?
+  \item Did you have any issues with navigating the application? If you made a mistake, were you able to navigate
+  back to where you started?
+  \item How was your experience with the available accessibility settings? Do you have any feedback or suggestions for
+  improvements that could be made.
+  \item On a scale of 1-10, how would you rate the usability and intuitiveness of the application?
+\end{enumerate}
 
 \newpage{}
 \section*{Appendix --- Reflection}
