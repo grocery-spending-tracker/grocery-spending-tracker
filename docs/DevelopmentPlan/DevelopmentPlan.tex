@@ -35,6 +35,7 @@
 24/09/23 & Sawyer Tang & Code Style Standards\\
 24/09/23 & Jason Nam & Added Technology section of Development Plan Doc\\
 18/10/23 & Allan Fang & Formatting and style, role adjustments from feedback \\
+24/10/23 & Ryan Yeh & Reduced scope of POC Demo Plan \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -138,17 +139,16 @@ Issues can be assigned labels that give information on which part of the project
 
 \section{Proof of Concept Demonstration Plan}
 
-The two main functionalities necessary for this application to succeed are the OCR of receipts
-and the ability to map what is read to database entries. The OCR portion is the primary method of inputting data
-and without it, the application would not work. Therefore, it is a major risk to consider. Similarly, another
-function of the app is to recommend other grocery stores where recently purchased items can be bought at a lower price.
-The basis of this feature will involve accurately mapping what is scanned from the OCR to the appropriate database entry and
-updating it with the new purchase price and location. The primary risk comes from how different receipts can present
-the same item differently. As such, a major task will be coming up with a way to ensure identical items on different receipts
-map to the same database entry. To show that these risks can be overcome, the Proof of Concept Demo will involve a very
-simple application with just the OCR functionality implemented. Then, two receipts with the same items will be scanned
-and the database will be shown as it updates with the new information. Ideally, the results of the demonstration
-will show that the OCR can accurately read the receipts and items on both receipts and maps appropriately in the database.
+The main functionality necessary for this application to succeed is the OCR of receipts.
+In addition to simply recognizing the characters, a big part of the input
+process is also correctly identifying the relevant data such as which prices belong to which entries and any additional
+processing that may need to be done in order to clean up the output. 
+The OCR and input function of the application is the core feature of the application and is essential for the final product.
+Therefore, it is the biggest risk in this project to consider. 
+To show that this risk can be overcome, the Proof of Concept Demo will involve a very
+simple application with just the OCR functionality implemented. Then, a receipt will be scanned and the output
+will be displayed to show the feasibility of the OCR and input system. Ideally, the result of the demo will be
+an accurate representation of data that was captured from the receipt.
 
 \section{Technology}
 
