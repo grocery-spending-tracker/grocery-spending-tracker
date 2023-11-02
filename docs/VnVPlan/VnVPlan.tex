@@ -950,6 +950,83 @@ How test will be performed: The tester will access the app's settings, change th
 
 \end{enumerate}
 
+\subsubsection{Security Requirements}
+
+\begin{enumerate}
+\item{NFRT-SR1\\}
+
+Type: Functional, Manual, Static
+
+Initial State: User is not logged in or terms are not accepted.
+                
+Input: User tries to access the application's database.
+                
+Output: Access will be denied until the user accepts terms and services.
+                
+How test will be performed: Attempts will take place to access the database without accepting terms. The tester will confirm denial of access. Then, attempt access after accepting terms and services. The tester will confirm successful database access.
+
+\item{NFRT-SR2\\}
+
+Type: Functional, Dynamic
+
+Initial State: Data is stored in the application database.
+                
+Input: User will attempt to modify the data directly from the application database.
+                
+Output: Stored data is encrypted. Therefore, modifications to the data are denied.
+                
+How test will be performed: The tester will attempt to use database tools to try to modify data within the application database. Then, the tester will confirm that the application backend database is secure and has not been modified.
+
+\item{NFRT-SR3\\}
+
+Type: Dynamic, Penetration
+
+Initial State: Application is in operation.
+                
+Input: User will attempt simulated attacks like SQL injection, cross-site scripting, etc.
+                
+Output: Application will remain secure without any data breaches.
+                
+How test will be performed: The tester will conduct a series of different types of simulated cyber attacks. The tester will then observe application response and monitor application database.
+
+\item{NFRT-SR4\\}
+
+Type: Functional, Dynamic, Manual
+
+Initial State: Raw user data is stored in the application database.
+                
+Input: The raw user data is processed and then stored in the application database.
+                
+Output: The data is anonymized by data perturbation (inducing small amount of noise) and encryption. The data is also sanitized by data deletion or masking.
+                
+How test will be performed: The tester will inspect the stored user data for any personal identifiers. The tester will search for any presence of accessible sensitive user data.
+
+\item{NFRT-SR5\\}
+
+Type: Dynamic, Manual
+
+Initial State: Application has yet to collect user data.
+                
+Input: User will start using the application.
+                
+Output: A consent form will pop up before any user data is collected. No user data will be collected without explicit consent given by user.
+                
+How test will be performed: The tester will check for prompts that ask users to consent to data collection. The tester will then test the application with and without user consent to ensure compliance. The tester will confirm no user data was collected and stored in the database without user consent.
+
+\item{NFRT-SR6\\}
+
+Type: Functional, Dynamic, Manual
+
+Initial State: Application is in operation.
+                
+Input: User will attempt various actions to induce system events (including logging in to an user account, input receipt data, analyzing spending analytics, etc.).
+                
+Output: Activities and events will be accurately logged. The log can be reviewed by authorized administrators.
+                
+How test will be performed: The tester will perform a variety of user actions and try to trigger system events (including logging in to an user account, input receipt data, analyzing spending analytics, etc.). The tester will verify if these actions and events are accurately logged to system log. The tester will confirm that only authorized administrators can access these logs.
+
+\end{enumerate}
+
 \subsection{Traceability Between Test Cases and Requirements}
 
 \wss{Provide a table that shows which test cases are supporting which
