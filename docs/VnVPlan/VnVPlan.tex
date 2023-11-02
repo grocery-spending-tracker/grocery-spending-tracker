@@ -227,7 +227,7 @@ This section outlines the testing plan for the functional requirements detailed 
 
 The following sections pertain to all tests that have to do with the user logging into and gaining access to the system.
 
-\paragraph{Authentication interface}
+\paragraph{Authentication Interface}
 
 These tests pertain to all the functional requirements related to the authentication interface.
 
@@ -245,13 +245,13 @@ Output: User is successfully logged in and on the application landing page in no
 
 Test Case Derivation: The interface should allow users to enter their email and password and complete the registration in no more than three steps.
           
-How test will be performed: Tester will attempt to log into the system. Validate that it takes less than four steps to reach the landing page.
+How test will be performed: Tester will attempt to log into the application. Validate that it takes less than four steps to reach the landing page.
 
 \item{\textbf{FRT-FR1-2}}
 
 Control: Manual, Dynamic
           
-How test will be performed: Survey is presented to the user for them to respond how easy it is to log into the system. A success is determined by at least a 70\% positive response. The survey question is detailed in \textit{section 6.2.1}.
+How test will be performed: Survey is presented to the user for them to respond to how easy it is to log into the system. A success is determined by at least a 70\% positive response. The survey question is detailed in \textit{Section 6.2.1}.
 
 \end{enumerate}
 
@@ -274,7 +274,7 @@ Output: User is directed to landing page. Account is successfully created and ve
 
 Test Case Derivation: New user wants to create an account with valid account creation details and credentials.
 					
-How test will be performed: Tester will run system and attempt to create a new account with the pertaining credentials and details. 
+How test will be performed: Tester will open the application and attempt to create a new account with the pertaining credentials and details. 
 					
 \item{\textbf{FRT-FR2-2}}
 
@@ -284,11 +284,11 @@ Initial State: User with no existing account on file.
 					
 Input: User signs up for account with valid name, phone-number, and password. But an invalid email.
 					
-Output: Error message detailing an invalid email within 3 seconds.
+Output: Error message should be displayed on the screen detailing an invalid email within 3 seconds.
 
 Test Case Derivation: New user wants to create an account with invalid email.
 
-How test will be performed: Tester will run system and attempt to create a new account with the pertaining credentials and details. 
+How test will be performed: Tester will open the application and attempt to create a new account with the pertaining credentials and details. 
 
 \item{\textbf{FRT-FR2-3}}
 
@@ -298,11 +298,11 @@ Initial State: User with no existing account on file.
           
 Input: User signs up for account with valid name, email, and password. But an invalid phone number.
           
-Output: Error message detailing an invalid phone number within 3 seconds.
+Output: Error message should be displayed on the screen detailing an invalid phone number within 3 seconds.
 
 Test Case Derivation: New user wants to create an account with invalid phone number.
 
-How test will be performed: Tester will run system and attempt to create a new account with the pertaining credentials and details. 
+How test will be performed: Tester will open the application and attempt to create a new account with the pertaining credentials and details. 
 
 \item{\textbf{FRT-FR2-4}}
 
@@ -312,11 +312,11 @@ Initial State: User with no existing account on file.
           
 Input: User signs up for account with valid name, email, and phone-number. But an invalid password.
           
-Output: Error message detailing an invalid password within 3 seconds.
+Output: Error message should be displayed on the screen detailing an invalid password within 3 seconds.
 
 Test Case Derivation: New user wants to create an account with invalid password.
 
-How test will be performed: Tester will run system and attempt to create a new account with the pertaining credentials and details. 
+How test will be performed: Tester will open the application and attempt to create a new account with the pertaining credentials and details. 
 
 \item{\textbf{FRT-FR2-5}}
 
@@ -324,13 +324,13 @@ Control: Manual, Dynamic
           
 Initial State: User with existing account on file.
           
-Input: User signs into their account with valid email and password.
+Input: User signs into their account with email and password combination that exists in the user database.
           
 Output: User is directed to landing page.
 
 Test Case Derivation: Existing user wants to sign into account with valid account details and credentials.
           
-How test will be performed: Tester will run system and attempt to sign into an account with the pertaining credentials.
+How test will be performed: Tester will open the application and attempt to sign into an account with the pertaining credentials.
           
 \item{\textbf{FRT-FR2-6}}
 
@@ -338,13 +338,13 @@ Control: Manual, Dynamic
           
 Initial State: User with existing account on file.
           
-Input: User signs into their account with valid password and invalid email.
+Input: User signs in using the correct password for their account but does not use the matching email for that password
           
-Output: User is provided an error message detailing invalid email within 3 seconds.
+Output: Error message displayed on the screen saying the email and password combination do not match any existing users. Prompt to reset password is highlighted within 3 seconds.
 
 Test Case Derivation: Existing user wants to sign into account with invalid email.
           
-How test will be performed: Tester will run system and attempt to sign into an account with the pertaining credentials.
+How test will be performed: Tester will open the application and attempt to sign into an account with the pertaining credentials.
 
 \item{\textbf{FRT-FR2-7}}
 
@@ -352,13 +352,13 @@ Control: Manual, Dynamic
           
 Initial State: User with existing account on file.
           
-Input: User signs into their account with valid email and invalid password.
+Input: User signs into an account with an existing email and non-matching password to that user.
           
-Output: User is provided an error message detailing invalid password. Prompt to reset password is highlighted within 3 seconds.
+Output: Error message displayed on the screen saying the password is incorrect for the entered email. Prompt to reset password is highlighted within 3 seconds.
 
 Test Case Derivation: Existing user wants to sign into account with invalid password.
           
-How test will be performed: Tester will run system and attempt to sign into an account with the pertaining credentials.
+How test will be performed: Tester will open the application and attempt to sign into an account with the pertaining credentials.
 
 \end{enumerate}
 
@@ -380,7 +380,7 @@ Output: User is provided with a list of all their grocery items and prices on th
 
 Test Case Derivation: User wants to input their grocery spending data into the system.
           
-How test will be performed: In good lighting, tester will run the system and photograph a receipt. They will then validate that the systems interpretation of the photograph matches that of the physical receipt with above 90\% precision.
+How test will be performed: In even lighting, tester will run the system and photograph a receipt. They will then validate that the systems interpretation of the photograph matches that of the physical receipt with above 90\% precision.
 
 \item{\textbf{FRT-FR11-1}}
 
@@ -390,11 +390,11 @@ Initial State: User has physical receipt and the system has access to the device
 
 Input: User scans a physical receipt in bad conditions.
           
-Output: User is provided with a list of all the scanned grocery items and prices on the receipt as a strong recommendation to retake the photo in better conditions or manually enter or edit them.
+Output: User is provided with a list of all the scanned grocery items and prices on the receipt with a strong recommendation to retake the photo in better conditions or manually enter or edit them.
 
 Test Case Derivation: User wants to input their grocery spending data into the system.
           
-How test will be performed: In poor lighting and with bad photo quality, tester will run the system and photograph a receipt. They will then validate that the system prompts the user to retake the photo or manually review all scanned items.
+How test will be performed: In dark environment, tester will run the system and photograph a receipt. They will then validate that the system prompts the user to retake the photo or manually review all scanned items.
 
 \item{\textbf{FRT-FR11-2}}
 
@@ -416,23 +416,23 @@ Control: Manual, Dynamic
           
 Initial State: The system does not have access to the device camera.
 
-Input: System has no camera access.
+Input: User attempts to scan a receipt.
           
-Output: User is prompted to manually enter their grocery items and prices and informed that the system has no access to the device camera.
+Output: User is prompted to give permissions for the application to access camera. If not given, user is asked to manually enter grocery items and prices.
 
 Test Case Derivation: User wants to input their grocery spending data into the system.
           
-How test will be performed: Tester will revoke application access to device camera and then attempt to scan a receipt. Verify that the system prompts the user to manual input.
+How test will be performed: Tester will revoke application access to device camera and then attempt to scan a receipt. Verify that the system prompts the user for camera access and asks the user for manual input if not given.
 
 \end{enumerate}
 
 \subsubsection{Account Goals and Preferences}
 
-These tests pertain to all the functional requirements related to the users account preferences, goals, or details that effect the system's performance.
+These tests pertain to all the functional requirements related to the user's account preferences, goals, or details that affect the system's performance.
 
-\paragraph{Location based recommendations}
+\paragraph{Location-based Recommendations}
 
-These tests pertain to all the functional requirements related to the users location and how it effects their grocery recommendations.
+These tests pertain to all the functional requirements related to the user's location and how it affects their grocery recommendations.
 
 \begin{enumerate}
 
@@ -440,41 +440,41 @@ These tests pertain to all the functional requirements related to the users loca
 
 Control: Manual, Dynamic
           
-Initial State: The system does not have access to the users device location.
+Initial State: The system does not have access to the user's device location.
 
-Input: System has no location access on device.
+Input: User prevents location access for the application
           
-Output: User is prompted that the system has no location access and given the option to manual enter their general home location and desired recommendation radius.
+Output: User is prompted that the system has no location access and given the option to manually enter their general home location and desired recommendation radius.
 
-Test Case Derivation: User wants location based grocery recommendations.
+Test Case Derivation: User wants location-based grocery recommendations.
           
-How test will be performed: Tester will revoke application access to location  and then attempt to receive location based grocery recommendations. Validate that system provides prompt.
+How test will be performed: Tester will revoke application access to location  and then attempt to receive location-based grocery recommendations. Validate that system provides prompt.
 
 \item{\textbf{FRT-FR4-2}}
 
 Control: Manual, Dynamic
           
-Initial State: The system has access to the users device location but user wants to manually set a different one.
+Initial State: The system has access to the user's device location but user wants to manually set a different one.
 
-Input: System has location access on device.
+Input: User changes preferences to use manually entered home location and recommendation radius rather than device location.
           
-Output: System provides accurate location based recommendations.
+Output: System provides accurate location-based recommendations.
 
-Test Case Derivation: User wants location based grocery recommendations from a manually determined location.
+Test Case Derivation: User wants location-based grocery recommendations from a manually determined location.
           
-How test will be performed: Will go to preferences and opt to use manually provided home location and recommendation radius. Validate that the system is providing correct grocery recommendations for the manually inputted location and radius.
+How test will be performed: Tester will go to preferences and opt to use manually provided home location and recommendation radius. Validate that the system is providing correct grocery recommendations for the manually inputted location and radius.
 
 \item{\textbf{FRT-FR4-3}}
 
 Control: Manual, Dynamic
           
-Initial State: The system has access to the users device location.
+Initial State: The system has access to the user's device location.
 
 Input: System has location access on device.
           
 Output: User is prompted that the system has no location access and given the option to manual enter their general home location and desired recommendation radius.
 
-Test Case Derivation: User wants location based grocery recommendations from a manually determined location and radius.
+Test Case Derivation: User wants location-based grocery recommendations from a manually determined location and radius.
           
 How test will be performed: Will go to preferences and opt to use manually provided home location. Validate that the system is providing correct grocery recommendations for the manually inputted location and radius.
 
@@ -482,9 +482,9 @@ How test will be performed: Will go to preferences and opt to use manually provi
 
 \end{enumerate}
 
-\paragraph{User objectives}
+\paragraph{User Objectives}
 
-These tests pertain to all the functional requirements related to the users goals and spending objectives.
+These tests pertain to all the functional requirements related to the user's goals and spending objectives.
 
 \begin{enumerate}
 
@@ -646,7 +646,7 @@ Control: Manual, Dynamic
           
 Initial State: User finds submits that same item for expensive price from location X.
 
-Input: User submits receipt containing items that are cheap from location Y.
+Input: User submits a receipt containing the grocery item in the database but at a cheaper price from location Y.
           
 Output: System provides recommendation to purchase item from location Y.
 
@@ -658,7 +658,7 @@ How test will be performed: Tester will submit items purchased for an expensive 
 
 \paragraph{Grocery Items Interface}
 
-These tests pertain to all the functional requirements related to the systems grocery item interface.
+These tests pertain to all the functional requirements related to the system's grocery item interface.
 
 \begin{enumerate}
 
@@ -688,7 +688,7 @@ Output: System provides an interface showing all purchased items along with pric
 
 Test Case Derivation: System must provide the user with all of the data that the user has provided the system such that the user can review their own purchasing data.
           
-How test will be performed: Tester will submit a receipt and then verify to see that the items have been added in the purchases interface along with all of the preexisting items .
+How test will be performed: Tester will submit a receipt and then verify to see that the items have been added in the purchases interface along with all of the preexisting items.
 
 \end{enumerate}
 
