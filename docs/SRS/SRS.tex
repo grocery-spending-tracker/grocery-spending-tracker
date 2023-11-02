@@ -640,72 +640,79 @@ N/A
 \medskip
 \noindent \textbf{Requirement ID:} FR1\\
 \textbf{Use Case:} 1\\
-\textbf{Description:} The system must provide a user-friendly interface for users to enter their email and password when creating an account.\\
-\textbf{Rationale:} This requirement ensures that users can easily provide their registration information.\\
-\textbf{Fit Criterion:} Users should be able to successfully enter their email and password without encountering errors during the registration process.\\
+\textbf{Description:} The system must minimize user effort and reduce the likelihood of user abandonment during registration by allowing easy access and controls to user registration.\\
+\textbf{Rationale:} A registration interface is crucial for reducing the entry barrier for new users, enhancing user satisfaction, and decreasing the likelihood of registration abandonment.\\
+\textbf{Fit Criterion:} The interface should allow users to enter their email and password and complete the registration in no more than three steps, with each step clearly delineated.\\
 
 \medskip
 \noindent \textbf{Requirement ID:} FR2\\
 \textbf{Use Case:} 2\\
 \textbf{Description:} The system must validate user credentials (email and password) when a user attempts to sign in.\\
-\textbf{Rationale:} This requirement is necessary to fulfill the authentication process for registered users.\\
-\textbf{Fit Criterion:} Users with valid credentials should be granted access to the application, while users with invalid credentials should receive an error message.\\
+\textbf{Rationale:}  Secure and reliable authentication is essential for protecting user accounts and sensitive data from unauthorized access and complying with data protection regulations.\\
+\textbf{Fit Criterion:} Users with valid credentials must be granted access to the application, while users with invalid credentials must be denied access and receive a clear, non-ambiguous error message regarding the specific authentication failure within 3 seconds of their attempt.\\
 
 \medskip
 \noindent \textbf{Requirement ID:} FR3\\
 \textbf{Use Case:} 6, 7, 8, 9\\
-\textbf{Description:} The system must support the functionality to capture and process receipt data from user-submitted photos.\\
-\textbf{Rationale:} This requirement allows users to add new spending data.\\
-\textbf{Fit Criterion:} Users should be able to submit a photo of a receipt, and the system should successfully process the data from the receipt and store it in the database.\\
+\textbf{Description:} The system must support the scanning and recognition of receipt data from photo images. The system must accurately recognize, extract, and parse text and numerical data from various receipt formats and layouts.\\
+\textbf{Rationale:} Enabling users to upload photo images of receipts and converting these into digital spending data significantly enhances user convenience by eliminating manually entering data.\\
+\textbf{Fit Criterion:} The system must successfully recognize and extract data from uploaded receipt photos with an accuracy rate over 90\% under typical lighting conditions.\\
 
 \medskip
 \noindent \textbf{Requirement ID:} FR4\\
 \textbf{Use Case:} 4, 7\\
-\textbf{Description:} The system must offer a user interface for users to input their current location and preferred area of coverage.\\
-\textbf{Rationale:} This requirement allows users to specify their location preferences.\\
-\textbf{Fit Criterion:} Users should be able to enter their location preferences, including selecting stores they prefer and stores they want to ignore.\\
+\textbf{Description:} The system must offer an interface that allows users to specify and update their current physical location and set a desired radius for area coverage.\\
+\textbf{Rationale:} Enabling users to input and adjust their location and area of coverage is vital for providing customized and relevant information, services, or offers specific to their locale.\\
+\textbf{Fit Criterion:} Users must be able to set and update their location and preferred area of coverage, with changes reflected in the system within 3 seconds.\\
 
 \medskip
 \noindent \textbf{Requirement ID:} FR5\\
 \textbf{Use Case:} 3, 7\\
-\textbf{Description:} The system must provide a form or input fields for users to enter their spending objectives and outcomes.\\
-\textbf{Rationale:} This requirement will allow users to provide their spending preferences.\\
-\textbf{Fit Criterion:} Users should be able to input their spending goals and see them stored in the application.\\
+\textbf{Description:} The system must provide structured input fields where users can input and modify their grocery objectives and desired outcomes.\\
+\textbf{Rationale:} Enabling users to set and alter their spending goals directly in the application allows improved grocery planning and encourages healthier grocery spending habits.\\
+\textbf{Fit Criterion:} Users must be able to change their spending goals with the updated information displayed in less than a second after input.\\
 
 \medskip
 \noindent \textbf{Requirement ID:} FR6\\
 \textbf{Use Case:} 5, 7\\
-\textbf{Description:} The system must provide options for users to input their price range and budgeting preferences.\\
-\textbf{Rationale:} This requirement enables users to set their budgeting preferences.\\
-\textbf{Fit Criterion:} Users should be able to set their budgeting preferences, and the system should store this information.\\
+\textbf{Description:} The system must offer a feature where users can specify their preferred price ranges for goods and set comprehensive budgeting parameters.\\
+\textbf{Rationale:} Providing users with the ability to define their price ranges and budgeting preferences is necessary for personalized shopping experience to match user constraints.\\
+\textbf{Fit Criterion:} The system must reflect user's preferences in filtering and recommending products with an accuracy rate of at least 90\%.\\
 
 \medskip
 \noindent \textbf{Requirement ID:} FR7\\
 \textbf{Use Case:} 8, 9\\
-\textbf{Description:} The system must check each product found on a user-submitted receipt and update the database with relevant purchase information.\\
-\textbf{Rationale:} This requirement ensures that the application accurately records and maintains the user's spending history, which is essential for budgeting and spending analysis.\\
-\textbf{Fit Criterion:} The system should successfully update the database with purchase information, including date, time, location, and purchase price for each product on the receipt.\\
+\textbf{Description:} The system must process each item listed on a receipt by identifying each item details. It must update the user's spending log in the database.\\
+\textbf{Rationale:} Accurately capturing detailed purchase information from receipts is important for informing users with a comprehensive overview of their grocery spending habits.\\
+\textbf{Fit Criterion:} The system should accurately extract and parse grocery item details from receipts, achieving a data accuracy of at least 90\%.\\
 
 \medskip
 \noindent \textbf{Requirement ID:} FR8\\
 \textbf{Use Case:} 11, 12\\
-\textbf{Description:} The system must analyze the user's purchase history and compare it to the budgeting preferences the user has submitted. It should suggest items to stop purchasing or recommend cheaper grocery alternatives when the user exceeds their budget.\\
-\textbf{Rationale:} This requirement supports the application's goal of helping users manage their expenses by providing personalized budgeting suggestions.\\
-\textbf{Fit Criterion:} The system should provide relevant budgeting suggestions based on the user's purchase history and budgeting preferences.\\
+\textbf{Description:} The system must analyze the user's purchase history and compare it to the budgeting preferences the user has submitted. It must suggest actions the user can take to meet their budgeting goals.\\
+\textbf{Rationale:} This functionality allows users to make informed decisions and encourages them towards making well informed grocery purchases.\\
+\textbf{Fit Criterion:} Suggestions should be considered relevant and useful in user feedback surveys, with at least 70\% positive response rate.\\
 
 \medskip
 \noindent \textbf{Requirement ID:} FR9\\
 \textbf{Use Case:} 12\\
-\textbf{Description:} When a recently purchased item by the user is found at a lower price, the system should prompt the user with information about the item, its price, and the location where it is available at a lower cost.\\
-\textbf{Rationale:} This requirement enhances user experience by helping users save money by identifying opportunities for cost savings.\\
-\textbf{Fit Criterion:} The system should prompt the user with information about cheaper alternatives when available within the user's location preferences.\\
+\textbf{Description:} The system must actively monitor prices of items that a user has purchased within the last 10 days. When it detects that an item is available at a lower price, it should promptly notify the user.\\
+\textbf{Rationale:} Notifying users about lower price alternatives on grocery items they recently purchased enlightens users about potential cost saving alternatives and emphasizes the usefulness of the application.\\
+\textbf{Fit Criterion:} Notifications on lower price alternatives must be delivered to the user within 24 hours of detection.\\
 
 \medskip
 \noindent \textbf{Requirement ID:} FR10\\
 \textbf{Use Case:} 10\\
-\textbf{Description:} The system must retrieve and display a visual representation of the user's purchase history, including details on items purchased and their respective timestamps.\\
-\textbf{Rationale:} This requirement enables users to monitor their spending habits and make informed financial decisions by providing a clear view of their purchase history.\\
-\textbf{Fit Criterion:} The system should present the user's purchase history accurately and in a user-friendly manner.\\
+\textbf{Description:} The system must fetch and display a visual representation of the user's grocery purchase history, including details on items purchased and their respective timestamps.\\
+\textbf{Rationale:} Providing a visual representation of grocery purchase history converts unprocessed data into a comprehensive and easily understandable format for users.\\
+\textbf{Fit Criterion:} The system should present the user's purchase history data with over 95\% accuracy.\\
+
+\medskip
+\noindent \textbf{Requirement ID:} FR11\\
+\textbf{Use Case:} 6, 7, 8, 9\\
+\textbf{Description:} The system must allow users to verify and edit grocery items that were not accurately scanned and recognized by the system.\\
+\textbf{Rationale:} It is essential for the system to ensure data accuracy and completeness of tracking of user grocery purchases. Although scanning and recognizing image text using OCR have become advanced, it is impossible to ensure 100\% accuracy of results all the time. Therefore, allowing users to verify and update items will enhance reliability of data.\\
+\textbf{Fit Criterion:} The system should reflect changes made by users on the purchase items log in less than 3 seconds. Also, user feedback on ease of edit functions should be positive, with more than 80\% of users rating it easy.\\
 
 \begin{figure}[H]
   \centering
@@ -917,9 +924,9 @@ to the label for the relevant question.
 In this section, any references to an \textit{E\#} refers to elicitation notes in Appendix B. \textit{E\#} corresponds to the label for the relevant question.
 \subsection{Cultural Requirements}
 \begin{itemize}
-    \item \textbf{CUR1:} The app should allow users to use the metric system, imperial system, or a combination of the two (Canadian) as requested in \textit{E12}
-    \item \textbf{CUR2:} The app should account for uncommon purchase items as requested in \textit{E12}
-    \item \textbf{CUR3:} The app should account for different currencies used (specifically USD and CAD) as requested in \textit{E12}
+    \item \textbf{CUR1:} The app should allow users to use the metric system, imperial system, or a combination of the two (Canadian) as requested in \textit{E12} to accommodate a diverse user base and regional preferences.
+    \item \textbf{CUR2:} The app should have full functionality for uncommon purchase items as requested in \textit{E12} to ensure the software is usable in the real-life dynamic market environment
+    \item \textbf{CUR3:} The app should differentiate different currencies used (specifically USD and CAD) as requested in \textit{E12} to accommodate regional preferences.
 \end{itemize}
 
 \section{Compliance Requirements}
