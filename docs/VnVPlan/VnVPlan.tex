@@ -582,6 +582,12 @@ Test Case Derivation: System must be aware of the users purchasing activity and 
           
 How test will be performed: Tester will submit luxury items that exceed the users set budget. Tester will validate that the system recommends the user with cheaper alternatives to the luxury items.
 
+\item{\textbf{FRT-FR8-1}}
+
+Control: Manual
+
+How test will be performed: Survey is presented to the user for them to respond how useful the system recommendations are. A success is determined by at least a 70\% positive response. The survey question is detailed in \textit{section 6.2.x}. %% todo
+
 
 \item{\textbf{FRT-FR9-1}}
 
@@ -611,9 +617,41 @@ Test Case Derivation: System must be aware of the users purchasing activity and 
           
 How test will be performed: Tester will submit items purchased for an expensive price on one user account (A) and then submit the same item for a cheap amount from a different store with another user account (B). Tester verifies that user A receives a recommendation from the system to go to the same place as user B.
 
+\end{enumerate}
+
+\paragraph{Grocery Items Interface}
+
+These tests pertain to all the functional requirements related to the systems grocery item interface.
+
+\begin{enumerate}
+
 \item{\textbf{FRT-FR10-1}}
 
+Control: Manual
+          
+Initial State: User has no spending data or submitted items.
 
+Input: User submits a receipt.
+          
+Output: System provides an interface showing all purchased items along with price, location, and date-time.
+
+Test Case Derivation: System must provide the user with all of the data that the user has provided the system such that the user can review their own purchasing data.
+          
+How test will be performed: Tester will submit a receipt and then verify to see that the items have been added in the purchases interface.
+
+\item{\textbf{FRT-FR10-2}}
+
+Control: Manual
+          
+Initial State: User has existing spending data and submitted items.
+
+Input: User submits a receipt.
+          
+Output: System provides an interface showing all purchased items along with price, location, and date-time.
+
+Test Case Derivation: System must provide the user with all of the data that the user has provided the system such that the user can review their own purchasing data.
+          
+How test will be performed: Tester will submit a receipt and then verify to see that the items have been added in the purchases interface along with all of the preexisting items .
 
 \end{enumerate}
 
