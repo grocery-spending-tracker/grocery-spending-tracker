@@ -211,19 +211,7 @@ as a Rev 0 demo for the supervisor.}
 
 This section outlines the testing plan for the functional requirements detailed in the \href{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/SRS/SRS.pdf}{Software Requirements Specification}.
 
-\wss{Subsets of the tests may be in related, so this section is divided into
-  different areas.  If there are no identifiable subsets for the tests, this
-  level of document structure can be removed.}
-
-\wss{Include a blurb here to explain why the subsections below
-  cover the requirements.  References to the SRS would be good here.}
-
 \subsubsection{User Authentication}
-
-\wss{It would be nice to have a blurb here to explain why the subsections below
-  cover the requirements.  References to the SRS would be good here.  If a section
-  covers tests for input constraints, you should reference the data constraints
-  table in the SRS.}
 
 The following sections pertain to all tests that have to do with the user logging into and gaining access to the system.
 
@@ -282,7 +270,7 @@ Control: Manual, Dynamic
 					
 Initial State: User with no existing account on file.
 					
-Input: User signs up for account with valid name, phone-number, and password. But an invalid email.
+Input: User signs up for account with valid name, phone-number, and password. But an that does not follow the standard email regex.
 					
 Output: Error message should be displayed on the screen detailing an invalid email within 3 seconds.
 
@@ -296,7 +284,7 @@ Control: Manual, Dynamic
           
 Initial State: User with no existing account on file.
           
-Input: User signs up for account with valid name, email, and password. But an invalid phone number.
+Input: User signs up for account with valid name, email, and password. But a phone number with less than 10 digits.
           
 Output: Error message should be displayed on the screen detailing an invalid phone number within 3 seconds.
 
@@ -310,7 +298,7 @@ Control: Manual, Dynamic
           
 Initial State: User with no existing account on file.
           
-Input: User signs up for account with valid name, email, and phone-number. But an invalid password.
+Input: User signs up for account with valid name, email, and phone-number. But an invalid password (containing a space character).
           
 Output: Error message should be displayed on the screen detailing an invalid password within 3 seconds.
 
@@ -458,7 +446,7 @@ Initial State: The system has access to the user's device location but user want
 
 Input: User changes preferences to use manually entered home location and recommendation radius rather than device location.
           
-Output: System provides accurate location-based recommendations.
+Output: System provides accurate location-based recommendations regarding the manually entered location.
 
 Test Case Derivation: User wants location-based grocery recommendations from a manually determined location.
           
@@ -472,13 +460,11 @@ Initial State: The system has access to the user's device location.
 
 Input: System has location access on device.
           
-Output: User is prompted that the system has no location access and given the option to manual enter their general home location and desired recommendation radius.
+Output: Application provides recommendations to the user for stored that are within the default radius of their location.
 
-Test Case Derivation: User wants location-based grocery recommendations from a manually determined location and radius.
+Test Case Derivation: User wants location-based grocery recommendations automatically determined location and radius.
           
-How test will be performed: Will go to preferences and opt to use manually provided home location. Validate that the system is providing correct grocery recommendations for the manually inputted location and radius.
-
-%% could mby add a few more where system already has manual location and user wishes to change it.. .stuff like that
+How test will be performed: Tester will enable location services for the application and validate that the system is providing correct grocery recommendations for the current device location.
 
 \end{enumerate}
 
@@ -492,7 +478,7 @@ These tests pertain to all the functional requirements related to the user's goa
 
 Control: Manual, Dynamic
           
-Initial State: The system has no user goals and desired outcomes stored in the system.
+Initial State: The system has no spending goals and desired outcomes stored in the system.
 
 Input: User navigates to the preferences of their application.
           
@@ -500,21 +486,21 @@ Output: The system provides a space for the user to input their spending goals.
 
 Test Case Derivation: The system must provide an interface for the user to input their spending goals.
           
-How test will be performed: Tester will navigate to the application preferences and validate that an interface exists for inputting user goals.
+How test will be performed: Tester will navigate to the application preferences and validate that an interface exists for inputting spending goals.
 
 \item{\textbf{FRT-FR5-2}}
 
 Control: Manual, Dynamic
           
-Initial State: The system has existing user goals and desired outcomes stored in the system. The system displayed the current user goals.
+Initial State: The system has existing spending goals and desired outcomes stored in the system. The system displayed the current spending goals.
 
-Input: User navigates to the preferences of their application and changes their goals.
+Input: User navigates to the preferences of their application and changes their spending goals.
           
-Output: The system is updated to reflect the new user goals.
+Output: The system is updated to reflect the new spending goals.
 
 Test Case Derivation: The system must provide an interface for the user to view and edit their spending goals.
           
-How test will be performed: Tester will navigate to the application preferences and validate that the existing goals are displayed and that they can be changed.
+How test will be performed: Tester will navigate to the application preferences and validate that the existing spending goals are displayed. They will then attempt to change the values of the spending goals and then save the changes.
 
 \item{\textbf{FRT-FR6-1}}
 
@@ -542,13 +528,13 @@ Output: The system displays the new budgeting constraints.
 
 Test Case Derivation: The system must provide an interface for the user to view and edit their budgeting constraints.
 
-How test will be performed: Tester will navigate to the application preferences and validate that the existing goals are displayed and that they can be changed.
+How test will be performed: Tester will navigate to the application preferences and validate that the existing goals are displayed. They will then attempt to change the budgeting constraints values and save the changes.
 
 \end{enumerate}
 
 \subsubsection{System Behaviour and Recommendations}
 
-These tests pertain to all the functional requirements related to how the system responds to the data that is provided to it. Including the recommendations provided to the user.
+These tests pertain to all the functional requirements related to how the system responds to the data that is provided to it. This includes the recommendations provided to the user.
 
 \paragraph{Receiving Grocery Data}
 
@@ -562,13 +548,13 @@ Control: Automatic, Dynamic
           
 Initial State: Test database is empty.
 
-Input: API calls from client (front-end) to back-end containing receipt data.
+Input: API calls from client (front-end) to back-end containing receipt data. Receipt data is comprised of an array of \textit{Item(string name, int cents, string date, string purchaseLocation, int userID)}.
           
-Output: Database contains correctly organized items.
+Output: Database contains correctly organized items. The user's database table should include all items they purchased.
 
-Test Case Derivation: System back-end must accurately map and sort receipt entries provided, keeping a record of each item all users purchase.
+Test Case Derivation: System back-end must accurately map and sort receipt entries provided, keeping a record of the user who purchased each item.
           
-How test will be performed: Begin with an empty testing database. Test cases comprised of items and prices are sent through an API call to the system back-end by testing client. Then an additional API call will be called from the testing client against the system back-end to validate that the items and prices are correctly stored in the database.
+How test will be performed: Begin with an empty testing database. Test cases comprised of items and prices are sent through an API call to the system back-end by testing client. Then an additional API call will be called from the testing client against the system back-end to validate that the items and prices are correctly stored in the database. \textit{Postman} will be used to facilitate API calls. 
 
 \item{\textbf{FRT-FR7-2}}
 
@@ -576,13 +562,13 @@ Control: Automatic, Dynamic
           
 Initial State: Test database is populated.
 
-Input: API calls from client (front-end) to back-end containing receipt data.
+Input: API calls from client (front-end) to back-end containing receipt data. Receipt data only contains items that are not already in the database. Receipt data is comprised of an array of \textit{Item(string name, int cents, string date, string purchaseLocation, int userID)}.
           
-Output: Database contains correctly organized items.
+Output: System back-end must accurately map and sort receipt entries provided, keeping a record of the user who purchased each item while preserving existing data.
 
 Test Case Derivation: System back-end must accurately map and sort receipt entries provided, keeping a record of each item all users purchase.
           
-How test will be performed: Begin with a populated testing database. Test cases comprised of items and prices are sent through an API call to the system back-end by testing client. Then an additional API call will be called from the testing client against the system back-end to validate that the items and prices are correctly stored in the database.
+How test will be performed: Begin with a populated testing database. Test cases comprised of items and prices are sent through an API call to the system back-end by testing client. Then an additional API call will be called from the testing client against the system back-end to validate that the items and prices are correctly stored in the database. \textit{Postman} will be used to facilitate API calls. 
 
 \item{\textbf{FRT-FR7-3}}
 
@@ -590,19 +576,19 @@ Control: Automatic, Dynamic
           
 Initial State: Test database is populated.
 
-Input: API calls from client (front-end) to back-end containing receipt data. Data containing items that are the same as existing items in the database but with slightly different names.
+Input: API calls from client (front-end) to back-end containing receipt data. Data containing items that are the same as existing items in the database but with different name identifiers. An example of this would be a difference of "Rtz Crackers" or "Ritz Cracker"). Receipt data is comprised of an array of \textit{Item(string name, int cents, string date, string purchaseLocation, int userID)}.
           
-Output: Database contains correctly organized items and understanding the relationship between like items.
+Output: Database contains correctly organized items and understanding the relationship between like items. If like products are added to the database, the database correctly maps them to the existing items of the same type, even if the name string is different. The database also keeps track of which users purchase items.
 
-Test Case Derivation: System back-end must accurately map and sort receipt entries provided, keeping a record of each item all users purchase.
+Test Case Derivation: System back-end must accurately map and sort receipt entries provided, keeping a record of the user who purchased each item while preserving existing data.
           
-How test will be performed: Begin with a populated testing database. Test cases comprised of items and prices are sent through an API call to the system back-end by testing client. Then an additional API call will be called from the testing client against the system back-end to validate that the items and prices are correctly stored in the database.
+How test will be performed: Begin with a populated testing database. Test cases comprised of items and prices are sent through an API call to the system back-end by testing client. Then an additional API call will be called from the testing client against the system back-end to validate that the items and prices are correctly stored in the database. \textit{Postman} will be used to facilitate API calls. 
 
 \end{enumerate}
 
 \paragraph{Grocery Recommendations}
 
-These tests pertain to all the functional requirements related to the systems grocery recommendations based on grocery data received from user and their preferences.
+These tests pertain to all the functional requirements related to the system's grocery recommendations based on grocery data received from user and their preferences.
 
 \begin{enumerate}
 
@@ -612,47 +598,47 @@ Control: Manual, Dynamic
           
 Initial State: User has set budget information.
 
-Input: User submits receipt containing luxury items that are out of budget.
+Input: User submits a receipt containing commonly purchased items plus a new highly priced item that puts them over budget.
           
-Output: System provides recommendation to stop purchasing some items that are too expensive and (if available) recommend alternatives that are more in-line with the users budget.
+Output: The system should identify the newly purchased item as the cause for the user going over budget and will recommend that the user stop purchasing it. If available, the system will also recommend alternatives that are in-line with the user's budget.
 
 Test Case Derivation: System must be aware of the users purchasing activity and recommend the user with cheaper items that are similar.
           
-How test will be performed: Tester will submit luxury items that exceed the users set budget. Tester will validate that the system recommends the user with cheaper alternatives to the luxury items.
+How test will be performed: Tester will input receipt meeting the above conditions. The tester will then validate that the new item is correctly identified as putting the user over budget and confirm if they get a recommendation for an alternative.
 
 \item{\textbf{FRT-FR8-2}}
 
 Control: Manual, Dynamic
 
-How test will be performed: Survey is presented to the user for them to respond how useful the system recommendations are. A success is determined by at least a 70\% positive response. The survey question is detailed in \textit{section 6.2.2}.
+How test will be performed: Survey is presented to the user for them to respond how useful the system recommendations are. A success is determined by at least a 70\% positive response. The survey question is detailed in \textit{Section 6.2.2}.
 
 \item{\textbf{FRT-FR9-1}}
 
 Control: Manual, Dynamic
           
-Initial State: User finds submits that same item for cheap price from location X.
+Initial State: The database has an entry for a grocery item that is purchased from a location X.
 
-Input: User submits receipt containing items that are expensive from location Y.
+Input: User inputs a receipt containing the grocery item in the database but at a higher price from location Y.
           
 Output: System provides recommendation to purchase item from location X.
 
 Test Case Derivation: System must be aware of the users purchasing activity and recommend the user with cheaper alternative locations for the same item.
           
-How test will be performed: Tester will submit items purchased for a cheap price on one user account (A) and then submit the same item for an expensive amount from a different store with another user account (B). Tester verifies that user B receives a recommendation from the system to go to the same place as user A.
+How test will be performed: Tester will submit items purchased for a cheap price on one user account (A) and then submit the same item purchased at a greater price from a different store with another user account (B). Tester verifies that user B receives a recommendation from the system to go to the same place as user A.
 
 \item{\textbf{FRT-FR9-2}}
 
 Control: Manual, Dynamic
           
-Initial State: User finds submits that same item for expensive price from location X.
+Initial State: The database has an entry for a grocery item that is purchased from a location X.
 
 Input: User submits a receipt containing the grocery item in the database but at a cheaper price from location Y.
           
-Output: System provides recommendation to purchase item from location Y.
+Output: The database should be updated such that the cheapest price, location, and purchase date for that item are equal to the input data. Location Y should then be recommended to users who purchase that item.
 
 Test Case Derivation: System must be aware of the users purchasing activity and recommend the user with cheaper alternative locations for the same item.
           
-How test will be performed: Tester will submit items purchased for an expensive price on one user account (A) and then submit the same item for a cheap amount from a different store with another user account (B). Tester verifies that user A receives a recommendation from the system to go to the same place as user B.
+How test will be performed: Tester will submit an item purchased for some amount on one user account (A) and then submit the same item for a cheaper amount from a different store with another user account (B). Tester verifies that user A receives a recommendation from the system to go to the same place as user B.
 
 \end{enumerate}
 
