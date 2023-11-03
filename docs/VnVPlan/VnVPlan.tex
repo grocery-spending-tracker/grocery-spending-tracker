@@ -950,6 +950,125 @@ How test will be performed: The tester will access the app's settings, change th
 
 \end{enumerate}
 
+
+\subsubsection{Operational and Environmental Requirements}
+
+\begin{enumerate}
+\item{NFRT-OER1\\}
+
+Type: Functional, Dynamic, Manual
+
+Initial State: Application is not yet installed on the device.
+                
+Input: The user will install and run the application on various devices.
+                
+Output: The application will be successfully installed. The application is operational.
+                
+How test will be performed: The tester will install the application on various mobile devices running Android on version 13 (IASR2) and iOS on version 16 (IASR1). The tester will also test on various tablet devices running Android or iPadOS. The tester will confirm that all functionalities work as expected on each device by conducting variety of actions and system events (including logging in to an user account, input receipt data, analyzing spending analytics, etc.).
+
+\item{NFRT-OER2\\}
+
+Type: Functional, Dynamic, Manual
+
+Initial State: The application is installed on a device that has an operable camera peripheral and has access to the internet.
+                
+Input: The user will attempt to use application features that require a camera and/or internet access.
+                
+Output: The application will successfully operate the induced features that require the use of camera and/or internet.
+                
+How test will be performed: The tester will test the application on devices with and without camera peripherals to validate (WER1). The tester will disconnect devices from the internet to test offline functionality. The tester will then reconnect the device to the internet to test online features (WER2). The tester will confirm that all functionalities work on devices that have access to camera peripherals and internet access.
+
+\item{NFRT-OER3\\}
+
+Type: Static, Dynamic, Automated
+
+Initial State: The application is ready for new releases or any updates.
+                
+Input: Test suites will be executed against new releases and updates.
+                
+Output: The application will identify defects. The team will resolve identified defects. In doing so, the application testing prior to new releases and updates will achieve 80\% code coverage.
+                
+How test will be performed: The tester will use automated testing tools (that can include \textit{Postman}, \textit{Flutter}, etc) to achieve 80\% code coverage (RER1). The tester will then perform issue tracking and resolution processes (RER2). The tester will organize a Final Demonstration (RER3) between March 18 and March 29 of 2024, involving stakeholders to validate the final product against requirements.
+
+\end{enumerate}
+
+\subsubsection{Security Requirements}
+
+\begin{enumerate}
+\item{NFRT-SR1\\}
+
+Type: Functional, Manual, Static
+
+Initial State: User is not logged in or terms are not accepted.
+                
+Input: User tries to access the application's database.
+                
+Output: Access will be denied until the user accepts terms and services.
+                
+How test will be performed: Attempts will take place to access the database without accepting terms. The tester will confirm denial of access. Then, attempt access after accepting terms and services. The tester will confirm successful database access.
+
+\item{NFRT-SR2\\}
+
+Type: Functional, Dynamic
+
+Initial State: Data is stored in the application database.
+                
+Input: User will attempt to modify the data directly from the application database.
+                
+Output: Stored data is encrypted. Therefore, modifications to the data are denied.
+                
+How test will be performed: The tester will attempt to use database tools to try to modify data within the application database. Then, the tester will confirm that the application backend database is secure and has not been modified.
+
+\item{NFRT-SR3\\}
+
+Type: Dynamic, Penetration
+
+Initial State: Application is in operation.
+                
+Input: User will attempt simulated attacks like SQL injection, cross-site scripting, etc.
+                
+Output: Application will remain secure without any data breaches.
+                
+How test will be performed: The tester will conduct a series of different types of simulated cyber attacks. The tester will then observe application response and monitor application database.
+
+\item{NFRT-SR4\\}
+
+Type: Functional, Dynamic, Manual
+
+Initial State: Raw user data is stored in the application database.
+                
+Input: The raw user data is processed and then stored in the application database.
+                
+Output: The data is anonymized by data perturbation (inducing small amount of noise) and encryption. The data is also sanitized by data deletion or masking.
+                
+How test will be performed: The tester will inspect the stored user data for any personal identifiers. The tester will search for any presence of accessible sensitive user data.
+
+\item{NFRT-SR5\\}
+
+Type: Dynamic, Manual
+
+Initial State: Application has yet to collect user data.
+                
+Input: User will start using the application.
+                
+Output: A consent form will pop up before any user data is collected. No user data will be collected without explicit consent given by user.
+                
+How test will be performed: The tester will check for prompts that ask users to consent to data collection. The tester will then test the application with and without user consent to ensure compliance. The tester will confirm no user data was collected and stored in the database without user consent.
+
+\item{NFRT-SR6\\}
+
+Type: Functional, Dynamic, Manual
+
+Initial State: Application is in operation.
+                
+Input: User will attempt various actions to induce system events (including logging in to an user account, input receipt data, analyzing spending analytics, etc.).
+                
+Output: Activities and events will be accurately logged. The log can be reviewed by authorized administrators.
+                
+How test will be performed: The tester will perform a variety of user actions and try to trigger system events (including logging in to an user account, input receipt data, analyzing spending analytics, etc.). The tester will verify if these actions and events are accurately logged to system log. The tester will confirm that only authorized administrators can access these logs.
+
+\end{enumerate}
+
 \subsection{Traceability Between Test Cases and Requirements}
 
 \wss{Provide a table that shows which test cases are supporting which
