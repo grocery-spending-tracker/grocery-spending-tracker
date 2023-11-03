@@ -12,6 +12,9 @@
     urlcolor=blue
 }
 \usepackage[round]{natbib}
+\usepackage{pdflscape}
+\usepackage{longtable}
+\usepackage{multirow}
 
 \input{../Comments}
 \input{../Common}
@@ -1067,10 +1070,141 @@ How test will be performed: The tester will perform a variety of user actions an
 
 \end{enumerate}
 
-\subsection{Traceability Between Test Cases and Requirements}
+\newpage
+\begin{landscape}
+  \subsection{Traceability Between Test Cases and Requirements}
 
-\wss{Provide a table that shows which test cases are supporting which
-  requirements.}
+  \begin{longtable}{|l|ccccccccccc|}
+		\caption{Traceability Between Functional System Test Cases and Functional Requirements} \\
+		\hline
+    \textbf{Functional Requirement ID}   & \multicolumn{11}{c|}{\textbf{Test ID}} \\
+    \hline
+    ~ & \textbf{FR1} & \textbf{FR2} & \textbf{FR3} & \textbf{FR4} & \textbf{FR5} & \textbf{FR6} & \textbf{FR7} & \textbf{FR8} & \textbf{FR9} & \textbf{FR10} & \textbf{FR11} \\
+    \hline
+    FRT-FR1-1 & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR1-2 & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR2-1 & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR2-2 & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR2-3 & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR2-4 & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR2-5 & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR2-6 & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR2-7 & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR3-1 & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR11-1 & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X \\
+    FRT-FR11-2 & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X \\
+    FRT FR11-3 & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X \\
+    FRT-FR4-1 & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR4-2 & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR4-3 & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR5-1 & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR5-2 & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR6-1 & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR6-2 & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR7-1 & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ \\
+    FRT-FR7-2 & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ \\
+    FRT-FR7-3 & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ \\
+    FRT-FR8-1 & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & X & ~ & ~ \\
+    FRT-FR8-2 & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ \\
+    FRT-FR9-1 & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ \\
+    FRT-FR9-2 & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ \\
+    FRT-FR10-1 & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ \\
+    FRT-FR10-2 & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ \\
+    \hline
+  \end{longtable}
+
+  \newpage
+
+  \begin{longtable}{|l|cccccc|}
+		\caption{Traceability Between Nonfunctional System Test Cases and Look and Feel Requirements} \\
+		\hline
+    \textbf{NFR ID}   & \multicolumn{6}{c|}{\textbf{Test ID}} \\
+    \hline
+    ~ & \textbf{AR1} & \textbf{AR2} & \textbf{AR3} & \textbf{SR1} & \textbf{SR2} & \textbf{SR3} \\
+    \hline
+    NFRT-LF1 & X & ~ & X & X & X & X \\
+    NFRT-LF2 & ~ & X & ~ & ~ & ~ & ~ \\
+    NFRT-LF3 & ~ & ~ & X & ~ & ~ & ~ \\
+    NFRT-LF4 & ~ & ~ & ~ & ~ & ~ & X \\
+    \hline
+  \end{longtable}
+
+  \begin{longtable}{|l|ccccccccccc|}
+		\caption{Traceability Between Nonfunctional System Test Cases and Usability and Humanity Requirements} \\
+		\hline
+    \textbf{NFR ID}   & \multicolumn{11}{c|}{\textbf{Test ID}} \\
+    \hline
+    ~ & \textbf{EUR1} & \textbf{EUR2} & \textbf{EUR3} & \textbf{PIR1} & \textbf{LR1} & \textbf{LR2} & \textbf{LR3} & \textbf{UPR1} & \textbf{UPR2} & \textbf{ACR1} & \textbf{ACR2} \\
+    \hline
+    NFRT-UH1 & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ \\
+    NFRT-UH2 & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    NFRT-UH3 & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ \\
+    NFRT-UH4 & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X \\
+    NFRT-UH5 & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    NFRT-UH6 & ~ & ~ & X & X & X & X & ~ & X & X & X & X \\
+    \hline
+  \end{longtable}
+
+  \newpage
+
+  \begin{longtable}{|l|cccccc|}
+		\caption{Traceability Between Nonfunctional System Test Cases and Performance Requirements} \\
+		\hline
+    \textbf{NFR ID}   & \multicolumn{6}{c|}{\textbf{Test ID}} \\
+    \hline
+    ~ & \textbf{SLR1} & \textbf{SLR2} & \textbf{PAR1} & \textbf{PAR2} & \textbf{RFR1} & \textbf{CR1} \\
+    \hline
+    NFRT-PR1 & ~ & X & ~ & ~ & ~ & ~ \\
+    NFRT-PR2 & X & ~ & ~ & ~ & ~ & ~ \\
+    NFRT-PR3 & ~ & ~ & ~ & ~ & X & ~ \\
+    NFRT-PR4 & ~ & ~ & X & ~ & ~ & ~ \\
+    NFRT-PR5 & ~ & ~ & ~ & X & ~ & ~ \\
+    NFRT-PR6 & ~ & ~ & ~ & ~ & ~ & X \\
+    \hline
+  \end{longtable}
+
+  \begin{longtable}{|l|ccc|}
+		\caption{Traceability Between Nonfunctional System Test Cases and Cultural Requirements} \\
+		\hline
+    \textbf{NFR ID}   & \multicolumn{3}{c|}{\textbf{Test ID}} \\
+    \hline
+    ~ & \textbf{CUR1} & \textbf{CUR2} & \textbf{CUR3} \\
+    \hline
+    NFRT-CUR1 & X & ~ & ~ \\
+    NFRT-CUR2 & ~ & X & ~ \\
+    NFRT-CUR3 & ~ & ~ & X \\
+    \hline
+  \end{longtable}
+
+  \begin{longtable}{|l|cccccccccc|}
+		\caption{Traceability Between Nonfunctional System Test Cases and Operational and Environmental Requirements} \\
+		\hline
+    \textbf{NFR ID}   & \multicolumn{10}{c|}{\textbf{Test ID}} \\
+    \hline
+    ~ & \textbf{EPER1} & \textbf{EPER2} & \textbf{EPER3} & \textbf{WER1} & \textbf{WER2} & \textbf{IASR1} & \textbf{IASR2} & \textbf{RER1} & \textbf{RER2} & \textbf{RER3} \\
+    \hline
+    NFRT-OER1 & X & X & X & ~ & ~ & X & X & ~ & ~ & ~ \\
+    NFRT-OER2 & ~ & ~ & ~ & X & X & ~ & ~ & ~ & ~ & ~ \\
+    NFRT-OER3 & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & X & X \\
+    \hline
+  \end{longtable}
+
+  \begin{longtable}{|l|cccccc|}
+		\caption{Traceability Between Nonfunctional System Test Cases and Security Requirements} \\
+		\hline
+    \textbf{NFR ID}   & \multicolumn{6}{c|}{\textbf{Test ID}} \\
+    \hline
+    ~ & \textbf{ACR1} & \textbf{INR1} & \textbf{INR2} & \textbf{PRR1} & \textbf{PRR2} & \textbf{AUR1} \\
+    \hline
+    NFRT-SR1 & X & ~ & ~ & ~ & ~ & ~ \\
+    NFRT-SR2 & ~ & X & ~ & ~ & ~ & ~ \\
+    NFRT-SR3 & ~ & ~ & X & ~ & ~ & ~ \\
+    NFRT-SR4 & ~ & ~ & ~ & X & ~ & ~ \\
+    NFRT-SR5 & ~ & ~ & ~ & ~ & X & ~ \\
+    NFRT-SR6 & ~ & ~ & ~ & ~ & ~ & X \\
+    \hline
+  \end{longtable}
+\end{landscape}
 
 \section{Unit Test Description}
 
@@ -1297,21 +1431,18 @@ graduate attribute of Lifelong Learning.  Please answer the following questions:
   For skills \textit{(a)} and \textit{(b)}, one approach that could be taken is to review notes from
   \textit{SFWRENG 3S03} where topics such as dynamic and static testing were covered. The different
   approaches for dynamic and static testing were also part of the lecture material which would be useful to go over again.
-  Additionally, articles can also be found on the internet covering the basics of these
-  testing approaches. \par
+  A second approach is to conduct research online for articles and documents covering the static and dynamic testing approaches. \par
 
   Skills \textit{(c)} and \textit{(d)} involve more specific technologies, so one approach to learning these
   could be to read documentation. For both technologies, documentation is present to learn how the
-  developers had intended them to be used. Additionally, \textit{YouTube} tutorials can be referenced to
-  go over the basics and learn these technologies. Considering how many tutorials are made by users, it
-  could provide more insight on how these applications can be used in a more practical setting.
+  developers had intended them to be used. For a second approach, \textit{YouTube} tutorials can be referenced to
+  go over the basics and learn these technologies. Since many tutorials are made by users, it
+  can provide more insight on how these applications can be used in a more practical setting.
   Lastly, third-party articles can also be used for additional learning. \par
 
   Finally, skill \textit{(e)} is more of a social skill rather than a technical skill compared to the other skills listed.
-  One way to improve communication skills for testing could be with group collaboration and
-  interaction. For instance, before using a survey, getting it reviewed by the team could result in flaws or issues
-  being identified which can be noted for the future. Furthermore, \textit{SFWRENG 3S03} had some lectures on surveys
-  (such as the kinds of questions to ask and not ask) and similar testing approaches that could also be reviewed to better
+  One approach to improve communication skills for testing is to have our team actively engage in group collaboration and seek feedback from fellow team members when preparing for feedback elicitation. For instance, reviewing a proposed survey with the team will identify the good and bad aspects present that team members can internalize. For a second approach, \textit{SFWRENG 3S03} has lectures on surveys
+  (such as the kinds of questions to ask and not ask) and similar testing approaches that can also be reviewed to better
   learn and improve this skill.
 
   Below are the chosen skills from each team member, their rationale, and approaches they will use to learn or
@@ -1340,11 +1471,18 @@ graduate attribute of Lifelong Learning.  Please answer the following questions:
 
   \medskip
   \textbf{Jason Nam}\\
-  \textit{Chosen Skills: }\\
+  \textit{Chosen Skills: (a), (b), (e)}\\
+  I will be responsible for SRS Verification, NFR system tests, FR system tests. These roles will require relevant skills and knowledge for dynamic testing, static testing, and writing surveys and eliciting feedback from stakeholders and/or testers. Through thorough understanding of the the listed skills and knowledge, I believe that I can be of use and contribute to the verification and validation of the application.\par
+  I plan to develop my dynamic testing and static testing skills by referring back to \textit{SFWRENG 3S03} practices. I also plan to understand the basics of each testing methods first by partaking in online courses, articles, and tutorials. I plan to try hands-on testing and practice cases. I will also take advantage of code review practices and analysis tools like \textit{flutter\_lints} and \textit{Pylint} to enhance static testing skills. For survey and eliciting feedback related skills, I will study different survey designs. I will reference back to \textit{SFWRENG 4HC3} for understanding survey procedures and guidelines as well as eliciting feedback. I plan to familiarize myself with \textit{Google Forms} and other tools to optimize surveys and eliciting feedback.
 
   \medskip
   \textbf{Allan Fang}\\
-  \textit{Chosen Skills: } \\
+  \textit{Chosen Skills: b, e } \\
+  I will be taking the lead on SRS Verification, VnV Verification, and Design Verification which will primarily be the verification of documentation. Therefore, I will focus on acquiring the relevant skills and knowledge for documentation verification according to the VnV plan (guided walkthroughs with stakeholders and inspections with checklists) which will be static testing and communication for eliciting feedback. I will be using both proposed approaches for acquiring knowledge on static testing and both proposed approaches for acquiring communication skills to elicit feedback. \\
+  I have chosen both approaches for understanding static testing because I can gain both theoretical knowledge (course notes) and practical insights (online research) into the various aspects of static testing. This comprehensive approach will help me be more effective in my verification.\\
+  I have also chosen both approaches for communication skills for eliciting feedback. The first approach of group collaboration and feedback will enable me to practice and refine this skill while the second approach will provide a solid theoretical foundation to start with. Using both approaches will enhance my ability to elicit valuable feedback from stakeholders during the verification process, ensuring well-validated documentation.
+
+  
 \end{enumerate}
 
 \end{document}
