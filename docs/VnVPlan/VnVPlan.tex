@@ -2,6 +2,7 @@
 
 \usepackage{booktabs}
 \usepackage{tabularx}
+\usepackage{float}
 \usepackage{hyperref}
 \hypersetup{
     colorlinks,
@@ -11,13 +12,16 @@
     urlcolor=blue
 }
 \usepackage[round]{natbib}
+\usepackage{pdflscape}
+\usepackage{longtable}
+\usepackage{multirow}
 
 \input{../Comments}
 \input{../Common}
 
 \begin{document}
 
-\title{Project Title: System Verification and Validation Plan for \progname{}} 
+\title{System Verification and Validation Plan for \progname{}} 
 \author{\authname}
 \date{\today}
 	
@@ -30,290 +34,1159 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+03/12/23 & 1.0 & Created initial version of the VnV Plan\\
 \bottomrule
 \end{tabularx}
 
 ~\\
-\wss{The intention of the VnV plan is to increase confidence in the software.
-However, this does not mean listing every verification and validation technique
-that has ever been devised.  The VnV plan should also be a \textbf{feasible}
-plan. Execution of the plan should be possible with the time and team available.
-If the full plan cannot be completed during the time available, it can either be
-modified to ``fake it'', or a better solution is to add a section describing
-what work has been completed and what work is still planned for the future.}
-
-\wss{The VnV plan is typically started after the requirements stage, but before
-the design stage.  This means that the sections related to unit testing cannot
-initially be completed.  The sections will be filled in after the design stage
-is complete.  the final version of the VnV plan should have all sections filled
-in.}
 
 \newpage
 
 \tableofcontents
 
 \listoftables
-\wss{Remove this section if it isn't needed}
-
-\listoffigures
-\wss{Remove this section if it isn't needed}
 
 \newpage
 
 \section{Symbols, Abbreviations, and Acronyms}
+
+This section will include any symbols, abbreviations and acronyms
+used in this document and their definitions. \\
 
 \renewcommand{\arraystretch}{1.2}
 \begin{tabular}{l l} 
   \toprule		
   \textbf{symbol} & \textbf{description}\\
   \midrule 
-  T & Test\\
+  SRS & Software Requirements Specification\\
+  OCR & Optical Character Recognition\\
+  HA & Hazard Analysis\\
+  VnV & Verification and Validation\\
+  MG & Module Guide\\
+  MIS & Module Interface Specification\\
+  DP & Development Plan\\
   \bottomrule
 \end{tabular}\\
-
-\wss{symbols, abbreviations, or acronyms --- you can simply reference the SRS
-  \citep{SRS} tables, if appropriate}
-
-\wss{Remove this section if it isn't needed}
 
 \newpage
 
 \pagenumbering{arabic}
 
-This document ... \wss{provide an introductory blurb and roadmap of the
-  Verification and Validation plan}
+This document outlines the verification and validation plan for the Grocery Spending Tracker.
+The document will cover some basic information about the application as well as go over the plans
+the team has for testing its requirements and features throughout development. It will also cover
+the different system tests and unit tests that the team will employ to go about validating
+the software.
 
 \section{General Information}
 
+This section will give a general overview of the application as well as the objectives
+the team has for performing validation and verification. This section will also include any
+relevant document related to the overall testing plan.
+
 \subsection{Summary}
 
-\wss{Say what software is being tested.  Give its name and a brief overview of
-  its general functions.}
+The Grocery Spending Tracker is a mobile application being developed to help
+users save money on groceries. The main feature is allowing users to input photos of receipts
+which the application will then parse. Once parsed, the items and their corresponding prices will then be recorded.
+This data will then be used to show analytics regarding their purchase history over time.
+Additionally, the application will also allow users to get budgeting suggestions based on personal spending preferences
+as well as recommendations for alternative nearby grocery stores where recently purchased items
+can be obtained for cheaper.
 
 \subsection{Objectives}
 
-\wss{State what is intended to be accomplished.  The objective will be around
-  the qualities that are most important for your project.  You might have
-  something like: ``build confidence in the software correctness,''
-  ``demonstrate adequate usability.'' etc.  You won't list all of the qualities,
-  just those that are most important.}
+In regards to the application's primary functionality, testing will be done to build confidence
+in the correctness and accuracy of all main features such as the OCR for receipt input as well as analytic
+data being returned. This also holds for any budgeting suggestions and alternative grocery store suggestions.
+Due to the nature of this application focusing on user finances, the accuracy and correctness of all
+main features are paramount to this application's success.
+Additionally, qualities that are important for an enjoyable user experience
+will also be emphasized in this VnV Plan. Testing should verify that the application demonstrates
+acceptable levels of usability and performance according to stakeholder expectations. \\
 
-\wss{You should also list the objectives that are out of scope.  You don't have 
-the resources to do everything, so what will you be leaving out.  For instance, 
-if you are not going to verify the quality of usability, state this.  It is also 
-worthwhile to justify why the objectives are left out.}
-
-\wss{The objectives are important because they highlight that you are aware of 
-limitations in your resources for verification and validation.  You can't do everything, 
-so what are you going to prioritize?  As an example, if your system depends on an 
-external library, you can explicitly state that you will assume that external library 
-has already been verified by its implementation team.}
+In general, a majority of the requirements set by the
+\href{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/SRS/SRS.pdf}{SRS} and
+\href{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/HazardAnalysis/HazardAnalysis.pdf}{HA} will be considered
+during validation and verification. Maintainability, adaptability, and compliance tests however will be placed out of scope
+due to them having less direct impact on the main user experience. Additionally, personalization settings
+will be out of scope for testing as well due to them having less importance for the current build of the project. The primary focus during
+this development period will be to build a prototype application with all primary features and qualities rather than a
+full consumer product. With this in mind, these qualities seemed less relevant to this overall goal.
+Additionally, several features will leverage external libraries as part of the overall workflow and these components will
+be excluded from testing as well on a unit level. The team will assume that these libraries have already
+been tested extensively by the original developers and other users.
 
 \subsection{Relevant Documentation}
 
-\wss{Reference relevant documentation.  This will definitely include your SRS
-  and your other project documents (design documents, like MG, MIS, etc).  You
-  can include these even before they are written, since by the time the project
-  is done, they will be written.}
+% \wss{Reference relevant documentation.  This will definitely include your SRS
+%   and your other project documents (design documents, like MG, MIS, etc).  You
+%   can include these even before they are written, since by the time the project
+%   is done, they will be written.}
 
-\citet{SRS}
+Listed below are the relevant documents referred to in this VnV Plan:
 
-\wss{Don't just list the other documents.  You should explain why they are relevant and 
-how they relate to your VnV efforts.}
+\begin{itemize}
+  \item \href{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/SRS/SRS.pdf}{Software Requirements Specification} \citet{GrocerySRS}\\
+  The SRS contains the primary functional and non-functional requirements that are being used as the basis for many of the tests in this document.
+  \item \href{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/HazardAnalysis/HazardAnalysis.pdf}{Hazard Analysis} \citet{GroceryHA}\\
+  The HA contains a number of safety requirements that were identified to help mitigate risk that were also considered for testing in this document.
+  \item \href{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/Design/SoftArchitecture/MG.pdf}{Module Guide}\\
+  The MG references the different modules that make up the general overall application in which the VnV Plan tests.
+  \item \href{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/Design/SoftDetailedDes/MIS.pdf}{Module Interface Specification}\\
+  The MIS contains detailed information on each of the application modules which form the basis for the unit tests.
+  \item \href{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/DevelopmentPlan/DevelopmentPlan.pdf}{Development Plan} \citet{GroceryDP}\\
+  The DP describes a roadmap for the project including timelines, communication plans, and technical details.
+\end{itemize}
 
 \section{Plan}
 
-\wss{Introduce this section.   You can provide a roadmap of the sections to
-  come.}
+The following will outline a series of plans and processes that will be used for the verification and validation of the software solution and documentation the Grocery Spending Tracker project. The sections are as follows:
+\begin{itemize}
+    \item Verification and Validation Team: the team members their involvement in the verification and validation efforts 
+    \item SRS Verification Plan: the approaches to be used for SRS verification
+    \item Design Verification Plan: plans for design verification
+    \item Verification and Validation Plan Verification Plan: plans for VnV verification
+    \item Implementation Verification Plan: dynamic and static tests for verification of the implementation
+    \item Automated Testing and Verification Tools: tools and metrics to be used for testing and verification of the implementation
+    \item Software Validation Plan: plans for verification of the software requirements
+\end{itemize}
+The stakeholders referred to in this document are individuals who are members of low-income households in Hamilton and students from McMaster University as described in Section 2 of the \href{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/SRS/SRS.pdf}{SRS}. As the primary client, their involvement in the VnV ensures that the system aligns with the needs and goals of the intended users.
 
 \subsection{Verification and Validation Team}
-
-\wss{Your teammates.  Maybe your supervisor.
-  You should do more than list names.  You should say what each person's role is
-  for the project's verification.  A table is a good way to summarize this information.}
+Developers are responsible for creating, executing, and documenting the tests for verifying and validating the project. This includes SRS verification, design verification, VnV verification, system tests, and unit tests. Task distribution will be flexible and distributed based on available resources. Individuals will also have areas of focus (listed below) where they will take leadership in to minimize fragmented results. 
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{|>{\hsize=.36\hsize}X|>{\hsize=1.64\hsize}X|}
+        \hline
+        \textbf{Name} & \textbf{Role}\\
+        \hline
+        Allan Fang & Developer: SRS, VnV, Design Verification\\
+        \hline
+        Jason Nam & Developer: SRS, NFR System Tests, FR System Tests\\
+        \hline
+        Ryan Yeh & Developer: Unit Tests, Software Validation\\
+        \hline
+        Sawyer Tang & Developer: FR System Tests, Unit Tests\\
+        \hline
+    \end{tabularx}
+    \caption{VnV Team}
+    \label{tab:vnvteam}
+\end{table}
 
 \subsection{SRS Verification Plan}
-
-\wss{List any approaches you intend to use for SRS verification.  This may include
-  ad hoc feedback from reviewers, like your classmates, or you may plan for 
-  something more rigorous/systematic.}
-
-\wss{Maybe create an SRS checklist?}
+The design documentation will be verified with an informal walk-through by stakeholders and peers of the SFWRENG 4G06 course who will provide ad-hoc review as well as an inspection by the development team. The inspection will address the following issues and be tracked by the checklist:
+\begin{itemize}
+    \item Correctness: the \href{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/SRS/SRS.pdf}{SRS} accurately represents the software expectations
+    \item Ambiguity: the requirements and contents convey an unambiguous meaning
+    \item Completeness: the SRS covers all necessary functional and non-functional requirements
+    \item Verifiability: the requirements are testable and quantifiable
+    \item Traceability: the requirements have clear source references
+    \item Clarity: the document is written in a clear, concise, and unambiguous manner
+\end{itemize}
 
 \subsection{Design Verification Plan}
-
-\wss{Plans for design verification}
-
-\wss{The review will include reviews by your classmates}
-
-\wss{Create a checklists?}
+The design documentation will be verified with an informal walk-through by stakeholders and peers of the SFWRENG 4G06 course who will provide ad-hoc review as well as an inspection by the development team. The review will address the following issues and be guided by the checklist:
+\begin{itemize}
+    \item Design adequacy and conformance to software requirements: assess whether the design adequately meets the specified requirements (\href{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/SRS/SRS.pdf}{SRS})
+    \item Internal consistency: different components of the design are coherent
+    \item External consistency: the design aligns with external interfaces, standards, and environments
+    \item Feasibility: whether the design can be practically realized within technical and resource constraints
+    \item Maintenance: whether the design can be easily updated, modified, or repaired
+\end{itemize}
 
 \subsection{Verification and Validation Plan Verification Plan}
-
-\wss{The verification and validation plan is an artifact that should also be
-verified.  Techniques for this include review and mutation testing.}
-
-\wss{The review will include reviews by your classmates}
-
-\wss{Create a checklists?}
+The VnV plan will be verified with an informal walk-through by stakeholders and peers of the SFWRENG 4G06 course who will provide ad-hoc review as well as an inspection by the development team. The reviews will address the following issues and be guided by the checklist:
+\begin{itemize}
+    \item Completeness: the VnV plan covers all necessary documentation, functional requirements, and non-functional requirements
+    \item Feasibility: whether the actions that the VnV plan details can be practically realized within technical and resource constraints
+    \item Clarity: the document is written in a clear, concise, and unambiguous manner
+\end{itemize}
 
 \subsection{Implementation Verification Plan}
-
-\wss{You should at least point to the tests listed in this document and the unit
-  testing plan.}
-
-\wss{In this section you would also give any details of any plans for static
-  verification of the implementation.  Potential techniques include code
-  walkthroughs, code inspection, static analyzers, etc.}
+The verification of the implementation will be done with static and dynamic tests as well as surveys and interviews with stakeholders. Dynamic tests will be done according to Sections 4 and 5 of this document. For static tests, the development team will conduct a code walk-through to check for incorrect code along with using the linter and coding standards detailed in Section 3.6.
 
 \subsection{Automated Testing and Verification Tools}
-
-\wss{What tools are you using for automated testing.  Likely a unit testing
-  framework and maybe a profiling tool, like ValGrind.  Other possible tools
-  include a static analyzer, make, continuous integration tools, test coverage
-  tools, etc.  Explain your plans for summarizing code coverage metrics.
-  Linters are another important class of tools.  For the programming language
-  you select, you should look at the available linters.  There may also be tools
-  that verify that coding standards have been respected, like flake9 for
-  Python.}
-
-\wss{If you have already done this in the development plan, you can point to
-that document.}
-
-\wss{The details of this section will likely evolve as you get closer to the
-  implementation.}
+Refer to Sections 6 and 7 of the \href{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/DevelopmentPlan/DevelopmentPlan.pdf}{Development Plan} for the automated testing and verification tools the team will be using.
 
 \subsection{Software Validation Plan}
-
-\wss{If there is any external data that can be used for validation, you should
-  point to it here.  If there are no plans for validation, you should state that
-  here.}
-
-\wss{You might want to use review sessions with the stakeholder to check that
-the requirements document captures the right requirements.  Maybe task based
-inspection?}
-
-\wss{For those capstone teams with an external supervisor, the Rev 0 demo should 
-be used as an opportunity to validate the requirements.  You should plan on 
-demonstrating your project to your supervisor shortly after the scheduled Rev 0 demo.  
-The feedback from your supervisor will be very useful for improving your project.}
-
-\wss{For teams without an external supervisor, user testing can serve the same purpose 
-as a Rev 0 demo for the supervisor.}
-
-\wss{This section might reference back to the SRS verification section.}
+A task-based inspection process with stakeholders will be used to validate the software. The inspection will be conducted according to the business events and user flows described in Sections 6 and 8 of the \href{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/SRS/SRS.pdf}{SRS}.
 
 \section{System Test Description}
+
+This section will provide an outline of the various system tests that will be performed
+by the team during development. The system tests will primarily be based on the functional and nonfunctional requirements
+recorded in the \href{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/SRS/SRS.pdf}{SRS}.
 	
 \subsection{Tests for Functional Requirements}
 
-\wss{Subsets of the tests may be in related, so this section is divided into
-  different areas.  If there are no identifiable subsets for the tests, this
-  level of document structure can be removed.}
+\subsubsection{User Authentication}
 
-\wss{Include a blurb here to explain why the subsections below
-  cover the requirements.  References to the SRS would be good here.}
+The following sections pertain to all tests that have to do with the user logging into and gaining access to the system.
 
-\subsubsection{Area of Testing1}
+\paragraph{Authentication Interface}
 
-\wss{It would be nice to have a blurb here to explain why the subsections below
-  cover the requirements.  References to the SRS would be good here.  If a section
-  covers tests for input constraints, you should reference the data constraints
-  table in the SRS.}
-		
-\paragraph{Title for Test}
+These tests pertain to all the functional requirements related to the authentication interface.
 
 \begin{enumerate}
 
-\item{test-id1\\}
+\item{\textbf{FRT-FR1-1}}
 
-Control: Manual versus Automatic
-					
-Initial State: 
-					
-Input: 
-					
-Output: \wss{The expected result for the given inputs}
+Control: Manual
+          
+Initial State: User is not signed into the system.
+          
+Input: User attempts to sign into the system with the correct username and credentials.
 
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
-					
-How test will be performed: 
-					
-\item{test-id2\\}
+Output: User is successfully signed in and on the application landing page in no more than three steps.
 
-Control: Manual versus Automatic
-					
-Initial State: 
-					
-Input: 
-					
-Output: \wss{The expected result for the given inputs}
+Test Case Derivation: If the login credentials are correct and match a user in the database, then login should be simple and successful.
+          
+How test will be performed: Tester will attempt to log into the application. Validate that it takes less than four steps to reach the landing page.
 
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
+\item{\textbf{FRT-FR1-2}}
 
-How test will be performed: 
+Control: Manual
+          
+How test will be performed: Survey is presented to the user for them to respond how easy it is to log into the system.
+A success is determined by at least a 70\% positive response. The survey question is detailed in Section 6.2.1.
 
 \end{enumerate}
 
-\subsubsection{Area of Testing2}
 
-...
+\paragraph{Log-in and Authentication Credentials}
+
+These tests pertain to all the functional requirements related to authentication credentials and the user logging in to the system.
+
+\begin{enumerate}
+
+\item{\textbf{FRT-FR2-1}}
+
+Control: Manual
+					
+Initial State: User with no existing account on file.
+					
+Input: User signs up for account with valid name, email, phone-number, and password.
+					
+Output: User is directed to landing page. Account is successfully created and verification email is sent.
+
+Test Case Derivation: As long as all fields required for sign up are filled with the appropriate data types and formats,
+then sign up should be completed successfully.
+					
+How test will be performed: Tester will open the application and attempt to create a new account with the pertaining credentials and details. 
+					
+\item{\textbf{FRT-FR2-2}}
+
+Control: Manual
+					
+Initial State: User with no existing account on file.
+					
+Input: User signs up for account with valid name, phone-number, and password however
+an invalid email is used (i.e. not following the format of a prefix prior to the @ symbol and a domain afterwards).
+					
+Output: Error message should be displayed on the screen detailing an invalid email within 3 seconds.
+
+Test Case Derivation: If incorrect/invalid data is used during sign up, the user should be notified and sign up should
+not be allowed.
+
+How test will be performed: Tester will open the application and attempt to create a new account with the pertaining credentials and details. 
+
+\item{\textbf{FRT-FR2-3}}
+
+Control: Manual
+          
+Initial State: User with no existing account on file.
+          
+Input: User signs up for account with valid name, email, and password however an
+invalid phone number is used, for instance, a number less than 10 digits.
+          
+Output: Error message should be displayed on the screen detailing an invalid phone number within 3 seconds.
+
+Test Case Derivation: If incorrect/invalid data is used during sign up, the user should be notified and sign up should
+not be allowed.
+
+How test will be performed: Tester will open the application and attempt to create a new account with the pertaining credentials and details. 
+
+\item{\textbf{FRT-FR2-4}}
+
+Control: Manual
+          
+Initial State: User with no existing account on file.
+          
+Input: User signs up for account with valid name, email, and phone-number however an invalid password
+is used, such as an empty string.
+          
+Output: Error message should be displayed on the screen detailing an invalid password within 3 seconds.
+
+Test Case Derivation: If incorrect/invalid data is used during sign up, the user should be notified and sign up should
+not be allowed.
+
+How test will be performed: Tester will open the application and attempt to create a new account with the pertaining credentials and details. 
+
+\item{\textbf{FRT-FR2-5}}
+
+Control: Manual
+          
+Initial State: User with existing account on file.
+          
+Input: User signs into their account with email and password combination that exists in the user database.
+          
+Output: User is directed to landing page.
+
+Test Case Derivation: If a user signs in using credentials that match an existing user, sign in should be successful.
+          
+How test will be performed: Tester will open the application and attempt to sign into an account with the pertaining credentials.
+          
+\item{\textbf{FRT-FR2-6}}
+
+Control: Manual
+          
+Initial State: User with existing account on file.
+          
+Input: User signs in using the correct password for their account but does not use the matching email for that password
+          
+Output: Error message displayed on the screen saying the email and password combination do not match any existing users. Prompt to reset password is highlighted within 3 seconds.
+
+Test Case Derivation: The system should prevent login if the email and password do not match to the same user.
+          
+How test will be performed: Tester will open the application and attempt to sign into an account with the pertaining credentials.
+
+\item{\textbf{FRT-FR2-7}}
+
+Control: Manual
+          
+Initial State: User with existing account on file.
+          
+Input: User signs into an account with an existing email and non-matching password to that user.
+          
+Output: Error message displayed on the screen saying the password is incorrect for the entered email. Prompt to reset password is highlighted within 3 seconds.
+
+Test Case Derivation: If both email and password do not match the credentials set for a user in the database, sign in
+should be rejected.
+          
+How test will be performed: Tester will open the application and attempt to sign into an account with the pertaining credentials.
+
+\end{enumerate}
+
+\subsubsection{Receipt Scanning}
+
+These tests pertain to all the functional requirements related to the scanning of receipts and inputting grocery data.
+
+\begin{enumerate}
+
+\item{\textbf{FRT-FR3-1}}
+
+Control: Manual
+          
+Initial State: User has physical receipt and the system has access to the device camera.
+          
+Input: A photo of a physical receipt. User takes photo of receipt with their device.
+          
+Output: User is provided with a list of all their grocery items and prices on the receipt as well as an option to manually enter or edit them.
+
+Test Case Derivation: Assuming optimal conditions, the application should be able to capture the items and corresponding prices
+of each. The user should then have the opportunity to review the data and make changes before submitting.
+          
+How test will be performed: In even lighting, tester will run the system and photograph a receipt. They will then validate that the systems interpretation of the photograph matches that of the physical receipt with above 90\% precision.
+
+\item{\textbf{FRT-FR11-1}}
+
+Control: Manual
+          
+Initial State: User has physical receipt and the system has access to the device camera.
+
+Input: User scans a physical receipt in bad conditions.
+          
+Output: User is provided with a list of all the scanned grocery items and prices on the receipt with a strong recommendation to retake the photo in better conditions or manually enter or edit them.
+
+Test Case Derivation: In poor lighting conditions where the receipt is not clearly visible by the camera, the application should still
+attempt to scan the receipt but should prompt the user to retake the photo in better conditions to ensure accuracy of the data.
+          
+How test will be performed: In a dark environment, tester will run the system and photograph a receipt. They will then validate that the system prompts the user to retake the photo or manually review all scanned items.
+
+\item{\textbf{FRT-FR11-2}}
+
+Control: Manual
+          
+Initial State: User has no physical receipt.
+
+Input: User prompts the system that they do not have a receipt to scan.
+          
+Output: User is prompted to manually enter their grocery items and prices.
+
+Test Case Derivation: If the user does not have a usable receipt that they can scan, the system should allow users to manually
+enter data if necessary.
+          
+How test will be performed: Tester will prompt the system interface that they have no receipt. Tester will validate they are able to manually enter their items.
+
+\item{\textbf{FRT-FR11-3}}
+
+Control: Manual
+          
+Initial State: The system does not have access to the device camera.
+
+Input: User attempts to scan a receipt.
+          
+Output: User is prompted to give permissions for the application to access camera. If not given, user is asked to manually enter grocery items and prices.
+
+Test Case Derivation: Without permissions, the application will not work properly. Therefore, the application should prompt the user to give
+camera access and restrict users to manual receipt entry if not given.
+          
+How test will be performed: Tester will revoke application access to device camera and then attempt to scan a receipt. Verify that the system prompts the user for camera access and asks the user for manual input if not given.
+
+\end{enumerate}
+
+\subsubsection{Account Goals and Preferences}
+
+These tests pertain to all the functional requirements related to the user's account preferences, goals, or details that affect the system's performance.
+
+\paragraph{Location-based Recommendations}
+
+These tests pertain to all the functional requirements related to the user's location and how it affects their grocery recommendations.
+
+\begin{enumerate}
+
+\item{\textbf{FRT-FR4-1}}
+
+Control: Manual
+          
+Initial State: The system does not have access to the user's device location.
+
+Input: User prevents location access for the application
+          
+Output: User is prompted that the system has no location access and given the option to manually enter their general home location and desired recommendation radius.
+
+Test Case Derivation: If the application is not given access to the device's location, then the application should allow for
+manual entry by the user to prevent feature disruption.
+          
+How test will be performed: Tester will revoke application access to location  and then attempt to receive location-based grocery recommendations. Validate that system provides prompt.
+
+\item{\textbf{FRT-FR4-2}}
+
+Control: Manual
+          
+Initial State: The system has access to the user's device location but user wants to manually set a different one.
+
+Input: User changes preferences to use manually entered home location and recommendation radius rather than device location.
+          
+Output: System provides accurate location-based recommendations regarding the manually entered location.
+
+Test Case Derivation: If the user wishes to use a manually set location rather than their device's location, then the
+application should still function the same in both scenarios.
+          
+How test will be performed: Tester will go to preferences and opt to use manually provided home location and recommendation radius. Validate that the system is providing correct grocery recommendations for the manually inputted location and radius.
+
+\item{\textbf{FRT-FR4-3}}
+
+Control: Manual
+          
+Initial State: The system has access to the user's device location.
+
+Input: System has location access on device.
+          
+Output: Application provides recommendations to the user for stored that are within the default radius of their location.
+
+Test Case Derivation: Should the application have access to the device location, then all location preferences should be
+relative to the device's active location.
+          
+How test will be performed: Tester will enable location services for the application and validate that the system is providing correct grocery recommendations for the current device location.
+
+\end{enumerate}
+
+\paragraph{User Objectives}
+
+These tests pertain to all the functional requirements related to the user's goals and spending objectives.
+
+\begin{enumerate}
+
+\item{\textbf{FRT-FR5-1}}
+
+Control: Manual
+          
+Initial State: The system has no spending goals and desired outcomes stored in the system.
+
+Input: User navigates to the preferences of their application.
+          
+Output: The system provides a space for the user to input their spending goals.
+
+Test Case Derivation: The system must provide an interface for the user to input their spending goals.
+          
+How test will be performed: Tester will navigate to the application preferences and validate that an interface exists for inputting spending goals.
+
+\item{\textbf{FRT-FR5-2}}
+
+Control: Manual
+          
+Initial State: The system has existing spending goals and desired outcomes stored in the system. The system displayed the current spending goals.
+
+Input: User navigates to the preferences of their application and changes their spending goals.
+          
+Output: The system is updated to reflect the new spending goals.
+
+Test Case Derivation: If spending goals are ever updated, then the application should take the new spending goals into account
+for correctness.
+          
+How test will be performed: Tester will navigate to the application preferences and validate that the existing spending goals are displayed. They will then attempt to change the values of the spending goals and then save the changes.
+
+\item{\textbf{FRT-FR6-1}}
+
+Control: Manual
+          
+Initial State: The system has no budgeting constraints stored.
+
+Input: User navigates to the preferences of their application.
+          
+Output: The system provides a space for the user to input their budgeting constraints.
+
+Test Case Derivation: The system must provide an interface for the user to input their budgeting constraints.
+          
+How test will be performed: Tester will navigate to the application preferences and validate that an interface exists for inputting user budgeting constraints.
+
+\item{\textbf{FRT-FR6-2}}
+
+Control: Manual
+          
+Initial State: The system has existing budgeting constraints stored.
+
+Input: User navigates to the preferences of their application and changes their budgeting constraints.
+          
+Output: The system displays the new budgeting constraints.
+
+Test Case Derivation: If budgeting constraints are ever updated, then the application should take the new constraints into account
+for correctness.
+
+How test will be performed: Tester will navigate to the application preferences and validate that the existing goals are displayed. They will then attempt to change the budgeting constraints values and save the changes.
+
+\end{enumerate}
+
+\subsubsection{System Behaviour and Recommendations}
+
+These tests pertain to all the functional requirements related to how the system responds to the data that is provided to it. This includes the recommendations provided to the user.
+
+\paragraph{Receiving Grocery Data}
+
+These tests pertain to all the functional requirements related to how the system shall treat and handle data it receives.
+
+\begin{enumerate}
+
+\item{\textbf{FRT-FR7-1}}
+
+Control: Automatic
+          
+Initial State: Test database is empty.
+
+Input: API calls from client (front-end) to back-end containing receipt data. Receipt data is comprised of an array of \textit{Item(string name, double price, string date, string purchaseLocation, int userID)}.
+          
+Output: Database contains correctly organized items. The user's database table should include all items they purchased.
+
+Test Case Derivation: System back-end must accurately map and sort receipt entries provided, keeping a record of the user who purchased each item.
+          
+How test will be performed: Begin with an empty testing database. Test cases comprised of items and prices are sent through an API call to the system back-end by testing client. Then an additional API call will be called from the testing client against the system back-end to validate that the items and prices are correctly stored in the database. \textit{Postman} will be used to facilitate API calls. 
+
+\item{\textbf{FRT-FR7-2}}
+
+Control: Automatic
+          
+Initial State: Test database is populated.
+
+Input: API calls from client (front-end) to back-end containing receipt data. Receipt data only contains items that are not already in the database. Receipt data is comprised of an array of \textit{Item(string name, double price, string date, string purchaseLocation, int userID)}.
+          
+Output: System back-end must accurately map and sort receipt entries provided, keeping a record of the user who purchased each item while preserving existing data.
+
+Test Case Derivation: System back-end must accurately map and sort receipt entries provided, keeping a record of each item all users purchase.
+          
+How test will be performed: Begin with a populated testing database. Test cases comprised of items and prices are sent through an API call to the system back-end by testing client. Then an additional API call will be called from the testing client against the system back-end to validate that the items and prices are correctly stored in the database. \textit{Postman} will be used to facilitate API calls. 
+
+\item{\textbf{FRT-FR7-3}}
+
+Control: Automatic
+          
+Initial State: Test database is populated.
+
+Input: API calls from client (front-end) to back-end containing receipt data. Data containing items that are the same as existing items in the database but with different name identifiers.
+An example of this would be a difference of "Rtz Crackers" or "Ritz Cracker". Receipt data is comprised of an array of \textit{Item(string name, int cents, double price, string purchaseLocation, int userID)}.
+          
+Output: Database contains correctly organized items and understanding the relationship between like items. If like products are added to the database, the database correctly maps them to the existing items of the same type, even if the name string is different. The database also keeps track of which users purchase items.
+
+Test Case Derivation: System back-end must accurately map and sort receipt entries provided, keeping a record of the user who purchased each item while preserving existing data.
+          
+How test will be performed: Begin with a populated testing database. Test cases comprised of items and prices are sent through an API call to the system back-end by testing client. Then an additional API call will be called from the testing client against the system back-end to validate that the items and prices are correctly stored in the database. \textit{Postman} will be used to facilitate API calls. 
+
+\end{enumerate}
+
+\paragraph{Grocery Recommendations}
+
+These tests pertain to all the functional requirements related to the system's grocery recommendations based on grocery data received from user and their preferences.
+
+\begin{enumerate}
+
+\item{\textbf{FRT-FR8-1}}
+
+Control: Manual
+          
+Initial State: User has set budget information.
+
+Input: User submits a receipt containing commonly purchased items plus a new highly priced item that puts them over budget.
+          
+Output: The system should identify the newly purchased item as the cause for the user going over budget and will recommend that the user stop purchasing it. If available, the system will also recommend alternatives that are in-line with the user's budget.
+
+Test Case Derivation: System must be aware of the users purchasing activity and budget. If the user ever goes over budget when entering
+a receipt, the system should identify why they went over budget and offer some advice.
+          
+How test will be performed: Tester will input receipt meeting the above conditions. The tester will then validate that the new item is correctly identified as putting the user over budget and confirm if they get a recommendation for an alternative.
+
+\item{\textbf{FRT-FR8-2}}
+
+Control: Manual
+
+How test will be performed: Survey is presented to the user for them to respond how useful the system recommendations are. A success is determined by at least a 70\% positive response. The survey question is detailed in Section 6.2.2.
+
+\item{\textbf{FRT-FR9-1}}
+
+Control: Manual
+          
+Initial State: The database has an entry for a grocery item that is purchased from a location X.
+
+Input: User inputs a receipt containing the grocery item in the database but at a higher price from location Y.
+          
+Output: System provides recommendation to purchase item from location X.
+
+Test Case Derivation: System must be aware of the users purchasing activity and recommend the user with cheaper alternative locations for
+the same item.
+          
+How test will be performed: Tester will submit items purchased for a cheap price on one user account (A) and then submit the same item purchased at a greater price from a different store with another user account (B). Tester verifies that user B receives a recommendation from the system to go to the same place as user A.
+
+\item{\textbf{FRT-FR9-2}}
+
+Control: Manual
+          
+Initial State: The database has an entry for a grocery item that is purchased from a location X.
+
+Input: User submits a receipt containing the grocery item in the database but at a cheaper price from location Y.
+          
+Output: The database should be updated such that the cheapest price, location, and purchase date for that item are equal to the input data. Location Y should then be recommended to users who purchase that item.
+
+Test Case Derivation: System must be aware of the users purchasing activity and recommend the user with cheaper alternative locations for
+the same item.
+          
+How test will be performed: Tester will submit an item purchased for some amount on one user account (A) and then submit the same item for a cheaper amount from a different store with another user account (B). Tester verifies that user A receives a recommendation from the system to go to the same place as user B.
+
+\end{enumerate}
+
+\paragraph{Grocery Items Interface}
+
+These tests pertain to all the functional requirements related to the system's grocery item interface.
+
+\begin{enumerate}
+
+\item{\textbf{FRT-FR10-1}}
+
+Control: Manual
+          
+Initial State: User has no spending data or submitted items.
+
+Input: User submits a receipt.
+          
+Output: System provides an interface showing all purchased items along with price, location, and date-time.
+
+Test Case Derivation: System must provide the user with all of the data that the user has provided the system such that the user can review their own purchasing data.
+          
+How test will be performed: Tester will submit a receipt and then verify to see that the items have been added in the purchases interface.
+
+\item{\textbf{FRT-FR10-2}}
+
+Control: Manual
+          
+Initial State: User has existing spending data and submitted items.
+
+Input: User submits a receipt.
+          
+Output: System provides an interface showing all purchased items along with price, location, and date-time.
+
+Test Case Derivation: System must provide the user with all of the data that the user has provided the system such that the user can review their own purchasing data.
+          
+How test will be performed: Tester will submit a receipt and then verify to see that the items have been added in the purchases interface along with all of the preexisting items.
+
+\end{enumerate}
 
 \subsection{Tests for Nonfunctional Requirements}
 
-\wss{The nonfunctional requirements for accuracy will likely just reference the
-  appropriate functional tests from above.  The test cases should mention
-  reporting the relative error for these tests.  Not all projects will
-  necessarily have nonfunctional requirements related to accuracy}
+\subsubsection{Look and Feel Requirements}
 
-\wss{Tests related to usability could include conducting a usability test and
-  survey.  The survey will be in the Appendix.}
+\begin{enumerate}
+  \item{NFRT-LF1\\}
 
-\wss{Static tests, review, inspections, and walkthroughs, will not follow the
-format for the tests given below.}
+  Type: Manual, Dynamic
+            
+  How test will be performed: Testers will be presented with the application and guided through navigation of various
+  pages available and asked to take note of the aesthetics, appearance and feel of the application. A survey
+  will then be provided to evaluate these qualities which can be found in Section 6.3 of this document.
+            
+  \item{NFRT-LF2\\}
 
-\subsubsection{Area of Testing1}
-		
-\paragraph{Title for Test}
+  Type: Manual
+            
+  How test will be performed: Testers will be given a list of features for the application and a list of
+  unlabelled icons corresponding to each of the features. They will be asked to match which feature
+  they believe pairs with which icon.
+
+  \item{NFRT-LF3\\}
+
+  Type: Manual, Static
+
+  How test will be performed: Walkthroughs will be performed on the code of each of the frontend pages
+  using the \textit{Flutter Inspector} to check size of components and layouts. This will be to ensure no more than
+  85\% of the page is occupied and a numerical balance is achieved in the layout.
+
+  \item{NFRT-LF4\\}
+
+  Type: Manual, Dynamic
+
+  Initial State: The application is opened on a device and logged into a user's account with internet access available.
+
+  Input: The user disconnects from the internet.
+
+  Output: The application should notify the user that they do not have internet connection.
+
+  How test will be performed: Testers will be asked to disconnect from the internet while the application is open.
+\end{enumerate}
+
+\subsubsection{Usability and Humanity Requirements}
+
+\begin{enumerate}
+  \item{NFRT-UH1\\}
+
+  Type: Manual, Dynamic
+            
+  How test will be performed: Testers will be presented with the
+  application and given a brief overview of its purpose. They will then be given 15 minutes to use the application
+  under supervision by the team but without instruction. After that time period, the testers will be asked to input
+  a receipt and navigate to the purchase analytics.
+
+  \item{NFRT-UH2\\}
+
+  Type: Manual, Dynamic
+					
+  Initial State: The application is opened on a device and logged into a user's account with internet access available.
+					
+  Input: The user attempts to input a receipt but cancels the process.
+					
+  Output: No changes should be made to the user's account data.
+  
+  How test will be performed: Testers will be given a receipt to input and asked to input it into the application.
+  Testers will then be asked to cancel the input before the process completes.
+
+  \item{NFRT-UH3\\}
+
+  Type: Manual, Dynamic
+					
+  Initial State: The application is opened on a device and logged into a user's account with internet access available.
+					
+  Input: The user tries changing the application's font size.
+					
+  Output: The font size should be changed throughout the application without negatively impacting readability
+  or general functionality.
+  
+  How test will be performed: Testers will be asked to change the font size to their desired size and
+  navigate through the application to check usability.
+
+  \item{NFRT-UH4\\}
+
+  Type: Manual, Dynamic
+					
+  Initial State: The application is opened on a device and logged in to a user's account with internet access available.
+					
+  Input: The user changes the accessibility colour scheme.
+					
+  Output: The colour scheme should be changed throughout the application without negatively impacting readability
+  or general functionality.
+  
+  How test will be performed: Testers will be asked to change the accessibility colour scheme to their desired setting and
+  navigate through the application to check usability.
+
+  \item{NFRT-UH5\\}
+
+  Type: Manual, Dynamic
+					
+  Initial State: The application is opened on a device and logged in to a user's account with accessibility settings
+  having been changed.
+					
+  Input: The user closes the application.
+					
+  Output: When re-opened, the application should still be logged into the user's account and accessibility
+  settings should still be in place.
+  
+  How test will be performed: Following \textit{NFRT-UH4} and \textit{NFRT-UH5}, testers will be asked to
+  close the application on their device while logged in and re-open it afterwards.
+
+  \item{NFRT-UH6\\}
+
+  Type: Manual
+
+  How test will be performed: A survey will be presented to testers to evaluate the overall usability of the
+  application after first going through \textit{NFRT-UH1}. Afterwards, the team will show them any remaining features
+  they had not yet experienced and given the opportunity to freely experiment with the applications. A survey will then be
+  provided to them. The questions asked will be as written in Section 6.4 of this document.
+\end{enumerate}
+
+\subsubsection{Performance Requirements}
+
+\begin{enumerate}
+  \item{NFRT-PR1\\}
+
+  Type: Manual, Dynamic
+
+  How test will be performed: All pages of the application will be navigated through while using the
+  \textit{Flutter Performance Profiling} tools. Times for rendering and frontend loading will then be recorded
+  to ensure that frontend performance is within expectation.
+
+  \item{NFRT-PR2\\}
+
+  Type: Automatic, Dynamic
+
+  How test will be performed: Requests will be sent to all backend endpoints via \textit{Postman} and after
+  all requests are sent, the times for each request will be recorded. The team will then confirm that
+  the backend performs within expectation.
+
+  \item{NFRT-PR3\\}
+
+  Type: Automatic, Dynamic
+
+  Initial State: The backend server is running and operational.
+
+  Input: For all endpoints, incorrect data types and incorrect inputs (such as empty inputs) will be passed.
+
+  Output: The server should have appropriate error handling where no invalid data is accepted and the server
+  remains operational.
+
+  How test will be performed: A test suite with invalid data for the major endpoints will be created with
+  \textit{Postman}. The test suite will then be automatically executed by \textit{Postman} and the results
+  will be analyzed after.
+
+  \item{NFRT-PR4\\}
+  
+  Type: Manual, Dynamic
+
+  How test will be performed: Based on tests performed for \textit{FRT-FR3-1}, the tester should have to
+  modify and correct data scanned for less than 10\% of total scanned items.
+
+  \item{NFRT-PR5\\}
+
+  Type: Manual, Dynamic
+
+  How test will be performed: For tests performed for \textit{FRT-FR10-1} and \textit{FRT-FR10-2}, the relative
+  error of data such as average spending will be computed and should be less than 5\%.
+
+  \item{NFRT-PR6\\}
+
+  Type: Manual, Dynamic
+
+  Initial State: A device does not have the application installed.
+
+  Input: The application is installed onto the device.
+
+  Output: The device storage should indicate that the application uses less than 1GB of storage.
+
+  How test will be performed: The tester will install the application onto a device without the application currently
+  installed.
+\end{enumerate}
+
+\subsubsection{Cultural Requirements}
 
 \begin{enumerate}
 
-\item{test-id1\\}
+\item{NFRT-CUR1\\}
 
-Type: Functional, Dynamic, Manual, Static etc.
+Type: Manual, Dynamic
 					
-Initial State: 
+Initial State: The app is running and set to the default system of measurement (e.g., metric).
 					
-Input/Condition: 
+Input: The user selects their preferred units of measurement from the app settings.
 					
-Output/Result: 
+Output: The app interface and displayed measurements change to the selected units of measurement as per the user's choice.
 					
-How test will be performed: 
+How test will be performed: The tester will change the units of measurement from the app settings and verify that the interface and displayed measurements switch to the selected units.
 					
-\item{test-id2\\}
+\item{NFRT-CUR2\\}
 
-Type: Functional, Dynamic, Manual, Static etc.
+Type: Manual, Dynamic
 					
-Initial State: 
+Initial State: The app contains common purchase items in the product database.
 					
-Input: 
+Input: The user attempts to add a purchase item to purchase history that is not present in the database.
 					
-Output: 
+Output: The app successfully adds the new purchase item to the user's purchase history.
 					
-How test will be performed: 
+How test will be performed: The tester will attempt to add a product not present in the app product database to the purchase history and verify that the item is added without any issues.
+
+\item{NFRT-CUR3\\}
+
+Type: Manual, Dynamic
+					
+Initial State: The app is set to the default currency (e.g., CAD).
+					
+Input: The user selects the American currency in the app settings.
+					
+Output: The app logs all future purchases all in USD based on the user's selection and will not compare the prices of similar products nearby of a different currency.
+					
+How test will be performed: The tester will access the app's settings, change the currency to USD. The tester will then verify that all prices of future purchases are logged in USD and similar products priced with CAD are not compared.
 
 \end{enumerate}
 
-\subsubsection{Area of Testing2}
 
-...
+\subsubsection{Operational and Environmental Requirements}
 
-\subsection{Traceability Between Test Cases and Requirements}
+\begin{enumerate}
+\item{NFRT-OER1\\}
 
-\wss{Provide a table that shows which test cases are supporting which
-  requirements.}
+Type: Manual, Dynamic
+
+Initial State: Application is not yet installed on the device.
+                
+Input: The user will install and run the application on various devices.
+                
+Output: The application will be successfully installed. The application is operational.
+                
+How test will be performed: The tester will install the application on various mobile devices running Android on version 13 (IASR2) and iOS on version 16 (IASR1). The tester will also test on various tablet devices running Android or iPadOS. The tester will confirm that all functionalities work as expected on each device by conducting variety of actions and system events (including logging in to an user account, input receipt data, analyzing spending analytics, etc.).
+
+\item{NFRT-OER2\\}
+
+Type: Manual, Dynamic
+
+Initial State: The application is installed on a device that has an operable camera peripheral and has access to the internet.
+                
+Input: The user will attempt to use application features that require a camera and/or internet access.
+                
+Output: The application will successfully operate the induced features that require the use of camera and/or internet.
+                
+How test will be performed: The tester will test the application on devices with and without camera peripherals to validate (WER1). The tester will disconnect devices from the internet to test offline functionality. The tester will then reconnect the device to the internet to test online features (WER2). The tester will confirm that all functionalities work on devices that have access to camera peripherals and internet access.
+
+\item{NFRT-OER3\\}
+
+Type: Automatic, Dynamic, Static
+
+Initial State: The application is ready for new releases or any updates.
+                
+Input: Test suites will be executed against new releases and updates.
+                
+Output: The application will identify defects. The team will resolve identified defects. In doing so, the application testing prior to new releases and updates will achieve 80\% code coverage.
+                
+How test will be performed: The tester will use automated testing tools (that can include \textit{Postman}, \textit{Flutter}, etc) to achieve 80\% code coverage (RER1). The tester will then perform issue tracking and resolution processes (RER2). The tester will organize a Final Demonstration (RER3) between March 18 and March 29 of 2024, involving stakeholders to validate the final product against requirements.
+
+\end{enumerate}
+
+\subsubsection{Security Requirements}
+
+\begin{enumerate}
+\item{NFRT-SR1\\}
+
+Type: Manual, Dynamic
+
+Initial State: User is not logged in or terms are not accepted.
+                
+Input: User tries to access the application's database.
+                
+Output: Access will be denied until the user accepts terms and services.
+                
+How test will be performed: Attempts will take place to access the database without accepting terms. The tester will confirm denial of access. Then, attempt access after accepting terms and services. The tester will confirm successful database access.
+
+\item{NFRT-SR2\\}
+
+Type: Manual, Dynamic
+
+Initial State: Data is stored in the application database.
+                
+Input: User will attempt to modify the data directly from the application database.
+                
+Output: Stored data is encrypted. Therefore, modifications to the data are denied.
+                
+How test will be performed: The tester will attempt to use database tools to try to modify data within the application database. Then, the tester will confirm that the application backend database is secure and has not been modified.
+
+\item{NFRT-SR3\\}
+
+Type: Manual, Dynamic
+
+Initial State: Application is in operation.
+                
+Input: User will attempt simulated attacks like SQL injection, cross-site scripting, etc.
+                
+Output: Application will remain secure without any data breaches.
+                
+How test will be performed: The tester will conduct a series of different types of simulated cyber attacks. The tester will then observe application response and monitor application database.
+
+\item{NFRT-SR4\\}
+
+Type: Manual, Dynamic
+
+Initial State: Raw user data is stored in the application database.
+                
+Input: The raw user data is processed and then stored in the application database.
+                
+Output: The data is anonymized by data perturbation (inducing small amount of noise) and encryption. The data is also sanitized by data deletion or masking.
+                
+How test will be performed: The tester will inspect the stored user data for any personal identifiers. The tester will search for any presence of accessible sensitive user data.
+
+\item{NFRT-SR5\\}
+
+Type: Manual, Dynamic
+
+Initial State: Application has yet to collect user data.
+                
+Input: User will start using the application.
+                
+Output: A consent form will pop up before any user data is collected. No user data will be collected without explicit consent given by user.
+                
+How test will be performed: The tester will check for prompts that ask users to consent to data collection. The tester will then test the application with and without user consent to ensure compliance. The tester will confirm no user data was collected and stored in the database without user consent.
+
+\item{NFRT-SR6\\}
+
+Type: Manual, Dynamic
+
+Initial State: Application is in operation.
+                
+Input: User will attempt various actions to induce system events (including logging in to an user account, input receipt data, analyzing spending analytics, etc.).
+                
+Output: Activities and events will be accurately logged. The log can be reviewed by authorized administrators.
+                
+How test will be performed: The tester will perform a variety of user actions and try to trigger system events (including logging in to an user account, input receipt data, analyzing spending analytics, etc.). The tester will verify if these actions and events are accurately logged to system log. The tester will confirm that only authorized administrators can access these logs.
+
+\end{enumerate}
+
+\newpage
+\begin{landscape}
+  \subsection{Traceability Between Test Cases and Requirements}
+
+  \begin{longtable}{|l|ccccccccccc|}
+		\caption{Traceability Between Functional System Test Cases and Functional Requirements} \\
+		\hline
+    \textbf{Functional Requirement ID}   & \multicolumn{11}{c|}{\textbf{Test ID}} \\
+    \hline
+    ~ & \textbf{FR1} & \textbf{FR2} & \textbf{FR3} & \textbf{FR4} & \textbf{FR5} & \textbf{FR6} & \textbf{FR7} & \textbf{FR8} & \textbf{FR9} & \textbf{FR10} & \textbf{FR11} \\
+    \hline
+    FRT-FR1-1 & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR1-2 & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR2-1 & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR2-2 & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR2-3 & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR2-4 & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR2-5 & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR2-6 & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR2-7 & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR3-1 & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR11-1 & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X \\
+    FRT-FR11-2 & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X \\
+    FRT FR11-3 & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X \\
+    FRT-FR4-1 & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR4-2 & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR4-3 & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR5-1 & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR5-2 & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR6-1 & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR6-2 & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR7-1 & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ \\
+    FRT-FR7-2 & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ \\
+    FRT-FR7-3 & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ \\
+    FRT-FR8-1 & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & X & ~ & ~ \\
+    FRT-FR8-2 & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ \\
+    FRT-FR9-1 & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ \\
+    FRT-FR9-2 & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ \\
+    FRT-FR10-1 & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ \\
+    FRT-FR10-2 & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ \\
+    \hline
+  \end{longtable}
+
+  \newpage
+
+  \begin{longtable}{|l|cccccc|}
+		\caption{Traceability Between Nonfunctional System Test Cases and Look and Feel Requirements} \\
+		\hline
+    \textbf{NFR ID}   & \multicolumn{6}{c|}{\textbf{Test ID}} \\
+    \hline
+    ~ & \textbf{AR1} & \textbf{AR2} & \textbf{AR3} & \textbf{SR1} & \textbf{SR2} & \textbf{SR3} \\
+    \hline
+    NFRT-LF1 & X & ~ & X & X & X & X \\
+    NFRT-LF2 & ~ & X & ~ & ~ & ~ & ~ \\
+    NFRT-LF3 & ~ & ~ & X & ~ & ~ & ~ \\
+    NFRT-LF4 & ~ & ~ & ~ & ~ & ~ & X \\
+    \hline
+  \end{longtable}
+
+  \begin{longtable}{|l|ccccccccccc|}
+		\caption{Traceability Between Nonfunctional System Test Cases and Usability and Humanity Requirements} \\
+		\hline
+    \textbf{NFR ID}   & \multicolumn{11}{c|}{\textbf{Test ID}} \\
+    \hline
+    ~ & \textbf{EUR1} & \textbf{EUR2} & \textbf{EUR3} & \textbf{PIR1} & \textbf{LR1} & \textbf{LR2} & \textbf{LR3} & \textbf{UPR1} & \textbf{UPR2} & \textbf{ACR1} & \textbf{ACR2} \\
+    \hline
+    NFRT-UH1 & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ \\
+    NFRT-UH2 & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    NFRT-UH3 & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ \\
+    NFRT-UH4 & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X \\
+    NFRT-UH5 & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    NFRT-UH6 & ~ & ~ & X & X & X & X & ~ & X & X & X & X \\
+    \hline
+  \end{longtable}
+
+  \newpage
+
+  \begin{longtable}{|l|cccccc|}
+		\caption{Traceability Between Nonfunctional System Test Cases and Performance Requirements} \\
+		\hline
+    \textbf{NFR ID}   & \multicolumn{6}{c|}{\textbf{Test ID}} \\
+    \hline
+    ~ & \textbf{SLR1} & \textbf{SLR2} & \textbf{PAR1} & \textbf{PAR2} & \textbf{RFR1} & \textbf{CR1} \\
+    \hline
+    NFRT-PR1 & ~ & X & ~ & ~ & ~ & ~ \\
+    NFRT-PR2 & X & ~ & ~ & ~ & ~ & ~ \\
+    NFRT-PR3 & ~ & ~ & ~ & ~ & X & ~ \\
+    NFRT-PR4 & ~ & ~ & X & ~ & ~ & ~ \\
+    NFRT-PR5 & ~ & ~ & ~ & X & ~ & ~ \\
+    NFRT-PR6 & ~ & ~ & ~ & ~ & ~ & X \\
+    \hline
+  \end{longtable}
+
+  \begin{longtable}{|l|ccc|}
+		\caption{Traceability Between Nonfunctional System Test Cases and Cultural Requirements} \\
+		\hline
+    \textbf{NFR ID}   & \multicolumn{3}{c|}{\textbf{Test ID}} \\
+    \hline
+    ~ & \textbf{CUR1} & \textbf{CUR2} & \textbf{CUR3} \\
+    \hline
+    NFRT-CUR1 & X & ~ & ~ \\
+    NFRT-CUR2 & ~ & X & ~ \\
+    NFRT-CUR3 & ~ & ~ & X \\
+    \hline
+  \end{longtable}
+
+  \begin{longtable}{|l|cccccccccc|}
+		\caption{Traceability Between Nonfunctional System Test Cases and Operational and Environmental Requirements} \\
+		\hline
+    \textbf{NFR ID}   & \multicolumn{10}{c|}{\textbf{Test ID}} \\
+    \hline
+    ~ & \textbf{EPER1} & \textbf{EPER2} & \textbf{EPER3} & \textbf{WER1} & \textbf{WER2} & \textbf{IASR1} & \textbf{IASR2} & \textbf{RER1} & \textbf{RER2} & \textbf{RER3} \\
+    \hline
+    NFRT-OER1 & X & X & X & ~ & ~ & X & X & ~ & ~ & ~ \\
+    NFRT-OER2 & ~ & ~ & ~ & X & X & ~ & ~ & ~ & ~ & ~ \\
+    NFRT-OER3 & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & X & X \\
+    \hline
+  \end{longtable}
+
+  \begin{longtable}{|l|cccccc|}
+		\caption{Traceability Between Nonfunctional System Test Cases and Security Requirements} \\
+		\hline
+    \textbf{NFR ID}   & \multicolumn{6}{c|}{\textbf{Test ID}} \\
+    \hline
+    ~ & \textbf{ACR1} & \textbf{INR1} & \textbf{INR2} & \textbf{PRR1} & \textbf{PRR2} & \textbf{AUR1} \\
+    \hline
+    NFRT-SR1 & X & ~ & ~ & ~ & ~ & ~ \\
+    NFRT-SR2 & ~ & X & ~ & ~ & ~ & ~ \\
+    NFRT-SR3 & ~ & ~ & X & ~ & ~ & ~ \\
+    NFRT-SR4 & ~ & ~ & ~ & X & ~ & ~ \\
+    NFRT-SR5 & ~ & ~ & ~ & ~ & X & ~ \\
+    NFRT-SR6 & ~ & ~ & ~ & ~ & ~ & X \\
+    \hline
+  \end{longtable}
+\end{landscape}
 
 \section{Unit Test Description}
 
@@ -455,34 +1328,141 @@ This is where you can place additional information.
 The definition of the test cases will call for SYMBOLIC\_CONSTANTS.
 Their values are defined in this section for easy maintenance.
 
-\subsection{Usability Survey Questions?}
+\subsection{Functional Requirement Survey Questions}
+\subsubsection{Survey questions for \textbf{FRT-FR1-2}.}
 
-\wss{This is a section that would be appropriate for some projects.}
+\noindent \textbf{Question 1:} How easy was it to log into the application?
+Responses: \{(not easy) 1, 2, 3, 4, 5 (very easy)\} \\
+
+\subsubsection{Survey questions for \textbf{FRT-FR8-2}.}
+
+\noindent \textbf{Question 1:} How useful would you say that the application recommendations are to you?
+Responses: \{(not useful) 1, 2, 3, 4, 5 (very useful)\} \\
+
+\noindent \textbf{Question 2:} How likely are you to act the recommendation provided to you by the application?
+Responses: \{(not likely) 1, 2, 3, 4, 5 (very likely)\}
+
+\subsection{Look and Feel Survey Questions}
+
+\begin{enumerate}
+  \item Did you feel the colour scheme was cohesive and consistent throughout the application?
+  \item On a scale of 1-10, how would you rate the general layouts of each of the pages?
+  \item Were there any pages that felt too cluttered or too sparse?
+  \item Did the general layouts of the application pages appear consistent throughout navigation?
+  \item On a scale of 1-10, how would you rate how features were organized?
+  \item Were there any features that seemed out of place relative to the pages they were present on?
+  \item Were there any places where you expected loading indicators but there weren't any or vice versa?
+  \item Do you have any feedback on the overall look and feel of the application?
+\end{enumerate}
+
+\subsection{Usability Survey Questions}
+
+\begin{enumerate}
+  \item On a scale of 1-10, how useful was the introductory walkthrough tutorial in your learning of the application?
+  \item On a scale of 1-10, how useful was the FAQ in your learning of the application?
+  \item What parts of the application were easiest for you to understand/learn?
+  \item What parts of the application do you feel additional explanation or clarity could be provided?
+  \item Was the language and wording used in the application understandable and inoffensive? If not, please
+  provide where and how the wording could be improved?
+  \item Were there any issues you encountered while using the application?
+  \item Did you have any issues with navigating the application? If you made a mistake, were you able to navigate
+  back to where you started?
+  \item How was your experience with the available accessibility settings? Do you have any feedback or suggestions for
+  improvements that could be made.
+  \item On a scale of 1-10, how would you rate the usability and intuitiveness of the application?
+\end{enumerate}
 
 \newpage{}
 \section*{Appendix --- Reflection}
-
-The information in this section will be used to evaluate the team members on the
-graduate attribute of Lifelong Learning.  Please answer the following questions:
-
-\newpage{}
-\section*{Appendix --- Reflection}
-
-\wss{This section is not required for CAS 741}
 
 The information in this section will be used to evaluate the team members on the
 graduate attribute of Lifelong Learning.  Please answer the following questions:
 
 \begin{enumerate}
-  \item What knowledge and skills will the team collectively need to acquire to
+  \item \textbf{What knowledge and skills will the team collectively need to acquire to
   successfully complete the verification and validation of your project?
   Examples of possible knowledge and skills include dynamic testing knowledge,
   static testing knowledge, specific tool usage etc.  You should look to
-  identify at least one item for each team member.
-  \item For each of the knowledge areas and skills identified in the previous
+  identify at least one item for each team member.}
+
+  For the verification and validation of this project, several skills will be required
+  to ensure that this project is well-tested and meets all requirements. This will involve
+  some general testing knowledge as well as some knowledge specific to the technologies we
+  are using. By learning the following, the team will be able to produce a better project for this
+  capstone in addition to more confidence in the testing process in our careers.
+  \begin{enumerate}
+    \item Knowledge of the different forms and approaches of dynamic testing
+    \item Knowledge of the different forms and approaches of static testing
+    \item Experience and knowledge working with \textit{Flutter's} internal unit testing framework and
+    \textit{Flutter Performance Profiling} for frontend performance
+    \item Experience and knowledge using \textit{Postman} for backend tests
+    \item Communication skills to write surveys and elicit feedback from stakeholders/testers
+  \end{enumerate}
+
+  \item \textbf{For each of the knowledge areas and skills identified in the previous
   question, what are at least two approaches to acquiring the knowledge or
   mastering the skill?  Of the identified approaches, which will each team
-  member pursue, and why did they make this choice?
+  member pursue, and why did they make this choice?}
+
+  For skills \textit{(a)} and \textit{(b)}, one approach that could be taken is to review notes from
+  \textit{SFWRENG 3S03} where topics such as dynamic and static testing were covered. The different
+  approaches for dynamic and static testing were also part of the lecture material which would be useful to go over again.
+  A second approach is to conduct research online for tutorials, articles and documents covering the static and dynamic testing
+  approaches. Hands-on experience could also be employed with different technologies that
+  support static and dynamic testing.\par
+
+  Skills \textit{(c)} and \textit{(d)} involve more specific technologies, so one approach to learning these
+  could be to read documentation. For both technologies, documentation is present to learn how the
+  developers had intended them to be used. For a second approach, \textit{YouTube} tutorials can be referenced to
+  go over the basics and learn these technologies. Since many tutorials are made by users, it
+  can provide more insight on how these applications can be used in a more practical setting.
+  Lastly, third-party articles can also be used for additional learning. \par
+
+  Finally, skill \textit{(e)} is more of a social skill rather than a technical skill compared to the other skills listed.
+  One approach to improve communication skills for testing is to have our team actively engage in group collaboration and seek feedback from fellow team members when preparing for feedback elicitation. For instance, reviewing a proposed survey with the team will identify the good and bad aspects present that team members can internalize. For a second approach, \textit{SFWRENG 3S03} has lectures on surveys
+  (such as the kinds of questions to ask and not ask) and similar testing approaches that can also be reviewed to better
+  learn and improve this skill. Additionally, coursework in \textit{SFWRENG 4HC3} could also be used as survey formats and guidelines
+  are covered in the material. Last, familiarization with software that supports surveys and elicitation could also be used as
+  another approach.
+
+  Below are the chosen skills from each team member, their rationale, and approaches they will use to learn or
+  improve said skills.
+
+  \textbf{Ryan Yeh}\\
+  \textit{Chosen Skills: (c), (d), (e)} \\
+  For verification and validation, I will be taking a leadership role in designing unit tests and software
+  validation. Therefore, I want to ensure familiarity with \textit{Flutter's} testing technology and \textit{Postman}
+  given that unit tests will primarily utilize these technologies. By ensuring proper learning of
+  this software, I should be able to better guide the rest of the team during unit test development resulting
+  in a stronger test suite. In addition, I also chose communication skills as a skill to focus on since this application
+  is primarily user-focused. Therefore, ensuring proper user feedback and testing with stakeholders will be very important
+  to this app's success. \par
+  To learn and improve my skills with \textit{Flutter's} testing software and \textit{Postman}, I will refer to the
+  official documentation and \textit{YouTube} tutorials. I feel this will give me a balance between original developer
+  knowledge and practical user knowledge. In terms of communication skills, I will be employing group feedback
+  and collaboration to ensure high-quality questions are being asked to maximize the feedback and information we receive
+  from stakeholders and testers.
+
+  \medskip
+  \textbf{Sawyer Tang}\\
+  \textit{Chosen Skills: (a), (b), (d)} \\
+  I am going to be responsible for the FR system tests and the unit tests for the system. Therefore, I believe it is important for me to have a deep understanding of dynamic testing, static testing, and the use of \textit{Postman} for API testing. By having a deep understanding of these concepts and skills, I can contribute to the project's correctness and testing depth.
+  To develop my Dynamic testing and Static testing skills, I plan to reference my \textit{SFWRENG 3S03} notes and resources, as well as put into practice skills from online articles and forums. With regards to improving my abilities with \textit{Postman}, I plan to reference \textit{YouTube}, blogs, and \textit{Postman's} own documentation.
+
+  \medskip
+  \textbf{Jason Nam}\\
+  \textit{Chosen Skills: (a), (b), (e)}\\
+  I will be responsible for SRS Verification, NFR system tests, FR system tests. These roles will require relevant skills and knowledge for dynamic testing, static testing, and writing surveys and eliciting feedback from stakeholders and/or testers. Through thorough understanding of the the listed skills and knowledge, I believe that I can be of use and contribute to the verification and validation of the application.\par
+  I plan to develop my dynamic testing and static testing skills by referring back to \textit{SFWRENG 3S03} practices. I also plan to understand the basics of each testing methods first by partaking in online courses, articles, and tutorials. I plan to try hands-on testing and practice cases. I will also take advantage of code review practices and analysis tools like \textit{flutter\_lints} and \textit{Pylint} to enhance static testing skills. For survey and eliciting feedback related skills, I will study different survey designs. I will reference back to \textit{SFWRENG 4HC3} for understanding survey procedures and guidelines as well as eliciting feedback. I plan to familiarize myself with \textit{Google Forms} and other tools to optimize surveys and eliciting feedback.
+
+  \medskip
+  \textbf{Allan Fang}\\
+  \textit{Chosen Skills: (b), (e) } \\
+  I will be taking the lead on SRS Verification, VnV Verification, and Design Verification which will primarily be the verification of documentation. Therefore, I will focus on acquiring the relevant skills and knowledge for documentation verification according to the VnV plan (guided walkthroughs with stakeholders and inspections with checklists) which will be static testing and communication for eliciting feedback. I will be using both proposed approaches for acquiring knowledge on static testing and both proposed approaches for acquiring communication skills to elicit feedback. \\
+  I have chosen the first two approaches for understanding static testing because I can gain both theoretical knowledge (course notes) and practical insights (online research) into the various aspects of static testing. This comprehensive approach will help me be more effective in my verification.\\
+  I have also chosen the first two approaches for communication skills for eliciting feedback. The first approach of group collaboration and feedback will enable me to practice and refine this skill while the second approach will provide a solid theoretical foundation to start with. Using both approaches will enhance my ability to elicit valuable feedback from stakeholders during the verification process, ensuring well-validated documentation.
+
+  
 \end{enumerate}
 
 \end{document}
