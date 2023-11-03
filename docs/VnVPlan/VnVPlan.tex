@@ -21,7 +21,7 @@
 
 \begin{document}
 
-\title{Project Title: System Verification and Validation Plan for \progname{}} 
+\title{System Verification and Validation Plan for \progname{}} 
 \author{\authname}
 \date{\today}
 	
@@ -34,35 +34,17 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+03/12/23 & 1.0 & Created initial version of the VnV Plan\\
 \bottomrule
 \end{tabularx}
 
 ~\\
-\wss{The intention of the VnV plan is to increase confidence in the software.
-However, this does not mean listing every verification and validation technique
-that has ever been devised.  The VnV plan should also be a \textbf{feasible}
-plan. Execution of the plan should be possible with the time and team available.
-If the full plan cannot be completed during the time available, it can either be
-modified to ``fake it'', or a better solution is to add a section describing
-what work has been completed and what work is still planned for the future.}
-
-\wss{The VnV plan is typically started after the requirements stage, but before
-the design stage.  This means that the sections related to unit testing cannot
-initially be completed.  The sections will be filled in after the design stage
-is complete.  the final version of the VnV plan should have all sections filled
-in.}
 
 \newpage
 
 \tableofcontents
 
 \listoftables
-\wss{Remove this section if it isn't needed}
-
-\listoffigures
-\wss{Remove this section if it isn't needed}
 
 \newpage
 
@@ -222,13 +204,13 @@ The VnV plan will be verified with an informal walk-through by stakeholders and 
 \end{itemize}
 
 \subsection{Implementation Verification Plan}
-The verification of the implementation will be done with static and dynamic tests as well as surveys and interviews with stakeholders. Dynamic tests will be done according to sections 4 and 5 of this document. For static tests, the development team will conduct a code walk-through to check for incorrect code along with using the linter and coding standards detailed in Section 3.6.
+The verification of the implementation will be done with static and dynamic tests as well as surveys and interviews with stakeholders. Dynamic tests will be done according to Sections 4 and 5 of this document. For static tests, the development team will conduct a code walk-through to check for incorrect code along with using the linter and coding standards detailed in Section 3.6.
 
 \subsection{Automated Testing and Verification Tools}
-Refer to sections 6 and 7 of the \href{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/DevelopmentPlan/DevelopmentPlan.pdf}{Development Plan} for the automated testing and verification tools the team will be using.
+Refer to Sections 6 and 7 of the \href{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/DevelopmentPlan/DevelopmentPlan.pdf}{Development Plan} for the automated testing and verification tools the team will be using.
 
 \subsection{Software Validation Plan}
-A task-based inspection process with stakeholders will be used to validate the software. The inspection will be conducted according to the business events and user flows described in sections 6 and 8 of the \href{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/SRS/SRS.pdf}{SRS}.
+A task-based inspection process with stakeholders will be used to validate the software. The inspection will be conducted according to the business events and user flows described in Sections 6 and 8 of the \href{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/SRS/SRS.pdf}{SRS}.
 
 \section{System Test Description}
 
@@ -267,7 +249,7 @@ How test will be performed: Tester will attempt to log into the application. Val
 Control: Manual
           
 How test will be performed: Survey is presented to the user for them to respond how easy it is to log into the system.
-A success is determined by at least a 70\% positive response. The survey question is detailed in \textit{section 6.2.1}.
+A success is determined by at least a 70\% positive response. The survey question is detailed in Section 6.2.1.
 
 \end{enumerate}
 
@@ -657,7 +639,7 @@ How test will be performed: Tester will input receipt meeting the above conditio
 
 Control: Manual
 
-How test will be performed: Survey is presented to the user for them to respond how useful the system recommendations are. A success is determined by at least a 70\% positive response. The survey question is detailed in \textit{Section 6.2.2}.
+How test will be performed: Survey is presented to the user for them to respond how useful the system recommendations are. A success is determined by at least a 70\% positive response. The survey question is detailed in Section 6.2.2.
 
 \item{\textbf{FRT-FR9-1}}
 
@@ -915,7 +897,7 @@ How test will be performed: Tester will submit a receipt and then verify to see 
 
 \item{NFRT-CUR1\\}
 
-Type: Functional, Dynamic
+Type: Manual, Dynamic
 					
 Initial State: The app is running and set to the default system of measurement (e.g., metric).
 					
@@ -927,7 +909,7 @@ How test will be performed: The tester will change the units of measurement from
 					
 \item{NFRT-CUR2\\}
 
-Type: Functional, Dynamic
+Type: Manual, Dynamic
 					
 Initial State: The app contains common purchase items in the product database.
 					
@@ -939,7 +921,7 @@ How test will be performed: The tester will attempt to add a product not present
 
 \item{NFRT-CUR3\\}
 
-Type: Functional, Dynamic
+Type: Manual, Dynamic
 					
 Initial State: The app is set to the default currency (e.g., CAD).
 					
@@ -957,7 +939,7 @@ How test will be performed: The tester will access the app's settings, change th
 \begin{enumerate}
 \item{NFRT-OER1\\}
 
-Type: Functional, Dynamic, Manual
+Type: Manual, Dynamic
 
 Initial State: Application is not yet installed on the device.
                 
@@ -969,7 +951,7 @@ How test will be performed: The tester will install the application on various m
 
 \item{NFRT-OER2\\}
 
-Type: Functional, Dynamic, Manual
+Type: Manual, Dynamic
 
 Initial State: The application is installed on a device that has an operable camera peripheral and has access to the internet.
                 
@@ -981,7 +963,7 @@ How test will be performed: The tester will test the application on devices with
 
 \item{NFRT-OER3\\}
 
-Type: Static, Dynamic, Automated
+Type: Automatic, Dynamic, Static
 
 Initial State: The application is ready for new releases or any updates.
                 
@@ -998,7 +980,7 @@ How test will be performed: The tester will use automated testing tools (that ca
 \begin{enumerate}
 \item{NFRT-SR1\\}
 
-Type: Functional, Manual, Static
+Type: Manual, Dynamic
 
 Initial State: User is not logged in or terms are not accepted.
                 
@@ -1010,7 +992,7 @@ How test will be performed: Attempts will take place to access the database with
 
 \item{NFRT-SR2\\}
 
-Type: Functional, Dynamic
+Type: Manual, Dynamic
 
 Initial State: Data is stored in the application database.
                 
@@ -1022,7 +1004,7 @@ How test will be performed: The tester will attempt to use database tools to try
 
 \item{NFRT-SR3\\}
 
-Type: Dynamic, Penetration
+Type: Manual, Dynamic
 
 Initial State: Application is in operation.
                 
@@ -1034,7 +1016,7 @@ How test will be performed: The tester will conduct a series of different types 
 
 \item{NFRT-SR4\\}
 
-Type: Functional, Dynamic, Manual
+Type: Manual, Dynamic
 
 Initial State: Raw user data is stored in the application database.
                 
@@ -1046,7 +1028,7 @@ How test will be performed: The tester will inspect the stored user data for any
 
 \item{NFRT-SR5\\}
 
-Type: Dynamic, Manual
+Type: Manual, Dynamic
 
 Initial State: Application has yet to collect user data.
                 
@@ -1058,7 +1040,7 @@ How test will be performed: The tester will check for prompts that ask users to 
 
 \item{NFRT-SR6\\}
 
-Type: Functional, Dynamic, Manual
+Type: Manual, Dynamic
 
 Initial State: Application is in operation.
                 
@@ -1396,12 +1378,6 @@ Responses: \{(not likely) 1, 2, 3, 4, 5 (very likely)\}
 The information in this section will be used to evaluate the team members on the
 graduate attribute of Lifelong Learning.  Please answer the following questions:
 
-\newpage{}
-\section*{Appendix --- Reflection}
-
-The information in this section will be used to evaluate the team members on the
-graduate attribute of Lifelong Learning.  Please answer the following questions:
-
 \begin{enumerate}
   \item \textbf{What knowledge and skills will the team collectively need to acquire to
   successfully complete the verification and validation of your project?
@@ -1431,7 +1407,9 @@ graduate attribute of Lifelong Learning.  Please answer the following questions:
   For skills \textit{(a)} and \textit{(b)}, one approach that could be taken is to review notes from
   \textit{SFWRENG 3S03} where topics such as dynamic and static testing were covered. The different
   approaches for dynamic and static testing were also part of the lecture material which would be useful to go over again.
-  A second approach is to conduct research online for articles and documents covering the static and dynamic testing approaches. \par
+  A second approach is to conduct research online for tutorials, articles and documents covering the static and dynamic testing
+  approaches. Hands-on experience could also be employed with different technologies that
+  support static and dynamic testing.\par
 
   Skills \textit{(c)} and \textit{(d)} involve more specific technologies, so one approach to learning these
   could be to read documentation. For both technologies, documentation is present to learn how the
@@ -1443,7 +1421,9 @@ graduate attribute of Lifelong Learning.  Please answer the following questions:
   Finally, skill \textit{(e)} is more of a social skill rather than a technical skill compared to the other skills listed.
   One approach to improve communication skills for testing is to have our team actively engage in group collaboration and seek feedback from fellow team members when preparing for feedback elicitation. For instance, reviewing a proposed survey with the team will identify the good and bad aspects present that team members can internalize. For a second approach, \textit{SFWRENG 3S03} has lectures on surveys
   (such as the kinds of questions to ask and not ask) and similar testing approaches that can also be reviewed to better
-  learn and improve this skill.
+  learn and improve this skill. Additionally, coursework in \textit{SFWRENG 4HC3} could also be used as survey formats and guidelines
+  are covered in the material. Last, familiarization with software that supports surveys and elicitation could also be used as
+  another approach.
 
   Below are the chosen skills from each team member, their rationale, and approaches they will use to learn or
   improve said skills.
@@ -1477,10 +1457,10 @@ graduate attribute of Lifelong Learning.  Please answer the following questions:
 
   \medskip
   \textbf{Allan Fang}\\
-  \textit{Chosen Skills: b, e } \\
+  \textit{Chosen Skills: (b), (e) } \\
   I will be taking the lead on SRS Verification, VnV Verification, and Design Verification which will primarily be the verification of documentation. Therefore, I will focus on acquiring the relevant skills and knowledge for documentation verification according to the VnV plan (guided walkthroughs with stakeholders and inspections with checklists) which will be static testing and communication for eliciting feedback. I will be using both proposed approaches for acquiring knowledge on static testing and both proposed approaches for acquiring communication skills to elicit feedback. \\
-  I have chosen both approaches for understanding static testing because I can gain both theoretical knowledge (course notes) and practical insights (online research) into the various aspects of static testing. This comprehensive approach will help me be more effective in my verification.\\
-  I have also chosen both approaches for communication skills for eliciting feedback. The first approach of group collaboration and feedback will enable me to practice and refine this skill while the second approach will provide a solid theoretical foundation to start with. Using both approaches will enhance my ability to elicit valuable feedback from stakeholders during the verification process, ensuring well-validated documentation.
+  I have chosen the first two approaches for understanding static testing because I can gain both theoretical knowledge (course notes) and practical insights (online research) into the various aspects of static testing. This comprehensive approach will help me be more effective in my verification.\\
+  I have also chosen the first two approaches for communication skills for eliciting feedback. The first approach of group collaboration and feedback will enable me to practice and refine this skill while the second approach will provide a solid theoretical foundation to start with. Using both approaches will enhance my ability to elicit valuable feedback from stakeholders during the verification process, ensuring well-validated documentation.
 
   
 \end{enumerate}
