@@ -343,13 +343,13 @@ Control: Manual
           
 Initial State: User with existing account on file.
           
-Input: User signs in using the correct password for their account but does not use the matching email for that password
+Input: User signs in using an email that is not stored in the user database.
           
-Output: Error message displayed on the screen saying the email and password combination do not match any existing users. Prompt to reset password is highlighted within 3 seconds.
+Output: Error message displayed on the screen saying the email is not associated to an existing account. Prompt to create an account.
 
-Test Case Derivation: The system should prevent login if the email and password do not match to the same user.
+Test Case Derivation: The system should prevent login if the email is not associated with a user in the database.
           
-How test will be performed: Tester will open the application and attempt to sign into an account with the pertaining credentials.
+How test will be performed: Tester will open the application and attempt to sign into an account with an email that does not have an account.
 
 \item{\textbf{FRT-FR2-7}}
 
