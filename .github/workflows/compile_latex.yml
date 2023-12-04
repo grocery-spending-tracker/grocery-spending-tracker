@@ -24,11 +24,17 @@ jobs:
       - name: Setup Repository
         uses: actions/checkout@v3
 
-      - name: Github Action for LaTeX
+      - name: Compile SRS
         uses: xu-cheng/latex-action@3.1.0
         with:
             root_file: SRS.tex
             working_directory: ./docs/SRS
+
+      - name: Compile HA
+        uses: xu-cheng/latex-action@3.1.0
+        with:
+            root_file: HazardAnalysis.tex
+            working_directory: ./docs/HazardAnalysis
             
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v5
