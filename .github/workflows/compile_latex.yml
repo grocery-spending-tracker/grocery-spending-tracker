@@ -24,6 +24,18 @@ jobs:
       - name: Setup Repository
         uses: actions/checkout@v3
 
+      - name: Compile Development Plan
+        uses: xu-cheng/latex-action@3.1.0
+        with:
+            root_file: DevelopmentPlan.tex
+            working_directory: ./docs/DevelopmentPlan
+
+      - name: Compile Problem Statement
+        uses: xu-cheng/latex-action@3.1.0
+        with:
+            root_file: ProblemStatement.tex
+            working_directory: ./docs/ProblemStatementAndGoals
+
       - name: Compile SRS
         uses: xu-cheng/latex-action@3.1.0
         with:
@@ -35,6 +47,12 @@ jobs:
         with:
             root_file: HazardAnalysis.tex
             working_directory: ./docs/HazardAnalysis
+
+      - name: Compile VnV Plan
+        uses: xu-cheng/latex-action@3.1.0
+        with:
+            root_file: VnVPlan.tex
+            working_directory: ./docs/VnVPlan
             
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v5
