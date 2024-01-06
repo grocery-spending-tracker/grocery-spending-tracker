@@ -16,6 +16,8 @@
 \usepackage{float}
 \graphicspath{ {./res/} }
 \usepackage{amsmath, mathtools}
+\usepackage{pdflscape}
+\usepackage{multirow}
 \hypersetup{
     bookmarks=true,         % show bookmarks bar?
       colorlinks=true,      % false: boxed links; true: colored links
@@ -458,10 +460,14 @@ N/A
     \end{longtable}
 
 \section{The Scope of the Product}
+
+This section will go over the scope of the application being developed. It will go over the product boundary
+as well as the use cases that will be considered for the product.
+
 \subsection{Product Boundary}
 \begin{figure}[H]
   \centering
-  \includegraphics[width=\textwidth]{use_case_diagram}
+  \includegraphics[width=0.95\textwidth]{use_case_diagram.pdf}
   \caption{Use Case Diagram}
   \label{fig:use_case_diagram}
 \end{figure}
@@ -636,6 +642,11 @@ N/A
 \end{enumerate}
 
 \section{Functional Requirements}
+
+This section will provide details on all the functional requirements relevant to the application.
+It will also show the traceability between functional requirements and product use cases in addition to
+formal specifications for some of the requirements.
+
 \subsection{Functional Requirements}
 \medskip
 \noindent \textbf{Requirement ID:} FR1\\
@@ -714,12 +725,32 @@ N/A
 \textbf{Rationale:} It is essential for the system to ensure data accuracy and completeness of tracking of user grocery purchases. Although scanning and recognizing image text using OCR have become advanced, it is impossible to ensure 100\% accuracy of results all the time. Therefore, allowing users to verify and update items will enhance reliability of data.\\
 \textbf{Fit Criterion:} The system should reflect changes made by users on the purchase items log in less than 3 seconds. Also, user feedback on ease of edit functions should be positive, with more than 80\% of users rating it easy.\\
 
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{traceabilitymatrix}
-  \caption{Traceability Matrix with Functional Requirements and Product Use Cases}
-  \label{fig:traceabilitymatrix}
-\end{figure}
+\newpage
+\begin{landscape}
+  \subsection{Traceability Between Functional Requirements and Product Use Cases}
+
+  \begin{longtable}{|l|ccccccccccc|}
+		\caption{Traceability Between Functional System Test Cases and Functional Requirements} \\
+		\hline
+    \textbf{Functional Requirement ID}   & \multicolumn{11}{c|}{\textbf{Product Use Case ID}} \\
+    \hline
+    ~ & \textbf{FR1} & \textbf{FR2} & \textbf{FR3} & \textbf{FR4} & \textbf{FR5} & \textbf{FR6} & \textbf{FR7} & \textbf{FR8} & \textbf{FR9} & \textbf{FR10} & \textbf{FR11} \\
+    \hline
+    PUC1 & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    PUC2 & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    PUC3 & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ \\
+    PUC4 & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    PUC5 & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ \\
+    PUC6 & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X \\
+    PUC7 & ~ & ~ & X & X & X & X & ~ & ~ & ~ & ~ & X \\
+    PUC8 & ~ & ~ & X & ~ & ~ & ~ & X & ~ & ~ & ~ & X \\
+    PUC9 & ~ & ~ & X & ~ & ~ & ~ & X & ~ & ~ & ~ & X \\
+    PUC10 & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ \\
+    PUC11 & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ \\
+    PUC12 & ~ & X & ~ & ~ & ~ & ~ & ~ & X & X & ~ & ~ \\
+    \hline
+  \end{longtable}
+\end{landscape}
 
 \subsection{Added Section - Formal Specification}
 In regards to identifying functions for project:
