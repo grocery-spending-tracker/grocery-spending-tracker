@@ -1,0 +1,60 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Compile Latex
+
+
+# Controls when the workflow will run
+on:
+  push:
+    branches: [ "master" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    runs-on: ubuntu-latest
+
+    permissions:
+        contents: write
+    
+    steps:
+      - name: Setup Repository
+        uses: actions/checkout@v3
+
+      - name: Compile Development Plan
+        uses: xu-cheng/latex-action@3.1.0
+        with:
+            root_file: DevelopmentPlan.tex
+            working_directory: ./docs/DevelopmentPlan
+
+      - name: Compile Problem Statement
+        uses: xu-cheng/latex-action@3.1.0
+        with:
+            root_file: ProblemStatement.tex
+            working_directory: ./docs/ProblemStatementAndGoals
+
+      - name: Compile SRS
+        uses: xu-cheng/latex-action@3.1.0
+        with:
+            root_file: SRS.tex
+            working_directory: ./docs/SRS
+
+      - name: Compile HA
+        uses: xu-cheng/latex-action@3.1.0
+        with:
+            root_file: HazardAnalysis.tex
+            working_directory: ./docs/HazardAnalysis
+
+      - name: Compile VnV Plan
+        uses: xu-cheng/latex-action@3.1.0
+        with:
+            root_file: VnVPlan.tex
+            working_directory: ./docs/VnVPlan
+            
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+            commit_message: Compile LaTeX PDF
