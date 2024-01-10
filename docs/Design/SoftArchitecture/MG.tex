@@ -157,11 +157,12 @@ adapted here is called design for
 change.
 
 \begin{description}
-\item[\refstepcounter{acnum} \actheacnum \label{acHardware}:] The specific
-  hardware on which the software is running.
-\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The format of the
-  initial input data.
-\item ...
+\item[\refstepcounter{acnum} \actheacnum \label{acHardware}:] The specific hardware on which the software is running.
+\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The format of the initial receipt data.
+\item[\refstepcounter{acnum} \actheacnum \label{acAPIReq}:] The structure of the data inputted to the server.
+\item[\refstepcounter{acnum} \actheacnum \label{acAPIRes}:] The structure of the data returned from the server.
+\item[\refstepcounter{acnum} \actheacnum \label{acFormat}:] The styling and formatting of UI components and user input.
+\item[\refstepcounter{acnum} \actheacnum \label{acDB}:] The table structure of the databases.
 \end{description}
 
 \subsection{Unlikely Changes} \label{SecUchange}
@@ -174,9 +175,11 @@ will potentially need to be modified. Hence, it is not intended that these
 decisions will be changed.
 
 \begin{description}
-\item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] Input/Output devices
-  (Input: File and/or Keyboard, Output: File, Memory, and/or Screen).
-\item ...
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] The user interface will be on a mobile device that has a camera for primary input.
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] The server will run on NodeJS.
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] The front end mobile app will be built on Flutter.
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] The database will be PostgreSQL.
+
 \end{description}
 
 \section{Module Hierarchy} \label{SecMH}
@@ -267,15 +270,14 @@ to be implemented.
 \item[Implemented By:] --
 \end{description}
 
-\subsubsection{Input Format Module (\mref{mInput})}
+\subsubsection{Vision Module (\mref{mRVision})}
 
 \begin{description}
-\item[Secrets:]The format and structure of the input data.
-\item[Services:]Converts the input data into the data structure used by the
-  input parameters module.
-\item[Implemented By:] [Your Program Name Here]
-\item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
-  [Information to include for leaf modules in the decomposition by secrets tree.]
+\item[Secrets:] The dependencies and algorithms required to facilitate text recognition of receipts.
+\item[Services:] Provides methods related to usage of the device camera and extraction of the text from captured
+receipts.
+\item[Implemented By:] Grocery Spending Tracker
+\item[Type of Module:] Library
 \end{description}
 
 \subsubsection{Receipt Extraction Module (\mref{mExtraction})}
@@ -288,6 +290,23 @@ modules.
 \item[Type of Module:] Library
 \end{description}
 
+\subsubsection{Location Management Module (\mref{mLocation})}
+
+\begin{description}
+\item[Secrets:] The dependencies and algorithms for determining location-based relevance. 
+\item[Services:] Determines relevance of information based on location data.
+\item[Implemented By:] Grocery Spending Tracker
+\item[Type of Module:] Library
+\end{description}
+
+\subsubsection{User Analytics Module (\mref{mAnalytics})}
+
+\begin{description}
+\item[Secrets:] The data structures and algorithms for compiling and computing user purchasing analytics. 
+\item[Services:] Provide analytics and feedback on user purchasing behaviour, offering insight on recent and future purchasing.
+\item[Implemented By:] Grocery Spending Tracker
+\item[Type of Module:] Library
+\end{description}
 
 \subsection{Software Decision Module}
 
