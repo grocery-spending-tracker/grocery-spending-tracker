@@ -275,7 +275,7 @@ None
   \end{tabular}
 \end{table}
 
-\textbf{Grocery Trip}
+\textbf{GroceryTrip}
 
 \begin{table}[H]
   \begin{tabular}{|p{0.25\textwidth}|p{0.25\textwidth}|p{0.40\textwidth}|}
@@ -286,13 +286,35 @@ None
     \hline
     location & String & Address of the grocery store location \\
     \hline
-    items & List<Items> & List of purchased grocery items from receipt \\
+    items & List$<$Items$>$ & List of purchased grocery items from receipt \\
     \hline
     subtotal & Double & Total spent on grocery trip before tax \\
     \hline
     total & Double & Total spent on grocery trip \\
     \hline
-    tripDesc & Optional<String> & Notes made by the user \\
+    tripDesc & Optional$<$String$>$ & Notes made by the user \\
+    \hline
+  \end{tabular}
+\end{table}
+
+\textbf{UpdateGroceryTrip}
+
+\begin{table}[H]
+  \begin{tabular}{|p{0.25\textwidth}|p{0.27\textwidth}|p{0.38\textwidth}|}
+    \hline
+    \textbf{Output Name} & \textbf{Output Type} & \textbf{Description} \\
+    \hline
+    dateTime & Optional$<$String$>$ & Date and time of transaction \\
+    \hline
+    location & Optional$<$String$>$ & Address of the grocery store location \\
+    \hline
+    items & Optional$<$List$<$Items$>$$>$ & List of purchased grocery items from receipt \\
+    \hline
+    subtotal & Optional$<$Double$>$ & Total spent on grocery trip before tax \\
+    \hline
+    total & Optional$<$Double$>$ & Total spent on grocery trip \\
+    \hline
+    tripDesc & Optional$<$String$>$ & Notes made by the user \\
     \hline
   \end{tabular}
 \end{table}
