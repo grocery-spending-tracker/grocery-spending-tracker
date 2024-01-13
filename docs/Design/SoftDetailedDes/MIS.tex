@@ -250,7 +250,7 @@ receiptExtraction
 
 \subsection{Uses}
 
-Database Driver Module
+Database Driver Module (Section \ref{mDBDriver})
 
 \subsection{Syntax}
 
@@ -260,7 +260,7 @@ None
 
 \subsubsection{Exported Types}
 
-\textbf{Items}
+\textbf{Item}
 
 \begin{table}[H]
   \begin{tabular}{|p{0.25\textwidth}|p{0.25\textwidth}|p{0.40\textwidth}|}
@@ -272,6 +272,22 @@ None
     itemDesc & String & Name of the product on the receipt \\
     \hline
     price & Double & Purchase price of the product \\
+    \hline
+  \end{tabular}
+\end{table}
+
+\textbf{Item}
+
+\begin{table}[H]
+  \begin{tabular}{|p{0.25\textwidth}|p{0.25\textwidth}|p{0.40\textwidth}|}
+    \hline
+    \textbf{Output Name} & \textbf{Output Type} & \textbf{Description} \\
+    \hline
+    itemKey & Optional$<$String$>$ & SKU of the purchased item \\
+    \hline
+    itemDesc & Optional$<$String$>$ & Name of the product on the receipt \\
+    \hline
+    price & Optional$<$Double$>$ & Purchase price of the product \\
     \hline
   \end{tabular}
 \end{table}
@@ -298,19 +314,42 @@ None
   \end{tabular}
 \end{table}
 
+\textbf{UpdatedGroceryTrip}
+
+\begin{table}[H]
+  \begin{tabular}{|p{0.25\textwidth}|p{0.25\textwidth}|p{0.40\textwidth}|}
+    \hline
+    \textbf{Output Name} & \textbf{Output Type} & \textbf{Description} \\
+    \hline
+    dateTime & Optional$<$String$>$ & Date and time of transaction \\
+    \hline
+    location & Optional$<$String$>$ & Address of the grocery store location \\
+    \hline
+    items & Optional$<$List$<$Items$>$$>$ & List of purchased grocery items from receipt \\
+    \hline
+    subtotal & Optional$<$Double$>$ & Total spent on grocery trip before tax \\
+    \hline
+    total & Optional$<$Double$>$ & Total spent on grocery trip \\
+    \hline
+    tripDesc & Optional$<$String$>$ & Notes made by the user \\
+    \hline
+  \end{tabular}
+\end{table}
+
 \subsubsection{Exported Access Programs}
 
 \begin{center}
-  \begin{adjustbox}{width=\textwidth}
-    \begin{tabular}{llll}
-      \hline
-      \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
-      \hline
-      createGroceryTrip & String & GroceryTrip &  \\
-      confirmGroceryTrip & GroceryTrip & JSON &  \\
-      \hline
-    \end{tabular}
-  \end{adjustbox}
+  \begin{tabular}{p{5cm} p{4cm} p{3cm} p{4cm}}
+  \hline
+  \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+  \hline
+  createGroceryTrip & String & GroceryTrip & -\\
+  updateGroceryTrip & UpdatedGroceryTrip & GroceryTrip & -\\
+  createItem & String & Item & -\\
+  updateItem & UpdatedItem & Item & -\\
+  confirmGroceryTrip & GroceryTrip & JSON & -\\
+  \hline
+  \end{tabular}
 \end{center}
 
 \subsection{Semantics}
@@ -325,62 +364,91 @@ User Display\\
 Database
 
 \subsubsection{Assumptions}
-
-None
+\begin{itemize}
+  \item \textit{createItem} will always be working with strings of the format "\textit{itemKey itemDesc price}"
+\end{itemize}
 
 \subsubsection{Access Routine Semantics}
 
 \noindent createGroceryTrip(\textit{receiptData}):
 \begin{itemize}
-\item transition: Extracts \textit{GroceryTrip} data, redirects user to new page where confirmation
+  \item transition: Extracts \textit{GroceryTrip} data, redirects user to new page where confirmation
 of extracted data can be performed.
-\item output: $out := getDateTime(receiptData)=GroceryTrip.dateTime, \text{ }getLocation(receiptData)=GroceryTrip.location,$
-              $getItems(receiptData)=GroceryTrip.items, \text{ }getSubtotal(receiptData)=GroceryTrip.subtotal,$
-              $getTotal(receiptData)=GroceryTrip.total$
+  \item output: $out :=$ new GroceryTrip(getDateTime(\textit{receiptData}), getLocation(\textit{receiptData}),
+                        getItems(\textit{receiptData}), getSubtotal(\textit{receiptData}), getTotal(\textit{receiptData}), "")
+  \item exception: none
+\end{itemize}
+
+\noindent updateGroceryTrip(\textit{updatedTrip}):
+\begin{itemize}
+  \item transition: Updates \textit{GroceryTrip}, reloads confirmation page.
+  \item output: $out :=$ Update all fields of the \textit{GroceryTrip} object with non-empty fields of \textit{updatedTrip}.
+  \item exception: none
+\end{itemize}
+
+\noindent createItem(\textit{itemString}):
+\begin{itemize}
+  \item transition: none
+  \item output: Let itemComponents = \text{\textit{itemString}.split}(" ") \\
+                $out :=$ new Item(itemComponents[0], itemComponents[1], itemComponents[2])
+  \item exception: none
+\end{itemize}
+
+\noindent updateItem(\textit{updatedItem}):
+\begin{itemize}
+  \item transition: none
+  \item output: $out :=$ Update all fields of the \textit{Item} object with non-empty fields of \textit{updatedItem}.
+  \item exception: none
 \end{itemize}
 
 \noindent confirmGroceryTrip(\textit{groceryTrip}):
 \begin{itemize}
-\item transition: Formats \textit{groceryTrip} into a JSON format, saves JSON \textit{groceryTrip} to database.
-\item output: $out := $ A JSON object such that each key-value pair matches that of the \textit{groceryTrip}
-fields.
+  \item transition: Formats \textit{groceryTrip} into a JSON format, saves JSON \textit{groceryTrip} to database.
+  \item output: $out := $ A JSON object such that each key-value pair matches that of the \textit{groceryTrip}
+                fields.
+  \item exception: none
 \end{itemize}
 
 \subsubsection{Local Functions}
 
 \noindent getDateTime(\textit{receiptData}):
 \begin{itemize}
-\item output: $\text{Let } A=\{x : 0 \leq x \leq 9\}, B=\{x : 0 \leq x \leq 2\}, C=\{x : 0 \leq x \leq 5\}$ \\
-              $\text{Let } containsDateTime=\exists data \in receiptData : data$\\ $\in L((A|AA)(/|-)(A|AA)(/|-)(AAAA)\text{ }(BA)\text{:}(CA)\text{:}(CA))$ \\
-              $out := containsDateTime(receiptData) \Rightarrow \text{return } data | \neg containsDateTime(receiptData) \Rightarrow \text{return } null$
+  \item output: $\text{Let } A=\{x : 0 \leq x \leq 9\}, B=\{x : 0 \leq x \leq 2\}, C=\{x : 0 \leq x \leq 5\}$ \\
+                $\text{Let } containsDateTime=\exists data \in receiptData : data$\\ $\in L((A|AA)(/|-)(A|AA)(/|-)(AAAA)\text{ }(BA)\text{:}(CA)\text{:}(CA))$ \\
+                $out := containsDateTime(receiptData) \Rightarrow data | \neg containsDateTime(receiptData) \Rightarrow null$
+  \item exception: none
 \end{itemize}
 
 \noindent getLocation(\textit{receiptData}):
 \begin{itemize}
   \item output: $\text{Let } A=\{x : 0 \leq x \leq 9\}, B=\{a,b,\dots,y,z\}\cup\{A,B,\dots,Y,Z\}\cup\{\text{ }\}$ \\
                 $\text{Let } containsLocation=\exists data \in receiptData : data \in L(A{}^\ast \text{ } B{}^\ast)$ \\
-                $out := containsLocation(receiptData) \Rightarrow \text{return } data | \neg containsLocation(receiptData) \Rightarrow \text{return } null$
+                $out := containsLocation(receiptData) \Rightarrow data | \neg containsLocation(receiptData) \Rightarrow null$
+  \item exception: none
 \end{itemize}
 
 \noindent getItems(\textit{receiptData}):
 \begin{itemize}
   \item output: $\text{Let } A=\{x : 0 \leq x \leq 9\}, B=\{a,b,\dots,y,z\}\cup\{A,B,\dots,Y,Z\}\cup\{\text{ }\}$ \\
                 $\text{Let } getItems=\exists data : data \in L(B^\ast \text{ } (\$|\epsilon)A{}^\ast.AA), itemList=[]$ \\
-                $out := itemList \text{ s.t. } \forall text(getItems(text) \land text \in receiptData) : itemList.append(text)$
+                $out := itemList \text{ s.t. } \forall text(getItems(text) \land text \in receiptData) : itemList.append(createItem(text))$
+  \item exception: none
 \end{itemize}
 
 \noindent getSubtotal(\textit{receiptData}):
 \begin{itemize}
   \item output: $\text{Let } A=\{x : 0 \leq x \leq 9\}$ \\
                 $\text{Let } containsSubtotal=\exists data \in receiptData : data \in L((\text{SUBTOTAL}|\text{Subtotal})\text{ }\$A{}^\ast.AA)$ \\
-                $out := containsSubtotal(receiptData) \Rightarrow \text{return } data | \neg containsSubtotal(receiptData) \Rightarrow \text{return } null$
+                $out := containsSubtotal(receiptData) \Rightarrow data | \neg containsSubtotal(receiptData) \Rightarrow null$
+  \item exception: none
 \end{itemize}
 
 \noindent getTotal(\textit{receiptData}):
 \begin{itemize}
   \item output: $\text{Let } A=\{x : 0 \leq x \leq 9\}$ \\
                 $\text{Let } containsTotal=\exists data \in receiptData : data \in L((\text{TOTAL}|\text{Total})\text{ }\$A{}^\ast.AA)$ \\
-                $out := containsTotal(receiptData) \Rightarrow \text{return } data | \neg containsTotal(receiptData) \Rightarrow \text{return } null$
+                $out := containsTotal(receiptData) \Rightarrow data | \neg containsTotal(receiptData) \Rightarrow null$
+  \item exception: none
 \end{itemize}
 
 \bibliographystyle {plainnat}
