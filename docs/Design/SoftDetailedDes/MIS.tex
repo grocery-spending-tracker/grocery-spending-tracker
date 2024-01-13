@@ -19,7 +19,6 @@
 \usepackage[section]{placeins}
 \usepackage{caption}
 \usepackage{fullpage}
-\usepackage{adjustbox}
 
 \hypersetup{
 bookmarks=true,     % show bookmarks bar?
@@ -413,6 +412,7 @@ of extracted data can be performed.
 
 \noindent getDateTime(\textit{receiptData}):
 \begin{itemize}
+  \item transition: none
   \item output: $\text{Let } A=\{x : 0 \leq x \leq 9\}, B=\{x : 0 \leq x \leq 2\}, C=\{x : 0 \leq x \leq 5\}$ \\
                 $\text{Let } containsDateTime=\exists data \in receiptData : data$\\ $\in L((A|AA)(/|-)(A|AA)(/|-)(AAAA)\text{ }(BA)\text{:}(CA)\text{:}(CA))$ \\
                 $out := containsDateTime(receiptData) \Rightarrow data | \neg containsDateTime(receiptData) \Rightarrow null$
@@ -421,6 +421,7 @@ of extracted data can be performed.
 
 \noindent getLocation(\textit{receiptData}):
 \begin{itemize}
+  \item transition: none
   \item output: $\text{Let } A=\{x : 0 \leq x \leq 9\}, B=\{a,b,\dots,y,z\}\cup\{A,B,\dots,Y,Z\}\cup\{\text{ }\}$ \\
                 $\text{Let } containsLocation=\exists data \in receiptData : data \in L(A{}^\ast \text{ } B{}^\ast)$ \\
                 $out := containsLocation(receiptData) \Rightarrow data | \neg containsLocation(receiptData) \Rightarrow null$
@@ -429,6 +430,7 @@ of extracted data can be performed.
 
 \noindent getItems(\textit{receiptData}):
 \begin{itemize}
+  \item transition: none
   \item output: $\text{Let } A=\{x : 0 \leq x \leq 9\}, B=\{a,b,\dots,y,z\}\cup\{A,B,\dots,Y,Z\}\cup\{\text{ }\}$ \\
                 $\text{Let } getItems=\exists data : data \in L(B^\ast \text{ } (\$|\epsilon)A{}^\ast.AA), itemList=[]$ \\
                 $out := itemList \text{ s.t. } \forall text(getItems(text) \land text \in receiptData) : itemList.append(createItem(text))$
@@ -437,6 +439,7 @@ of extracted data can be performed.
 
 \noindent getSubtotal(\textit{receiptData}):
 \begin{itemize}
+  \item transition: none
   \item output: $\text{Let } A=\{x : 0 \leq x \leq 9\}$ \\
                 $\text{Let } containsSubtotal=\exists data \in receiptData : data \in L((\text{SUBTOTAL}|\text{Subtotal})\text{ }\$A{}^\ast.AA)$ \\
                 $out := containsSubtotal(receiptData) \Rightarrow data | \neg containsSubtotal(receiptData) \Rightarrow null$
@@ -445,6 +448,7 @@ of extracted data can be performed.
 
 \noindent getTotal(\textit{receiptData}):
 \begin{itemize}
+  \item transition: none
   \item output: $\text{Let } A=\{x : 0 \leq x \leq 9\}$ \\
                 $\text{Let } containsTotal=\exists data \in receiptData : data \in L((\text{TOTAL}|\text{Total})\text{ }\$A{}^\ast.AA)$ \\
                 $out := containsTotal(receiptData) \Rightarrow data | \neg containsTotal(receiptData) \Rightarrow null$
