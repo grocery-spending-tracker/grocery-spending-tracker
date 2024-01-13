@@ -62,9 +62,18 @@ Date 2 & 1.1 & Notes\\
 
 \section{Symbols, Abbreviations and Acronyms}
 
-See SRS Documentation at \wss{give url}
-
-\wss{Also add any additional symbols, abbreviations or acronyms}
+See SRS Documentation at \url{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/SRS/SRS.pdf}
+\newline
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{l l} 
+  \toprule		
+  \textbf{symbol} & \textbf{description}\\
+  \midrule 
+  SRS & Software Requirements Specification\\
+  MIS & Module Interface Specification \\
+  SKU & Stock Keeping Unit: ID of Product Used by Retailers \\
+  \bottomrule
+\end{tabular}\\
 
 \newpage
 
@@ -228,6 +237,118 @@ The following table is taken directly from the Module Guide document for this pr
   have local scope.}
 
 \newpage
+
+\section{MIS of Receipt Extraction Module} \label{mExtraction}
+
+The Receipt Extraction Module contains methods related to extracting relevant data such as grocery items,
+prices, and date of transaction from a parsed receipt.
+
+\subsection{Module}
+
+receiptExtraction
+
+\subsection{Uses}
+
+Database Driver Module
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+None
+
+\subsubsection{Exported Types}
+
+\textbf{Items}
+
+\begin{table}[H]
+  \begin{tabular}{|p{0.25\textwidth}|p{0.25\textwidth}|p{0.40\textwidth}|}
+    \hline
+    \textbf{Output Name} & \textbf{Output Type} & \textbf{Description} \\
+    \hline
+    itemKey & String & SKU of the purchased item \\
+    \hline
+    itemDesc & String & Name of the product on the receipt \\
+    \hline
+    price & Double & Purchase price of the product \\
+    \hline
+  \end{tabular}
+\end{table}
+
+\textbf{Grocery Trip}
+
+\begin{table}[H]
+  \begin{tabular}{|p{0.25\textwidth}|p{0.25\textwidth}|p{0.40\textwidth}|}
+    \hline
+    \textbf{Output Name} & \textbf{Output Type} & \textbf{Description} \\
+    \hline
+    dateTime & String & Date and time of transaction \\
+    \hline
+    location & String & Address of the grocery store location \\
+    \hline
+    items & List<Items> & List of purchased grocery items from receipt \\
+    \hline
+    subtotal & Double & Total spent on grocery trip before tax \\
+    \hline
+    total & Double & Total spent on grocery trip \\
+    \hline
+    tripDesc & Optional<String> & Notes made by the user \\
+    \hline
+  \end{tabular}
+\end{table}
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+\wss{accessProg} & - & - & - \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+\wss{Not all modules will have state variables.  State variables give the module
+  a memory.}
+
+\subsubsection{Environment Variables}
+
+\wss{This section is not necessary for all modules.  Its purpose is to capture
+  when the module has external interaction with the environment, such as for a
+  device driver, screen interface, keyboard, file, etc.}
+
+\subsubsection{Assumptions}
+
+\wss{Try to minimize assumptions and anticipate programmer errors via
+  exceptions, but for practical purposes assumptions are sometimes appropriate.}
+
+\subsubsection{Access Routine Semantics}
+
+\noindent \wss{accessProg}():
+\begin{itemize}
+\item transition: \wss{if appropriate} 
+\item output: \wss{if appropriate} 
+\item exception: \wss{if appropriate} 
+\end{itemize}
+
+\wss{A module without environment variables or state variables is unlikely to
+  have a state transition.  In this case a state transition can only occur if
+  the module is changing the state of another module.}
+
+\wss{Modules rarely have both a transition and an output.  In most cases you
+  will have one or the other.}
+
+\subsubsection{Local Functions}
+
+\wss{As appropriate} \wss{These functions are for the purpose of specification.
+  They are not necessarily something that is going to be implemented
+  explicitly.  Even if they are implemented, they are not exported; they only
+  have local scope.}
 
 \bibliographystyle {plainnat}
 \bibliography {../../../refs/References}
