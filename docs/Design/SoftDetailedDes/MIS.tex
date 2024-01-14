@@ -255,7 +255,8 @@ None
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-\wss{accessProg} & - & - & - \\
+didChangeAppLifeCycle & AppLifecycle & - & - \\
+scanReceipt & - & String - noPermissionException \\
 \hline
 \end{tabular}
 \end{center}
@@ -264,8 +265,7 @@ None
 
 \subsubsection{State Variables}
 
-\wss{Not all modules will have state variables.  State variables give the module
-  a memory.}
+AppLifecycle
 
 \subsubsection{Environment Variables}
 
@@ -274,8 +274,9 @@ User Display
 
 \subsubsection{Assumptions}
 
-\wss{Try to minimize assumptions and anticipate programmer errors via
-  exceptions, but for practical purposes assumptions are sometimes appropriate.}
+\begin{itemize}
+  \item Application will always be used on a device with a camera.
+\end{itemize}
 
 \subsubsection{Access Routine Semantics}
 
