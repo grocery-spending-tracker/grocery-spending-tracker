@@ -275,8 +275,8 @@ None
 \noindent getLastLocation():
 \begin{itemize}
 \item transition: none
-\item output: \( \neg location = null \Rightarrow \textit{out} \coloneqq location \), where \textit{location} is the user location stored in the database (Section \ref{mDBDriver})
-\item exception: \( location = null \Rightarrow \textit{exc} \coloneqq noLocationSavedException \), where \textit{location} is the user location stored in the database (Section \ref{mDBDriver})
+\item output: \( \textit{out} \coloneqq \neg location = null \Rightarrow  location \), where \textit{location} is the user location stored in the database (Section \ref{mDBDriver})
+\item exception: \( \textit{exc} \coloneqq location = null \Rightarrow  noLocationSavedException \), where \textit{location} is the user location stored in the database (Section \ref{mDBDriver})
 \end{itemize}
 
 \noindent setLastLocation(\textit{location}):
