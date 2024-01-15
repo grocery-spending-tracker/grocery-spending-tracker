@@ -76,7 +76,7 @@ This section records information for easy reference.
   \progname & The name of the application being built\\
   UC & Unlikely Change \\
   CRUD & Create, Read, Update, Delete \\
-  \wss{etc.} & \wss{...}\\
+  OCR & Optical Character Recognition \\
   \bottomrule
 \end{tabular}\\
 
@@ -551,13 +551,6 @@ in Figure \ref{FigureModuleTestingTimeline}.
 
 \newpage{}
 
-%\section*{References}
-
-\bibliographystyle {plainnat}
-\bibliography{../../../refs/References}
-
-\newpage{}
-
 \section{Reflection}
 
 The information in this section will be used to evaluate the team members on the
@@ -568,21 +561,23 @@ graduate attribute of Problem Analysis and Design.  Please answer the following 
   unlimited resources, what could you do to make the project better? (LO\_ProbSolutions)}
 
   Currently, there are two primary limitations with our project: time and money. In terms
-  of time, it generally isn't feasible to implement everything we would have liked to implement.
+  of time, it generally is not feasible to implement everything we would have liked to implement.
   Many features had to be scoped down to meet the time constraint we had and
   many other features had to be cut altogether. Some of the features and ideas we had discussed
   are:
   \begin{itemize}
     \item Providing support for all grocery stores in Canada
-    \item Implementing our own OCR system specifically designed for receipt data
+    \item Implementing a way to update our database with flyer data and deals from
+    various grocery stores in Canada on a regular basis 
     \item Putting more emphasis in application security and general security practices
     \item Further optimizations in terms of performance
     \item More emphasis and support for accessibility settings
     \item Adding receipt barcode support to potentially fetch more accurate data and
     give users an alternative input method
   \end{itemize}
-  Given unlimited time, we believe these features would have greatly improved the quality
-  of our application and would have been nice features to have.\\
+  We believe these features would be nice to include in our application and would greatly
+  improve its quality, however many of them are not feasible given the limited development time frame
+  we have.\\
 
   Additionally, monetary limitations have led to further constraints on the development of our application.
   Given unlimited money, improvements could be made to our database and server. In particular,
@@ -594,6 +589,36 @@ graduate attribute of Problem Analysis and Design.  Please answer the following 
   are the benefits and tradeoffs of those other designs compared with the chosen
   design?  From all the potential options, why did you select documented design?
   (LO\_Explores)}
+
+  One design solution we considered early on in the project was implementing our own OCR. We believed
+  that having our own OCR pipeline to leverage might lead to better results over a general purpose
+  OCR. Since we only needed to read receipt data, we thought we could optimize it for this use case
+  at the cost of using up our development time. We also thought it would be nice to have more transparency
+  and control over the OCR when compared to off-the-shelf solutions. Despite our efforts however, our implementation ended up
+  being far slower in comparison to existing solutions and more resource intensive. Additionally,
+  the OCR implementation ended up taking far longer than we anticipated so due to the time constraint among the other mentioned issues,
+  it was not feasible to keep proceeding as we were. As a result, we ended up looking to using an existing
+  solution in the form of \textit{Google MLKit} which has solved all of the previously mentioned problems
+  at the cost of having less control compared to a custom solution. \\
+
+  Another design solution we considered involved where we would be processing the OCR data. We were
+  unable to use the information picked up by the OCR on its own due to noise and unnecessary information
+  being present so we had to extract only what was necessary. We had considered doing this on the backend
+  in order to reduce the amount of resources the application would consume on the user's device. This
+  would have come at the cost of being more intensive on the server instead. Considering
+  our monetary limitations and seeing the server as a more limited resource however, we made the decision
+  to move the processing to the frontend. This also allowed us to send relatively clean data to the backend
+  allowing for easier to handle and more consistent data. \\
+
+  Overall, most of our design decisions that we selected involved identifying constraints in our project
+  and choosing the best solution that met our requirements. As a result, we ended up with our current
+  design which we believe offers the best balance between meeting our requirements as well as being
+  feasible with our current resources.
 \end{enumerate}
+
+\newpage{}
+
+\bibliographystyle {plainnat}
+\bibliography{../../../refs/References}
 
 \end{document}
