@@ -194,7 +194,7 @@ actually be implemented.
 \begin{description}
 \item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Hardware-Hiding Module
 \item [\refstepcounter{mnum} \mthemnum \label{mRVision}:] Receipt Vision Module (OCR)
-\item [\refstepcounter{mnum} \mthemnum \label{mReview}:] Receipt Extraction and Review
+\item [\refstepcounter{mnum} \mthemnum \label{mReview}:] Receipt Extraction Module
 \item [\refstepcounter{mnum} \mthemnum \label{mLocation}:] Location Management Module
 \item [\refstepcounter{mnum} \mthemnum \label{mAnalytics}:] User Analytics Module
 \item [\refstepcounter{mnum} \mthemnum \label{mUsers}:] Users Module
@@ -272,16 +272,6 @@ to be implemented.
 
 \subsection{Behaviour-Hiding Module}
 
-\begin{description}
-\item[Secrets:]The contents of the required behaviours.
-\item[Services:]Includes programs that provide externally visible behaviour of
-  the system as specified in the software requirements specification (SRS)
-  documents. This module serves as a communication layer between the
-  hardware-hiding module and the software decision module. The programs in this
-  module will need to change if there are changes in the SRS.
-\item[Implemented By:] --
-\end{description}
-
 \subsubsection{Vision Module (\mref{mRVision})}
 
 \begin{description}
@@ -292,7 +282,7 @@ receipts.
 \item[Type of Module:] Library
 \end{description}
 
-\subsubsection{Receipt Extraction Module (\mref{mExtraction})}
+\subsubsection{Receipt Extraction Module (\mref{mReview})}
 
 \begin{description}
 \item[Secrets:] The algorithms required to extract relevant information from the scanned receipt text.
@@ -329,7 +319,7 @@ modules.
 \item[Type of Module:] Library
 \end{description}
 
-\subsubsection{Authentication Module (\mref{mUsers})}
+\subsubsection{Authentication Module (\mref{mAuth})}
 
 \begin{description}
 \item[Secrets:] The data structures that hold all account data such as username, password, and email.
@@ -351,7 +341,7 @@ modules.
 \item[Implemented By:] --
 \end{description}
 
-\subsubsection{Database Driver Module (\mref{mUsers})}
+\subsubsection{Database Driver Module (\mref{mDBDriver})}
 
 \begin{description}
 \item[Secrets:] The data structures for representing the database schema and providing interface from the other modules.
@@ -559,11 +549,27 @@ in Figure \ref{FigureModuleTestingTimeline}.
   \includegraphics[width=0.8\textwidth]{./res/ModuleTestTimeline.pdf}
 \end{figure}
 
+\newpage{}
+
 %\section*{References}
 
 \bibliographystyle {plainnat}
 \bibliography{../../../refs/References}
 
 \newpage{}
+
+\section{Reflection}
+
+The information in this section will be used to evaluate the team members on the
+graduate attribute of Problem Analysis and Design.  Please answer the following questions:
+
+\begin{enumerate}
+  \item What are the limitations of your solution?  Put another way, given
+  unlimited resources, what could you do to make the project better? (LO\_ProbSolutions)
+  \item Give a brief overview of other design solutions you considered.  What
+  are the benefits and tradeoffs of those other designs compared with the chosen
+  design?  From all the potential options, why did you select documented design?
+  (LO\_Explores)
+\end{enumerate}
 
 \end{document}
