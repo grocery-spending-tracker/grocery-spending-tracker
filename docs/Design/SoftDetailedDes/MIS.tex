@@ -272,10 +272,12 @@ None
     \hline
     price & Float & Purchase price of the product \\
     \hline
+    taxed & Boolean & Whether an item is taxed (Some groceries in Canada aren't taxed) \\
+    \hline
   \end{tabular}
 \end{table}
 
-\textbf{Item}
+\textbf{UpdatedItem}
 
 \begin{table}[H]
   \begin{tabular}{|p{0.25\textwidth}|p{0.25\textwidth}|p{0.40\textwidth}|}
@@ -287,6 +289,8 @@ None
     itemDesc & Optional$<$String$>$ & Name of the product on the receipt \\
     \hline
     price & Optional$<$Float$>$ & Purchase price of the product \\
+    \hline
+    taxed & Boolean & Whether an item is taxed (Some groceries in Canada aren't taxed) \\
     \hline
   \end{tabular}
 \end{table}
@@ -302,7 +306,7 @@ None
     \hline
     location & String & Address of the grocery store location \\
     \hline
-    items & List$<$Items$>$ & List of purchased grocery items from receipt \\
+    items & List$<$Item$>$ & List of purchased grocery items from receipt \\
     \hline
     subtotal & Float & Total spent on grocery trip before tax \\
     \hline
@@ -316,7 +320,7 @@ None
 \textbf{UpdatedGroceryTrip}
 
 \begin{table}[H]
-  \begin{tabular}{|p{0.25\textwidth}|p{0.25\textwidth}|p{0.40\textwidth}|}
+  \begin{tabular}{|p{0.25\textwidth}|p{0.35\textwidth}|p{0.3\textwidth}|}
     \hline
     \textbf{Output Name} & \textbf{Output Type} & \textbf{Description} \\
     \hline
@@ -324,7 +328,7 @@ None
     \hline
     location & Optional$<$String$>$ & Address of the grocery store location \\
     \hline
-    items & Optional$<$List$<$Items$>$$>$ & List of purchased grocery items from receipt \\
+    items & Optional$<$List$<$UpdatedItem$>$$>$ & List of purchased grocery items from receipt \\
     \hline
     subtotal & Optional$<$Float$>$ & Total spent on grocery trip before tax \\
     \hline
