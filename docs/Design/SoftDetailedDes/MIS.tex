@@ -156,8 +156,7 @@ The following table is taken directly from the Module Guide document for this pr
 \newpage
 ~\newpage
 
-\section{MIS of \wss{Module Name}} \label{Module} \wss{Use labels for
-  cross-referencing}
+\section{MIS of Database Driver Module} \label{mDBDriver}
 
 \wss{You can reference SRS labels, such as R\ref{R_Inputs}.}
 
@@ -317,6 +316,84 @@ User Display
   \item output: none
   \item exception: none
 \end{itemize}
+
+\newpage
+
+\section{MIS of Location Management Module} \label{mLocation} 
+The Location Management Module manages user location data and outputs relevant resources based the available user location data.
+
+\subsection{Module}
+
+locationManagement
+
+\subsection{Uses}
+
+ Database Driver Module (Section \ref{mDBDriver})
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+None
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{5cm} p{3cm} p{3cm} p{5cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+getLastLocation & - & String & noLocationSavedException \\
+setLastLocation & String & - & invalidLocationException \\
+getNearbyStores & - & List$<$String$>$ & - \\
+setRadius & $\mathbb{N}$ & - & - \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+None
+
+\subsubsection{Environment Variables}
+None
+
+\subsubsection{Assumptions}
+None
+
+\subsubsection{Access Routine Semantics}
+
+\noindent getLastLocation():
+\begin{itemize}
+\item transition: none
+\item output: \( \textit{out} \coloneqq \neg location = null \Rightarrow  location \), where \textit{location} is the user location stored in the database (Section \ref{mDBDriver})
+\item exception: \( \textit{exc} \coloneqq location = null \Rightarrow  noLocationSavedException \), where \textit{location} is the user location stored in the database (Section \ref{mDBDriver})
+\end{itemize}
+
+\noindent setLastLocation(\textit{location}):
+\begin{itemize}
+\item transition: Set user location in the database (Section \ref{mDBDriver}) to \textit{location}
+\item output: none
+\item exception: \( \textit{exc} \coloneqq invalidLocationException \), if \textit{location} is not a valid location in the places dependency
+\end{itemize}
+
+\noindent getNearbyStores():
+\begin{itemize}
+\item transition: none
+\item output: \( \textit{out} \coloneqq locations \), where textit{locations} is a List of Strings representing relevant stores specified by the user's preferences stored in the database (Section \ref{mDBDriver})
+\item exception: none
+\end{itemize}
+
+\noindent setRadius(\textit{R}):
+\begin{itemize}
+\item transition: Set user location radius in the database (Section \ref{mDBDriver}) to \textit{R}
+\item output: none
+\item exception: none
+\end{itemize}
+
+
+\subsubsection{Local Functions}
+None
 
 \newpage
 
