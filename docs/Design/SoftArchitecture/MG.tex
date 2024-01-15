@@ -74,6 +74,7 @@ This section records information for easy reference.
   SRS & Software Requirements Specification\\
   \progname & Explanation of program name\\
   UC & Unlikely Change \\
+  CRUD & Create, Read, Update, Delete \\
   \wss{etc.} & \wss{...}\\
   \bottomrule
 \end{tabular}\\
@@ -318,6 +319,24 @@ modules.
 \item[Type of Module:] Library
 \end{description}
 
+\subsubsection{Users Module (\mref{mUsers})}
+
+\begin{description}
+\item[Secrets:] The data structures that hold all user data such as goals and reciept data.
+\item[Services:] Produce CRUD operations for operations related to users.
+\item[Implemented By:] Grocery Spending Tracker
+\item[Type of Module:] Library
+\end{description}
+
+\subsubsection{Authentication Module (\mref{mUsers})}
+
+\begin{description}
+\item[Secrets:] The data structures that hold all account data such as username, password, and email.
+\item[Services:] Facilitates secure user login and authentication.
+\item[Implemented By:] Grocery Spending Tracker
+\item[Type of Module:] Library
+\end{description}
+
 \subsection{Software Decision Module}
 
 \begin{description}
@@ -331,7 +350,14 @@ modules.
 \item[Implemented By:] --
 \end{description}
 
-\subsubsection{Etc.}
+\subsubsection{Database Driver Module (\mref{mUsers})}
+
+\begin{description}
+\item[Secrets:] The data structures for representing the database schema and providing interface from the other modules.
+\item[Services:] Facilitates communication between the database and the other modules.
+\item[Implemented By:] Grocery Spending Tracker
+\item[Type of Module:] Library
+\end{description}
 
 \section{Traceability Matrix} \label{SecTM}
 
