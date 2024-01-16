@@ -62,9 +62,18 @@ Date 2 & 1.1 & Notes\\
 
 \section{Symbols, Abbreviations and Acronyms}
 
-See SRS Documentation at \url{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/SRS/SRS.pdf}.
-
-\wss{Also add any additional symbols, abbreviations or acronyms}
+See SRS Documentation at \url{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/SRS/SRS.pdf}
+\newline
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{l l} 
+  \toprule		
+  \textbf{symbol} & \textbf{description}\\
+  \midrule 
+  SRS & Software Requirements Specification\\
+  MIS & Module Interface Specification \\
+  SKU & Stock Keeping Unit: ID of Product Used by Retailers \\
+  \bottomrule
+\end{tabular}\\
 
 \newpage
 
@@ -164,8 +173,7 @@ The following table is taken directly from the Module Guide document for this pr
 \newpage
 ~\newpage
 
-\section{MIS of \wss{Module Name}} \label{Module} \wss{Use labels for
-  cross-referencing}
+\section{MIS of Database Driver Module} \label{mDBDriver}
 
 \wss{You can reference SRS labels, such as R\ref{R_Inputs}.}
 
@@ -234,6 +242,399 @@ The following table is taken directly from the Module Guide document for this pr
   They are not necessarily something that is going to be implemented
   explicitly.  Even if they are implemented, they are not exported; they only
   have local scope.}
+
+\newpage
+
+\section{MIS of Receipt Vision Module} \label{mVision}
+
+The Receipt Vision Module is responsible for providing methods and logic related to image
+capture of the receipt. This includes responsibilities like handling device permissions and camera access.
+
+\subsection{Module}
+
+receiptVision
+
+\subsection{Uses}
+
+None
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+None
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+  \begin{tabular}{p{5cm} p{4cm} p{3cm} p{4cm}}
+  \hline
+  \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+  \hline
+  requestCameraPermission & - & - & - \\
+  didChangeAppLifeCycle & appLifecycle & - & - \\
+  scanReceipt & - & String & noPermissionException \\
+  \hline
+  \end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+\textit{appLifecycle}: Tracks module activity on the user's device. \\
+\textit{isPermissionGranted}: Stores camera permission status. \\
+\textit{selectedCamera}: Stores data on which camera to use.
+
+\subsubsection{Environment Variables}
+
+User Camera \\
+User Display
+
+\subsubsection{Assumptions}
+
+\begin{itemize}
+  \item Application will always be used on a device with a camera.
+\end{itemize}
+
+\subsubsection{Access Routine Semantics}
+
+\noindent requestCameraPermission():
+\begin{itemize}
+  \item transition: Request camera permission and update \textit{isPermissionGranted} accordingly.
+  \item output: none
+  \item exception: none
+  \end{itemize}
+
+\noindent didChangeAppLifeCycle(\textit{appLifecycle}):
+\begin{itemize}
+  \item transition: $transition := (\neg isPermissionGranted) \Rightarrow$ no action is performed $|$\\
+                    $(isPermissionGranted \land appLifecycle = active) \Rightarrow$ Turn on device camera $|$\\
+                    $(isPermissionGranted \land appLifecycle = inactive) \Rightarrow$ Turn off device camera
+  \item output: none
+  \item exception: none
+\end{itemize}
+
+\noindent scanReceipt():
+\begin{itemize}
+  \item transition: Display camera preview and interface for image capture.
+  \item output: $out := isPermissionGranted \Rightarrow$ take picture with camera and parse text
+  \item exception: $exc := (\neg isPermissionGranted) \Rightarrow$ noPermissionException
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+\noindent initializeCamera(availableCameras):
+\begin{itemize}
+  \item transition: Let $findBackFacingCamera = \forall cameras \exists camera \in cameras : camera.direction = back$ \\
+                    $transition := (\neg isPermissionGranted) \Rightarrow$ no action is performed $|$\\
+                    $isPermissionGranted \Rightarrow findBackFacingCamera(availableCameras) \Rightarrow $ \\
+                    $selectedCamera = camera$
+  \item output: none
+  \item exception: none
+\end{itemize}
+
+\newpage
+
+\section{MIS of Receipt Extraction Module} \label{mExtraction}
+
+The Receipt Extraction Module contains methods related to extracting relevant data such as grocery items,
+prices, and date of transaction from a parsed receipt.
+
+\subsection{Module}
+
+receiptExtraction
+
+\subsection{Uses}
+
+Database Driver Module (Section \ref{mDBDriver})
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+None
+
+\subsubsection{Exported Types}
+
+\textbf{Item}
+
+\begin{table}[H]
+  \begin{tabular}{|p{0.25\textwidth}|p{0.25\textwidth}|p{0.40\textwidth}|}
+    \hline
+    \textbf{Output Name} & \textbf{Output Type} & \textbf{Description} \\
+    \hline
+    itemKey & String & SKU of the purchased item \\
+    \hline
+    itemDesc & String & Name of the product on the receipt \\
+    \hline
+    price & Float & Purchase price of the product \\
+    \hline
+    taxed & Boolean & Whether an item is taxed (Some groceries in Canada aren't taxed) \\
+    \hline
+  \end{tabular}
+\end{table}
+
+\textbf{UpdatedItem}
+
+\begin{table}[H]
+  \begin{tabular}{|p{0.25\textwidth}|p{0.25\textwidth}|p{0.40\textwidth}|}
+    \hline
+    \textbf{Output Name} & \textbf{Output Type} & \textbf{Description} \\
+    \hline
+    itemKey & Optional$<$String$>$ & SKU of the purchased item \\
+    \hline
+    itemDesc & Optional$<$String$>$ & Name of the product on the receipt \\
+    \hline
+    price & Optional$<$Float$>$ & Purchase price of the product \\
+    \hline
+    taxed & Boolean & Whether an item is taxed (Some groceries in Canada aren't taxed) \\
+    \hline
+  \end{tabular}
+\end{table}
+
+\textbf{GroceryTrip}
+
+\begin{table}[H]
+  \begin{tabular}{|p{0.25\textwidth}|p{0.25\textwidth}|p{0.40\textwidth}|}
+    \hline
+    \textbf{Output Name} & \textbf{Output Type} & \textbf{Description} \\
+    \hline
+    userID & String & ID of the user \\
+    \hline
+    dateTime & String & Date and time of transaction \\
+    \hline
+    location & String & Address of the grocery store location \\
+    \hline
+    items & List$<$Item$>$ & List of purchased grocery items from receipt \\
+    \hline
+    subtotal & Float & Total spent on grocery trip before tax \\
+    \hline
+    total & Float & Total spent on grocery trip \\
+    \hline
+    tripDesc & Optional$<$String$>$ & Notes made by the user \\
+    \hline
+  \end{tabular}
+\end{table}
+
+\textbf{UpdatedGroceryTrip}
+
+\begin{table}[H]
+  \begin{tabular}{|p{0.25\textwidth}|p{0.35\textwidth}|p{0.3\textwidth}|}
+    \hline
+    \textbf{Output Name} & \textbf{Output Type} & \textbf{Description} \\
+    \hline
+    dateTime & Optional$<$String$>$ & Date and time of transaction \\
+    \hline
+    location & Optional$<$String$>$ & Address of the grocery store location \\
+    \hline
+    items & Optional$<$List$<$UpdatedItem$>$$>$ & List of purchased grocery items from receipt \\
+    \hline
+    subtotal & Optional$<$Float$>$ & Total spent on grocery trip before tax \\
+    \hline
+    total & Optional$<$Float$>$ & Total spent on grocery trip \\
+    \hline
+    tripDesc & Optional$<$String$>$ & Notes made by the user \\
+    \hline
+  \end{tabular}
+\end{table}
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+  \begin{tabular}{p{5cm} p{4cm} p{3cm} p{4cm}}
+  \hline
+  \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+  \hline
+  createGroceryTrip & String & GroceryTrip & -\\
+  updateGroceryTrip & UpdatedGroceryTrip & GroceryTrip & -\\
+  createItem & String & Item & -\\
+  updateItem & UpdatedItem & Item & -\\
+  confirmGroceryTrip & GroceryTrip & JSON & -\\
+  \hline
+  \end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+None
+
+\subsubsection{Environment Variables}
+
+User Display
+
+\subsubsection{Assumptions}
+\begin{itemize}
+  \item \textit{createItem} will always be working with strings of the format "\textit{itemKey itemDesc price}"
+\end{itemize}
+
+\subsubsection{Access Routine Semantics}
+
+\noindent createGroceryTrip(\textit{receiptData}):
+\begin{itemize}
+  \item transition: Extracts \textit{GroceryTrip} data, redirects user to new page where confirmation
+of extracted data can be performed.
+  \item output: $out :=$ new GroceryTrip(getDateTime(\textit{receiptData}), getLocation(\textit{receiptData}),
+                        getItems(\textit{receiptData}), getSubtotal(\textit{receiptData}), getTotal(\textit{receiptData}), "")
+  \item exception: none
+\end{itemize}
+
+\noindent updateGroceryTrip(\textit{updatedTrip}):
+\begin{itemize}
+  \item transition: Updates \textit{GroceryTrip}, reloads confirmation page.
+  \item output: $out :=$ Update all fields of the \textit{GroceryTrip} object with non-empty fields of \textit{updatedTrip}.
+  \item exception: none
+\end{itemize}
+
+\noindent createItem(\textit{itemString}):
+\begin{itemize}
+  \item transition: none
+  \item output: Let itemComponents = \text{\textit{itemString}.split}(" ") \\
+                $out :=$ new Item(itemComponents[0], itemComponents[1], itemComponents[2])
+  \item exception: none
+\end{itemize}
+
+\noindent updateItem(\textit{updatedItem}):
+\begin{itemize}
+  \item transition: none
+  \item output: $out :=$ Update all fields of the \textit{Item} object with non-empty fields of \textit{updatedItem}.
+  \item exception: none
+\end{itemize}
+
+\noindent confirmGroceryTrip(\textit{groceryTrip}):
+\begin{itemize}
+  \item transition: Formats \textit{groceryTrip} into a JSON format, saves JSON \textit{groceryTrip} to database (Section \ref{mDBDriver}).
+  \item output: $out := $ A JSON object such that each key-value pair matches that of the \textit{groceryTrip}
+                fields.
+  \item exception: none
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+\noindent getDateTime(\textit{receiptData}):
+\begin{itemize}
+  \item transition: none
+  \item output: $\text{Let } A=\{x : 0 \leq x \leq 9\}, B=\{x : 0 \leq x \leq 2\}, C=\{x : 0 \leq x \leq 5\}$ \\
+                $\text{Let } containsDateTime=\exists data \in receiptData : data$\\ $\in L((A|AA)(/|-)(A|AA)(/|-)(AAAA)\text{ }(BA)\text{:}(CA)\text{:}(CA))$ \\
+                $out := containsDateTime(receiptData) \Rightarrow data | \neg containsDateTime(receiptData) \Rightarrow null$
+  \item exception: none
+\end{itemize}
+
+\noindent getLocation(\textit{receiptData}):
+\begin{itemize}
+  \item transition: none
+  \item output: $\text{Let } A=\{x : 0 \leq x \leq 9\}, B=\{a,b,\dots,y,z\}\cup\{A,B,\dots,Y,Z\}\cup\{\text{ }\}$ \\
+                $\text{Let } containsLocation=\exists data \in receiptData : data \in L(A{}^\ast \text{ } B{}^\ast)$ \\
+                $out := containsLocation(receiptData) \Rightarrow data | \neg containsLocation(receiptData) \Rightarrow null$
+  \item exception: none
+\end{itemize}
+
+\noindent getItems(\textit{receiptData}):
+\begin{itemize}
+  \item transition: none
+  \item output: $\text{Let } A=\{x : 0 \leq x \leq 9\}, B=\{a,b,\dots,y,z\}\cup\{A,B,\dots,Y,Z\}\cup\{\text{ }\}$ \\
+                $\text{Let } getItems=\exists data : data \in L(B^\ast \text{ } (\$|\epsilon)A{}^\ast.AA), itemList=[]$ \\
+                $out := itemList \text{ s.t. } \forall text(getItems(text) \land text \in receiptData) : itemList.append(createItem(text))$
+  \item exception: none
+\end{itemize}
+
+\noindent getSubtotal(\textit{receiptData}):
+\begin{itemize}
+  \item transition: none
+  \item output: $\text{Let } A=\{x : 0 \leq x \leq 9\}$ \\
+                $\text{Let } containsSubtotal=\exists data \in receiptData : data \in L((\text{SUBTOTAL}|\text{Subtotal})\text{ }\$A{}^\ast.AA)$ \\
+                $out := containsSubtotal(receiptData) \Rightarrow data | \neg containsSubtotal(receiptData) \Rightarrow null$
+  \item exception: none
+\end{itemize}
+
+\noindent getTotal(\textit{receiptData}):
+\begin{itemize}
+  \item transition: none
+  \item output: $\text{Let } A=\{x : 0 \leq x \leq 9\}$ \\
+                $\text{Let } containsTotal=\exists data \in receiptData : data \in L((\text{TOTAL}|\text{Total})\text{ }\$A{}^\ast.AA)$ \\
+                $out := containsTotal(receiptData) \Rightarrow data | \neg containsTotal(receiptData) \Rightarrow null$
+  \item exception: none
+\end{itemize}
+
+\newpage
+
+\section{MIS of Location Management Module} \label{mLocation} 
+The Location Management Module manages user location data and outputs relevant resources based the available user location data.
+
+\subsection{Module}
+
+locationManagement
+
+\subsection{Uses}
+
+ Database Driver Module (Section \ref{mDBDriver})
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+None
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{5cm} p{3cm} p{3cm} p{5cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+getLastLocation & - & String & noLocationSavedException \\
+setLastLocation & String & - & invalidLocationException \\
+getNearbyStores & - & List$<$String$>$ & - \\
+setRadius & $\mathbb{N}$ & - & - \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+None
+
+\subsubsection{Environment Variables}
+None
+
+\subsubsection{Assumptions}
+None
+
+\subsubsection{Access Routine Semantics}
+
+\noindent getLastLocation():
+\begin{itemize}
+\item transition: none
+\item output: \( \textit{out} \coloneqq \neg location = null \Rightarrow  location \), where \textit{location} is the user location stored in the database (Section \ref{mDBDriver})
+\item exception: \( \textit{exc} \coloneqq location = null \Rightarrow  noLocationSavedException \), where \textit{location} is the user location stored in the database (Section \ref{mDBDriver})
+\end{itemize}
+
+\noindent setLastLocation(\textit{location}):
+\begin{itemize}
+\item transition: Set user location in the database (Section \ref{mDBDriver}) to \textit{location}
+\item output: none
+\item exception: \( \textit{exc} \coloneqq invalidLocationException \), if \textit{location} is not a valid location in the places dependency
+\end{itemize}
+
+\noindent getNearbyStores():
+\begin{itemize}
+\item transition: none
+\item output: \( \textit{out} \coloneqq locations \), where textit{locations} is a List of Strings representing relevant stores specified by the user's preferences stored in the database (Section \ref{mDBDriver})
+\item exception: none
+\end{itemize}
+
+\noindent setRadius(\textit{R}):
+\begin{itemize}
+\item transition: Set user location radius in the database (Section \ref{mDBDriver}) to \textit{R}
+\item output: none
+\item exception: none
+\end{itemize}
+
+
+\subsubsection{Local Functions}
+None
 
 \newpage
 

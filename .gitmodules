@@ -7,3 +7,6 @@
 [submodule "src/receipt-data-parser"]
 	path = src/receipt-data-parser
 	url = https://github.com/jason-nam/receipt-data-parser
+[submodule "src/grocery-spending-tracker-app"]
+	path = src/grocery-spending-tracker-app
+	url = https://github.com/allanfang1/grocery_spending_tracker_app.git
