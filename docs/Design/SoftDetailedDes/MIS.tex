@@ -630,6 +630,101 @@ None
 
 \newpage
 
+\section{MIS of User Analytics Module} \label{mLocation} 
+The User Analytics Module provides analytics and feedback on user purchasing behaviour, offering insight on recent and future purchasing for individual users.
+
+\subsection{Module}
+
+userAnalytics
+
+\subsection{Uses}
+
+Database Driver Module (Section \ref{mDBDriver})
+Recommendation Engine (Section \ref{mRec})
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+None
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{5cm} p{3cm} p{4cm} p{4cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+getSpendingByCategory & $\mathbb{N}^2$ & List$<$(String, List$<$Item$>$)$>$  & - \\
+getSpendingByTime & $\mathbb{N}^2$ & List$<$(String, $\mathbb{R}$+)$>$ & - \\
+createBudgetGoals & $\mathbb{N}^3$, String & - & - \\
+updateBudgetGoals & $\mathbb{N}^4$, String & - & - \\
+deleteBudgetGoals & $\mathbb{N}$, String & - & - \\
+getBudgetGoals & - & List$<\mathbb{N}^3$, String$>$ & - \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+None
+
+\subsubsection{Environment Variables}
+None
+
+\subsubsection{Assumptions}
+None
+
+\subsubsection{Access Routine Semantics}
+
+\noindent getSpendingByCategory(\textit{startDate}, \textit{endDate}):
+\begin{itemize}
+\item transition: none
+\item output: \( \textit{out} \coloneqq spendingList \), where \textit{spendingList} is a List of user purchases in the time period specified by \textit{startDate} and \textit{endDate} grouped by product category stored in the database (Section \ref{mDBDriver})
+\item exception: none
+\end{itemize}
+
+\noindent setSpendingByTime(\textit{startDate}, \textit{endDate}):
+\begin{itemize}
+\item transition: none
+\item output: \( \textit{out} \coloneqq spendingList \), where \textit{spendingList} is a List of user spending amount by day within the specified \textit{startDate} and \textit{endDate} stored in the database (Section \ref{mDBDriver})
+\item exception: none
+\end{itemize}
+
+\noindent createBudgetGoals(\textit{startDate}, \textit{endDate}, \textit{budget}, \textit{category}):
+\begin{itemize}
+\item transition: Create budget goal for the user in the Goals table of the database (Section \ref{mDBDriver})
+\item output: none
+\item exception: none
+\end{itemize}
+
+\noindent updateBudgetGoals(\textit{budgetId}, \textit{startDate}, \textit{endDate}, \textit{budget}, \textit{category}):
+\begin{itemize}
+\item transition: Update budget goal for the user in the Goals table of the database (Section \ref{mDBDriver})
+\item output: none
+\item exception: none
+\end{itemize}
+
+\noindent deleteBudgetGoals(\textit{budgetId}):
+\begin{itemize}
+\item transition: Delete budget goal for the user by budget goal ID (\textit{budgetId}) in the Goals table of the database (Section \ref{mDBDriver})
+\item output: none
+\item exception: none
+\end{itemize}
+
+\noindent getBudgetGoals():
+\begin{itemize}
+\item transition: none
+\item output: \( \textit{out} \coloneqq budgetGoals \) Where \textit{budgetGoals} is the List of budget goals of the user in the Goals table of the database (Section \ref{mDBDriver})
+\item exception: none
+\end{itemize}
+
+
+\subsubsection{Local Functions}
+None
+
+\newpage
+
 \bibliographystyle {plainnat}
 \bibliography {../../../refs/References}
 
