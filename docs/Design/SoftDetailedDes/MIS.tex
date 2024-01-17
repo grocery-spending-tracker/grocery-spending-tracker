@@ -130,10 +130,11 @@ boolean & $\mathbb{B}$ & a truth value, resolving to true or false \\
 \end{center}
 
 \noindent
-The specification of \progname \ uses some derived data types: lists, strings, and
-maps. Lists are data types that store an array of a set data type, formatted as $List<Object>$. Strings
+The specification of \progname \ uses some derived data types: lists, strings, maps
+and tuples. Lists are data types that store an array of a set data type, formatted as List$<$Object$>$. Strings
 are sequences of characters. Maps are a list of key value pairs of two identical or different data types
-formatted as $Map<Key, Value>$. Furthermore, some exported data types using a combination of the above
+formatted as Map$<$Key, Value$>$. Tuples contain a series of values, potentially of
+different types. Furthermore, some exported data types using a combination of the above
 primitive and derived data types will be defined as required in certain
 MIS sections. In addition, \progname \ uses functions, which
 are defined by the data types of their inputs and outputs. Local functions are
@@ -192,6 +193,10 @@ None
 
 None
 
+\subsubsection{Exported Types}
+
+None
+
 \subsubsection{Exported Access Programs}
 
 \begin{center}
@@ -236,7 +241,7 @@ None
 
 \noindent didChangeAppLifeCycle(\textit{appLifecycle}):
 \begin{itemize}
-  \item transition: $transition := (\neg isPermissionGranted) \Rightarrow$ no action is performed $|$\\
+  \item transition: $(\neg isPermissionGranted) \Rightarrow$ no action is performed $|$\\
                     $(isPermissionGranted \land appLifecycle = active) \Rightarrow$ Turn on device camera $|$\\
                     $(isPermissionGranted \land appLifecycle = inactive) \Rightarrow$ Turn off device camera
   \item output: none
@@ -254,12 +259,10 @@ None
 
 \noindent initializeCamera(availableCameras):
 \begin{itemize}
-  \item transition: Let $findBackFacingCamera = \forall cameras \exists camera \in cameras : camera.direction = back$ \\
-                    $transition := (\neg isPermissionGranted) \Rightarrow$ no action is performed $|$\\
+  \item transition: Let $findBackFacingCamera = \forall cameras (\exists camera \in cameras : camera.direction = back)$ \\
+                    $(\neg isPermissionGranted) \Rightarrow$ no action is performed $|$\\
                     $isPermissionGranted \Rightarrow findBackFacingCamera(availableCameras) \Rightarrow $ \\
                     $selectedCamera = camera$
-  \item output: none
-  \item exception: none
 \end{itemize}
 
 \newpage
@@ -328,7 +331,7 @@ None
     \hline
     \textbf{Output Name} & \textbf{Output Type} & \textbf{Description} \\
     \hline
-    userID & String & ID of the user \\
+    userId & String & ID of the user \\
     \hline
     dateTime & $\mathbb{N}$ & Date and time of transaction as Unix timestamp \\
     \hline
@@ -369,16 +372,17 @@ None
 
 \subsubsection{Exported Access Programs}
 
+This module takes as input User as described in Section \ref{mUsers}.
+
 \begin{center}
   \begin{tabular}{p{5cm} p{4cm} p{3cm} p{4cm}}
   \hline
   \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
   \hline
-  createGroceryTrip & String & GroceryTrip & -\\
+  createGroceryTrip & User, String & GroceryTrip & -\\
   updateGroceryTrip & UpdatedGroceryTrip & GroceryTrip & -\\
   createItem & String & Item & -\\
   updateItem & UpdatedItem & Item & -\\
-  confirmGroceryTrip & GroceryTrip & JSON & -\\
   \hline
   \end{tabular}
 \end{center}
@@ -395,16 +399,16 @@ None
 
 \subsubsection{Assumptions}
 \begin{itemize}
-  \item \textit{createItem} will always be working with strings of the format "\textit{itemKey itemDesc price}"
+  \item \textit{createItem} will always be working with strings of the format "\textit{itemKey itemDesc Optional$<$H$>$ price}"
 \end{itemize}
 
 \subsubsection{Access Routine Semantics}
 
-\noindent createGroceryTrip(\textit{receiptData}):
+\noindent createGroceryTrip(\textit{user, receiptData}):
 \begin{itemize}
   \item transition: Extracts \textit{GroceryTrip} data, redirects user to new page where confirmation
 of extracted data can be performed.
-  \item output: $out :=$ new GroceryTrip(toUnixTimestamp(getDateTime(\textit{receiptData})), getLocation(\textit{receiptData}),
+  \item output: $out :=$ new GroceryTrip(\textit{user.userId}, toUnixTimestamp(getDateTime(\textit{receiptData})), getLocation(\textit{receiptData}),
                         getItems(\textit{receiptData}), getSubtotal(\textit{receiptData}), getTotal(\textit{receiptData}), "")
   \item exception: none
 \end{itemize}
@@ -420,7 +424,10 @@ of extracted data can be performed.
 \begin{itemize}
   \item transition: none
   \item output: Let itemComponents = \text{\textit{itemString}.split}(" ") \\
-                $out :=$ new Item(itemComponents[0], itemComponents[1], itemComponents[2])
+                $out := \exists taxed \in itemString : taxed \in L(\text{ H }) \Rightarrow$ \\
+                new Item(itemComponents[0], itemComponents[1], itemComponents[3], True) $|$ \\
+                $\neg(\exists taxed \in itemString : taxed \in L(\text{ H })) \Rightarrow$ \\
+                new Item(itemComponents[0], itemComponents[1], itemComponents[2], False)
   \item exception: none
 \end{itemize}
 
@@ -431,66 +438,46 @@ of extracted data can be performed.
   \item exception: none
 \end{itemize}
 
-\noindent confirmGroceryTrip(\textit{groceryTrip}):
-\begin{itemize}
-  \item transition: Formats \textit{groceryTrip} into a JSON format, saves JSON \textit{groceryTrip} to database (Section \ref{mDBDriver}).
-  \item output: $out := $ A JSON object such that each key-value pair matches that of the \textit{groceryTrip}
-                fields.
-  \item exception: none
-\end{itemize}
-
 \subsubsection{Local Functions}
 
 \noindent getDateTime(\textit{receiptData}):
 \begin{itemize}
-  \item transition: none
   \item output: $\text{Let } A=\{x : 0 \leq x \leq 9\}, B=\{x : 0 \leq x \leq 2\}, C=\{x : 0 \leq x \leq 5\}$ \\
                 $\text{Let } containsDateTime=\exists data \in receiptData : data$\\ $\in L((A|AA)(/|-)(A|AA)(/|-)(AAAA)\text{ }(BA)\text{:}(CA)\text{:}(CA))$ \\
                 $out := containsDateTime(receiptData) \Rightarrow data | \neg containsDateTime(receiptData) \Rightarrow null$
-  \item exception: none
 \end{itemize}
 
 \noindent toUnixTimestamp(\textit{dateTime}):
 \begin{itemize}
-  \item transition: none
   \item output: takes String \textit{dateTime} and converts it to a Unix timestamp.
-  \item exception: none
 \end{itemize}
 
 \noindent getLocation(\textit{receiptData}):
 \begin{itemize}
-  \item transition: none
   \item output: $\text{Let } A=\{x : 0 \leq x \leq 9\}, B=\{a,b,\dots,y,z\}\cup\{A,B,\dots,Y,Z\}\cup\{\text{ }\}$ \\
                 $\text{Let } containsLocation=\exists data \in receiptData : data \in L(A{}^\ast \text{ } B{}^\ast)$ \\
                 $out := containsLocation(receiptData) \Rightarrow data | \neg containsLocation(receiptData) \Rightarrow null$
-  \item exception: none
 \end{itemize}
 
 \noindent getItems(\textit{receiptData}):
 \begin{itemize}
-  \item transition: none
   \item output: $\text{Let } A=\{x : 0 \leq x \leq 9\}, B=\{a,b,\dots,y,z\}\cup\{A,B,\dots,Y,Z\}\cup\{\text{ }\}$ \\
                 $\text{Let } getItems=\exists data : data \in L(B^\ast \text{ } (\$|\epsilon)A{}^\ast.AA), itemList=[]$ \\
                 $out := itemList \text{ s.t. } \forall text(getItems(text) \land text \in receiptData) : itemList.append(createItem(text))$
-  \item exception: none
 \end{itemize}
 
 \noindent getSubtotal(\textit{receiptData}):
 \begin{itemize}
-  \item transition: none
   \item output: $\text{Let } A=\{x : 0 \leq x \leq 9\}$ \\
                 $\text{Let } containsSubtotal=\exists data \in receiptData : data \in L((\text{SUBTOTAL}|\text{Subtotal})\text{ }\$A{}^\ast.AA)$ \\
                 $out := containsSubtotal(receiptData) \Rightarrow data | \neg containsSubtotal(receiptData) \Rightarrow null$
-  \item exception: none
 \end{itemize}
 
 \noindent getTotal(\textit{receiptData}):
 \begin{itemize}
-  \item transition: none
   \item output: $\text{Let } A=\{x : 0 \leq x \leq 9\}$ \\
                 $\text{Let } containsTotal=\exists data \in receiptData : data \in L((\text{TOTAL}|\text{Total})\text{ }\$A{}^\ast.AA)$ \\
                 $out := containsTotal(receiptData) \Rightarrow data | \neg containsTotal(receiptData) \Rightarrow null$
-  \item exception: none
 \end{itemize}
 
 \newpage
@@ -512,6 +499,7 @@ Database Driver Module (Section \ref{mDBDriver})
 None
 
 \subsubsection{Exported Types}
+
 None
 
 \subsubsection{Exported Access Programs}
@@ -559,7 +547,7 @@ None
 \noindent getNearbyStores():
 \begin{itemize}
 \item transition: none
-\item output: \( \textit{out} \coloneqq locations \), where textit{locations} is a List of Strings representing relevant stores specified by the user's preferences stored in the database (Section \ref{mDBDriver})
+\item output: \( \textit{out} \coloneqq locations \), where \textit{locations} is a List of Strings representing relevant stores specified by the user's preferences stored in the database (Section \ref{mDBDriver})
 \item exception: none
 \end{itemize}
 
@@ -594,7 +582,7 @@ None
 
 \subsubsection{Exported Types}
 
-\textbf{Item} as defined in \ref{mExtraction}
+\textbf{Item} as defined in Section \ref{mExtraction}
 
 \subsubsection{Exported Access Programs}
 
@@ -812,7 +800,7 @@ addUserInDB(\textit{user})
 
 \noindent userExists(\textit{groceryTrip.userId})
 \begin{itemize}
-\item output: Query User database (Section \ref{mDBDriver}) and output True if a tuple with \textit{userId} == \textit{groceryTrip.userId} exists in the table.
+\item output: Query User database (Section \ref{mDBDriver}) and output True if a tuple with \textit{userId} = \textit{groceryTrip.userId} exists in the table.
 \end{itemize}
 
 \noindent addTripInDB(\textit{groceryTrip})
@@ -822,7 +810,7 @@ addUserInDB(\textit{user})
 
 \noindent getTripFromDateTime(\textit{dateTime})
 \begin{itemize}
-\item output: Query Trip database (Section \ref{mDBDriver}) and output the \textbf{GroceryTrip} tuple that is closest to \textit{dateTime}.
+\item output: Query Trip database (Section \ref{mDBDriver}) and output the \textit{GroceryTrip} tuple that is closest to \textit{dateTime}.
 \end{itemize}
 
 \newpage
@@ -841,6 +829,12 @@ Database Driver Module (Section \ref{mDBDriver})
 \subsection{Syntax}
 
 \subsubsection{Exported Constants}
+
+None
+
+\subsubsection{Exported Types}
+
+None
 
 \subsubsection{Exported Access Programs}
 
@@ -886,12 +880,12 @@ None
 \subsubsection{Local Functions}
 verifyCredentials(\textit{email}, \textit{passwordEncrypted})
 \begin{itemize}
-\item output: \( \textit{out} \coloneqq \) True if the password is deemed correct for the given email using the database (Section \ref{mDBDriver})
+\item output: \( \textit{out} \coloneqq \) True if the password is deemed correct for the given email using the database (Section \ref{mDBDriver}), else False
 \end{itemize}
 
 \noindent verifyToken(\textit{jwtToken})
 \begin{itemize}
-\item output: \( \textit{out} \coloneqq \) True if the JWT token is deemed corrrect using the PublicKey and JWTLibrary
+\item output: \( \textit{out} \coloneqq \) True if the JWT token is deemed corrrect using the PublicKey and JWTLibrary, else False
 \end{itemize}
 
 \newpage
@@ -1123,6 +1117,9 @@ None
 \subsubsection{Exported Constants}
 None
 
+\subsubsection{Exported Types}
+None
+
 \subsubsection{Exported Access Programs}
 
 \begin{center}
@@ -1178,7 +1175,7 @@ None
 \noindent select(\textit{fields, tableName, conditions}):
 \begin{itemize}
 \item transition: none
-\item output: $out \coloneqq data$, where data describes the fields specified by \textit{fields} of the target items specified by \textit{tableName} and \textit{conditions} in db.
+\item output: $out \coloneqq data$, where \textit{data} describes the fields specified by \textit{fields} of the target items specified by \textit{tableName} and \textit{conditions} in db.
 \item exception: none
 \end{itemize}
 
@@ -1275,7 +1272,7 @@ None
     \hline
     \textbf{Column Name} & \textbf{Type} & \textbf{Description} \\
     \hline
-    goalId & $\mathbb{Z}$ & PRIMARY KEY unique id assigned to the goal \\
+    goalId & $\mathbb{N}$ & PRIMARY KEY unique id assigned to the goal \\
     \hline
     userId & String & FOREIGN KEY ID of user \\
     \hline
