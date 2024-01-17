@@ -53,8 +53,7 @@ urlcolor=cyan          % color of external links
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+17/01/2024 & 1.0 & Initial version of MIS\\
 \bottomrule
 \end{tabularx}
 
@@ -124,6 +123,7 @@ character & char & a single symbol or digit\\
 integer & $\mathbb{Z}$ & a number without a fractional component in (-$\infty$, $\infty$) \\
 natural number & $\mathbb{N}$ & a number without a fractional component in [1, $\infty$) \\
 real & $\mathbb{R}$ & any number in (-$\infty$, $\infty$)\\
+real positive & $\mathbb{R}+$ & any number in [0, $\infty$) \\
 boolean & $\mathbb{B}$ & a truth value, resolving to true or false \\
 \bottomrule
 \end{tabular} 
@@ -170,305 +170,6 @@ The following table is taken directly from the Module Guide document for this pr
 \caption{Module Hierarchy}
 \label{TblMH}
 \end{table}
-
-\newpage
-
-\section{MIS of Database Driver Module} \label{mDBDriver}
-Module for hiding database implementation. Database schema and tables are detailed in Section \ref{dbAppendix}
-
-\subsection{Module}
-dbModule
-
-\subsection{Uses}
-None
-
-\subsection{Syntax}
-
-\subsubsection{Exported Constants}
-None
-
-\subsubsection{Exported Access Programs}
-
-\begin{center}
-\begin{tabular}{p{4cm} p{4cm} p{4cm} p{3cm}}
-\hline
-\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
-\hline
-insert & String$^2$ & - & - \\
-update & String$^3$ & - & - \\
-delete & String$^2$ & - & - \\
-select & String$^3$ & String & - \\
-\hline
-\end{tabular}
-\end{center}
-
-\subsection{Semantics}
-
-\subsubsection{State Variables}
-None
-
-\subsubsection{Environment Variables}
-\textbf{Relational Database} db
-
-\subsubsection{Assumptions}
-The schema is set up as described in Section \ref{dbAppendix}\\
-The connection to the database is established with necessary permissions.
-
-\subsubsection{Access Routine Semantics}
-
-\noindent \wss{insert}(\textit{tableName, values}):
-\begin{itemize}
-\item transition: the target table in \textit{db} specified by \textit{tableName} adds \textit{values}.
-\item output: none
-\item exception: none
-\end{itemize}
-
-\noindent \wss{update}(\textit{tableName, values, conditions}):
-\begin{itemize}
-\item transition: the target items in \textit{db} specified by \textit{tableName} and \textit{conditions} is updated with \textit{values}.
-\item output: none
-\item exception: none
-\end{itemize}
-
-\noindent \wss{delete}(\textit{tableName, conditions}):
-\begin{itemize}
-\item transition: the target items in \textit{db} specified by \textit{tableName} and \textit{conditions} are deleted.
-\item output: none
-\item exception: none
-\end{itemize}
-
-\noindent \wss{select}(\textit{fields, tableName, conditions}):
-\begin{itemize}
-\item transition: none
-\item output: $out \coloneqq data$, where data describes the fields specified by \textit{fields} of the target items specified by \textit{tableName} and \textit{conditions} in db.
-\item exception: none
-\end{itemize}
-
-\subsubsection{Local Functions}
-None
-
-\newpage
-
-\section{MIS of Classification Module} \label{mClassification}
-
-The Classification Module is responsible for interpreting and identifying recognized items from receipt data.
-
-\subsection{Module}
-
-classificationModule
-
-\subsection{Uses}
-
-Database Driver Module (Section \ref{mDBDriver})
-
-\subsection{Syntax}
-
-\subsubsection{Exported Constants}
-
-None
-
-\subsubsection{Exported Types}
-
-\textbf{ClassifiedItem}
-
-\begin{table}[H]
-  \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.5\linewidth}|}
-    \hline
-    \textbf{Column Name} & \textbf{Type} & \textbf{Description} \\
-    \hline
-    itemId & String & PRIMARY KEY unique id of this instance of this item \\
-    \hline
-    productKey & String & Universal item identifier (UPC) \\
-    \hline
-    dateTime & String & Date and time of purchase \\
-    \hline
-    price & \mathbb{R} & Price of item \\
-    \hline
-    location & String & Location of purchase \\
-    \hline
-    userId & String & FOREIGN KEY ID of user\\
-    \hline
-    itemDesc & String & Item description\\
-    \hline
-    isTaxed & \mathbb{B} & Describes if the item is taxed\\
-    \hline
-    category & String & Describes the product category the item belongs to\\
-    \hline
-  \end{tabular}
-\end{table}
-
-\subsubsection{Exported Access Programs}
-
-This module uses Item as an input, as described in Section \ref{mExtraction}
-
-\begin{center}
-    \begin{tabular}{p{5cm} p{4cm} p{3cm} p{4cm}}
-    \hline
-    \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
-    \hline
-    setItemData & Item & - & invalidDataException \\
-    getClassifiedItem & String & ClassifiedItem & - \\
-    \hline
-    \end{tabular}
-\end{center}
-
-\subsection{Semantics}
-
-\subsubsection{State Variables}
-
-None
-
-\subsubsection{Environment Variables}
-
-None
-
-\subsubsection{Assumptions}
-
-None
-
-\subsubsection{Access Routine Semantics}
-
-\noindent setItemData(\textit{Item}):
-\begin{itemize}
-  \item transition: Set Item data in the database (Section \ref{mDBDriver}) to \textit{Classified Item}
-  \item output: none
-  \item exception: $exc := invalidDataException$, if \textit{Item} does not adhere to expected format.
-  \end{itemize}
-
-\noindent getClassifiedItem(\textit{itemId}):
-\begin{itemize}
-  \item transition: none
-  \item output: $out := \textit{itemExists}(\textit{itemId}) \Rightarrow \textit{getClassifiedItemInDB}(\textit{itemId})$
-  \item exception: none
-\end{itemize}
-
-\subsubsection{Local Functions}
-
-\noindent itemExists(\textit{itemId}):
-\begin{itemize}
-  \item transition: none
-  \item output: $out := (\textit{itemId} \text{ is present in the database})$
-  \item exception: none
-\end{itemize}
-
-\noindent getClassifiedItemInDB(\textit{itemId}):
-\begin{itemize}
-  \item transition: none
-  \item output: $out := \textit{itemExists}(\textit{itemId}) \Rightarrow \textit{retrieveClassifiedItem}(\textit{itemId})$
-  \item exception: $\textit{exc} := \textit{itemNotFoundException}$, if $\textit{itemId}$ does not exist in the database.
-\end{itemize}
-
-\noindent identifyItemUsingModel(\textit{inputItemData}):
-\begin{itemize}
-  \item transition: none
-  \item output: $out := \textit{classifyUsingModel}(\textit{inputItemData})$
-  \item exception: $\textit{exc} := \textit{modelIdentificationException}$, if the classification model fails to identify the item.
-\end{itemize}
-
-\noindent classifyUsingModel(\textit{inputItemData}):
-\begin{itemize}
-  \item transition: none
-  \item output: $out := \textit{the classification result of the model for} \, \textit{inputItemData}$
-  \item exception: $\textit{exc} := \textit{classificationException}$, if the model encounters an error during the classification process.
-\end{itemize}
-
-\noindent findMatchingProduct(\textit{inputItemData}):
-\begin{itemize}
-  \item transition: none
-  \item output: $out := \textit{product details from the database that best match} \, \textit{inputItemData}$
-  \item exception: $\textit{exc} := \textit{noProductFoundException}$, if no product in the database matches \textit{inputItemData}.
-\end{itemize}
-
-\newpage
-
-\section{MIS of Recommendation Module} \label{mRecommendation}
-
-Module for recommending user purchases.
-
-\subsection{Module}
-
-recommendationModule
-
-\subsection{Uses}
-
-Database Driver Module (Section \ref{mDBDriver})
-
-\subsection{Syntax}
-
-\subsubsection{Exported Constants}
-
-None
-
-\subsubsection{Exported Access Programs}
-
-This module uses Item as an input, as described in Section \ref{mExtraction}
-
-\begin{center}
-    \begin{tabular}{p{5cm} p{4cm} p{3cm} p{4cm}}
-    \hline
-    \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
-    \hline
-    collectItemData & Item & - & InvalidDataFormatException \\
-    getCheaperAlternatives & String & List$<$String$>$ & - \\
-    getRecommendationDetails & String & Item & - \\
-    \hline
-    \end{tabular}
-\end{center}
-
-\subsection{Semantics}
-
-\subsubsection{State Variables}
-
-None
-
-\subsubsection{Environment Variables}
-
-None
-
-\subsubsection{Assumptions}
-
-None
-
-\subsubsection{Access Routine Semantics}
-
-This module uses Item as an input, as described in Section \ref{mExtraction}\\
-
-\noindent collectItemData(\textit{Item}):
-\begin{itemize}
-  \item transition: Updates the module's internal data structure with the new \textit{Item} data.
-  \item output: none
-  \item exception: $exc := \textit{InvalidDataFormatException}$, if \textit{Item} does not adhere to the expected format.
-\end{itemize}
-
-\noindent getCheaperAlternatives(\textit{itemId}):
-\begin{itemize}
-  \item transition: none
-  \item output: $out := \textit{getCheaperAlternatives}(\textit{itemId})$ 
-  \item exception: none
-\end{itemize}
-
-\noindent getRecommendationDetails(\textit{itemId}):
-\begin{itemize}
-  \item transition: none
-  \item output: $out := \textit{getItemDetails}(\textit{itemId})$
-  \item exception: none
-\end{itemize}
-
-\subsubsection{Local Functions}
-
-\noindent getCheaperAlternatives(\textit{itemId}):
-\begin{itemize}
-  \item transition: none
-  \item output: $out := \textit{list of item IDs that are cheaper alternatives to the item identified by} \, \textit{itemId}$
-  \item exception: none
-\end{itemize}
-
-\noindent getItemDetails(\textit{itemId}):
-\begin{itemize}
-  \item transition: none
-  \item output: $out := \textit{detailed information of the item identified by} \, \textit{itemId}$
-  \item exception: none
-\end{itemize}
 
 \newpage
 
@@ -803,7 +504,7 @@ locationManagement
 
 \subsection{Uses}
 
- Database Driver Module (Section \ref{mDBDriver})
+Database Driver Module (Section \ref{mDBDriver})
 
 \subsection{Syntax}
 
@@ -875,6 +576,105 @@ None
 
 \newpage
 
+\section{MIS of User Analytics Module} \label{mAnalytics} 
+The User Analytics Module provides analytics and feedback on user purchasing behaviour, offering insight on recent and future purchasing for individual users.
+
+\subsection{Module}
+
+userAnalytics
+
+\subsection{Uses}
+
+Database Driver Module (Section \ref{mDBDriver})
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+None
+
+\subsubsection{Exported Types}
+
+\textbf{Item} as defined in \ref{mExtraction}
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+
+\begin{tabular}{p{5cm} p{3cm} p{4cm} p{4cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+getSpendingByCategory & $\mathbb{N}^2$ & Map$<$String, List$<$Item$>$$>$  & - \\
+getSpendingByTime & $\mathbb{N}^2$ & Map$<$String, $\mathbb{R}$+$>$ & - \\
+createBudgetGoals & $\mathbb{N}^3$, String & - & - \\
+updateBudgetGoals & $\mathbb{N}^4$, String & - & - \\
+deleteBudgetGoals & $\mathbb{N}$, String & - & - \\
+getBudgetGoals & - & List$<$($\mathbb{N}^3$, String)$>$ & - \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+None
+
+\subsubsection{Environment Variables}
+None
+
+\subsubsection{Assumptions}
+None
+
+\subsubsection{Access Routine Semantics}
+
+\noindent getSpendingByCategory(\textit{startDate}, \textit{endDate}):
+\begin{itemize}
+\item transition: none
+\item output: \( \textit{out} \coloneqq spendingList \), where \textit{spendingList} is a List of user purchases in the time period specified by \textit{startDate} and \textit{endDate} grouped by product category stored in the database (Section \ref{mDBDriver})
+\item exception: none
+\end{itemize}
+
+\noindent setSpendingByTime(\textit{startDate}, \textit{endDate}):
+\begin{itemize}
+\item transition: none
+\item output: \( \textit{out} \coloneqq spendingList \), where \textit{spendingList} is a List of user spending amount by day within the specified \textit{startDate} and \textit{endDate} stored in the database (Section \ref{mDBDriver})
+\item exception: none
+\end{itemize}
+
+\noindent createBudgetGoals(\textit{startDate}, \textit{endDate}, \textit{budget}, \textit{category}):
+\begin{itemize}
+\item transition: Create budget goal for the user in the Goals table of the database (Section \ref{mDBDriver})
+\item output: none
+\item exception: none
+\end{itemize}
+
+\noindent updateBudgetGoals(\textit{budgetId}, \textit{startDate}, \textit{endDate}, \textit{budget}, \textit{category}):
+\begin{itemize}
+\item transition: Update budget goal for the user in the Goals table of the database (Section \ref{mDBDriver})
+\item output: none
+\item exception: none
+\end{itemize}
+
+\noindent deleteBudgetGoals(\textit{budgetId}):
+\begin{itemize}
+\item transition: Delete budget goal for the user by budget goal ID (\textit{budgetId}) in the Goals table of the database (Section \ref{mDBDriver})
+\item output: none
+\item exception: none
+\end{itemize}
+
+\noindent getBudgetGoals():
+\begin{itemize}
+\item transition: none
+\item output: \( \textit{out} \coloneqq budgetGoals \) Where \textit{budgetGoals} is the List of budget goals of the user in the Goals table of the database (Section \ref{mDBDriver})
+\item exception: none
+\end{itemize}
+
+
+\subsubsection{Local Functions}
+None
+
+\newpage
+
 \section{MIS of Users Module} \label{mUsers} 
 The Users Module exists to handle CRUD operations for operations related to users and their grocery trips.
 
@@ -884,7 +684,7 @@ users
 
 \subsection{Uses}
 
- Database Driver Module (Section \ref{mDBDriver}) 
+Database Driver Module (Section \ref{mDBDriver}) 
 
 \subsection{Syntax}
 
@@ -1036,7 +836,7 @@ authentication
 
 \subsection{Uses}
 
- Database Driver Module (Section \ref{mDBDriver}) 
+Database Driver Module (Section \ref{mDBDriver}) 
 
 \subsection{Syntax}
 
@@ -1049,7 +849,7 @@ authentication
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-getToken & String, String & String & invalidCredentialsException \\
+getToken & String$^2$ & String & invalidCredentialsException \\
 verifyToken & String & String & invalidTokenException \\
 \hline
 \end{tabular}
@@ -1096,12 +896,13 @@ verifyCredentials(\textit{email}, \textit{passwordEncrypted})
 
 \newpage
 
-\section{MIS of User Analytics Module} \label{mAnalytics} 
-The User Analytics Module provides analytics and feedback on user purchasing behaviour, offering insight on recent and future purchasing for individual users.
+\section{MIS of Recommendation Module} \label{mRecommendation}
+
+Module for recommending user purchases.
 
 \subsection{Module}
 
-userAnalytics
+recommendationModule
 
 \subsection{Uses}
 
@@ -1110,26 +911,229 @@ Database Driver Module (Section \ref{mDBDriver})
 \subsection{Syntax}
 
 \subsubsection{Exported Constants}
+
 None
 
 \subsubsection{Exported Types}
 
-\textbf{Item} as defined in \ref{mExtraction}
+\textbf{Item} as defined in Section \ref{mExtraction} \\
 
 \subsubsection{Exported Access Programs}
 
 \begin{center}
+    \begin{tabular}{p{5cm} p{4cm} p{3cm} p{4cm}}
+    \hline
+    \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+    \hline
+    collectItemData & Item & - & InvalidDataFormatException \\
+    getCheaperAlternatives & String & List$<$String$>$ & - \\
+    getRecommendationDetails & String & Item & - \\
+    \hline
+    \end{tabular}
+\end{center}
 
-\begin{tabular}{p{5cm} p{3cm} p{4cm} p{4cm}}
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+None
+
+\subsubsection{Environment Variables}
+
+None
+
+\subsubsection{Assumptions}
+
+None
+
+\subsubsection{Access Routine Semantics}
+
+\noindent collectItemData(\textit{Item}):
+\begin{itemize}
+  \item transition: Updates the module's internal data structure with the new \textit{Item} data.
+  \item output: none
+  \item exception: $exc := \textit{InvalidDataFormatException}$, if \textit{Item} does not adhere to the expected format.
+\end{itemize}
+
+\noindent getCheaperAlternatives(\textit{itemId}):
+\begin{itemize}
+  \item transition: none
+  \item output: $out := \textit{getCheaperAlternatives}(\textit{itemId})$ 
+  \item exception: none
+\end{itemize}
+
+\noindent getRecommendationDetails(\textit{itemId}):
+\begin{itemize}
+  \item transition: none
+  \item output: $out := \textit{getItemDetails}(\textit{itemId})$
+  \item exception: none
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+\noindent getCheaperAlternatives(\textit{itemId}):
+\begin{itemize}
+  \item output: $out :=$ list of item IDs that are cheaper alternatives to the item identified by, \textit{itemId}
+\end{itemize}
+
+\noindent getItemDetails(\textit{itemId}):
+\begin{itemize}
+  \item output: $out :=$ detailed information of the item identified by, \textit{itemId}
+\end{itemize}
+
+\newpage
+
+\section{MIS of Classification Module} \label{mClassification}
+
+The Classification Module is responsible for interpreting and identifying recognized items from receipt data.
+
+\subsection{Module}
+
+classificationModule
+
+\subsection{Uses}
+
+Database Driver Module (Section \ref{mDBDriver})
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+None
+
+\subsubsection{Exported Types}
+
+\textbf{ClassifiedItem}
+
+\begin{table}[H]
+  \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.5\linewidth}|}
+    \hline
+    \textbf{Column Name} & \textbf{Type} & \textbf{Description} \\
+    \hline
+    itemId & String & Unique id of this instance of this item \\
+    \hline
+    productKey & String & Universal item identifier (UPC) \\
+    \hline
+    dateTime & $\mathbb{N}$ & Date and time of purchase \\
+    \hline
+    price & $\mathbb{R}$ & Price of item \\
+    \hline
+    location & String & Location of purchase \\
+    \hline
+    userId & String & ID of user\\
+    \hline
+    itemDesc & String & Item description\\
+    \hline
+    isTaxed & $\mathbb{B}$ & Describes if the item is taxed\\
+    \hline
+    category & String & Describes the product category the item belongs to\\
+    \hline
+  \end{tabular}
+\end{table}
+
+\subsubsection{Exported Access Programs}
+
+This module uses Item as an input, as described in Section \ref{mExtraction}
+
+\begin{center}
+    \begin{tabular}{p{5cm} p{4cm} p{3cm} p{4cm}}
+    \hline
+    \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+    \hline
+    setItemData & Item & - & invalidDataException \\
+    getClassifiedItem & String & ClassifiedItem & - \\
+    \hline
+    \end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+None
+
+\subsubsection{Environment Variables}
+
+None
+
+\subsubsection{Assumptions}
+
+None
+
+\subsubsection{Access Routine Semantics}
+
+\noindent setItemData(\textit{Item}):
+\begin{itemize}
+  \item transition: Set Item data in the database (Section \ref{mDBDriver}) to \textit{Classified Item}
+  \item output: none
+  \item exception: $exc := invalidDataException$, if \textit{Item} does not adhere to expected format.
+  \end{itemize}
+
+\noindent getClassifiedItem(\textit{itemId}):
+\begin{itemize}
+  \item transition: none
+  \item output: $out := \textit{itemExists}(\textit{itemId}) \Rightarrow \textit{getClassifiedItemInDB}(\textit{itemId})$
+  \item exception: none
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+\noindent itemExists(\textit{itemId}):
+\begin{itemize}
+  \item output: $out := (\textit{itemId} \text{ is present in the database})$
+\end{itemize}
+
+\noindent getClassifiedItemInDB(\textit{itemId}):
+\begin{itemize}
+  \item output: $out := \textit{itemExists}(\textit{itemId}) \Rightarrow \textit{retrieveClassifiedItem}(\textit{itemId})$
+  \item exception: $\textit{exc} := \textit{itemNotFoundException}$, if $\textit{itemId}$ does not exist in the database.
+\end{itemize}
+
+\noindent identifyItemUsingModel(\textit{inputItemData}):
+\begin{itemize}
+  \item output: $out := \textit{classifyUsingModel}(\textit{inputItemData})$
+  \item exception: $\textit{exc} := \textit{modelIdentificationException}$, if the classification model fails to identify the item.
+\end{itemize}
+
+\noindent classifyUsingModel(\textit{inputItemData}):
+\begin{itemize}
+  \item output: $out :=$ the classification result of the model for, \textit{inputItemData}
+  \item exception: $\textit{exc} := \textit{classificationException}$, if the model encounters an error during the classification process.
+\end{itemize}
+
+\noindent findMatchingProduct(\textit{inputItemData}):
+\begin{itemize}
+  \item output: $out :=$ product details from the database that best match, \textit{inputItemData}
+  \item exception: $\textit{exc} := \textit{noProductFoundException}$, if no product in the database matches \textit{inputItemData}.
+\end{itemize}
+
+\newpage
+
+\section{MIS of Database Driver Module} \label{mDBDriver}
+Module for hiding database implementation. Database schema and tables are detailed in Section \ref{dbAppendix}
+
+\subsection{Module}
+dbModule
+
+\subsection{Uses}
+None
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+None
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{4cm} p{4cm} p{4cm} p{3cm}}
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-getSpendingByCategory & $\mathbb{N}^2$ & Map$<$String, List$<$Item$>$$>$  & - \\
-getSpendingByTime & $\mathbb{N}^2$ & Map$<$String, $\mathbb{R}$+$>$ & - \\
-createBudgetGoals & $\mathbb{N}^3$, String & - & - \\
-updateBudgetGoals & $\mathbb{N}^4$, String & - & - \\
-deleteBudgetGoals & $\mathbb{N}$, String & - & - \\
-getBudgetGoals & - & List$<$($\mathbb{N}^3$, String)$>$ & - \\
+insert & String$^2$ & - & - \\
+update & String$^3$ & - & - \\
+delete & String$^2$ & - & - \\
+select & String$^3$ & String & - \\
 \hline
 \end{tabular}
 \end{center}
@@ -1140,55 +1144,43 @@ getBudgetGoals & - & List$<$($\mathbb{N}^3$, String)$>$ & - \\
 None
 
 \subsubsection{Environment Variables}
-None
+\textbf{Relational Database} db
 
 \subsubsection{Assumptions}
-None
+\begin{itemize}
+  \item The schema is set up as described in Section \ref{dbAppendix}\\
+  \item The connection to the database is established with necessary permissions.
+\end{itemize}
 
 \subsubsection{Access Routine Semantics}
 
-\noindent getSpendingByCategory(\textit{startDate}, \textit{endDate}):
+\noindent insert(\textit{tableName, values}):
 \begin{itemize}
-\item transition: none
-\item output: \( \textit{out} \coloneqq spendingList \), where \textit{spendingList} is a List of user purchases in the time period specified by \textit{startDate} and \textit{endDate} grouped by product category stored in the database (Section \ref{mDBDriver})
-\item exception: none
-\end{itemize}
-
-\noindent setSpendingByTime(\textit{startDate}, \textit{endDate}):
-\begin{itemize}
-\item transition: none
-\item output: \( \textit{out} \coloneqq spendingList \), where \textit{spendingList} is a List of user spending amount by day within the specified \textit{startDate} and \textit{endDate} stored in the database (Section \ref{mDBDriver})
-\item exception: none
-\end{itemize}
-
-\noindent createBudgetGoals(\textit{startDate}, \textit{endDate}, \textit{budget}, \textit{category}):
-\begin{itemize}
-\item transition: Create budget goal for the user in the Goals table of the database (Section \ref{mDBDriver})
+\item transition: the target table in \textit{db} specified by \textit{tableName} adds \textit{values}.
 \item output: none
 \item exception: none
 \end{itemize}
 
-\noindent updateBudgetGoals(\textit{budgetId}, \textit{startDate}, \textit{endDate}, \textit{budget}, \textit{category}):
+\noindent update(\textit{tableName, values, conditions}):
 \begin{itemize}
-\item transition: Update budget goal for the user in the Goals table of the database (Section \ref{mDBDriver})
+\item transition: the target items in \textit{db} specified by \textit{tableName} and \textit{conditions} is updated with \textit{values}.
 \item output: none
 \item exception: none
 \end{itemize}
 
-\noindent deleteBudgetGoals(\textit{budgetId}):
+\noindent delete(\textit{tableName, conditions}):
 \begin{itemize}
-\item transition: Delete budget goal for the user by budget goal ID (\textit{budgetId}) in the Goals table of the database (Section \ref{mDBDriver})
+\item transition: the target items in \textit{db} specified by \textit{tableName} and \textit{conditions} are deleted.
 \item output: none
 \item exception: none
 \end{itemize}
 
-\noindent getBudgetGoals():
+\noindent select(\textit{fields, tableName, conditions}):
 \begin{itemize}
 \item transition: none
-\item output: \( \textit{out} \coloneqq budgetGoals \) Where \textit{budgetGoals} is the List of budget goals of the user in the Goals table of the database (Section \ref{mDBDriver})
+\item output: $out \coloneqq data$, where data describes the fields specified by \textit{fields} of the target items specified by \textit{tableName} and \textit{conditions} in db.
 \item exception: none
 \end{itemize}
-
 
 \subsubsection{Local Functions}
 None
@@ -1210,21 +1202,21 @@ None
     \hline
     \textbf{Column Name} & \textbf{Type} & \textbf{Description} \\
     \hline
-    itemId & INT & PRIMARY KEY unique id of this instance of this item \\
+    itemId & String & PRIMARY KEY unique id of this instance of this item \\
     \hline
-    itemKey & VARCHAR & Item identifier specific to the retailer (usually SKU) \\
+    itemKey & String & Item identifier specific to the retailer (usually SKU) \\
     \hline
-    dateTime & DATETIME & Date and time of purchase \\
+    dateTime & $\mathbb{N}$ & Date and time of purchase \\
     \hline
-    price & DOUBLE & Price of item \\
+    price & $\mathbb{R}$ & Price of item \\
     \hline
-    location & VARCHAR & Location of purchase \\
+    location & String & Location of purchase \\
     \hline
-    userId & INT & FOREIGN KEY ID of user\\
+    userId & String & FOREIGN KEY ID of user\\
     \hline
-    itemDesc & VARCHAR & Item description\\
+    itemDesc & String & Item description\\
     \hline
-    isTaxed & BOOL & Describes if the item is taxed\\
+    isTaxed & $\mathbb{B}$ & Describes if the item is taxed\\
     \hline
   \end{tabular}
 \end{table}
@@ -1235,23 +1227,23 @@ None
     \hline
     \textbf{Column Name} & \textbf{Type} & \textbf{Description} \\
     \hline
-    itemId & INT & PRIMARY KEY unique id of this instance of this item \\
+    itemId & String & PRIMARY KEY unique id of this instance of this item \\
     \hline
-    productKey & VARCHAR & Universal item identifier (UPC) \\
+    productKey & String & Universal item identifier (UPC) \\
     \hline
-    dateTime & DATETIME & Date and time of purchase \\
+    dateTime & $\mathbb{N}$ & Date and time of purchase \\
     \hline
-    price & DOUBLE & Price of item \\
+    price & $\mathbb{R}$ & Price of item \\
     \hline
-    location & VARCHAR & Location of purchase \\
+    location & String & Location of purchase \\
     \hline
-    userId & INT & FOREIGN KEY ID of user\\
+    userId & String & FOREIGN KEY ID of user\\
     \hline
-    itemDesc & VARCHAR & Item description\\
+    itemDesc & String & Item description\\
     \hline
-    isTaxed & BOOL & Describes if the item is taxed\\
+    isTaxed & $\mathbb{B}$ & Describes if the item is taxed\\
     \hline
-    category & VARCHAR & Describes the product category the item belongs to\\
+    category & String & Describes the product category the item belongs to\\
     \hline
   \end{tabular}
 \end{table}
@@ -1262,17 +1254,17 @@ None
     \hline
     \textbf{Column Name} & \textbf{Type} & \textbf{Description} \\
     \hline
-    userId & INT & PRIMARY KEY unique id assigned to the user \\
+    userId & String & PRIMARY KEY unique id assigned to the user \\
     \hline
-    email & VARCHAR & User email \\
+    email & String & User email \\
     \hline
-    password & VARCHAR & Encrypted user password \\
+    password & String & Encrypted user password \\
     \hline
-    firstName & VARCHAR & User first name \\
+    firstName & String & User first name \\
     \hline
-    lastName & VARCHAR & User last name \\
+    lastName & String & User last name \\
     \hline
-    location & VARCHAR & Location of the user, usually describes the user's home\\
+    location & String & Location of the user, usually describes the user's home\\
     \hline
   \end{tabular}
 \end{table}
@@ -1283,17 +1275,17 @@ None
     \hline
     \textbf{Column Name} & \textbf{Type} & \textbf{Description} \\
     \hline
-    goalId & INT & PRIMARY KEY unique id assigned to the goal \\
+    goalId & $\mathbb{Z}$ & PRIMARY KEY unique id assigned to the goal \\
     \hline
-    userId & INT & FOREIGN KEY ID of user \\
+    userId & String & FOREIGN KEY ID of user \\
     \hline
-    startDate & DATE & Start date of the goal \\
+    startDate & $\mathbb{N}$ & Start date of the goal \\
     \hline
-    endDate & DATE & End date of the goal \\
+    endDate & $\mathbb{N}$ & End date of the goal \\
     \hline
-    budget & INT & Money allotted for the goal \\
+    budget & $\mathbb{Z}$ & Money allotted for the goal \\
     \hline
-    category & VARCHAR & The product category of relevant to the goal\\
+    category & String & The product category of relevant to the goal\\
     \hline
   \end{tabular}
 \end{table}
