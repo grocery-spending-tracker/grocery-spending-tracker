@@ -269,23 +269,23 @@ None
     \hline
     \textbf{Column Name} & \textbf{Type} & \textbf{Description} \\
     \hline
-    itemId & INT & PRIMARY KEY unique id of this instance of this item \\
+    itemId & String & PRIMARY KEY unique id of this instance of this item \\
     \hline
-    productKey & VARCHAR & Universal item identifier (UPC) \\
+    productKey & String & Universal item identifier (UPC) \\
     \hline
-    dateTime & DATETIME & Date and time of purchase \\
+    dateTime & String & Date and time of purchase \\
     \hline
-    price & DOUBLE & Price of item \\
+    price & Float & Price of item \\
     \hline
-    location & VARCHAR & Location of purchase \\
+    location & String & Location of purchase \\
     \hline
-    userId & INT & FOREIGN KEY ID of user\\
+    userId & String & FOREIGN KEY ID of user\\
     \hline
-    itemDesc & VARCHAR & Item description\\
+    itemDesc & String & Item description\\
     \hline
-    isTaxed & BOOL & Describes if the item is taxed\\
+    isTaxed & Boolean & Describes if the item is taxed\\
     \hline
-    category & VARCHAR & Describes the product category the item belongs to\\
+    category & String & Describes the product category the item belongs to\\
     \hline
   \end{tabular}
 \end{table}
