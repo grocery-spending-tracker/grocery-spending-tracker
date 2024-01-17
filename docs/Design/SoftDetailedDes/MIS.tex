@@ -260,6 +260,36 @@ Database Driver Module (Section \ref{mDBDriver})
 
 None
 
+\subsubsection{Exported Types}
+
+\textbf{ClassifiedItem}
+
+\begin{table}[H]
+  \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.5\linewidth}|}
+    \hline
+    \textbf{Column Name} & \textbf{Type} & \textbf{Description} \\
+    \hline
+    itemId & INT & PRIMARY KEY unique id of this instance of this item \\
+    \hline
+    productKey & VARCHAR & Universal item identifier (UPC) \\
+    \hline
+    dateTime & DATETIME & Date and time of purchase \\
+    \hline
+    price & DOUBLE & Price of item \\
+    \hline
+    location & VARCHAR & Location of purchase \\
+    \hline
+    userId & INT & FOREIGN KEY ID of user\\
+    \hline
+    itemDesc & VARCHAR & Item description\\
+    \hline
+    isTaxed & BOOL & Describes if the item is taxed\\
+    \hline
+    category & VARCHAR & Describes the product category the item belongs to\\
+    \hline
+  \end{tabular}
+\end{table}
+
 \subsubsection{Exported Access Programs}
 
 \begin{center}
