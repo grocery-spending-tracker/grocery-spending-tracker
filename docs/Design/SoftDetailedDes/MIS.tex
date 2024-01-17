@@ -644,6 +644,9 @@ users
 \subsection{Syntax}
 
 \subsubsection{Exported Constants}
+None
+
+\subsubsection{Exported Types}
 \textbf{Item} as defined in Section \ref{mExtraction} \\
 
 \noindent \textbf{GroceryTrip} as defined in Section \ref{mExtraction} \\
@@ -682,7 +685,7 @@ getUser & String & User & userDneException \\
 updateUser & User & - & userDneException \\
 deleteUser & String & - & userDneException \\
 addTrip & GroceryTrip & - & userDneException \\
-getTrip & DateTime & GroceryTrip & - \\
+getTrip & $\mathbb{N}$ & GroceryTrip & - \\
 \hline
 \end{tabular}
 \end{center}
@@ -710,14 +713,14 @@ None
 \noindent getUser(\textit{userId}):
 \begin{itemize}
 \item transition: none
-\item output: \( userExists(\textit{user.userId}) \Rightarrow getUserInDB(userId)\)
+\item output: \( \textit{out} \coloneqq userExists(\textit{user.userId}) \Rightarrow getUserInDB(userId)\)
 \item exception \( \textit{exc} \coloneqq \neg userExists(\textit{user.userId}) \Rightarrow \\ userDneException\)
 \end{itemize}
 
 \noindent updateUser(\textit{user}):
 \begin{itemize}
-\item transition: none
-\item output: \( userExists(\textit{user.userId}) \Rightarrow \) user, from database (Section \ref{mDBDriver}).
+\item transition: \( userExists(\textit{user.userId}) \Rightarrow updateUser(\textit{user})\)
+\item output: none
 \item exception \( \textit{exc} \coloneqq \neg userExists(\textit{user.userId}) \Rightarrow \\ userDneException\)
 \end{itemize}
 
@@ -738,7 +741,7 @@ None
 \noindent getTrip(\textit{dateTime}):
 \begin{itemize}
 \item transition: none
-\item output: \( getTripFromDateTime(\textit{dateTime}) \)
+\item output: \( \textit{out} \coloneqq getTripFromDateTime(\textit{dateTime}) \)
 \end{itemize}
 
 \subsubsection{Local Functions}
@@ -749,7 +752,12 @@ addUserInDB(\textit{user})
 
 \noindent getUserInDB(\textit{userId})
 \begin{itemize}
-\item output: Query User database (Section \ref{mDBDriver}) where \textit{userId} and map to fields in \textit{user}. output \textit{user}.
+\item output:  Query User database (Section \ref{mDBDriver}) where \textit{userId} and map to fields in \textit{user}. Output \textit{user}.
+\end{itemize}
+
+\noindent updateUserInDB(\textit{user})
+\begin{itemize}
+\item output:  Replace tuple with key \textit{user.userId} in User database (Section \ref{mDBDriver}) with \textit{user} by mapping fields fields.
 \end{itemize}
 
 \noindent deleteUserInDB(\textit{user})
