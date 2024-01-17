@@ -53,8 +53,7 @@ urlcolor=cyan          % color of external links
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+17/01/2024 & 1.0 & Initial version of MIS\\
 \bottomrule
 \end{tabularx}
 
@@ -62,9 +61,20 @@ Date 2 & 1.1 & Notes\\
 
 \section{Symbols, Abbreviations and Acronyms}
 
-See SRS Documentation at \wss{give url}
-
-\wss{Also add any additional symbols, abbreviations or acronyms}
+See SRS Documentation at \url{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/SRS/SRS.pdf}
+\newline
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{l l} 
+  \toprule		
+  \textbf{symbol} & \textbf{description}\\
+  \midrule 
+  SRS & Software Requirements Specification\\
+  MIS & Module Interface Specification \\
+  SKU & Stock Keeping Unit: ID of Product Used by Retailers \\
+  UPC & Universal Product Code: widely used barcode symbology for tracking trade items in stores \\
+  JWT & JSON Web Token \\
+  \bottomrule
+\end{tabular}\\
 
 \newpage
 
@@ -77,16 +87,21 @@ See SRS Documentation at \wss{give url}
 \section{Introduction}
 
 The following document details the Module Interface Specifications for
-\wss{Fill in your project name and description}
+the Grocery Spending Tracker. The Grocery Spending Tracker is a mobile application
+designed to help households face the ever rising cost of groceries in Canada.
+To accomplish this, users can easily scan their grocery receipts with their device camera allowing the
+application to record and track user spending. Analytics are then produced
+with this data to help users better visualize their spending habits. They can also
+set budgets and spending goals for themselves allowing the application to
+suggest cheaper alternatives based on recently purchased grocery items and
+location preferences. Overall, these features should help users stay more informed on their
+grocery spending leading to smarter financial decisions and reduced spending over time.
 
 Complementary documents include the System Requirement Specifications
 and Module Guide.  The full documentation and implementation can be
-found at \url{...}.  \wss{provide the url for your repo}
+found at \url{https://github.com/r-yeh/grocery-spending-tracker}.
 
 \section{Notation}
-
-\wss{You should describe your notation.  You can use what is below as
-  a starting point.}
 
 The structure of the MIS for modules comes from \citet{HoffmanAndStrooper1995},
 with the addition that template modules have been adapted from
@@ -108,15 +123,20 @@ character & char & a single symbol or digit\\
 integer & $\mathbb{Z}$ & a number without a fractional component in (-$\infty$, $\infty$) \\
 natural number & $\mathbb{N}$ & a number without a fractional component in [1, $\infty$) \\
 real & $\mathbb{R}$ & any number in (-$\infty$, $\infty$)\\
+real positive & $\mathbb{R}+$ & any number in [0, $\infty$) \\
+boolean & $\mathbb{B}$ & a truth value, resolving to true or false \\
 \bottomrule
 \end{tabular} 
 \end{center}
 
 \noindent
-The specification of \progname \ uses some derived data types: sequences, strings, and
-tuples. Sequences are lists filled with elements of the same data type. Strings
-are sequences of characters. Tuples contain a list of values, potentially of
-different types. In addition, \progname \ uses functions, which
+The specification of \progname \ uses some derived data types: lists, strings, maps
+and tuples. Lists are data types that store an array of a set data type, formatted as List$<$Object$>$. Strings
+are sequences of characters. Maps are a list of key value pairs of two identical or different data types
+formatted as Map$<$Key, Value$>$. Tuples contain a series of values, potentially of
+different types. Furthermore, some exported data types using a combination of the above
+primitive and derived data types will be defined as required in certain
+MIS sections. In addition, \progname \ uses functions, which
 are defined by the data types of their inputs and outputs. Local functions are
 described by giving their type signature followed by their specification.
 
@@ -134,18 +154,17 @@ The following table is taken directly from the Module Guide document for this pr
 {Hardware-Hiding} & ~ \\
 \midrule
 
-\multirow{7}{0.3\textwidth}{Behaviour-Hiding} & Input Parameters\\
-& Output Format\\
-& Output Verification\\
-& Temperature ODEs\\
-& Energy Equations\\ 
-& Control Module\\
-& Specification Parameters Module\\
+\multirow{7}{0.3\textwidth}{Behaviour-Hiding} & Receipt Vision Module (OCR)\\
+& Receipt Extraction Module\\
+& Location Management Module\\
+& User Analytics Module\\
+& Users Module\\
+& Authentication Module\\
 \midrule
 
-\multirow{3}{0.3\textwidth}{Software Decision} & {Sequence Data Structure}\\
-& ODE Solver\\
-& Plotting\\
+\multirow{3}{0.3\textwidth}{Software Decision} & Recommendation Engine\\
+& Classification Engine\\
+& Database Driver Module\\
 \bottomrule
 
 \end{tabular}
@@ -154,34 +173,346 @@ The following table is taken directly from the Module Guide document for this pr
 \end{table}
 
 \newpage
-~\newpage
 
-\section{MIS of \wss{Module Name}} \label{Module} \wss{Use labels for
-  cross-referencing}
+\section{MIS of Receipt Vision Module} \label{mVision}
 
-\wss{You can reference SRS labels, such as R\ref{R_Inputs}.}
-
-\wss{It is also possible to use \LaTeX for hypperlinks to external documents.}
+The Receipt Vision Module is responsible for providing methods and logic related to image
+capture of the receipt. This includes responsibilities like handling device permissions and camera access.
 
 \subsection{Module}
 
-\wss{Short name for the module}
+receiptVision
 
 \subsection{Uses}
 
+None
 
 \subsection{Syntax}
 
 \subsubsection{Exported Constants}
 
+None
+
+\subsubsection{Exported Types}
+
+None
+
 \subsubsection{Exported Access Programs}
 
 \begin{center}
-\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+  \begin{tabular}{p{5cm} p{4cm} p{3cm} p{4cm}}
+  \hline
+  \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+  \hline
+  requestCameraPermission & - & - & - \\
+  didChangeAppLifeCycle & appLifecycle & - & - \\
+  scanReceipt & - & String & noPermissionException \\
+  \hline
+  \end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+\textbf{App Lifecycle} \textit{appLifecycle}: Tracks module activity on the user's device. \\
+\textbf{$\mathbb{B}$} \textit{isPermissionGranted}: Stores camera permission status. \\
+\textbf{Device Camera} \textit{selectedCamera}: Stores data on which camera to use.
+
+\subsubsection{Environment Variables}
+
+\textbf{Device Camera} User Camera \\
+\textbf{2D Sequence of Pixels} User Display
+
+\subsubsection{Assumptions}
+
+\begin{itemize}
+  \item Application will always be used on a device with a camera.
+\end{itemize}
+
+\subsubsection{Access Routine Semantics}
+
+\noindent requestCameraPermission():
+\begin{itemize}
+  \item transition: Request camera permission and update \textit{isPermissionGranted} accordingly.
+  \item output: none
+  \item exception: none
+  \end{itemize}
+
+\noindent didChangeAppLifeCycle(\textit{appLifecycle}):
+\begin{itemize}
+  \item transition: $(\neg isPermissionGranted) \Rightarrow$ no action is performed $|$\\
+                    $(isPermissionGranted \land appLifecycle = active) \Rightarrow$ Turn on device camera $|$\\
+                    $(isPermissionGranted \land appLifecycle = inactive) \Rightarrow$ Turn off device camera
+  \item output: none
+  \item exception: none
+\end{itemize}
+
+\noindent scanReceipt():
+\begin{itemize}
+  \item transition: Display camera preview and interface for image capture.
+  \item output: $out := isPermissionGranted \Rightarrow$ take picture with camera and parse text
+  \item exception: $exc := (\neg isPermissionGranted) \Rightarrow$ noPermissionException
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+\noindent initializeCamera(availableCameras):
+\begin{itemize}
+  \item transition: Let $findBackFacingCamera = \forall cameras (\exists camera \in cameras : camera.direction = back)$ \\
+                    $(\neg isPermissionGranted) \Rightarrow$ no action is performed $|$\\
+                    $isPermissionGranted \Rightarrow findBackFacingCamera(availableCameras) \Rightarrow $ \\
+                    $selectedCamera = camera$
+\end{itemize}
+
+\newpage
+
+\section{MIS of Receipt Extraction Module} \label{mExtraction}
+
+The Receipt Extraction Module contains methods related to extracting relevant data such as grocery items,
+prices, and date of transaction from a parsed receipt.
+
+\subsection{Module}
+
+receiptExtraction
+
+\subsection{Uses}
+
+Database Driver Module (Section \ref{mDBDriver})
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+None
+
+\subsubsection{Exported Types}
+
+\textbf{Item}
+
+\begin{table}[H]
+  \begin{tabular}{|p{0.25\textwidth}|p{0.25\textwidth}|p{0.40\textwidth}|}
+    \hline
+    \textbf{Output Name} & \textbf{Output Type} & \textbf{Description} \\
+    \hline
+    itemKey & String & SKU of the purchased item \\
+    \hline
+    itemDesc & String & Name of the product on the receipt \\
+    \hline
+    price & $\mathbb{R}$ & Purchase price of the product \\
+    \hline
+    taxed & $\mathbb{B}$ & Whether an item is taxed (Some groceries in Canada aren't taxed) \\
+    \hline
+  \end{tabular}
+\end{table}
+
+\textbf{UpdatedItem}
+
+\begin{table}[H]
+  \begin{tabular}{|p{0.25\textwidth}|p{0.25\textwidth}|p{0.40\textwidth}|}
+    \hline
+    \textbf{Output Name} & \textbf{Output Type} & \textbf{Description} \\
+    \hline
+    itemKey & Optional$<$String$>$ & SKU of the purchased item \\
+    \hline
+    itemDesc & Optional$<$String$>$ & Name of the product on the receipt \\
+    \hline
+    price & Optional$<\mathbb{R}>$ & Purchase price of the product \\
+    \hline
+    taxed & Optional$<\mathbb{B}>$ & Whether an item is taxed (Some groceries in Canada aren't taxed) \\
+    \hline
+  \end{tabular}
+\end{table}
+
+\textbf{GroceryTrip}
+
+\begin{table}[H]
+  \begin{tabular}{|p{0.25\textwidth}|p{0.25\textwidth}|p{0.40\textwidth}|}
+    \hline
+    \textbf{Output Name} & \textbf{Output Type} & \textbf{Description} \\
+    \hline
+    userId & String & ID of the user \\
+    \hline
+    dateTime & $\mathbb{N}$ & Date and time of transaction as Unix timestamp \\
+    \hline
+    location & String & Address of the grocery store location \\
+    \hline
+    items & List$<$Item$>$ & List of purchased grocery items from receipt \\
+    \hline
+    subtotal & $\mathbb{R}$ & Total spent on grocery trip before tax \\
+    \hline
+    total & $\mathbb{R}$ & Total spent on grocery trip \\
+    \hline
+    tripDesc & Optional$<$String$>$ & Notes made by the user \\
+    \hline
+  \end{tabular}
+\end{table}
+
+\textbf{UpdatedGroceryTrip}
+
+\begin{table}[H]
+  \begin{tabular}{|p{0.25\textwidth}|p{0.35\textwidth}|p{0.3\textwidth}|}
+    \hline
+    \textbf{Output Name} & \textbf{Output Type} & \textbf{Description} \\
+    \hline
+    dateTime & Optional$<\mathbb{N}>$ & Date and time of transaction as Unix timestamp \\
+    \hline
+    location & Optional$<$String$>$ & Address of the grocery store location \\
+    \hline
+    items & Optional$<$List$<$UpdatedItem$>$$>$ & List of purchased grocery items from receipt \\
+    \hline
+    subtotal & Optional$<\mathbb{R}>$ & Total spent on grocery trip before tax \\
+    \hline
+    total & Optional$<\mathbb{R}>$ & Total spent on grocery trip \\
+    \hline
+    tripDesc & Optional$<$String$>$ & Notes made by the user \\
+    \hline
+  \end{tabular}
+\end{table}
+
+\subsubsection{Exported Access Programs}
+
+This module takes as input User as described in Section \ref{mUsers}.
+
+\begin{center}
+  \begin{tabular}{p{5cm} p{4cm} p{3cm} p{4cm}}
+  \hline
+  \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+  \hline
+  createGroceryTrip & User, String & GroceryTrip & -\\
+  updateGroceryTrip & UpdatedGroceryTrip & GroceryTrip & -\\
+  createItem & String & Item & -\\
+  updateItem & UpdatedItem & Item & -\\
+  \hline
+  \end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+None
+
+\subsubsection{Environment Variables}
+
+\textbf{2D Sequence of Pixels} User Display
+
+\subsubsection{Assumptions}
+\begin{itemize}
+  \item \textit{createItem} will always be working with strings of the format "\textit{itemKey itemDesc Optional$<$H$>$ price}"
+\end{itemize}
+
+\subsubsection{Access Routine Semantics}
+
+\noindent createGroceryTrip(\textit{user, receiptData}):
+\begin{itemize}
+  \item transition: Extracts \textit{GroceryTrip} data, redirects user to new page where confirmation
+of extracted data can be performed.
+  \item output: $out :=$ new GroceryTrip(\textit{user.userId}, toUnixTimestamp(getDateTime(\textit{receiptData})), getLocation(\textit{receiptData}),
+                        getItems(\textit{receiptData}), getSubtotal(\textit{receiptData}), getTotal(\textit{receiptData}), "")
+  \item exception: none
+\end{itemize}
+
+\noindent updateGroceryTrip(\textit{updatedTrip}):
+\begin{itemize}
+  \item transition: Updates \textit{GroceryTrip}, reloads confirmation page.
+  \item output: $out :=$ Update all fields of the \textit{GroceryTrip} object with non-empty fields of \textit{updatedTrip}.
+  \item exception: none
+\end{itemize}
+
+\noindent createItem(\textit{itemString}):
+\begin{itemize}
+  \item transition: none
+  \item output: Let itemComponents = \text{\textit{itemString}.split}(" ") \\
+                $out := \exists taxed \in itemString : taxed \in L(\text{ H }) \Rightarrow$ \\
+                new Item(itemComponents[0], itemComponents[1], itemComponents[3], True) $|$ \\
+                $\neg(\exists taxed \in itemString : taxed \in L(\text{ H })) \Rightarrow$ \\
+                new Item(itemComponents[0], itemComponents[1], itemComponents[2], False)
+  \item exception: none
+\end{itemize}
+
+\noindent updateItem(\textit{updatedItem}):
+\begin{itemize}
+  \item transition: none
+  \item output: $out :=$ Update all fields of the \textit{Item} object with non-empty fields of \textit{updatedItem}.
+  \item exception: none
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+\noindent getDateTime(\textit{receiptData}):
+\begin{itemize}
+  \item output: $\text{Let } A=\{x : 0 \leq x \leq 9\}, B=\{x : 0 \leq x \leq 2\}, C=\{x : 0 \leq x \leq 5\}$ \\
+                $\text{Let } containsDateTime=\exists data \in receiptData : data$\\ $\in L((A|AA)(/|-)(A|AA)(/|-)(AAAA)\text{ }(BA)\text{:}(CA)\text{:}(CA))$ \\
+                $out := containsDateTime(receiptData) \Rightarrow data | \neg containsDateTime(receiptData) \Rightarrow null$
+\end{itemize}
+
+\noindent toUnixTimestamp(\textit{dateTime}):
+\begin{itemize}
+  \item output: takes String \textit{dateTime} and converts it to a Unix timestamp.
+\end{itemize}
+
+\noindent getLocation(\textit{receiptData}):
+\begin{itemize}
+  \item output: $\text{Let } A=\{x : 0 \leq x \leq 9\}, B=\{a,b,\dots,y,z\}\cup\{A,B,\dots,Y,Z\}\cup\{\text{ }\}$ \\
+                $\text{Let } containsLocation=\exists data \in receiptData : data \in L(A{}^\ast \text{ } B{}^\ast)$ \\
+                $out := containsLocation(receiptData) \Rightarrow data | \neg containsLocation(receiptData) \Rightarrow null$
+\end{itemize}
+
+\noindent getItems(\textit{receiptData}):
+\begin{itemize}
+  \item output: $\text{Let } A=\{x : 0 \leq x \leq 9\}, B=\{a,b,\dots,y,z\}\cup\{A,B,\dots,Y,Z\}\cup\{\text{ }\}$ \\
+                $\text{Let } getItems=\exists data : data \in L(B^\ast \text{ } (\$|\epsilon)A{}^\ast.AA), itemList=[]$ \\
+                $out := itemList \text{ s.t. } \forall text(getItems(text) \land text \in receiptData) : itemList.append(createItem(text))$
+\end{itemize}
+
+\noindent getSubtotal(\textit{receiptData}):
+\begin{itemize}
+  \item output: $\text{Let } A=\{x : 0 \leq x \leq 9\}$ \\
+                $\text{Let } containsSubtotal=\exists data \in receiptData : data \in L((\text{SUBTOTAL}|\text{Subtotal})\text{ }\$A{}^\ast.AA)$ \\
+                $out := containsSubtotal(receiptData) \Rightarrow data | \neg containsSubtotal(receiptData) \Rightarrow null$
+\end{itemize}
+
+\noindent getTotal(\textit{receiptData}):
+\begin{itemize}
+  \item output: $\text{Let } A=\{x : 0 \leq x \leq 9\}$ \\
+                $\text{Let } containsTotal=\exists data \in receiptData : data \in L((\text{TOTAL}|\text{Total})\text{ }\$A{}^\ast.AA)$ \\
+                $out := containsTotal(receiptData) \Rightarrow data | \neg containsTotal(receiptData) \Rightarrow null$
+\end{itemize}
+
+\newpage
+
+\section{MIS of Location Management Module} \label{mLocation} 
+The Location Management Module manages user location data and outputs relevant resources based the available user location data.
+
+\subsection{Module}
+
+locationManagement
+
+\subsection{Uses}
+
+Database Driver Module (Section \ref{mDBDriver})
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+None
+
+\subsubsection{Exported Types}
+
+None
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{5cm} p{3cm} p{3cm} p{5cm}}
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-\wss{accessProg} & - & - & - \\
+getLastLocation & - & String & noLocationSavedException \\
+setLastLocation & String & - & invalidLocationException \\
+getNearbyStores & - & List$<$String$>$ & - \\
+setRadius & $\mathbb{N}$ & - & - \\
 \hline
 \end{tabular}
 \end{center}
@@ -189,43 +520,667 @@ The following table is taken directly from the Module Guide document for this pr
 \subsection{Semantics}
 
 \subsubsection{State Variables}
-
-\wss{Not all modules will have state variables.  State variables give the module
-  a memory.}
+None
 
 \subsubsection{Environment Variables}
-
-\wss{This section is not necessary for all modules.  Its purpose is to capture
-  when the module has external interaction with the environment, such as for a
-  device driver, screen interface, keyboard, file, etc.}
+None
 
 \subsubsection{Assumptions}
-
-\wss{Try to minimize assumptions and anticipate programmer errors via
-  exceptions, but for practical purposes assumptions are sometimes appropriate.}
+None
 
 \subsubsection{Access Routine Semantics}
 
-\noindent \wss{accessProg}():
+\noindent getLastLocation():
 \begin{itemize}
-\item transition: \wss{if appropriate} 
-\item output: \wss{if appropriate} 
-\item exception: \wss{if appropriate} 
+\item transition: none
+\item output: \( \textit{out} \coloneqq \neg location = null \Rightarrow  location \), where \textit{location} is the user location stored in the database (Section \ref{mDBDriver})
+\item exception: \( \textit{exc} \coloneqq location = null \Rightarrow  noLocationSavedException \), where \textit{location} is the user location stored in the database (Section \ref{mDBDriver})
 \end{itemize}
 
-\wss{A module without environment variables or state variables is unlikely to
-  have a state transition.  In this case a state transition can only occur if
-  the module is changing the state of another module.}
+\noindent setLastLocation(\textit{location}):
+\begin{itemize}
+\item transition: Set user location in the database (Section \ref{mDBDriver}) to \textit{location}
+\item output: none
+\item exception: \( \textit{exc} \coloneqq invalidLocationException \), if \textit{location} is not a valid location in the places dependency
+\end{itemize}
 
-\wss{Modules rarely have both a transition and an output.  In most cases you
-  will have one or the other.}
+\noindent getNearbyStores():
+\begin{itemize}
+\item transition: none
+\item output: \( \textit{out} \coloneqq locations \), where \textit{locations} is a List of Strings representing relevant stores specified by the user's preferences stored in the database (Section \ref{mDBDriver})
+\item exception: none
+\end{itemize}
+
+\noindent setRadius(\textit{R}):
+\begin{itemize}
+\item transition: Set user location radius in the database (Section \ref{mDBDriver}) to \textit{R}
+\item output: none
+\item exception: none
+\end{itemize}
+
+
+\subsubsection{Local Functions}
+None
+
+\newpage
+
+\section{MIS of User Analytics Module} \label{mAnalytics} 
+The User Analytics Module provides analytics and feedback on user purchasing behaviour, offering insight on recent and future purchasing for individual users.
+
+\subsection{Module}
+
+userAnalytics
+
+\subsection{Uses}
+
+Database Driver Module (Section \ref{mDBDriver})
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+None
+
+\subsubsection{Exported Types}
+
+\textbf{Item} as defined in Section \ref{mExtraction}
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+
+\begin{tabular}{p{5cm} p{3cm} p{4cm} p{4cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+getSpendingByCategory & $\mathbb{N}^2$ & Map$<$String, List$<$Item$>$$>$  & - \\
+getSpendingByTime & $\mathbb{N}^2$ & Map$<$String, $\mathbb{R}$+$>$ & - \\
+createBudgetGoals & $\mathbb{N}^3$, String & - & - \\
+updateBudgetGoals & $\mathbb{N}^4$, String & - & - \\
+deleteBudgetGoals & $\mathbb{N}$, String & - & - \\
+getBudgetGoals & - & List$<$($\mathbb{N}^3$, String)$>$ & - \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+None
+
+\subsubsection{Environment Variables}
+None
+
+\subsubsection{Assumptions}
+None
+
+\subsubsection{Access Routine Semantics}
+
+\noindent getSpendingByCategory(\textit{startDate}, \textit{endDate}):
+\begin{itemize}
+\item transition: none
+\item output: \( \textit{out} \coloneqq spendingList \), where \textit{spendingList} is a List of user purchases in the time period specified by \textit{startDate} and \textit{endDate} grouped by product category stored in the database (Section \ref{mDBDriver})
+\item exception: none
+\end{itemize}
+
+\noindent setSpendingByTime(\textit{startDate}, \textit{endDate}):
+\begin{itemize}
+\item transition: none
+\item output: \( \textit{out} \coloneqq spendingList \), where \textit{spendingList} is a List of user spending amount by day within the specified \textit{startDate} and \textit{endDate} stored in the database (Section \ref{mDBDriver})
+\item exception: none
+\end{itemize}
+
+\noindent createBudgetGoals(\textit{startDate}, \textit{endDate}, \textit{budget}, \textit{category}):
+\begin{itemize}
+\item transition: Create budget goal for the user in the Goals table of the database (Section \ref{mDBDriver})
+\item output: none
+\item exception: none
+\end{itemize}
+
+\noindent updateBudgetGoals(\textit{budgetId}, \textit{startDate}, \textit{endDate}, \textit{budget}, \textit{category}):
+\begin{itemize}
+\item transition: Update budget goal for the user in the Goals table of the database (Section \ref{mDBDriver})
+\item output: none
+\item exception: none
+\end{itemize}
+
+\noindent deleteBudgetGoals(\textit{budgetId}):
+\begin{itemize}
+\item transition: Delete budget goal for the user by budget goal ID (\textit{budgetId}) in the Goals table of the database (Section \ref{mDBDriver})
+\item output: none
+\item exception: none
+\end{itemize}
+
+\noindent getBudgetGoals():
+\begin{itemize}
+\item transition: none
+\item output: \( \textit{out} \coloneqq budgetGoals \) Where \textit{budgetGoals} is the List of budget goals of the user in the Goals table of the database (Section \ref{mDBDriver})
+\item exception: none
+\end{itemize}
+
+
+\subsubsection{Local Functions}
+None
+
+\newpage
+
+\section{MIS of Users Module} \label{mUsers} 
+The Users Module exists to handle CRUD operations for operations related to users and their grocery trips.
+
+\subsection{Module}
+
+users
+
+\subsection{Uses}
+
+Database Driver Module (Section \ref{mDBDriver}) 
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+None
+
+\subsubsection{Exported Types}
+\textbf{Item} as defined in Section \ref{mExtraction} \\
+
+\noindent \textbf{GroceryTrip} as defined in Section \ref{mExtraction} \\
+
+\noindent \textbf{User}
+
+\begin{table}[H]
+  \begin{tabular}{|p{0.25\textwidth}|p{0.25\textwidth}|p{0.40\textwidth}|}
+    \hline
+    \textbf{Output Name} & \textbf{Output Type} & \textbf{Description} \\
+    \hline
+    userId & String & Unique user id number \\
+    \hline
+    email & String & Email of user \\
+    \hline
+    password & String & Password of user (Encrypted) \\
+    \hline
+    firstName & String & First name of User \\
+    \hline
+    lastName & String & Last name of User \\
+    \hline
+    location & String & Location of user's home-base. (Coordinates) \\
+    \hline
+  \end{tabular}
+\end{table}
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{5cm} p{3cm} p{3cm} p{5cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+newUser & User & - & userExistsException \\
+getUser & String & User & userDneException \\
+updateUser & User & - & userDneException \\
+deleteUser & String & - & userDneException \\
+addTrip & GroceryTrip & - & userDneException \\
+getTrip & $\mathbb{N}$ & GroceryTrip & - \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+None
+
+\subsubsection{Environment Variables}
+None
+
+\subsubsection{Assumptions}
+None
+
+\subsubsection{Access Routine Semantics}
+
+\noindent newUser(\textit{user}):
+\begin{itemize}
+\item transition: \( \neg userExists(\textit{user.userId}) \Rightarrow addUserInDB(\textit{user})\) 
+\item output: none
+\item exception \( \textit{exc} \coloneqq userExists(\textit{user.userId}) \Rightarrow \\ userExistsException\)
+\end{itemize}
+
+\noindent getUser(\textit{userId}):
+\begin{itemize}
+\item transition: none
+\item output: \( \textit{out} \coloneqq userExists(\textit{user.userId}) \Rightarrow getUserInDB(userId)\)
+\item exception \( \textit{exc} \coloneqq \neg userExists(\textit{user.userId}) \Rightarrow \\ userDneException\)
+\end{itemize}
+
+\noindent updateUser(\textit{user}):
+\begin{itemize}
+\item transition: \( userExists(\textit{user.userId}) \Rightarrow updateUser(\textit{user})\)
+\item output: none
+\item exception \( \textit{exc} \coloneqq \neg userExists(\textit{user.userId}) \Rightarrow \\ userDneException\)
+\end{itemize}
+
+\noindent deleteUser(\textit{user}):
+\begin{itemize}
+\item transition: \( userExists(\textit{user.userId}) \Rightarrow deleteUserInDB(\textit{user})\) 
+\item output: none
+\item exception \( \textit{exc} \coloneqq \neg userExists(\textit{user.userId}) \Rightarrow \\ userDneException\)
+\end{itemize}
+
+\noindent addTrip(\textit{groceryTrip}):
+\begin{itemize}
+\item transition: \( userExists(\textit{groceryTrip.userId}) \Rightarrow addTripInDB(\textit{groceryTrip})\) 
+\item output: none
+\item exception \( \textit{exc} \coloneqq \neg userExists(\textit{user.userId}) \Rightarrow \\ userDneException\)
+\end{itemize}
+
+\noindent getTrip(\textit{dateTime}):
+\begin{itemize}
+\item transition: none
+\item output: \( \textit{out} \coloneqq getTripFromDateTime(\textit{dateTime}) \)
+\end{itemize}
+
+\subsubsection{Local Functions}
+addUserInDB(\textit{user})
+\begin{itemize}
+\item transition: Add tuple to User database (Section \ref{mDBDriver}) using fields from \textit{user}.
+\end{itemize}
+
+\noindent getUserInDB(\textit{userId})
+\begin{itemize}
+\item output:  Query User database (Section \ref{mDBDriver}) where \textit{userId} and map to fields in \textit{user}. Output \textit{user}.
+\end{itemize}
+
+\noindent updateUserInDB(\textit{user})
+\begin{itemize}
+\item output:  Replace tuple with key \textit{user.userId} in User database (Section \ref{mDBDriver}) with \textit{user} by mapping fields fields.
+\end{itemize}
+
+\noindent deleteUserInDB(\textit{user})
+\begin{itemize}
+\item transition: Remove tuple to User database (Section \ref{mDBDriver}) using fields from primary key \textit{user.userId}.
+\end{itemize}
+
+\noindent userExists(\textit{groceryTrip.userId})
+\begin{itemize}
+\item output: Query User database (Section \ref{mDBDriver}) and output True if a tuple with \textit{userId} = \textit{groceryTrip.userId} exists in the table.
+\end{itemize}
+
+\noindent addTripInDB(\textit{groceryTrip})
+\begin{itemize}
+\item transition: Add tuple to Trip database (Section \ref{mDBDriver}) using fields from \textit{groceryTrip}.
+\end{itemize}
+
+\noindent getTripFromDateTime(\textit{dateTime})
+\begin{itemize}
+\item output: Query Trip database (Section \ref{mDBDriver}) and output the \textit{GroceryTrip} tuple that is closest to \textit{dateTime}.
+\end{itemize}
+
+\newpage
+
+\section{MIS of Authentication Module} \label{mAuthentication} 
+The Authentication module acts to "log-in" the user by providing the client with a JWT token.
+
+\subsection{Module}
+
+authentication
+
+\subsection{Uses}
+
+Database Driver Module (Section \ref{mDBDriver}) 
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+None
+
+\subsubsection{Exported Types}
+
+None
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{5cm} p{3cm} p{3cm} p{5cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+getToken & String$^2$ & String & invalidCredentialsException \\
+verifyToken & String & String & invalidTokenException \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+None
+
+\subsubsection{Environment Variables}
+\textbf{String} PrivateKey (for JWT) \\
+\textbf{String} PublicKey (for JWT)
+
+\subsubsection{Assumptions}
+None
+
+\subsubsection{Access Routine Semantics}
+
+\noindent getToken(\textit{email}, \textit{passwordEncrypted}):
+\begin{itemize}
+\item transition: \textit{signedJwtToken} produced using \textit{PrivateKey}
+\item output: \( \textit{out} \coloneqq verifyCredentials(\textit{email}, \textit{passwordEncrypted}) \Rightarrow  signedJwtToken\) \\
+\item exception \( \textit{exc} \coloneqq \neg verifyCredentials(\textit{email}, \textit{passwordEncrypted}) \Rightarrow \\ invalidCredentialsException\)
+\end{itemize}
+
+\noindent verifyJwtToken(\textit{jwtToken}):
+\begin{itemize}
+\item transition: none
+\item output: \( \textit{out} \coloneqq verifyToken(\textit{jwtToken})\)
+\item exception: \( \textit{exc} \coloneqq \neg verifyToken(\textit{jwtToken}) \Rightarrow invalidTokenException \), if the provided JWT token does not evaluate true in comparison to the PublicKey
+\end{itemize}
+
+\subsubsection{Local Functions}
+verifyCredentials(\textit{email}, \textit{passwordEncrypted})
+\begin{itemize}
+\item output: \( \textit{out} \coloneqq \) True if the password is deemed correct for the given email using the database (Section \ref{mDBDriver}), else False
+\end{itemize}
+
+\noindent verifyToken(\textit{jwtToken})
+\begin{itemize}
+\item output: \( \textit{out} \coloneqq \) True if the JWT token is deemed corrrect using the PublicKey and JWTLibrary, else False
+\end{itemize}
+
+\newpage
+
+\section{MIS of Recommendation Module} \label{mRecommendation}
+
+Module for recommending user purchases.
+
+\subsection{Module}
+
+recommendationModule
+
+\subsection{Uses}
+
+Database Driver Module (Section \ref{mDBDriver})
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+None
+
+\subsubsection{Exported Types}
+
+\textbf{Item} as defined in Section \ref{mExtraction} \\
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+    \begin{tabular}{p{5cm} p{4cm} p{3cm} p{4cm}}
+    \hline
+    \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+    \hline
+    collectItemData & Item & - & InvalidDataFormatException \\
+    getCheaperAlternatives & String & List$<$String$>$ & - \\
+    getRecommendationDetails & String & Item & - \\
+    \hline
+    \end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+None
+
+\subsubsection{Environment Variables}
+
+None
+
+\subsubsection{Assumptions}
+
+None
+
+\subsubsection{Access Routine Semantics}
+
+\noindent collectItemData(\textit{Item}):
+\begin{itemize}
+  \item transition: Updates the module's internal data structure with the new \textit{Item} data.
+  \item output: none
+  \item exception: $exc := \textit{InvalidDataFormatException}$, if \textit{Item} does not adhere to the expected format.
+\end{itemize}
+
+\noindent getCheaperAlternatives(\textit{itemId}):
+\begin{itemize}
+  \item transition: none
+  \item output: $out := \textit{getCheaperAlternatives}(\textit{itemId})$ 
+  \item exception: none
+\end{itemize}
+
+\noindent getRecommendationDetails(\textit{itemId}):
+\begin{itemize}
+  \item transition: none
+  \item output: $out := \textit{getItemDetails}(\textit{itemId})$
+  \item exception: none
+\end{itemize}
 
 \subsubsection{Local Functions}
 
-\wss{As appropriate} \wss{These functions are for the purpose of specification.
-  They are not necessarily something that is going to be implemented
-  explicitly.  Even if they are implemented, they are not exported; they only
-  have local scope.}
+\noindent getCheaperAlternatives(\textit{itemId}):
+\begin{itemize}
+  \item output: $out :=$ list of item IDs that are cheaper alternatives to the item identified by, \textit{itemId}
+\end{itemize}
+
+\noindent getItemDetails(\textit{itemId}):
+\begin{itemize}
+  \item output: $out :=$ detailed information of the item identified by, \textit{itemId}
+\end{itemize}
+
+\newpage
+
+\section{MIS of Classification Module} \label{mClassification}
+
+The Classification Module is responsible for interpreting and identifying recognized items from receipt data.
+
+\subsection{Module}
+
+classificationModule
+
+\subsection{Uses}
+
+Database Driver Module (Section \ref{mDBDriver})
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+None
+
+\subsubsection{Exported Types}
+
+\textbf{ClassifiedItem}
+
+\begin{table}[H]
+  \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.5\linewidth}|}
+    \hline
+    \textbf{Column Name} & \textbf{Type} & \textbf{Description} \\
+    \hline
+    itemId & String & Unique id of this instance of this item \\
+    \hline
+    productKey & String & Universal item identifier (UPC) \\
+    \hline
+    dateTime & $\mathbb{N}$ & Date and time of purchase \\
+    \hline
+    price & $\mathbb{R}$ & Price of item \\
+    \hline
+    location & String & Location of purchase \\
+    \hline
+    userId & String & ID of user\\
+    \hline
+    itemDesc & String & Item description\\
+    \hline
+    isTaxed & $\mathbb{B}$ & Describes if the item is taxed\\
+    \hline
+    category & String & Describes the product category the item belongs to\\
+    \hline
+  \end{tabular}
+\end{table}
+
+\subsubsection{Exported Access Programs}
+
+This module uses Item as an input, as described in Section \ref{mExtraction}
+
+\begin{center}
+    \begin{tabular}{p{5cm} p{4cm} p{3cm} p{4cm}}
+    \hline
+    \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+    \hline
+    setItemData & Item & - & invalidDataException \\
+    getClassifiedItem & String & ClassifiedItem & - \\
+    \hline
+    \end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+None
+
+\subsubsection{Environment Variables}
+
+None
+
+\subsubsection{Assumptions}
+
+None
+
+\subsubsection{Access Routine Semantics}
+
+\noindent setItemData(\textit{Item}):
+\begin{itemize}
+  \item transition: Set Item data in the database (Section \ref{mDBDriver}) to \textit{Classified Item}
+  \item output: none
+  \item exception: $exc := invalidDataException$, if \textit{Item} does not adhere to expected format.
+  \end{itemize}
+
+\noindent getClassifiedItem(\textit{itemId}):
+\begin{itemize}
+  \item transition: none
+  \item output: $out := \textit{itemExists}(\textit{itemId}) \Rightarrow \textit{getClassifiedItemInDB}(\textit{itemId})$
+  \item exception: none
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+\noindent itemExists(\textit{itemId}):
+\begin{itemize}
+  \item output: $out := (\textit{itemId} \text{ is present in the database})$
+\end{itemize}
+
+\noindent getClassifiedItemInDB(\textit{itemId}):
+\begin{itemize}
+  \item output: $out := \textit{itemExists}(\textit{itemId}) \Rightarrow \textit{retrieveClassifiedItem}(\textit{itemId})$
+  \item exception: $\textit{exc} := \textit{itemNotFoundException}$, if $\textit{itemId}$ does not exist in the database.
+\end{itemize}
+
+\noindent identifyItemUsingModel(\textit{inputItemData}):
+\begin{itemize}
+  \item output: $out := \textit{classifyUsingModel}(\textit{inputItemData})$
+  \item exception: $\textit{exc} := \textit{modelIdentificationException}$, if the classification model fails to identify the item.
+\end{itemize}
+
+\noindent classifyUsingModel(\textit{inputItemData}):
+\begin{itemize}
+  \item output: $out :=$ the classification result of the model for, \textit{inputItemData}
+  \item exception: $\textit{exc} := \textit{classificationException}$, if the model encounters an error during the classification process.
+\end{itemize}
+
+\noindent findMatchingProduct(\textit{inputItemData}):
+\begin{itemize}
+  \item output: $out :=$ product details from the database that best match, \textit{inputItemData}
+  \item exception: $\textit{exc} := \textit{noProductFoundException}$, if no product in the database matches \textit{inputItemData}.
+\end{itemize}
+
+\newpage
+
+\section{MIS of Database Driver Module} \label{mDBDriver}
+Module for hiding database implementation. Database schema and tables are detailed in Section \ref{dbAppendix}
+
+\subsection{Module}
+dbModule
+
+\subsection{Uses}
+None
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+None
+
+\subsubsection{Exported Types}
+None
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{4cm} p{4cm} p{4cm} p{3cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+insert & String$^2$ & - & - \\
+update & String$^3$ & - & - \\
+delete & String$^2$ & - & - \\
+select & String$^3$ & String & - \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+None
+
+\subsubsection{Environment Variables}
+\textbf{Relational Database} db
+
+\subsubsection{Assumptions}
+\begin{itemize}
+  \item The schema is set up as described in Section \ref{dbAppendix}\\
+  \item The connection to the database is established with necessary permissions.
+\end{itemize}
+
+\subsubsection{Access Routine Semantics}
+
+\noindent insert(\textit{tableName, values}):
+\begin{itemize}
+\item transition: the target table in \textit{db} specified by \textit{tableName} adds \textit{values}.
+\item output: none
+\item exception: none
+\end{itemize}
+
+\noindent update(\textit{tableName, values, conditions}):
+\begin{itemize}
+\item transition: the target items in \textit{db} specified by \textit{tableName} and \textit{conditions} is updated with \textit{values}.
+\item output: none
+\item exception: none
+\end{itemize}
+
+\noindent delete(\textit{tableName, conditions}):
+\begin{itemize}
+\item transition: the target items in \textit{db} specified by \textit{tableName} and \textit{conditions} are deleted.
+\item output: none
+\item exception: none
+\end{itemize}
+
+\noindent select(\textit{fields, tableName, conditions}):
+\begin{itemize}
+\item transition: none
+\item output: $out \coloneqq data$, where \textit{data} describes the fields specified by \textit{fields} of the target items specified by \textit{tableName} and \textit{conditions} in db.
+\item exception: none
+\end{itemize}
+
+\subsubsection{Local Functions}
+None
 
 \newpage
 
@@ -236,6 +1191,101 @@ The following table is taken directly from the Module Guide document for this pr
 
 \section{Appendix} \label{Appendix}
 
-\wss{Extra information if required}
+\subsection{Database Schema and Tables} \label{dbAppendix}
+
+\subsubsection{rawItems}
+\begin{table}[H]
+  \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.5\linewidth}|}
+    \hline
+    \textbf{Column Name} & \textbf{Type} & \textbf{Description} \\
+    \hline
+    itemId & String & PRIMARY KEY unique id of this instance of this item \\
+    \hline
+    itemKey & String & Item identifier specific to the retailer (usually SKU) \\
+    \hline
+    dateTime & $\mathbb{N}$ & Date and time of purchase \\
+    \hline
+    price & $\mathbb{R}$ & Price of item \\
+    \hline
+    location & String & Location of purchase \\
+    \hline
+    userId & String & FOREIGN KEY ID of user\\
+    \hline
+    itemDesc & String & Item description\\
+    \hline
+    isTaxed & $\mathbb{B}$ & Describes if the item is taxed\\
+    \hline
+  \end{tabular}
+\end{table}
+
+\subsubsection{classifiedItems}
+\begin{table}[H]
+  \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.5\linewidth}|}
+    \hline
+    \textbf{Column Name} & \textbf{Type} & \textbf{Description} \\
+    \hline
+    itemId & String & PRIMARY KEY unique id of this instance of this item \\
+    \hline
+    productKey & String & Universal item identifier (UPC) \\
+    \hline
+    dateTime & $\mathbb{N}$ & Date and time of purchase \\
+    \hline
+    price & $\mathbb{R}$ & Price of item \\
+    \hline
+    location & String & Location of purchase \\
+    \hline
+    userId & String & FOREIGN KEY ID of user\\
+    \hline
+    itemDesc & String & Item description\\
+    \hline
+    isTaxed & $\mathbb{B}$ & Describes if the item is taxed\\
+    \hline
+    category & String & Describes the product category the item belongs to\\
+    \hline
+  \end{tabular}
+\end{table}
+
+\subsubsection{users}
+\begin{table}[H]
+  \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.5\linewidth}|}
+    \hline
+    \textbf{Column Name} & \textbf{Type} & \textbf{Description} \\
+    \hline
+    userId & String & PRIMARY KEY unique id assigned to the user \\
+    \hline
+    email & String & User email \\
+    \hline
+    password & String & Encrypted user password \\
+    \hline
+    firstName & String & User first name \\
+    \hline
+    lastName & String & User last name \\
+    \hline
+    location & String & Location of the user, usually describes the user's home\\
+    \hline
+  \end{tabular}
+\end{table}
+
+\subsubsection{goals}
+\begin{table}[H]
+  \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.5\linewidth}|}
+    \hline
+    \textbf{Column Name} & \textbf{Type} & \textbf{Description} \\
+    \hline
+    goalId & $\mathbb{N}$ & PRIMARY KEY unique id assigned to the goal \\
+    \hline
+    userId & String & FOREIGN KEY ID of user \\
+    \hline
+    startDate & $\mathbb{N}$ & Start date of the goal \\
+    \hline
+    endDate & $\mathbb{N}$ & End date of the goal \\
+    \hline
+    budget & $\mathbb{Z}$ & Money allotted for the goal \\
+    \hline
+    category & String & The product category of relevant to the goal\\
+    \hline
+  \end{tabular}
+\end{table}
+
 
 \end{document}

@@ -8,6 +8,7 @@
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{hyperref}
+\usepackage{longtable}
 \hypersetup{
     colorlinks,
     citecolor=blue,
@@ -46,8 +47,7 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+17/01/2024 & 1.0 & Initial version of Module Guide\\
 \bottomrule
 \end{tabularx}
 
@@ -72,9 +72,10 @@ This section records information for easy reference.
   R & Requirement\\
   SC & Scientific Computing \\
   SRS & Software Requirements Specification\\
-  \progname & Explanation of program name\\
+  \progname & The name of the application being built\\
   UC & Unlikely Change \\
-  \wss{etc.} & \wss{...}\\
+  CRUD & Create, Read, Update, Delete \\
+  OCR & Optical Character Recognition \\
   \bottomrule
 \end{tabular}\\
 
@@ -157,11 +158,12 @@ adapted here is called design for
 change.
 
 \begin{description}
-\item[\refstepcounter{acnum} \actheacnum \label{acHardware}:] The specific
-  hardware on which the software is running.
-\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The format of the
-  initial input data.
-\item ...
+\item[\refstepcounter{acnum} \actheacnum \label{acHardware}:] The specific hardware on which the software is running.
+\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The format of the initial receipt data.
+\item[\refstepcounter{acnum} \actheacnum \label{acAPIReq}:] The structure of the data inputted to the server.
+\item[\refstepcounter{acnum} \actheacnum \label{acAPIRes}:] The structure of the data returned from the server.
+\item[\refstepcounter{acnum} \actheacnum \label{acFormat}:] The styling and formatting of UI components and user input.
+\item[\refstepcounter{acnum} \actheacnum \label{acDB}:] The table structure of the databases.
 \end{description}
 
 \subsection{Unlikely Changes} \label{SecUchange}
@@ -174,9 +176,11 @@ will potentially need to be modified. Hence, it is not intended that these
 decisions will be changed.
 
 \begin{description}
-\item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] Input/Output devices
-  (Input: File and/or Keyboard, Output: File, Memory, and/or Screen).
-\item ...
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] The user interface will be on a mobile device that has a camera for primary input.
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] The server will run on NodeJS.
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] The front end mobile app will be built on Flutter.
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] The database will be PostgreSQL.
+
 \end{description}
 
 \section{Module Hierarchy} \label{SecMH}
@@ -188,9 +192,21 @@ actually be implemented.
 
 \begin{description}
 \item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Hardware-Hiding Module
-\item ...
+\item [\refstepcounter{mnum} \mthemnum \label{mRVision}:] Receipt Vision Module (OCR)
+\item [\refstepcounter{mnum} \mthemnum \label{mReview}:] Receipt Extraction Module
+\item [\refstepcounter{mnum} \mthemnum \label{mLocation}:] Location Management Module
+\item [\refstepcounter{mnum} \mthemnum \label{mAnalytics}:] User Analytics Module
+\item [\refstepcounter{mnum} \mthemnum \label{mUsers}:] Users Module
+\item [\refstepcounter{mnum} \mthemnum \label{mAuth}:] Authentication Module
+\item [\refstepcounter{mnum} \mthemnum \label{mRec}:] Recommendation Engine
+\item [\refstepcounter{mnum} \mthemnum \label{mClassification}:] Classification Engine
+\item [\refstepcounter{mnum} \mthemnum \label{mDBDriver}:] Database Driver Module
+
+
 \end{description}
 
+Note that \ref{mHH} is a commonly used module and is already implemented by the operating system.
+It will not be reimplemented.
 
 \begin{table}[h!]
 \centering
@@ -202,19 +218,17 @@ actually be implemented.
 {Hardware-Hiding Module} & ~ \\
 \midrule
 
-\multirow{7}{0.3\textwidth}{Behaviour-Hiding Module} & ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\ 
-& ?\\
+\multirow{7}{0.3\textwidth}{Behaviour-Hiding Module} & Receipt Vision Module (OCR)\\
+& Receipt Extraction Module\\
+& Location Management Module\\
+& User Analytics Module\\
+& Users Module\\
+& Authentication Module\\
 \midrule
 
-\multirow{3}{0.3\textwidth}{Software Decision Module} & {?}\\
-& ?\\
-& ?\\
+\multirow{3}{0.3\textwidth}{Software Decision Module} & Recommendation Engine\\
+& Classification Engine\\
+& Database Driver Module\\
 \bottomrule
 
 \end{tabular}
@@ -257,44 +271,90 @@ to be implemented.
 
 \subsection{Behaviour-Hiding Module}
 
-\begin{description}
-\item[Secrets:]The contents of the required behaviours.
-\item[Services:]Includes programs that provide externally visible behaviour of
-  the system as specified in the software requirements specification (SRS)
-  documents. This module serves as a communication layer between the
-  hardware-hiding module and the software decision module. The programs in this
-  module will need to change if there are changes in the SRS.
-\item[Implemented By:] --
-\end{description}
-
-\subsubsection{Input Format Module (\mref{mInput})}
+\subsubsection{Vision Module (\mref{mRVision})}
 
 \begin{description}
-\item[Secrets:]The format and structure of the input data.
-\item[Services:]Converts the input data into the data structure used by the
-  input parameters module.
-\item[Implemented By:] [Your Program Name Here]
-\item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
-  [Information to include for leaf modules in the decomposition by secrets tree.]
+\item[Secrets:] The dependencies and algorithms required to facilitate text recognition of receipts.
+\item[Services:] Provides methods related to usage of the device camera and extraction of the text from captured
+receipts.
+\item[Implemented By:] Grocery Spending Tracker
+\item[Type of Module:] Library
 \end{description}
 
-\subsubsection{Etc.}
+\subsubsection{Receipt Extraction Module (\mref{mReview})}
 
+\begin{description}
+\item[Secrets:] The algorithms required to extract relevant information from the scanned receipt text.
+\item[Services:] Isolates necessary information from scanned receipt text, organizes it, and sends to other
+modules.
+\item[Implemented By:] Grocery Spending Tracker
+\item[Type of Module:] Library
+\end{description}
+
+\subsubsection{Location Management Module (\mref{mLocation})}
+
+\begin{description}
+\item[Secrets:] The dependencies and algorithms for determining location-based relevance. 
+\item[Services:] Determines relevance of information based on location data.
+\item[Implemented By:] Grocery Spending Tracker
+\item[Type of Module:] Library
+\end{description}
+
+\subsubsection{User Analytics Module (\mref{mAnalytics})}
+
+\begin{description}
+\item[Secrets:] The data structures and algorithms for compiling and computing user purchasing analytics. 
+\item[Services:] Provide analytics and feedback on user purchasing behaviour, offering insight on recent and future purchasing.
+\item[Implemented By:] Grocery Spending Tracker
+\item[Type of Module:] Library
+\end{description}
+
+\subsubsection{Users Module (\mref{mUsers})}
+
+\begin{description}
+\item[Secrets:] The methods and data structures that support all user operations.
+\item[Services:] Produce CRUD operations for operations related to users.
+\item[Implemented By:] Grocery Spending Tracker
+\item[Type of Module:] Library
+\end{description}
+
+\subsubsection{Authentication Module (\mref{mAuth})}
+
+\begin{description}
+\item[Secrets:] The data structures that hold all account data such as username, password, and email.
+\item[Services:] Facilitates secure user login and authentication.
+\item[Implemented By:] Grocery Spending Tracker
+\item[Type of Module:] Library
+\end{description}
 
 \subsection{Software Decision Module}
 
+\subsubsection{Recommendation Engine Module (\mref{mRec})}
+
 \begin{description}
-\item[Secrets:] The design decision based on mathematical theorems, physical
-  facts, or programming considerations. The secrets of this module are
-  \emph{not} described in the SRS.
-\item[Services:] Includes data structure and algorithms used in the system that
-  do not provide direct interaction with the user. 
-  % Changes in these modules are more likely to be motivated by a desire to
-  % improve performance than by externally imposed changes.
-\item[Implemented By:] --
+\item[Secrets:] Language models and query/filtering algorithms required to generate best match output.
+\item[Services:] Provides methods related to determining recommended items depending on input or provided data.
+\item[Implemented By:] Grocery Spending Tracker
+\item[Type of Module:] Library
 \end{description}
 
-\subsubsection{Etc.}
+\subsubsection{Classification Engine Module (\mref{mClassification})}
+
+\begin{description}
+\item[Secrets:] Configuration models required to classify items from data that has noise.
+\item[Services:] Provides methods related to interpreting and identifying recognized items from receipt data.
+\item[Implemented By:] Grocery Spending Tracker
+\item[Type of Module:] Library
+\end{description}
+
+\subsubsection{Database Driver Module (\mref{mDBDriver})}
+
+\begin{description}
+\item[Secrets:] The data structures for representing the database schema and providing interface from the other modules.
+\item[Services:] Facilitates communication between the database and the other modules.
+\item[Implemented By:] Grocery Spending Tracker, PostgreSQL
+\item[Type of Module:] Library
+\end{description}
 
 \section{Traceability Matrix} \label{SecTM}
 
@@ -303,28 +363,72 @@ requirements and between the modules and the anticipated changes.
 
 % the table should use mref, the requirements should be named, use something
 % like fref
-\begin{table}[H]
-\centering
-\begin{tabular}{p{0.2\textwidth} p{0.6\textwidth}}
+\begin{longtable}{p{0.2\textwidth} p{0.6\textwidth}}
 \toprule
 \textbf{Req.} & \textbf{Modules}\\
 \midrule
-R1 & \mref{mHH}, \mref{mInput}, \mref{mParams}, \mref{mControl}\\
-R2 & \mref{mInput}, \mref{mParams}\\
-R3 & \mref{mVerify}\\
-R4 & \mref{mOutput}, \mref{mControl}\\
-R5 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}, \mref{mSeqDS}, \mref{mSolver}, \mref{mPlot}\\
-R6 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}, \mref{mSeqDS}, \mref{mSolver}, \mref{mPlot}\\
-R7 & \mref{mOutput}, \mref{mEnergy}, \mref{mControl}, \mref{mSeqDS}, \mref{mPlot}\\
-R8 & \mref{mOutput}, \mref{mEnergy}, \mref{mControl}, \mref{mSeqDS}, \mref{mPlot}\\
-R9 & \mref{mVerifyOut}\\
-R10 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}\\
-R11 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+FR1 & \mref{mAuth}\\
+FR2 & \mref{mAuth}, \mref{mDBDriver}\\
+FR3 & \mref{mRVision}\\
+FR4 & \mref{mLocation}, \mref{mUsers}, \mref{mDBDriver}\\
+FR5 & \mref{mUsers}, \mref{mDBDriver}\\
+FR6 & \mref{mUsers}, \mref{mDBDriver}\\
+FR7 & \mref{mClassification}, \mref{mDBDriver}\\
+FR8 & \mref{mRec}, \mref{mDBDriver}\\
+FR9 & \mref{mRec}, \mref{mDBDriver}\\
+FR10 & \mref{mAnalytics}, \mref{mDBDriver}\\
+FR11 & \mref{mReview}\\
+FR12 & \mref{mClassification}, \mref{mDBDriver}\\
+AR1 & \mref{mRVision}, \mref{mReview}, \mref{mLocation}, \mref{mAnalytics}, \mref{mUsers}, \mref{mAuth}, \mref{mRec}\\
+AR2 & \mref{mRVision}, \mref{mReview}, \mref{mLocation}, \mref{mAnalytics}, \mref{mUsers}, \mref{mAuth}, \mref{mRec}\\
+AR3 & \mref{mRVision}, \mref{mReview}, \mref{mLocation}, \mref{mAnalytics}, \mref{mUsers}, \mref{mAuth}, \mref{mRec}\\
+SR1 & \mref{mRVision}, \mref{mReview}, \mref{mLocation}, \mref{mAnalytics}, \mref{mUsers}, \mref{mAuth}, \mref{mRec}\\
+SR2 & \mref{mRVision}, \mref{mReview}, \mref{mLocation}, \mref{mAnalytics}, \mref{mUsers}, \mref{mAuth}, \mref{mRec}\\
+SR3 & \mref{mRVision}, \mref{mReview}, \mref{mLocation}, \mref{mAnalytics}, \mref{mUsers}, \mref{mAuth}, \mref{mRec}\\
+EUR1 & \mref{mRVision}, \mref{mReview}, \mref{mLocation}, \mref{mAnalytics}, \mref{mUsers}, \mref{mAuth}, \mref{mRec}\\
+EUR2 & \mref{mRVision}, \mref{mReview}, \mref{mLocation}, \mref{mAnalytics}, \mref{mUsers}, \mref{mAuth}, \mref{mRec}\\
+EUR3 & \mref{mRVision}, \mref{mReview}, \mref{mLocation}, \mref{mAnalytics}, \mref{mUsers}, \mref{mAuth}, \mref{mRec}\\
+PIR1 & \mref{mRVision}, \mref{mReview}, \mref{mLocation}, \mref{mAnalytics}, \mref{mUsers}, \mref{mAuth}, \mref{mRec}\\
+PIR2 & \mref{mRVision}, \mref{mReview}, \mref{mLocation}, \mref{mAnalytics}, \mref{mUsers}, \mref{mAuth}, \mref{mRec}\\
+PIR3 & \mref{mUsers}\\
+LR1 & \mref{mRVision}, \mref{mReview}, \mref{mLocation}, \mref{mAnalytics}, \mref{mUsers}, \mref{mAuth}, \mref{mRec}\\
+LR2 & \mref{mRVision}, \mref{mReview}, \mref{mLocation}, \mref{mAnalytics}, \mref{mUsers}, \mref{mAuth}, \mref{mRec}\\
+UPR1 & \mref{mRVision}, \mref{mReview}, \mref{mLocation}, \mref{mAnalytics}, \mref{mUsers}, \mref{mAuth}, \mref{mRec}\\
+UPR2 & \mref{mRVision}, \mref{mReview}, \mref{mLocation}, \mref{mAnalytics}, \mref{mUsers}, \mref{mAuth}, \mref{mRec}\\
+ACR1 & \mref{mRVision}, \mref{mReview}, \mref{mLocation}, \mref{mAnalytics}, \mref{mUsers}, \mref{mAuth}, \mref{mRec}\\
+ACR2 & \mref{mRVision}, \mref{mReview}, \mref{mLocation}, \mref{mAnalytics}, \mref{mUsers}, \mref{mAuth}, \mref{mRec}\\
+SLR1 & \mref{mRVision}, \mref{mReview}, \mref{mLocation}, \mref{mAnalytics}, \mref{mUsers}, \mref{mAuth}, \mref{mRec}, \mref{mClassification}, \mref{mDBDriver}\\
+SLR2 & \mref{mRVision}, \mref{mReview}, \mref{mLocation}, \mref{mAnalytics}, \mref{mUsers}, \mref{mAuth}, \mref{mRec}\\
+PAR1 & \mref{mRVision}, \mref{mReview}, \mref{mLocation},\mref{mAnalytics}, \mref{mUsers}, \mref{mAuth}\\
+PAR2 & \mref{mAnalytics}\\
+RFR1 & \mref{mRVision}, \mref{mReview}, \mref{mLocation},\mref{mAnalytics}, \mref{mUsers}, \mref{mAuth}\\
+CR1 & \mref{mRVision}, \mref{mReview}, \mref{mLocation}, \mref{mAnalytics}, \mref{mUsers}, \mref{mAuth}, \mref{mRec}, \mref{mClassification}\\
+EPER1 & \mref{mRVision}, \mref{mReview}, \mref{mLocation}, \mref{mAnalytics}, \mref{mUsers}, \mref{mAuth}, \mref{mRec}, \mref{mClassification}\\
+EPER2 & \mref{mRVision}, \mref{mReview}, \mref{mLocation}, \mref{mAnalytics}, \mref{mUsers}, \mref{mAuth}, \mref{mRec}, \mref{mClassification}\\
+EPER3 & \mref{mRVision}, \mref{mReview}, \mref{mLocation}, \mref{mAnalytics}, \mref{mUsers}, \mref{mAuth}, \mref{mRec}, \mref{mClassification}\\
+WER1 & \mref{mRVision}\\
+WER2 & \mref{mReview}, \mref{mLocation}, \mref{mAnalytics}, \mref{mUsers}, \mref{mAuth}, \mref{mRec}, \mref{mClassification}\\
+IASR1 & \mref{mRVision}, \mref{mReview}, \mref{mLocation}, \mref{mAnalytics}, \mref{mUsers}, \mref{mAuth}, \mref{mRec}, \mref{mClassification}\\
+IASR2 & \mref{mRVision}, \mref{mReview}, \mref{mLocation}, \mref{mAnalytics}, \mref{mUsers}, \mref{mAuth}, \mref{mRec}, \mref{mClassification}\\
+SPR1 & \mref{mRVision}, \mref{mReview}, \mref{mLocation}, \mref{mAnalytics}, \mref{mUsers}, \mref{mAuth}, \mref{mRec}\\
+SPR2 & \mref{mRVision}, \mref{mReview}, \mref{mLocation}, \mref{mAnalytics}, \mref{mUsers}, \mref{mAuth}, \mref{mRec}, \mref{mClassification}\\
+APR1 & \mref{mRVision}, \mref{mReview}, \mref{mLocation}, \mref{mAnalytics}, \mref{mUsers}, \mref{mAuth}, \mref{mRec}, \mref{mClassification}\\
+APR2 & \mref{mRVision}, \mref{mReview}, \mref{mLocation}, \mref{mAnalytics}, \mref{mUsers}, \mref{mAuth}, \mref{mRec}, \mref{mClassification}, \mref{mDBDriver}\\
+ACR1 & \mref{mRVision}, \mref{mReview}, \mref{mLocation}, \mref{mAnalytics}, \mref{mUsers}, \mref{mAuth}, \mref{mRec}, \mref{mClassification}, \mref{mDBDriver}\\
+INR1 & \mref{mRVision}, \mref{mReview}, \mref{mLocation}, \mref{mAnalytics}, \mref{mUsers}, \mref{mAuth}, \mref{mRec}, \mref{mClassification}, \mref{mDBDriver}\\
+INR2 & \mref{mRVision}, \mref{mReview}, \mref{mLocation}, \mref{mAnalytics}, \mref{mUsers}, \mref{mAuth}, \mref{mRec}, \mref{mClassification}, \mref{mDBDriver}\\
+PRR1 & \mref{mRVision}, \mref{mReview}, \mref{mLocation}, \mref{mAnalytics}, \mref{mUsers}, \mref{mAuth}, \mref{mRec}, \mref{mClassification}, \mref{mDBDriver}\\
+PRR2 & \mref{mRVision}, \mref{mReview}, \mref{mLocation}, \mref{mAnalytics}, \mref{mUsers}, \mref{mAuth}, \mref{mRec}, \mref{mClassification}, \mref{mDBDriver}\\
+AUR1 & \mref{mRVision}, \mref{mReview}, \mref{mLocation}, \mref{mAnalytics}, \mref{mUsers}, \mref{mAuth}, \mref{mRec}, \mref{mClassification}, \mref{mDBDriver}\\
+CUR1 & \mref{mRVision}, \mref{mReview}, \mref{mLocation}, \mref{mAnalytics}, \mref{mUsers}, \mref{mAuth}, \mref{mRec}, \mref{mClassification}, \mref{mDBDriver}\\
+CUR2 & \mref{mRVision}, \mref{mReview}, \mref{mLocation}, \mref{mAnalytics}, \mref{mUsers}, \mref{mAuth}, \mref{mRec}, \mref{mClassification}, \mref{mDBDriver}\\
+CUR3 & \mref{mRVision}, \mref{mReview}, \mref{mLocation}, \mref{mAnalytics}, \mref{mUsers}, \mref{mAuth}, \mref{mRec}, \mref{mClassification}, \mref{mDBDriver}\\
+LR1 & \mref{mRVision}, \mref{mReview}, \mref{mLocation}, \mref{mAnalytics}, \mref{mUsers}, \mref{mAuth}, \mref{mRec}, \mref{mClassification}, \mref{mDBDriver}\\
+LR2 & \mref{mRVision}, \mref{mReview}, \mref{mLocation}, \mref{mAnalytics}, \mref{mUsers}, \mref{mAuth}, \mref{mRec}, \mref{mClassification}, \mref{mDBDriver}\\
 \bottomrule
-\end{tabular}
 \caption{Trace Between Requirements and Modules}
 \label{TblRT}
-\end{table}
+\end{longtable}
 
 \begin{table}[H]
 \centering
@@ -333,17 +437,11 @@ R11 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
 \textbf{AC} & \textbf{Modules}\\
 \midrule
 \acref{acHardware} & \mref{mHH}\\
-\acref{acInput} & \mref{mInput}\\
-\acref{acParams} & \mref{mParams}\\
-\acref{acVerify} & \mref{mVerify}\\
-\acref{acOutput} & \mref{mOutput}\\
-\acref{acVerifyOut} & \mref{mVerifyOut}\\
-\acref{acODEs} & \mref{mODEs}\\
-\acref{acEnergy} & \mref{mEnergy}\\
-\acref{acControl} & \mref{mControl}\\
-\acref{acSeqDS} & \mref{mSeqDS}\\
-\acref{acSolver} & \mref{mSolver}\\
-\acref{acPlot} & \mref{mPlot}\\
+\acref{acInput} & \mref{mRVision}, \mref{mReview}\\
+\acref{acAPIReq} & \mref{mReview}, \mref{mLocation}, \mref{mUsers}, \mref{mAuth}, \mref{mRec}, \mref{mClassification}\\
+\acref{acAPIRes} & \mref{mAnalytics}, \mref{mLocation}, \mref{mUsers}, \mref{mAuth}, \mref{mRec}, \mref{mClassification}\\
+\acref{acFormat} & \mref{mRVision}, \mref{mReview}, \mref{mLocation}, \mref{mAnalytics}, \mref{mUsers}, \mref{mAuth}, \mref{mRec}\\
+\acref{acDB} & \mref{mDBDriver}\\
 \bottomrule
 \end{tabular}
 \caption{Trace Between Anticipated Changes and Modules}
@@ -365,10 +463,166 @@ because they use modules from the lower levels.
 
 \begin{figure}[H]
 \centering
-%\includegraphics[width=0.7\textwidth]{UsesHierarchy.png}
+\includegraphics[width=0.8\textwidth]{./res/modulehierarchy.pdf}
 \caption{Use hierarchy among modules}
 \label{FigUH}
 \end{figure}
+
+\section{Timeline}
+
+\subsection{Module Development Timeline}
+
+Development of modules started in December 2023 and will continue into January 2024. Table \ref{ModuleDevelopmentTimeline}
+shows the different modules being developed as well as the developer(s) who will be taking the lead
+on it. This means they will be responsible for the primary planning and coding of the module. Developers not listed
+on a module will still take part in development but on a more adhoc basis or as assistance is needed.
+The timeline is also shown graphically in Figure \ref{FigureModuleDevelopmentTimeline}.
+
+\begin{table}[H]
+  \caption{Module Development Timeline}\label{ModuleDevelopmentTimeline}
+  \begin{tabular}{|p{0.32\textwidth}|p{0.4\textwidth}|p{0.23\textwidth}|}
+    \hline
+    \textbf{Module Name} & \textbf{Development Start/End Date} & \textbf{Developer(s)} \\
+    \hline
+    Database Driver Module & Dec. 3 2023 \textemdash{} Jan. 31, 2024 & Jason Nam, Sawyer Tang, Ryan Yeh, Allan Fang \\
+    \hline
+    Recommendation Engine & Dec. 3 2023 \textemdash{} Jan. 31, 2024 & Jason Nam \\
+    \hline
+    Classification Engine & Dec. 3, 2023 \textemdash{} Jan 31, 2024 & Jason Nam\\
+    \hline
+    Receipt Vision Module & Dec. 3 2023 \textemdash{} Dec. 23, 2023 & Ryan Yeh \\
+    \hline
+    Receipt Extraction Module & Dec. 23, 2023 \textemdash{} Jan. 20, 2024 & Ryan Yeh \\
+    \hline
+    User Analytics Module & Dec. 23, 2023 \textemdash{} Jan. 20, 2024 & Allan Fang \\
+    \hline
+    Location Management Module & Jan. 1, 2024 \textemdash{} Jan. 20, 2024 & Allan Fang \\
+    \hline
+    Authentication Module & Jan. 1, 2024 \textemdash{} Jan. 31, 2024 & Sawyer Tang \\
+    \hline
+    Users Module & Jan. 1, 2024 \textemdash{} Jan. 31, 2024 & Sawyer Tang \\
+    \hline
+  \end{tabular}
+\end{table}
+
+\begin{figure}[H]
+  \centering
+  \caption{Graphical Module Development Timeline}\label{FigureModuleDevelopmentTimeline}
+  \includegraphics[width=0.8\textwidth]{./res/ModuleDevTimeline.pdf}
+\end{figure}
+
+\subsection{Module Testing Timeline}
+
+Testing of modules also takes place during the development window set in the previous section. In general,
+testing will involve basic manual testing of the application features to build confidence for the
+Revision 0 Demo. For modules whose development end date is prior to January 31, testing will take place
+during the following week. For the other modules, testing will largely take place concurrently with development
+and small unit tests will be performed as the modules are created. The developers in charge of testing will
+generally involve the main developer as written in Table \ref{ModuleDevelopmentTimeline} in addition to another developer
+to help test the module with a fresher perspective. The details can be found in Table \ref{ModuleTestingTimeline} and graphically shown
+in Figure \ref{FigureModuleTestingTimeline}.
+
+\begin{table}[H]
+  \caption{Module Testing Timeline}\label{ModuleTestingTimeline}
+  \begin{tabular}{|p{0.32\textwidth}|p{0.4\textwidth}|p{0.23\textwidth}|}
+    \hline
+    \textbf{Module Name} & \textbf{Testing Start/End Date} & \textbf{Developer(s)} \\
+    \hline
+    Database Driver Module & Dec. 3 2023 \textemdash{} Jan. 31, 2024 & Jason Nam, Sawyer Tang, Ryan Yeh, Allan Fang \\
+    \hline
+    Recommendation Engine & Dec. 3 2023 \textemdash{} Jan. 31, 2024 & Jason Nam, Sawyer Tang \\
+    \hline
+    Classification Engine & Dec. 3, 2023 \textemdash{} Jan 31, 2024 & Jason Nam, Ryan Yeh\\
+    \hline
+    Receipt Vision Module & Dec. 23, 2023 \textemdash{} Dec 30, 2023 & Ryan Yeh, Allan Fang \\
+    \hline
+    Receipt Extraction Module & Jan. 20, 2023 \textemdash{} Jan. 27, 2024 & Ryan Yeh, Jason Nam \\
+    \hline
+    User Analytics Module & Jan. 20, 2024 \textemdash{} Jan. 27, 2024 & Allan Fang, Sawyer Tang \\
+    \hline
+    Location Management Module & Jan. 20, 2024 \textemdash{} Jan. 27, 2024 & Allan Fang, Ryan Yeh \\
+    \hline
+    Authentication Module & Jan. 1, 2024 \textemdash{} Jan. 31, 2024 & Sawyer Tang, Allan Fang \\
+    \hline
+    Users Module & Jan. 1, 2024 \textemdash{} Jan. 31, 2024 & Sawyer Tang, Jason Nam \\
+    \hline
+  \end{tabular}
+\end{table}
+
+\begin{figure}[H]
+  \centering
+  \caption{Graphical Module Testing Timeline}\label{FigureModuleTestingTimeline}
+  \includegraphics[width=0.8\textwidth]{./res/ModuleTestTimeline.pdf}
+\end{figure}
+
+\newpage{}
+
+\section{Reflection}
+
+The information in this section will be used to evaluate the team members on the
+graduate attribute of Problem Analysis and Design.  Please answer the following questions:
+
+\begin{enumerate}
+  \item \textbf{What are the limitations of your solution?  Put another way, given
+  unlimited resources, what could you do to make the project better? (LO\_ProbSolutions)}
+
+  Currently, there are two primary limitations with our project: time and money. In terms
+  of time, it generally is not feasible to implement everything we would have liked to implement.
+  Many features had to be scoped down to meet the time constraint we had and
+  many other features had to be cut altogether. Some of the features and ideas we had discussed
+  are:
+  \begin{itemize}
+    \item Providing support for all grocery stores in Canada
+    \item Implementing a way to update our database with flyer data and deals from
+    various grocery stores in Canada on a regular basis 
+    \item Putting more emphasis in application security and general security practices
+    \item Further optimizations in terms of performance
+    \item More emphasis and support for accessibility settings
+    \item Adding receipt barcode support to potentially fetch more accurate data and
+    give users an alternative input method
+  \end{itemize}
+  We believe these features would be nice to include in our application and would greatly
+  improve its quality, however many of them are not feasible given the limited development time frame
+  we have.\\
+
+  Additionally, monetary limitations have led to further constraints on the development of our application.
+  Given unlimited money, improvements could be made to our database and server. In particular,
+  a greater capacity database and higher bandwidth server would have been nice in terms of scalability of our
+  project. With the additional funds, we would be able to create an application that better aligns with our goal
+  by allowing more users to use the application, thus helping more people save money on groceries.
+
+  \item \textbf{Give a brief overview of other design solutions you considered.  What
+  are the benefits and tradeoffs of those other designs compared with the chosen
+  design?  From all the potential options, why did you select documented design?
+  (LO\_Explores)}
+
+  One design solution we considered early on in the project was implementing our own OCR. We believed
+  that having our own OCR pipeline to leverage might lead to better results over a general-purpose
+  OCR. Since we only needed to read receipt data, we thought we could optimize it for this use case
+  at the cost of using up our development time. We also thought it would be nice to have more transparency
+  and control over the OCR when compared to off-the-shelf solutions. Despite our efforts however, our implementation ended up
+  being far slower in comparison to existing solutions and more resource-intensive. Additionally,
+  the OCR implementation ended up taking far longer than we anticipated so due to the time constraint among the other mentioned issues,
+  it was not feasible to keep proceeding as we were. As a result, we ended up looking to use an existing
+  solution in the form of \textit{Google MLKit} which has solved all of the previously mentioned problems
+  at the cost of having less control compared to a custom solution. \\
+
+  Another design solution we considered involved where we would be processing the OCR data. We were
+  unable to use the information picked up by the OCR on its own due to noise and unnecessary information
+  being present so we had to extract only what was necessary. We had considered doing this on the backend
+  in order to reduce the amount of resources the application would consume on the user's device. This
+  would have come at the cost of being more intensive on the server instead. Considering
+  our monetary limitations and seeing the server as a more limited resource however, we made the decision
+  to move the processing to the frontend. This also allowed us to send relatively clean data to the backend
+  allowing for easier to handle and more consistent data. \\
+
+  Overall, most of the design decisions that we selected involved identifying constraints in our project
+  and choosing the best solution that met our requirements. As a result, we ended up with our current
+  design which we believe offers the best balance between meeting our requirements as well as being
+  feasible with our current resources.
+\end{enumerate}
+
+\newpage{}
 
 %\section*{References}
 
