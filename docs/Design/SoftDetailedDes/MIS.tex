@@ -370,7 +370,7 @@ None
     \hline
     itemDesc & String & Name of the product on the receipt \\
     \hline
-    price & Float & Purchase price of the product \\
+    price & \mathbb{R} & Purchase price of the product \\
     \hline
     taxed & Boolean & Whether an item is taxed (Some groceries in Canada aren't taxed) \\
     \hline
@@ -388,7 +388,7 @@ None
     \hline
     itemDesc & Optional$<$String$>$ & Name of the product on the receipt \\
     \hline
-    price & Optional$<$Float$>$ & Purchase price of the product \\
+    price & Optional$<$\mathbb{R}$>$ & Purchase price of the product \\
     \hline
     taxed & Boolean & Whether an item is taxed (Some groceries in Canada aren't taxed) \\
     \hline
@@ -404,15 +404,15 @@ None
     \hline
     userID & String & ID of the user \\
     \hline
-    dateTime & String & Date and time of transaction \\
+    dateTime & \mathbb{N} & Date and time of transaction as Unix timestamp \\
     \hline
     location & String & Address of the grocery store location \\
     \hline
     items & List$<$Item$>$ & List of purchased grocery items from receipt \\
     \hline
-    subtotal & Float & Total spent on grocery trip before tax \\
+    subtotal & \mathbb{R} & Total spent on grocery trip before tax \\
     \hline
-    total & Float & Total spent on grocery trip \\
+    total & \mathbb{R} & Total spent on grocery trip \\
     \hline
     tripDesc & Optional$<$String$>$ & Notes made by the user \\
     \hline
@@ -426,15 +426,15 @@ None
     \hline
     \textbf{Output Name} & \textbf{Output Type} & \textbf{Description} \\
     \hline
-    dateTime & Optional$<$String$>$ & Date and time of transaction \\
+    dateTime & Optional$<$\mathbb{N}$>$ & Date and time of transaction as Unix timestamp \\
     \hline
     location & Optional$<$String$>$ & Address of the grocery store location \\
     \hline
     items & Optional$<$List$<$UpdatedItem$>$$>$ & List of purchased grocery items from receipt \\
     \hline
-    subtotal & Optional$<$Float$>$ & Total spent on grocery trip before tax \\
+    subtotal & Optional$<$\mathbb{R}$>$ & Total spent on grocery trip before tax \\
     \hline
-    total & Optional$<$Float$>$ & Total spent on grocery trip \\
+    total & Optional$<$\mathbb{R}$>$ & Total spent on grocery trip \\
     \hline
     tripDesc & Optional$<$String$>$ & Notes made by the user \\
     \hline
@@ -478,7 +478,7 @@ User Display
 \begin{itemize}
   \item transition: Extracts \textit{GroceryTrip} data, redirects user to new page where confirmation
 of extracted data can be performed.
-  \item output: $out :=$ new GroceryTrip(getDateTime(\textit{receiptData}), getLocation(\textit{receiptData}),
+  \item output: $out :=$ new GroceryTrip(toUnixTimestamp(getDateTime(\textit{receiptData})), getLocation(\textit{receiptData}),
                         getItems(\textit{receiptData}), getSubtotal(\textit{receiptData}), getTotal(\textit{receiptData}), "")
   \item exception: none
 \end{itemize}
@@ -521,6 +521,13 @@ of extracted data can be performed.
   \item output: $\text{Let } A=\{x : 0 \leq x \leq 9\}, B=\{x : 0 \leq x \leq 2\}, C=\{x : 0 \leq x \leq 5\}$ \\
                 $\text{Let } containsDateTime=\exists data \in receiptData : data$\\ $\in L((A|AA)(/|-)(A|AA)(/|-)(AAAA)\text{ }(BA)\text{:}(CA)\text{:}(CA))$ \\
                 $out := containsDateTime(receiptData) \Rightarrow data | \neg containsDateTime(receiptData) \Rightarrow null$
+  \item exception: none
+\end{itemize}
+
+\noindent toUnixTimestamp(\textit{dateTime}):
+\begin{itemize}
+  \item transition: none
+  \item output: takes String \textit{dateTime} and converts it to a Unix timestamp.
   \item exception: none
 \end{itemize}
 
