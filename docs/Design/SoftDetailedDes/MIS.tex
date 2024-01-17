@@ -568,6 +568,9 @@ locationManagement
 \subsubsection{Exported Constants}
 None
 
+\subsubsection{Exported Types}
+None
+
 \subsubsection{Exported Access Programs}
 
 \begin{center}
@@ -630,7 +633,7 @@ None
 
 \newpage
 
-\section{MIS of User Analytics Module} \label{mLocation} 
+\section{MIS of User Analytics Module} \label{mAnalytics} 
 The User Analytics Module provides analytics and feedback on user purchasing behaviour, offering insight on recent and future purchasing for individual users.
 
 \subsection{Module}
@@ -640,12 +643,13 @@ userAnalytics
 \subsection{Uses}
 
 Database Driver Module (Section \ref{mDBDriver})
-Recommendation Engine (Section \ref{mRec})
-
 \subsection{Syntax}
 
 \subsubsection{Exported Constants}
 None
+
+\subsubsection{Exported Types}
+Item as defined in \ref{mExtraction}
 
 \subsubsection{Exported Access Programs}
 
@@ -654,12 +658,12 @@ None
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-getSpendingByCategory & $\mathbb{N}^2$ & List$<$(String, List$<$Item$>$)$>$  & - \\
-getSpendingByTime & $\mathbb{N}^2$ & List$<$(String, $\mathbb{R}$+)$>$ & - \\
+getSpendingByCategory & $\mathbb{N}^2$ & Map$<$String, List$<$Item$>$$>$  & - \\
+getSpendingByTime & $\mathbb{N}^2$ & Map$<$String, $\mathbb{R}$+$>$ & - \\
 createBudgetGoals & $\mathbb{N}^3$, String & - & - \\
 updateBudgetGoals & $\mathbb{N}^4$, String & - & - \\
 deleteBudgetGoals & $\mathbb{N}$, String & - & - \\
-getBudgetGoals & - & List$<\mathbb{N}^3$, String$>$ & - \\
+getBudgetGoals & - & List$<$($\mathbb{N}^3$, String)$>$ & - \\
 \hline
 \end{tabular}
 \end{center}
