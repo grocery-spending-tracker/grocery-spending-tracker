@@ -125,6 +125,7 @@ character & char & a single symbol or digit\\
 integer & $\mathbb{Z}$ & a number without a fractional component in (-$\infty$, $\infty$) \\
 natural number & $\mathbb{N}$ & a number without a fractional component in [1, $\infty$) \\
 real & $\mathbb{R}$ & any number in (-$\infty$, $\infty$)\\
+boolean & $\mathbb{B}$ & a truth value, resolving to true or false \\
 \bottomrule
 \end{tabular} 
 \end{center}
@@ -173,7 +174,6 @@ The following table is taken directly from the Module Guide document for this pr
 \end{table}
 
 \newpage
-~\newpage
 
 \section{MIS of Database Driver Module} \label{mDBDriver}
 
@@ -370,9 +370,9 @@ None
     \hline
     itemDesc & String & Name of the product on the receipt \\
     \hline
-    price & \mathbb{R} & Purchase price of the product \\
+    price & $\mathbb{R}$ & Purchase price of the product \\
     \hline
-    taxed & Boolean & Whether an item is taxed (Some groceries in Canada aren't taxed) \\
+    taxed & $\mathbb{B}$ & Whether an item is taxed (Some groceries in Canada aren't taxed) \\
     \hline
   \end{tabular}
 \end{table}
@@ -388,9 +388,9 @@ None
     \hline
     itemDesc & Optional$<$String$>$ & Name of the product on the receipt \\
     \hline
-    price & Optional$<$\mathbb{R}$>$ & Purchase price of the product \\
+    price & Optional$<\mathbb{R}>$ & Purchase price of the product \\
     \hline
-    taxed & Boolean & Whether an item is taxed (Some groceries in Canada aren't taxed) \\
+    taxed & Optional$<\mathbb{B}>$ & Whether an item is taxed (Some groceries in Canada aren't taxed) \\
     \hline
   \end{tabular}
 \end{table}
@@ -404,15 +404,15 @@ None
     \hline
     userID & String & ID of the user \\
     \hline
-    dateTime & \mathbb{N} & Date and time of transaction as Unix timestamp \\
+    dateTime & $\mathbb{N}$ & Date and time of transaction as Unix timestamp \\
     \hline
     location & String & Address of the grocery store location \\
     \hline
     items & List$<$Item$>$ & List of purchased grocery items from receipt \\
     \hline
-    subtotal & \mathbb{R} & Total spent on grocery trip before tax \\
+    subtotal & $\mathbb{R}$ & Total spent on grocery trip before tax \\
     \hline
-    total & \mathbb{R} & Total spent on grocery trip \\
+    total & $\mathbb{R}$ & Total spent on grocery trip \\
     \hline
     tripDesc & Optional$<$String$>$ & Notes made by the user \\
     \hline
@@ -426,15 +426,15 @@ None
     \hline
     \textbf{Output Name} & \textbf{Output Type} & \textbf{Description} \\
     \hline
-    dateTime & Optional$<$\mathbb{N}$>$ & Date and time of transaction as Unix timestamp \\
+    dateTime & Optional$<\mathbb{N}>$ & Date and time of transaction as Unix timestamp \\
     \hline
     location & Optional$<$String$>$ & Address of the grocery store location \\
     \hline
     items & Optional$<$List$<$UpdatedItem$>$$>$ & List of purchased grocery items from receipt \\
     \hline
-    subtotal & Optional$<$\mathbb{R}$>$ & Total spent on grocery trip before tax \\
+    subtotal & Optional$<\mathbb{R}>$ & Total spent on grocery trip before tax \\
     \hline
-    total & Optional$<$\mathbb{R}$>$ & Total spent on grocery trip \\
+    total & Optional$<\mathbb{R}>$ & Total spent on grocery trip \\
     \hline
     tripDesc & Optional$<$String$>$ & Notes made by the user \\
     \hline
