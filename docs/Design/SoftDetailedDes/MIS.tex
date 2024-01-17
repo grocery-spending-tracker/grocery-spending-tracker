@@ -88,16 +88,21 @@ See SRS Documentation at \url{https://github.com/r-yeh/grocery-spending-tracker/
 \section{Introduction}
 
 The following document details the Module Interface Specifications for
-\wss{Fill in your project name and description}
+the Grocery Spending Tracker. The Grocery Spending Tracker is a mobile application
+designed to help households face the ever rising cost of groceries in Canada.
+To accomplish this, users can easily scan their grocery receipts with their device camera allowing the
+application to record and track user spending. Analytics are then produced
+with this data to help users better visualize their spending habits. They can also
+set budgets and spending goals for themselves allowing the application to
+suggest cheaper alternatives based on recently purchased grocery items and
+location preferences. Overall, these features should help users stay more informed on their
+grocery spending leading to smarter financial decisions and reduced spending over time.
 
 Complementary documents include the System Requirement Specifications
 and Module Guide.  The full documentation and implementation can be
-found at \url{...}.  \wss{provide the url for your repo}
+found at \url{https://github.com/r-yeh/grocery-spending-tracker}.
 
 \section{Notation}
-
-\wss{You should describe your notation.  You can use what is below as
-  a starting point.}
 
 The structure of the MIS for modules comes from \citet{HoffmanAndStrooper1995},
 with the addition that template modules have been adapted from
@@ -119,15 +124,18 @@ character & char & a single symbol or digit\\
 integer & $\mathbb{Z}$ & a number without a fractional component in (-$\infty$, $\infty$) \\
 natural number & $\mathbb{N}$ & a number without a fractional component in [1, $\infty$) \\
 real & $\mathbb{R}$ & any number in (-$\infty$, $\infty$)\\
+boolean & $\mathbb{B}$ & a truth value, resolving to true or false \\
 \bottomrule
 \end{tabular} 
 \end{center}
 
 \noindent
-The specification of \progname \ uses some derived data types: sequences, strings, and
-tuples. Sequences are lists filled with elements of the same data type. Strings
-are sequences of characters. Tuples contain a list of values, potentially of
-different types. In addition, \progname \ uses functions, which
+The specification of \progname \ uses some derived data types: lists, strings, and
+maps. Lists are data types that store an array of a set data type, formatted as $List<Object>$. Strings
+are sequences of characters. Maps are a list of key value pairs of two identical or different data types
+formatted as $Map<Key, Value>$. Furthermore, some exported data types using a combination of the above
+primitive and derived data types will be defined as required in certain
+MIS sections. In addition, \progname \ uses functions, which
 are defined by the data types of their inputs and outputs. Local functions are
 described by giving their type signature followed by their specification.
 
@@ -164,7 +172,6 @@ The following table is taken directly from the Module Guide document for this pr
 \end{table}
 
 \newpage
-~\newpage
 
 \section{MIS of Database Driver Module} \label{mDBDriver}
 Module for hiding database implementation. Database schema and tables are detailed in Section \ref{dbAppendix}
@@ -502,14 +509,14 @@ None
 
 \subsubsection{State Variables}
 
-\textit{appLifecycle}: Tracks module activity on the user's device. \\
-\textit{isPermissionGranted}: Stores camera permission status. \\
-\textit{selectedCamera}: Stores data on which camera to use.
+\textbf{App Lifecycle} \textit{appLifecycle}: Tracks module activity on the user's device. \\
+\textbf{Boolean} \textit{isPermissionGranted}: Stores camera permission status. \\
+\textbf{Device Camera} \textit{selectedCamera}: Stores data on which camera to use.
 
 \subsubsection{Environment Variables}
 
-User Camera \\
-User Display
+\textbf{Device Camera} User Camera \\
+\textbf{2D Sequence of Pixels} User Display
 
 \subsubsection{Assumptions}
 
@@ -588,9 +595,9 @@ None
     \hline
     itemDesc & String & Name of the product on the receipt \\
     \hline
-    price & Float & Purchase price of the product \\
+    price & $\mathbb{R}$ & Purchase price of the product \\
     \hline
-    taxed & Boolean & Whether an item is taxed (Some groceries in Canada aren't taxed) \\
+    taxed & $\mathbb{B}$ & Whether an item is taxed (Some groceries in Canada aren't taxed) \\
     \hline
   \end{tabular}
 \end{table}
@@ -606,9 +613,9 @@ None
     \hline
     itemDesc & Optional$<$String$>$ & Name of the product on the receipt \\
     \hline
-    price & Optional$<$Float$>$ & Purchase price of the product \\
+    price & Optional$<\mathbb{R}>$ & Purchase price of the product \\
     \hline
-    taxed & Boolean & Whether an item is taxed (Some groceries in Canada aren't taxed) \\
+    taxed & Optional$<\mathbb{B}>$ & Whether an item is taxed (Some groceries in Canada aren't taxed) \\
     \hline
   \end{tabular}
 \end{table}
@@ -622,15 +629,15 @@ None
     \hline
     userID & String & ID of the user \\
     \hline
-    dateTime & String & Date and time of transaction \\
+    dateTime & $\mathbb{N}$ & Date and time of transaction as Unix timestamp \\
     \hline
     location & String & Address of the grocery store location \\
     \hline
     items & List$<$Item$>$ & List of purchased grocery items from receipt \\
     \hline
-    subtotal & Float & Total spent on grocery trip before tax \\
+    subtotal & $\mathbb{R}$ & Total spent on grocery trip before tax \\
     \hline
-    total & Float & Total spent on grocery trip \\
+    total & $\mathbb{R}$ & Total spent on grocery trip \\
     \hline
     tripDesc & Optional$<$String$>$ & Notes made by the user \\
     \hline
@@ -644,15 +651,15 @@ None
     \hline
     \textbf{Output Name} & \textbf{Output Type} & \textbf{Description} \\
     \hline
-    dateTime & Optional$<$String$>$ & Date and time of transaction \\
+    dateTime & Optional$<\mathbb{N}>$ & Date and time of transaction as Unix timestamp \\
     \hline
     location & Optional$<$String$>$ & Address of the grocery store location \\
     \hline
     items & Optional$<$List$<$UpdatedItem$>$$>$ & List of purchased grocery items from receipt \\
     \hline
-    subtotal & Optional$<$Float$>$ & Total spent on grocery trip before tax \\
+    subtotal & Optional$<\mathbb{R}>$ & Total spent on grocery trip before tax \\
     \hline
-    total & Optional$<$Float$>$ & Total spent on grocery trip \\
+    total & Optional$<\mathbb{R}>$ & Total spent on grocery trip \\
     \hline
     tripDesc & Optional$<$String$>$ & Notes made by the user \\
     \hline
@@ -683,7 +690,7 @@ None
 
 \subsubsection{Environment Variables}
 
-User Display
+\textbf{2D Sequence of Pixels} User Display
 
 \subsubsection{Assumptions}
 \begin{itemize}
@@ -696,7 +703,7 @@ User Display
 \begin{itemize}
   \item transition: Extracts \textit{GroceryTrip} data, redirects user to new page where confirmation
 of extracted data can be performed.
-  \item output: $out :=$ new GroceryTrip(getDateTime(\textit{receiptData}), getLocation(\textit{receiptData}),
+  \item output: $out :=$ new GroceryTrip(toUnixTimestamp(getDateTime(\textit{receiptData})), getLocation(\textit{receiptData}),
                         getItems(\textit{receiptData}), getSubtotal(\textit{receiptData}), getTotal(\textit{receiptData}), "")
   \item exception: none
 \end{itemize}
@@ -739,6 +746,13 @@ of extracted data can be performed.
   \item output: $\text{Let } A=\{x : 0 \leq x \leq 9\}, B=\{x : 0 \leq x \leq 2\}, C=\{x : 0 \leq x \leq 5\}$ \\
                 $\text{Let } containsDateTime=\exists data \in receiptData : data$\\ $\in L((A|AA)(/|-)(A|AA)(/|-)(AAAA)\text{ }(BA)\text{:}(CA)\text{:}(CA))$ \\
                 $out := containsDateTime(receiptData) \Rightarrow data | \neg containsDateTime(receiptData) \Rightarrow null$
+  \item exception: none
+\end{itemize}
+
+\noindent toUnixTimestamp(\textit{dateTime}):
+\begin{itemize}
+  \item transition: none
+  \item output: takes String \textit{dateTime} and converts it to a Unix timestamp.
   \item exception: none
 \end{itemize}
 
