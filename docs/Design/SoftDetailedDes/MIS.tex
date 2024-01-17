@@ -242,6 +242,138 @@ None
 
 \newpage
 
+\section{MIS of Classification Module} \label{mClassification}
+
+The Classification Module is responsible for interpreting and identifying recognized items from receipt data.
+
+\subsection{Module}
+
+classificationModule
+
+\subsection{Uses}
+
+Database Driver Module (Section \ref{mDBDriver})
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+None
+
+\subsubsection{Exported Types}
+
+\textbf{ClassifiedItem}
+
+\begin{table}[H]
+  \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.5\linewidth}|}
+    \hline
+    \textbf{Column Name} & \textbf{Type} & \textbf{Description} \\
+    \hline
+    itemId & String & PRIMARY KEY unique id of this instance of this item \\
+    \hline
+    productKey & String & Universal item identifier (UPC) \\
+    \hline
+    dateTime & String & Date and time of purchase \\
+    \hline
+    price & \mathbb{R} & Price of item \\
+    \hline
+    location & String & Location of purchase \\
+    \hline
+    userId & String & FOREIGN KEY ID of user\\
+    \hline
+    itemDesc & String & Item description\\
+    \hline
+    isTaxed & \mathbb{B} & Describes if the item is taxed\\
+    \hline
+    category & String & Describes the product category the item belongs to\\
+    \hline
+  \end{tabular}
+\end{table}
+
+\subsubsection{Exported Access Programs}
+
+This module uses Item as an input, as described in Section \ref{mExtraction}
+
+\begin{center}
+    \begin{tabular}{p{5cm} p{4cm} p{3cm} p{4cm}}
+    \hline
+    \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+    \hline
+    setItemData & Item & - & invalidDataException \\
+    getClassifiedItem & String & ClassifiedItem & - \\
+    \hline
+    \end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+None
+
+\subsubsection{Environment Variables}
+
+None
+
+\subsubsection{Assumptions}
+
+None
+
+\subsubsection{Access Routine Semantics}
+
+\noindent setItemData(\textit{Item}):
+\begin{itemize}
+  \item transition: Set Item data in the database (Section \ref{mDBDriver}) to \textit{Classified Item}
+  \item output: none
+  \item exception: $exc := invalidDataException$, if \textit{Item} does not adhere to expected format.
+  \end{itemize}
+
+\noindent getClassifiedItem(\textit{itemId}):
+\begin{itemize}
+  \item transition: none
+  \item output: $out := \textit{itemExists}(\textit{itemId}) \Rightarrow \textit{getClassifiedItemInDB}(\textit{itemId})$
+  \item exception: none
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+\noindent itemExists(\textit{itemId}):
+\begin{itemize}
+  \item transition: none
+  \item output: $out := (\textit{itemId} \text{ is present in the database})$
+  \item exception: none
+\end{itemize}
+
+\noindent getClassifiedItemInDB(\textit{itemId}):
+\begin{itemize}
+  \item transition: none
+  \item output: $out := \textit{itemExists}(\textit{itemId}) \Rightarrow \textit{retrieveClassifiedItem}(\textit{itemId})$
+  \item exception: $\textit{exc} := \textit{itemNotFoundException}$, if $\textit{itemId}$ does not exist in the database.
+\end{itemize}
+
+\noindent identifyItemUsingModel(\textit{inputItemData}):
+\begin{itemize}
+  \item transition: none
+  \item output: $out := \textit{classifyUsingModel}(\textit{inputItemData})$
+  \item exception: $\textit{exc} := \textit{modelIdentificationException}$, if the classification model fails to identify the item.
+\end{itemize}
+
+\noindent classifyUsingModel(\textit{inputItemData}):
+\begin{itemize}
+  \item transition: none
+  \item output: $out := \textit{the classification result of the model for} \, \textit{inputItemData}$
+  \item exception: $\textit{exc} := \textit{classificationException}$, if the model encounters an error during the classification process.
+\end{itemize}
+
+\noindent findMatchingProduct(\textit{inputItemData}):
+\begin{itemize}
+  \item transition: none
+  \item output: $out := \textit{product details from the database that best match} \, \textit{inputItemData}$
+  \item exception: $\textit{exc} := \textit{noProductFoundException}$, if no product in the database matches \textit{inputItemData}.
+\end{itemize}
+
+\newpage
+
 \section{MIS of Recommendation Module} \label{mRecommendation}
 
 Module for recommending user purchases.
@@ -292,7 +424,7 @@ None
 
 \subsubsection{Access Routine Semantics}
 
-This module uses Item as an input, as described in Section \ref{mExtraction}
+This module uses Item as an input, as described in Section \ref{mExtraction}\\
 
 \noindent collectItemData(\textit{Item}):
 \begin{itemize}
