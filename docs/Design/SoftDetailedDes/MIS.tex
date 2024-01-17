@@ -72,6 +72,7 @@ See SRS Documentation at \url{https://github.com/r-yeh/grocery-spending-tracker/
   SRS & Software Requirements Specification\\
   MIS & Module Interface Specification \\
   SKU & Stock Keeping Unit: ID of Product Used by Retailers \\
+  UPC & Universal Product Code: widely used barcode symbology for tracking trade items in stores \\
   \bottomrule
 \end{tabular}\\
 
@@ -165,30 +166,30 @@ The following table is taken directly from the Module Guide document for this pr
 ~\newpage
 
 \section{MIS of Database Driver Module} \label{mDBDriver}
-
-\wss{You can reference SRS labels, such as R\ref{R_Inputs}.}
-
-\wss{It is also possible to use \LaTeX for hypperlinks to external documents.}
+Module for hiding database implementation. Database schema and tables are detailed in Section \ref{dbAppendix}
 
 \subsection{Module}
-
-\wss{Short name for the module}
+dbModule
 
 \subsection{Uses}
-
+None
 
 \subsection{Syntax}
 
 \subsubsection{Exported Constants}
+None
 
 \subsubsection{Exported Access Programs}
 
 \begin{center}
-\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+\begin{tabular}{p{4cm} p{4cm} p{4cm} p{3cm}}
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-\wss{accessProg} & - & - & - \\
+insert & String$^2$ & - & - \\
+update & String$^3$ & - & - \\
+delete & String$^2$ & - & - \\
+select & String$^3$ & String & - \\
 \hline
 \end{tabular}
 \end{center}
@@ -196,43 +197,47 @@ The following table is taken directly from the Module Guide document for this pr
 \subsection{Semantics}
 
 \subsubsection{State Variables}
-
-\wss{Not all modules will have state variables.  State variables give the module
-  a memory.}
+None
 
 \subsubsection{Environment Variables}
-
-\wss{This section is not necessary for all modules.  Its purpose is to capture
-  when the module has external interaction with the environment, such as for a
-  device driver, screen interface, keyboard, file, etc.}
+\textbf{Relational Database} db
 
 \subsubsection{Assumptions}
-
-\wss{Try to minimize assumptions and anticipate programmer errors via
-  exceptions, but for practical purposes assumptions are sometimes appropriate.}
+The schema is set up as described in Section \ref{dbAppendix}\\
+The connection to the database is established with necessary permissions.
 
 \subsubsection{Access Routine Semantics}
 
-\noindent \wss{accessProg}():
+\noindent \wss{insert}(\textit{tableName, values}):
 \begin{itemize}
-\item transition: \wss{if appropriate} 
-\item output: \wss{if appropriate} 
-\item exception: \wss{if appropriate} 
+\item transition: the target table in \textit{db} specified by \textit{tableName} adds \textit{values}.
+\item output: none
+\item exception: none
 \end{itemize}
 
-\wss{A module without environment variables or state variables is unlikely to
-  have a state transition.  In this case a state transition can only occur if
-  the module is changing the state of another module.}
+\noindent \wss{update}(\textit{tableName, values, conditions}):
+\begin{itemize}
+\item transition: the target items in \textit{db} specified by \textit{tableName} and \textit{conditions} is updated with \textit{values}.
+\item output: none
+\item exception: none
+\end{itemize}
 
-\wss{Modules rarely have both a transition and an output.  In most cases you
-  will have one or the other.}
+\noindent \wss{delete}(\textit{tableName, conditions}):
+\begin{itemize}
+\item transition: the target items in \textit{db} specified by \textit{tableName} and \textit{conditions} are deleted.
+\item output: none
+\item exception: none
+\end{itemize}
+
+\noindent \wss{select}(\textit{fields, tableName, conditions}):
+\begin{itemize}
+\item transition: none
+\item output: $out \coloneqq data$, where data describes the fields specified by \textit{fields} of the target items specified by \textit{tableName} and \textit{conditions} in db.
+\item exception: none
+\end{itemize}
 
 \subsubsection{Local Functions}
-
-\wss{As appropriate} \wss{These functions are for the purpose of specification.
-  They are not necessarily something that is going to be implemented
-  explicitly.  Even if they are implemented, they are not exported; they only
-  have local scope.}
+None
 
 \newpage
 
@@ -567,6 +572,9 @@ locationManagement
 \subsubsection{Exported Constants}
 None
 
+\subsubsection{Exported Types}
+None
+
 \subsubsection{Exported Access Programs}
 
 \begin{center}
@@ -636,6 +644,101 @@ None
 
 \section{Appendix} \label{Appendix}
 
-\wss{Extra information if required}
+\subsection{Database Schema and Tables} \label{dbAppendix}
+
+\subsubsection{rawItems}
+\begin{table}[H]
+  \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.5\linewidth}|}
+    \hline
+    \textbf{Column Name} & \textbf{Type} & \textbf{Description} \\
+    \hline
+    itemId & INT & PRIMARY KEY unique id of this instance of this item \\
+    \hline
+    itemKey & VARCHAR & Item identifier specific to the retailer (usually SKU) \\
+    \hline
+    dateTime & DATETIME & Date and time of purchase \\
+    \hline
+    price & DOUBLE & Price of item \\
+    \hline
+    location & VARCHAR & Location of purchase \\
+    \hline
+    userId & INT & FOREIGN KEY ID of user\\
+    \hline
+    itemDesc & VARCHAR & Item description\\
+    \hline
+    isTaxed & BOOL & Describes if the item is taxed\\
+    \hline
+  \end{tabular}
+\end{table}
+
+\subsubsection{classifiedItems}
+\begin{table}[H]
+  \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.5\linewidth}|}
+    \hline
+    \textbf{Column Name} & \textbf{Type} & \textbf{Description} \\
+    \hline
+    itemId & INT & PRIMARY KEY unique id of this instance of this item \\
+    \hline
+    productKey & VARCHAR & Universal item identifier (UPC) \\
+    \hline
+    dateTime & DATETIME & Date and time of purchase \\
+    \hline
+    price & DOUBLE & Price of item \\
+    \hline
+    location & VARCHAR & Location of purchase \\
+    \hline
+    userId & INT & FOREIGN KEY ID of user\\
+    \hline
+    itemDesc & VARCHAR & Item description\\
+    \hline
+    isTaxed & BOOL & Describes if the item is taxed\\
+    \hline
+    category & VARCHAR & Describes the product category the item belongs to\\
+    \hline
+  \end{tabular}
+\end{table}
+
+\subsubsection{users}
+\begin{table}[H]
+  \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.5\linewidth}|}
+    \hline
+    \textbf{Column Name} & \textbf{Type} & \textbf{Description} \\
+    \hline
+    userId & INT & PRIMARY KEY unique id assigned to the user \\
+    \hline
+    email & VARCHAR & User email \\
+    \hline
+    password & VARCHAR & Encrypted user password \\
+    \hline
+    firstName & VARCHAR & User first name \\
+    \hline
+    lastName & VARCHAR & User last name \\
+    \hline
+    location & VARCHAR & Location of the user, usually describes the user's home\\
+    \hline
+  \end{tabular}
+\end{table}
+
+\subsubsection{goals}
+\begin{table}[H]
+  \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.5\linewidth}|}
+    \hline
+    \textbf{Column Name} & \textbf{Type} & \textbf{Description} \\
+    \hline
+    goalId & INT & PRIMARY KEY unique id assigned to the goal \\
+    \hline
+    userId & INT & FOREIGN KEY ID of user \\
+    \hline
+    startDate & DATE & Start date of the goal \\
+    \hline
+    endDate & DATE & End date of the goal \\
+    \hline
+    budget & INT & Money allotted for the goal \\
+    \hline
+    category & VARCHAR & The product category of relevant to the goal\\
+    \hline
+  \end{tabular}
+\end{table}
+
 
 \end{document}
