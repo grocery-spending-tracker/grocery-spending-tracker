@@ -242,6 +242,97 @@ None
 
 \newpage
 
+\section{MIS of Recommendation Module} \label{mRecommendation}
+
+Module for recommending user purchases.
+
+\subsection{Module}
+
+recommendationModule
+
+\subsection{Uses}
+
+Database Driver Module (Section \ref{mDBDriver})
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+None
+
+\subsubsection{Exported Access Programs}
+
+This module uses Item as an input, as described in Section \ref{mExtraction}
+
+\begin{center}
+    \begin{tabular}{p{5cm} p{4cm} p{3cm} p{4cm}}
+    \hline
+    \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+    \hline
+    collectItemData & Item & - & InvalidDataFormatException \\
+    getCheaperAlternatives & String & List$<$String$>$ & - \\
+    getRecommendationDetails & String & Item & - \\
+    \hline
+    \end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+None
+
+\subsubsection{Environment Variables}
+
+None
+
+\subsubsection{Assumptions}
+
+None
+
+\subsubsection{Access Routine Semantics}
+
+This module uses Item as an input, as described in Section \ref{mExtraction}
+
+\noindent collectItemData(\textit{Item}):
+\begin{itemize}
+  \item transition: Updates the module's internal data structure with the new \textit{Item} data.
+  \item output: none
+  \item exception: $exc := \textit{InvalidDataFormatException}$, if \textit{Item} does not adhere to the expected format.
+\end{itemize}
+
+\noindent getCheaperAlternatives(\textit{itemId}):
+\begin{itemize}
+  \item transition: none
+  \item output: $out := \textit{getCheaperAlternatives}(\textit{itemId})$ 
+  \item exception: none
+\end{itemize}
+
+\noindent getRecommendationDetails(\textit{itemId}):
+\begin{itemize}
+  \item transition: none
+  \item output: $out := \textit{getItemDetails}(\textit{itemId})$
+  \item exception: none
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+\noindent getCheaperAlternatives(\textit{itemId}):
+\begin{itemize}
+  \item transition: none
+  \item output: $out := \textit{list of item IDs that are cheaper alternatives to the item identified by} \, \textit{itemId}$
+  \item exception: none
+\end{itemize}
+
+\noindent getItemDetails(\textit{itemId}):
+\begin{itemize}
+  \item transition: none
+  \item output: $out := \textit{detailed information of the item identified by} \, \textit{itemId}$
+  \item exception: none
+\end{itemize}
+
+\newpage
+
 \section{MIS of Receipt Vision Module} \label{mVision}
 
 The Receipt Vision Module is responsible for providing methods and logic related to image
