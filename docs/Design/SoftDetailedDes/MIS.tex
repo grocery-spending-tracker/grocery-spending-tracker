@@ -262,14 +262,16 @@ None
 
 \subsubsection{Exported Access Programs}
 
+This module uses Item as an input, as described in Section \ref{mExtraction}
+
 \begin{center}
     \begin{tabular}{p{5cm} p{4cm} p{3cm} p{4cm}}
     \hline
     \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
     \hline
     collectItemData & Item & - & InvalidDataFormatException \\
-    getCheaperAlternatives & itemId & List$<$String$>$ & - \\
-    getRecommendationDetails & itemId & Item & - \\
+    getCheaperAlternatives & String & List$<$String$>$ & - \\
+    getRecommendationDetails & String & Item & - \\
     \hline
     \end{tabular}
 \end{center}
