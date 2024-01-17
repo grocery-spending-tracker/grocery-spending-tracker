@@ -630,6 +630,158 @@ None
 
 \newpage
 
+\section{MIS of Users Module} \label{mUsers} 
+The Users Module exists to handle CRUD operations for operations related to users and their grocery trips.
+
+\subsection{Module}
+
+users
+
+\subsection{Uses}
+
+ Database Driver Module (Section \ref{mDBDriver}) 
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+None
+
+\subsubsection{Exported Types}
+\textbf{Item} as defined in Section \ref{mExtraction} \\
+
+\noindent \textbf{GroceryTrip} as defined in Section \ref{mExtraction} \\
+
+\noindent \textbf{User}
+
+\begin{table}[H]
+  \begin{tabular}{|p{0.25\textwidth}|p{0.25\textwidth}|p{0.40\textwidth}|}
+    \hline
+    \textbf{Output Name} & \textbf{Output Type} & \textbf{Description} \\
+    \hline
+    userId & String & Unique user id number \\
+    \hline
+    email & String & Email of user \\
+    \hline
+    password & String & Password of user (Encrypted) \\
+    \hline
+    firstName & String & First name of User \\
+    \hline
+    lastName & String & Last name of User \\
+    \hline
+    location & String & Location of user's home-base. (Coordinates) \\
+    \hline
+  \end{tabular}
+\end{table}
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{5cm} p{3cm} p{3cm} p{5cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+newUser & User & - & userExistsException \\
+getUser & String & User & userDneException \\
+updateUser & User & - & userDneException \\
+deleteUser & String & - & userDneException \\
+addTrip & GroceryTrip & - & userDneException \\
+getTrip & $\mathbb{N}$ & GroceryTrip & - \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+None
+
+\subsubsection{Environment Variables}
+None 
+
+\subsubsection{Assumptions}
+None
+
+\subsubsection{Access Routine Semantics}
+
+\noindent newUser(\textit{user}):
+\begin{itemize}
+\item transition: \( \neg userExists(\textit{user.userId}) \Rightarrow addUserInDB(\textit{user})\) 
+\item output: none
+\item exception \( \textit{exc} \coloneqq userExists(\textit{user.userId}) \Rightarrow \\ userExistsException\)
+\end{itemize}
+
+\noindent getUser(\textit{userId}):
+\begin{itemize}
+\item transition: none
+\item output: \( \textit{out} \coloneqq userExists(\textit{user.userId}) \Rightarrow getUserInDB(userId)\)
+\item exception \( \textit{exc} \coloneqq \neg userExists(\textit{user.userId}) \Rightarrow \\ userDneException\)
+\end{itemize}
+
+\noindent updateUser(\textit{user}):
+\begin{itemize}
+\item transition: \( userExists(\textit{user.userId}) \Rightarrow updateUser(\textit{user})\)
+\item output: none
+\item exception \( \textit{exc} \coloneqq \neg userExists(\textit{user.userId}) \Rightarrow \\ userDneException\)
+\end{itemize}
+
+\noindent deleteUser(\textit{user}):
+\begin{itemize}
+\item transition: \( userExists(\textit{user.userId}) \Rightarrow deleteUserInDB(\textit{user})\) 
+\item output: none
+\item exception \( \textit{exc} \coloneqq \neg userExists(\textit{user.userId}) \Rightarrow \\ userDneException\)
+\end{itemize}
+
+\noindent addTrip(\textit{groceryTrip}):
+\begin{itemize}
+\item transition: \( userExists(\textit{groceryTrip.userId}) \Rightarrow addTripInDB(\textit{groceryTrip})\) 
+\item output: none
+\item exception \( \textit{exc} \coloneqq \neg userExists(\textit{user.userId}) \Rightarrow \\ userDneException\)
+\end{itemize}
+
+\noindent getTrip(\textit{dateTime}):
+\begin{itemize}
+\item transition: none
+\item output: \( \textit{out} \coloneqq getTripFromDateTime(\textit{dateTime}) \)
+\end{itemize}
+
+\subsubsection{Local Functions}
+addUserInDB(\textit{user})
+\begin{itemize}
+\item transition: Add tuple to User database (Section \ref{mDBDriver}) using fields from \textit{user}.
+\end{itemize}
+
+\noindent getUserInDB(\textit{userId})
+\begin{itemize}
+\item output:  Query User database (Section \ref{mDBDriver}) where \textit{userId} and map to fields in \textit{user}. Output \textit{user}.
+\end{itemize}
+
+\noindent updateUserInDB(\textit{user})
+\begin{itemize}
+\item output:  Replace tuple with key \textit{user.userId} in User database (Section \ref{mDBDriver}) with \textit{user} by mapping fields fields.
+\end{itemize}
+
+\noindent deleteUserInDB(\textit{user})
+\begin{itemize}
+\item transition: Remove tuple to User database (Section \ref{mDBDriver}) using fields from primary key \textit{user.userId}.
+\end{itemize}
+
+\noindent userExists(\textit{groceryTrip.userId})
+\begin{itemize}
+\item output: Query User database (Section \ref{mDBDriver}) and output True if a tuple with \textit{userId} == \textit{groceryTrip.userId} exists in the table.
+\end{itemize}
+
+\noindent addTripInDB(\textit{groceryTrip})
+\begin{itemize}
+\item transition: Add tuple to Trip database (Section \ref{mDBDriver}) using fields from \textit{groceryTrip}.
+\end{itemize}
+
+\noindent getTripFromDateTime(\textit{dateTime})
+\begin{itemize}
+\item output: Query Trip database (Section \ref{mDBDriver}) and output the \textbf{GroceryTrip} tuple that is closest to \textit{dateTime}.
+\end{itemize}
+
+\newpage
+
 \section{MIS of Authentication Module} \label{mAuthentication} 
 The Authentication module acts to "log-in" the user by providing the client with a JWT token.
 
