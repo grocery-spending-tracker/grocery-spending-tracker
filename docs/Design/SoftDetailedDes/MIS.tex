@@ -72,6 +72,7 @@ See SRS Documentation at \url{https://github.com/r-yeh/grocery-spending-tracker/
   SRS & Software Requirements Specification\\
   MIS & Module Interface Specification \\
   SKU & Stock Keeping Unit: ID of Product Used by Retailers \\
+  JWT & JSON Web Token \\
   \bottomrule
 \end{tabular}\\
 
@@ -143,18 +144,17 @@ The following table is taken directly from the Module Guide document for this pr
 {Hardware-Hiding} & ~ \\
 \midrule
 
-\multirow{7}{0.3\textwidth}{Behaviour-Hiding} & Input Parameters\\
-& Output Format\\
-& Output Verification\\
-& Temperature ODEs\\
-& Energy Equations\\ 
-& Control Module\\
-& Specification Parameters Module\\
+\multirow{7}{0.3\textwidth}{Behaviour-Hiding} & Receipt Vision Module (OCR)\\
+& Receipt Extraction Module\\
+& Location Management Module\\
+& User Analytics Module\\
+& Users Module\\
+& Authentication Module\\
 \midrule
 
-\multirow{3}{0.3\textwidth}{Software Decision} & {Sequence Data Structure}\\
-& ODE Solver\\
-& Plotting\\
+\multirow{3}{0.3\textwidth}{Software Decision} & Recommendation Engine\\
+& Classification Engine\\
+& Database Driver Module\\
 \bottomrule
 
 \end{tabular}
@@ -778,6 +778,75 @@ addUserInDB(\textit{user})
 \noindent getTripFromDateTime(\textit{dateTime})
 \begin{itemize}
 \item output: Query Trip database (Section \ref{mDBDriver}) and output the \textbf{GroceryTrip} tuple that is closest to \textit{dateTime}.
+\end{itemize}
+
+\newpage
+
+\section{MIS of Authentication Module} \label{mAuthentication} 
+The Authentication module acts to "log-in" the user by providing the client with a JWT token.
+
+\subsection{Module}
+
+authentication
+
+\subsection{Uses}
+
+ Database Driver Module (Section \ref{mDBDriver}) 
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{5cm} p{3cm} p{3cm} p{5cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+getToken & String, String & String & invalidCredentialsException \\
+verifyToken & String & String & invalidTokenException \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+None
+
+\subsubsection{Environment Variables}
+PrivateKey (for JWT) \\
+PublicKey (for JWT)
+
+\subsubsection{Assumptions}
+None
+
+\subsubsection{Access Routine Semantics}
+
+\noindent getToken(\textit{email}, \textit{passwordEncrypted}):
+\begin{itemize}
+\item transition: \textit{signedJwtToken} produced using \textit{PrivateKey}
+\item output: \( \textit{out} \coloneqq verifyCredentials(\textit{email}, \textit{passwordEncrypted}) \Rightarrow  signedJwtToken\) \\
+\item exception \( \textit{exc} \coloneqq \neg verifyCredentials(\textit{email}, \textit{passwordEncrypted}) \Rightarrow \\ invalidCredentialsException\)
+\end{itemize}
+
+\noindent verifyJwtToken(\textit{jwtToken}):
+\begin{itemize}
+\item transition: none
+\item output: \( \textit{out} \coloneqq verifyToken(\textit{jwtToken})\)
+\item exception: \( \textit{exc} \coloneqq \neg verifyToken(\textit{jwtToken}) \Rightarrow invalidTokenException \), if the provided JWT token does not evaluate true in comparison to the PublicKey
+\end{itemize}
+
+\subsubsection{Local Functions}
+verifyCredentials(\textit{email}, \textit{passwordEncrypted})
+\begin{itemize}
+\item output: \( \textit{out} \coloneqq \) True if the password is deemed correct for the given email using the database (Section \ref{mDBDriver})
+\end{itemize}
+
+\noindent verifyToken(\textit{jwtToken})
+\begin{itemize}
+\item output: \( \textit{out} \coloneqq \) True if the JWT token is deemed corrrect using the PublicKey and JWTLibrary
 \end{itemize}
 
 \newpage
