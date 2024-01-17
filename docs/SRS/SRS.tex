@@ -721,8 +721,8 @@ formal specifications for some of the requirements.
 
 \medskip
 \noindent \textbf{Requirement ID:} FR7\\
-\textbf{Use Case:} 8, 9\\
-\textbf{Description:} The system must process each item listed on a receipt by identifying each item details. It must update the user's spending log in the database.\\
+\textbf{Use Case:} 8\\
+\textbf{Description:} The system must process each item listed on a receipt by identifying each item details.\\
 \textbf{Rationale:} Accurately capturing detailed purchase information from receipts is important for informing users with a comprehensive overview of their grocery spending habits.\\
 \textbf{Fit Criterion:} The system should accurately extract and parse grocery item details from receipts, achieving a data accuracy of at least 90\%.\\
 
@@ -753,6 +753,13 @@ formal specifications for some of the requirements.
 \textbf{Description:} The system must allow users to verify and edit grocery items that were not accurately scanned and recognized by the system.\\
 \textbf{Rationale:} It is essential for the system to ensure data accuracy and completeness of tracking of user grocery purchases. Although scanning and recognizing image text using OCR have become advanced, it is impossible to ensure 100\% accuracy of results all the time. Therefore, allowing users to verify and update items will enhance reliability of data.\\
 \textbf{Fit Criterion:} The system should reflect changes made by users on the purchase items log in less than 3 seconds. Also, user feedback on ease of edit functions should be positive, with more than 80\% of users rating it easy.\\
+
+\medskip
+\noindent \textbf{Requirement ID:} FR12\\
+\textbf{Use Case:} 8, 9\\
+\textbf{Description:} The system must update the user's spending log in the database.\\
+\textbf{Rationale:} This process enhances the management of user's grocery spending data. Additionally, the process enhances the accuracy of financial records and provides a seamless experience in tracking daily expenditures.\\
+\textbf{Fit Criterion:} Upon successful extraction of data from the grocery receipt, the system should update the user's spending log in the database within 5 seconds.\\
 
 \newpage
 \begin{landscape}
