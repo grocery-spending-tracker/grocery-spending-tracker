@@ -307,7 +307,7 @@ None
 \newpage
 
 \section{MIS of Authentication Module} \label{mAuthentication} 
-The Authentication module acts to "log-in" the user by providing the client with a JWS token.
+The Authentication module acts to "log-in" the user by providing the client with a JWT token.
 
 \subsection{Module}
 
@@ -320,7 +320,6 @@ authentication
 \subsection{Syntax}
 
 \subsubsection{Exported Constants}
-None
 
 \subsubsection{Exported Access Programs}
 
@@ -341,7 +340,7 @@ verifyToken & String & String & invalidTokenException \\
 None
 
 \subsubsection{Environment Variables}
-PrivateKey (for JWT)
+PrivateKey (for JWT) \\
 PublicKey (for JWT)
 
 \subsubsection{Assumptions}
@@ -351,9 +350,8 @@ None
 
 \noindent getToken(\textit{email}, \textit{passwordEncrypted}):
 \begin{itemize}
-\item transition: none
-\item output: \( \textit{out} \coloneqq verifyCredentials(\textit{email}, \textit{passwordEncrypted}) \Rightarrow  signedToken\), \\
-where signedToken is generated using the PrivateKey.
+\item transition: \textit{signedJwtToken} produced using \textit{PrivateKey}
+\item output: \( \textit{out} \coloneqq verifyCredentials(\textit{email}, \textit{passwordEncrypted}) \Rightarrow  signedJwtToken\) \\
 \item exception \( \textit{exc} \coloneqq \neg verifyCredentials(\textit{email}, \textit{passwordEncrypted}) \Rightarrow \\ invalidCredentialsException\)
 \end{itemize}
 
