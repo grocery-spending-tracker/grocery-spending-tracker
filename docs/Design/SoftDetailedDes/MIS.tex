@@ -216,7 +216,7 @@ None
 \subsubsection{State Variables}
 
 \textbf{App Lifecycle} \textit{appLifecycle}: Tracks module activity on the user's device. \\
-\textbf{Boolean} \textit{isPermissionGranted}: Stores camera permission status. \\
+\textbf{$\mathbb{B}$} \textit{isPermissionGranted}: Stores camera permission status. \\
 \textbf{Device Camera} \textit{selectedCamera}: Stores data on which camera to use.
 
 \subsubsection{Environment Variables}
@@ -855,8 +855,8 @@ verifyToken & String & String & invalidTokenException \\
 None
 
 \subsubsection{Environment Variables}
-PrivateKey (for JWT) \\
-PublicKey (for JWT)
+\textbf{String} PrivateKey (for JWT) \\
+\textbf{String} PublicKey (for JWT)
 
 \subsubsection{Assumptions}
 None
