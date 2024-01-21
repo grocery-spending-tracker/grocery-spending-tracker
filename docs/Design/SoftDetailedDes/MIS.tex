@@ -592,7 +592,7 @@ None
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-getPurchaseHistoryByTrip & $\mathbb{N}$ & Set$<$List$<$Item$>$$>$  & - \\
+getPurchaseHistoryByTrip & $\mathbb{N}$ & List$<$List$<$Item$>$$>$  & - \\
 getSpendingByCategory & $\mathbb{N}^2$ & Map$<$String, List$<$Item$>$$>$  & - \\
 getSpendingByTime & $\mathbb{N}^2$ & Map$<$String, $\mathbb{R}$+$>$ & - \\
 createBudgetGoals & $\mathbb{N}^3$, String & - & - \\
@@ -620,7 +620,7 @@ None
 \noindent getPurchaseHistoryByTrip(\textit{page}):
 \begin{itemize}
 \item transition: none
-\item output: $\textit{out} \coloneqq \{GroceryTrip_{1}, GroceryTrip_{2},..., GroceryTrip_{pageSize}\}$ s.t. \\ $GroceryTrip_{i}.dateTime > GroceryTrip_{i+1}.dateTime$, where GroceryTrip are extracted from (Section \ref{mDBDriver})
+\item output: $\textit{out} \coloneqq [GroceryTrip_{1}, GroceryTrip_{2},..., GroceryTrip_{pageSize}]$ s.t. \\ $GroceryTrip_{i}.dateTime > GroceryTrip_{i+1}.dateTime$, where GroceryTrip are extracted from (Section \ref{mDBDriver})
 \item exception: none
 \end{itemize}
 
@@ -689,7 +689,7 @@ Database Driver Module (Section \ref{mDBDriver})
 None
 
 \subsubsection{Exported Types}
-\textbf{Item} as defined in Section \ref{mExtraction} \\
+\textbf{Item} as defined in Section \ref{mExtraction} 
 
 \noindent \textbf{GroceryTrip} as defined in Section \ref{mExtraction} \\
 
@@ -875,7 +875,7 @@ None
 \noindent getToken(\textit{email}, \textit{passwordEncrypted}):
 \begin{itemize}
 \item transition: \textit{signedJwtToken} produced using \textit{PrivateKey}
-\item output: \( \textit{out} \coloneqq verifyCredentials(\textit{email}, \textit{passwordEncrypted}) \Rightarrow  signedJwtToken\) \\
+\item output: \( \textit{out} \coloneqq verifyCredentials(\textit{email}, \textit{passwordEncrypted}) \Rightarrow  signedJwtToken\) 
 \item exception \( \textit{exc} \coloneqq \neg verifyCredentials(\textit{email}, \textit{passwordEncrypted}) \Rightarrow \\ invalidCredentialsException\)
 \end{itemize}
 
@@ -924,7 +924,7 @@ None
 \subsubsection{Exported Access Programs}
 
 \begin{center}
-    \begin{tabular}{p{5cm} p{4cm} p{3cm} p{4cm}}
+    \begin{tabular}{p{5cm} p{3cm} p{3cm} p{5cm}}
     \hline
     \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
     \hline
@@ -1154,7 +1154,7 @@ None
 
 \subsubsection{Assumptions}
 \begin{itemize}
-  \item The schema is set up as described in Section \ref{dbAppendix}\\
+  \item The schema is set up as described in Section \ref{dbAppendix}
   \item The connection to the database is established with necessary permissions.
 \end{itemize}
 
@@ -1204,7 +1204,7 @@ None
 
 \subsubsection{rawItems}
 \begin{table}[H]
-  \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.5\linewidth}|}
+  \begin{tabular}{|p{0.2\linewidth}|p{0.1\linewidth}|p{0.6\linewidth}|}
     \hline
     \textbf{Column Name} & \textbf{Type} & \textbf{Description} \\
     \hline
@@ -1229,7 +1229,7 @@ None
 
 \subsubsection{classifiedItems}
 \begin{table}[H]
-  \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.5\linewidth}|}
+  \begin{tabular}{|p{0.2\linewidth}|p{0.1\linewidth}|p{0.6\linewidth}|}
     \hline
     \textbf{Column Name} & \textbf{Type} & \textbf{Description} \\
     \hline
@@ -1258,7 +1258,7 @@ None
 
 \subsubsection{transaction}
 \begin{table}[H]
-  \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.5\linewidth}|}
+  \begin{tabular}{|p{0.2\linewidth}|p{0.1\linewidth}|p{0.6\linewidth}|}
     \hline
     \textbf{Column Name} & \textbf{Type} & \textbf{Description} \\
     \hline
@@ -1277,7 +1277,7 @@ None
 
 \subsubsection{users}
 \begin{table}[H]
-  \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.5\linewidth}|}
+  \begin{tabular}{|p{0.2\linewidth}|p{0.1\linewidth}|p{0.6\linewidth}|}
     \hline
     \textbf{Column Name} & \textbf{Type} & \textbf{Description} \\
     \hline
@@ -1298,7 +1298,7 @@ None
 
 \subsubsection{goals}
 \begin{table}[H]
-  \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.5\linewidth}|}
+  \begin{tabular}{|p{0.2\linewidth}|p{0.1\linewidth}|p{0.6\linewidth}|}
     \hline
     \textbf{Column Name} & \textbf{Type} & \textbf{Description} \\
     \hline
