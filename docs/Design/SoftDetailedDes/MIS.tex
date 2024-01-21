@@ -592,6 +592,7 @@ None
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
+getPurchaseHistoryByTrip & $\mathbb{N}$ & Set$<$List$<$Item$>$$>$  & - \\
 getSpendingByCategory & $\mathbb{N}^2$ & Map$<$String, List$<$Item$>$$>$  & - \\
 getSpendingByTime & $\mathbb{N}^2$ & Map$<$String, $\mathbb{R}$+$>$ & - \\
 createBudgetGoals & $\mathbb{N}^3$, String & - & - \\
@@ -605,15 +606,23 @@ getBudgetGoals & - & List$<$($\mathbb{N}^3$, String)$>$ & - \\
 \subsection{Semantics}
 
 \subsubsection{State Variables}
-None
+\textbf{$\mathbb{N}$} \textit{pageSize}: number of trips in a page of shopping trips 
 
 \subsubsection{Environment Variables}
-None
+\textbf{GroceryTrip} (Section \ref{mExtraction})
+
 
 \subsubsection{Assumptions}
 None
 
 \subsubsection{Access Routine Semantics}
+
+\noindent getPurchaseHistoryByTrip(\textit{page}):
+\begin{itemize}
+\item transition: none
+\item output: $\textit{out} \coloneqq \{GroceryTrip_{1}, GroceryTrip_{2},..., GroceryTrip_{pageSize}\}$ s.t. \\ $GroceryTrip_{i}.dateTime > GroceryTrip_{i+1}.dateTime$, where GroceryTrip are extracted from (Section \ref{mDBDriver})
+\item exception: none
+\end{itemize}
 
 \noindent getSpendingByCategory(\textit{startDate}, \textit{endDate}):
 \begin{itemize}
@@ -1236,11 +1245,32 @@ None
     \hline
     userId & String & FOREIGN KEY ID of user\\
     \hline
+    tripId & String &  FOREIGN KEY ID of transaction\\
+    \hline
     itemDesc & String & Item description\\
     \hline
     isTaxed & $\mathbb{B}$ & Describes if the item is taxed\\
     \hline
     category & String & Describes the product category the item belongs to\\
+    \hline
+  \end{tabular}
+\end{table}
+
+\subsubsection{transaction}
+\begin{table}[H]
+  \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.5\linewidth}|}
+    \hline
+    \textbf{Column Name} & \textbf{Type} & \textbf{Description} \\
+    \hline
+    tripId & String & PRIMARY KEY ID of transaction\\
+    \hline
+    userId & String & FOREIGN KEY ID of user\\
+    \hline
+    dateTime & $\mathbb{N}$ & Date and time of transaction \\
+    \hline
+    location & String & Location of purchase \\
+    \hline
+    transactionDesc & String & Transaction description\\
     \hline
   \end{tabular}
 \end{table}
