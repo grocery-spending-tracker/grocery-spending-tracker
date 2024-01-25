@@ -20,7 +20,13 @@
 
 \section{Demo Plans}
 
-\wss{What you will demonstrating}
+For the demo, we plan to walk through the main success case for a user using the application.
+The demo will start with logging in using an existing account, before scanning a receipt. Once
+the receipt is scanned, we will show how the confirmation screen looks. We will show how editing
+data on the confirmation screen works before sending the data to the backend. Once everything has
+been properly added to the database, the analytics screen will be accessed to display the account's
+purchase history and data. Finally, we will show how recommendations would be received for a user
+using the application.
 
 \section{Meeting Attendance}
 
@@ -35,12 +41,11 @@ meetings held by the team.}
 \toprule
 \textbf{Student} & \textbf{Meetings}\\
 \midrule
-Total & Num\\
-Name 1 & Num\\
+Total & 13\\
+Ryan Yeh & 13\\
 Name 2 & Num\\
 Name 3 & Num\\
 Name 4 & Num\\
-Name 5 & Num\\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -60,12 +65,11 @@ the POC demo.}
 \toprule
 \textbf{Student} & \textbf{Lectures}\\
 \midrule
-Total & Num\\
-Name 1 & Num\\
+Total & 2\\
+Ryan Yeh & 2\\
 Name 2 & Num\\
 Name 3 & Num\\
 Name 4 & Num\\
-Name 5 & Num\\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -79,25 +83,31 @@ since the POC demo.  The total is the total number of commits for the entire
 team since the POC demo.  The percentage is the percentage of the total commits
 made by each team member.}
 
+The below contains the number of commits made by team members across all our repositories. This includes
+contributions to the main repository as well as sub-repositories that make up our actual implementation.
+
 \begin{table}[H]
 \centering
 \begin{tabular}{lll}
 \toprule
 \textbf{Student} & \textbf{Commits} & \textbf{Percent}\\
 \midrule
-Total & Num & 100\% \\
-Name 1 & Num & \% \\
+Total & 117 & 100\% \\
+Ryan Yeh & 60 & 51.28\% \\
 Name 2 & Num & \% \\
 Name 3 & Num & \% \\
 Name 4 & Num & \% \\
-Name 5 & Num & \% \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\wss{If needed, an explanation for the counts can be provided here.  For
-instance, if a team member has more commits to unmerged branches, these numbers
-can be provided here.}
+\begin{itemize}
+  \item \textbf{Ryan Yeh:} I have an additional 45 commits made to our frontend repository that has not yet been
+  merged to the main branch since the feature is still under development.
+  \item \textbf{Allan Fang:}
+  \item \textbf{Sawyer Tang:}
+  \item \textbf{Jason Nam:}
+\end{itemize}
 
 \section{Issue Tracker}
 
@@ -111,11 +121,10 @@ issues).}
 \toprule
 \textbf{Student} & \textbf{Authored (O+C)} & \textbf{Assigned (C only)}\\
 \midrule
-Name 1 & Num & Num \\
+Ryan Yeh & 54 & 36 \\
 Name 2 & Num & Num \\
 Name 3 & Num & Num \\
 Name 4 & Num & Num \\
-Name 5 & Num & Num \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -124,6 +133,8 @@ Name 5 & Num & Num \\
 
 \section{CICD}
 
-\wss{Say how CICD is used in your project}
+Currently, \textit{Github Actions} is being used to compile all of our \LaTeX documents in the primary repository.
+Going forward, we aim to have unit tests being executed when merging branches as well in order to ensure code quality.
+Once modules are more complete, these tests will be created and integrated in to the CICD pipeline.
 
 \end{document}
