@@ -1,0 +1,119 @@
+\documentclass{article}
+
+\usepackage{float}
+\restylefloat{table}
+
+\usepackage{booktabs}
+
+\title{Team Contributions: Rev 0\\\progname}
+
+\author{\authname}
+
+\date{}
+
+\input{../Comments}
+\input{../Common}
+
+\begin{document}
+
+\maketitle
+
+\section{Demo Plans}
+
+For the demo, we plan to walk through the main success case for a user using the application.
+The demo will start with logging in using an existing account, before scanning a receipt. Once
+the receipt is scanned, we will show how the confirmation screen looks. We will show how editing
+data on the confirmation screen works before sending the data to the backend. Once everything has
+been properly added to the database, the analytics screen will be accessed to display the account's
+purchase history and data. Finally, we will show how recommendations would be received for a user
+using the application.
+
+\section{Meeting Attendance}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{ll}
+\toprule
+\textbf{Student} & \textbf{Meetings}\\
+\midrule
+Total & 13\\
+Ryan Yeh & 13\\
+Allan Fang & 13\\
+Sawyer Tang & 13\\
+Jason Nam & 13\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Lecture Attendance}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{ll}
+\toprule
+\textbf{Student} & \textbf{Lectures}\\
+\midrule
+Total & 2\\
+Ryan Yeh & 2\\
+Allan Fang & 1\\
+Sawyer Tang & 0\\
+Jason Nam & 1\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+There has been 2 lectures in the date-range that we are recording data.
+
+\section{Commits}
+
+The below contains the number of commits made by team members across all our repositories. This includes
+contributions to the main repository as well as sub-repositories that make up our actual implementation.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lll}
+\toprule
+\textbf{Student} & \textbf{Commits} & \textbf{Percent}\\
+\midrule
+Total & 117 & 100\% \\
+Ryan Yeh & 60 & 51.28\% \\
+Allan Fang & 13 & 11.11\% \\
+Sawyer Tang & 18 & 15.39\% \\
+Jason Nam & 26 & 22.22\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{itemize}
+  \item \textbf{Ryan Yeh:} I have an additional 45 commits made to our frontend repository that has not yet been
+  merged to the main branch since the feature is still under development. I would also like to note that I write
+  documentation on a local \LaTeX environment rather than Overleaf so I am generally able to make much more commits.
+  \item \textbf{Allan Fang:} I have an additional 5 pending commits that are not ready for the main branch as the feature is incomplete.
+  \item \textbf{Sawyer Tang:} 13 of my 18 commits are on the master branch of our back-end repository \href{https://github.com/Tanger71/grocery-spending-tracker-backend}{here}. Additionally, I squash my commits to the main repo before merging into master. The total of these commits unsquashed go from 18 to 30 detailed \href{https://github.com/r-yeh/grocery-spending-tracker/commits?author=Tanger71&since=2023-11-13&until=2024-01-28}{here}.
+  \item \textbf{Jason Nam:} 9 of my 26 commits are on the master branch of our repository \href{https://github.com/jason-nam/grocery-web-scraper}{here}. I have an additional 3 pending commits on the same repository.
+\end{itemize}
+
+\section{Issue Tracker}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lll}
+\toprule
+\textbf{Student} & \textbf{Authored (O+C)} & \textbf{Assigned (C only)}\\
+\midrule
+Ryan Yeh & 54 & 36 \\
+Allan Fang & 40 & 29 \\
+Sawyer Tang & 36 & 36 \\
+Jason Nam & 26 & 21 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\section{CICD}
+
+Currently, \textit{Github Actions} is being used to compile all of our \LaTeX documents in the primary repository.
+Going forward, we aim to have unit tests being executed when merging branches as well in order to ensure code quality.
+Once modules are more complete, these tests will be created and integrated in to the CICD pipeline.
+
+\end{document}
