@@ -10,3 +10,9 @@
 [submodule "src/grocery-spending-tracker-app"]
 	path = src/grocery-spending-tracker-app
 	url = https://github.com/allanfang1/grocery_spending_tracker_app.git
+[submodule "src/grocery-spending-tracker-backend"]
+	path = src/grocery-spending-tracker-backend
+	url = https://github.com/Tanger71/grocery-spending-tracker-backend
+[submodule "src/grocery-spending-tracker-classification"]
+	path = src/grocery-spending-tracker-classification
+	url = https://github.com/jason-nam/grocery-spending-tracker-classification
