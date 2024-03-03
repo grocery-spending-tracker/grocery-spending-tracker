@@ -1200,9 +1200,9 @@ unit tests will be focused on the modules of the application as written in the
   will be within the scope of unit testing except for the Receipt Vision Module and Database
   Driver Module. The Receipt Vision Module is excluded due to it largely being implemented via a third-party
   package called Google ML Kit. It is assumed this is a well-tested package and is thus excluded. Other functionality
-  such as camera operation is already being tested via System Tests. The Database Driver Module is being excluded as well
-  since it will be heavily involved in the testing of other modules. Therefore, the team believes it would be
-  an unnecessary use of resources to write tests specifically for the database.
+  such as camera operation is already being tested via System Tests. The Database Driver Module is being implemented
+  using PostgreSQL which is also assumed to be properly tested. Additionally, the database will also be tested through
+  System Tests rather than individual unit tests.
 
 \subsection{Tests for Functional Requirements}
 
