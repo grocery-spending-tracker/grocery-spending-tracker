@@ -1197,12 +1197,14 @@ unit tests will be focused on the modules of the application as written in the
 \subsection{Unit Testing Scope}
 
   All modules described in the \href{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/Design/SoftDetailedDes/MIS.pdf}{MIS}
-  will be within the scope of unit testing except for the Receipt Vision Module and Database
-  Driver Module. The Receipt Vision Module is excluded due to it largely being implemented via a third-party
+  will be within the scope of unit testing except for the Receipt Vision Module, Database
+  Driver Module and Locations Module. The Receipt Vision Module is excluded due to it largely being implemented via a third-party
   package called Google ML Kit. It is assumed this is a well-tested package and is thus excluded. Other functionality
   such as camera operation is already being tested via System Tests. The Database Driver Module is being implemented
   using PostgreSQL which is also assumed to be properly tested. Additionally, the database will also be tested through
-  System Tests rather than individual unit tests.
+  System Tests rather than individual unit tests. Finally, the Locations Module is being excluded because the team
+  has decided it is out of scope for our current implementation. As a result, implementation and testing related to
+  the module is being pushed to a future version.
 
 \subsection{Tests for Functional Requirements}
 
