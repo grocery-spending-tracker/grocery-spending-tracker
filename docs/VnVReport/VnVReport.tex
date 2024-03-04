@@ -132,10 +132,33 @@ verification and validation process.
 
 \section{Changes Due to Testing}
 
-\wss{This section should highlight how feedback from the users and from 
-the supervisor (when one exists) shaped the final product.  In particular 
-the feedback from the Rev 0 demo to the supervisor (or to potential users) 
-should be highlighted.}
+% \wss{This section should highlight how feedback from the users and from 
+% the supervisor (when one exists) shaped the final product.  In particular 
+% the feedback from the Rev 0 demo to the supervisor (or to potential users) 
+% should be highlighted.}
+
+Prior to formal usability testing, user impressions of the Revision 0 version of the app
+generally criticized the usability of the application. Specifically, better communication with
+the user in terms of loading. The previous version of the application lacked animated loading
+indicators so for forms that had a server request attached to them, they believed the application
+to be frozen after submission. This resulted in cases where users would try submitting again producing
+a duplicate server request. This has since been resolved by adding various animated loading indicators
+and overlays to prevent double clicking a submission and better communicate to users when server requests
+were being processed. Some intuitiveness features were also added as a result of user feedback such as
+tap focus on the receipt capture page. Additionally, some feedback received from the Revision 0 demo
+was addressed in the current version of the application. This included more detailed information
+on the Goals page and matching address to a list of known addresses to improve usability/reduce user
+input.\\
+
+During formal usability testing of the current application version, much of the feedback had to do with robustness
+of the application as opposed to functionality. In particular, the request for submitting a trip
+ended up taking close to 10 seconds due to the current Classification Engine implementation. As
+a result, users tended to believe that there was something wrong with the application. In response to this,
+a backend fix is being worked on to reduce the response time which will be done prior to Revision 1.
+Additionally, some users had some issues with the receipt capture, not knowing that they had to get the
+receipt to occupy as much of the camera frame as possible for the best results, so an information screen
+on this page is being worked on to better help users with receipt capture which will also be finished
+prior to Revision 1.
 
 \section{Automated Testing}
 
@@ -164,6 +187,48 @@ These tests are automatically executed during the deployment process of the back
 
 \bibliographystyle{plainnat}
 \bibliography{../../refs/References}
+
+\newpage{}
+\section{Appendix --- Survey Results}
+
+\noindent \textbf{Question 1:} How easy was it to log into the application?
+Responses: \{(not easy) 1, 2, 3, 4, 5 (very easy)\} \\
+
+\subsubsection{Survey questions for \textbf{FRT-FR8-2}.}
+
+\noindent \textbf{Question 1:} How useful would you say that the application recommendations are to you?
+Responses: \{(not useful) 1, 2, 3, 4, 5 (very useful)\} \\
+
+\noindent \textbf{Question 2:} How likely are you to act the recommendation provided to you by the application?
+Responses: \{(not likely) 1, 2, 3, 4, 5 (very likely)\}
+
+\subsection{Look and Feel Survey Questions}
+
+\begin{enumerate}
+  \item Did you feel the colour scheme was cohesive and consistent throughout the application?
+  \item On a scale of 1-10, how would you rate the general layouts of each of the pages?
+  \item Were there any pages that felt too cluttered or too sparse?
+  \item Did the general layouts of the application pages appear consistent throughout navigation?
+  \item On a scale of 1-10, how would you rate how features were organized?
+  \item Were there any features that seemed out of place relative to the pages they were present on?
+  \item Were there any places where you expected loading indicators but there weren't any or vice versa?
+  \item Do you have any feedback on the overall look and feel of the application?
+\end{enumerate}
+
+\subsection{Usability Survey Questions}
+
+\begin{enumerate}
+  \item What parts of the application were easiest for you to understand/learn?
+  \item What parts of the application do you feel additional explanation or clarity could be provided?
+  \item Was the language and wording used in the application understandable and inoffensive? If not, please
+  provide where and how the wording could be improved?
+  \item Were there any issues you encountered while using the application?
+  \item Did you have any issues with navigating the application? If you made a mistake, were you able to navigate
+  back to where you started?
+  \item How was your experience with the available accessibility settings? Do you have any feedback or suggestions for
+  improvements that could be made.
+  \item On a scale of 1-10, how would you rate the usability and intuitiveness of the application?
+\end{enumerate}
 
 \newpage{}
 \section*{Appendix --- Reflection}
