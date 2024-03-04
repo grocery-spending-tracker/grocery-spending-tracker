@@ -45,6 +45,9 @@ Date 2 & 1.1 & Notes\\
   \textbf{symbol} & \textbf{description}\\
   \midrule 
   T & Test\\
+  SRS & Software Requirements Specification\\
+  MIS & Module Interface Specification\\
+  VnV & Verfication and Validation\\
   \bottomrule
 \end{tabular}\\
 
@@ -62,11 +65,31 @@ Date 2 & 1.1 & Notes\\
 
 \pagenumbering{arabic}
 
-This document ...
+This document will primarily focus on the test results of the verification and validation process
+for the Grocery Spending Tracker application. In particular, the results of the Functional Requirement System Tests,
+Nonfunctional Requirement System Tests, and Unit Tests will be covered. Detailed information regarding
+the Functional Requirements and Nonfunctional Requirements can be found in the
+\href{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/SRS/SRS.pdf}{SRS}. Furthermore,
+unit tests will focus on the individual modules of the system which can be found in the
+\href{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/Design/SoftDetailedDes/MIS.pdf}{MIS}.
+Finally, detailed information regarding the overall test plan can be found in the
+\href{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/VnVPlan/VnVPlan.pdf}{VnV Plan}.\\
+
+In addition to test results, this document will also go over feedback from stakeholders and changes due to testing,
+the team's approach for automated testing, traceability between tests and requirements/modules, as well as
+overall code coverage.
 
 \section{Functional Requirements Evaluation}
 
+This section will cover the test results from the Functional Requirement System Tests
+performed for the verification and validation of the Grocery Spending Tracker application.
+
+...
+
 \section{Nonfunctional Requirements Evaluation}
+
+This section goes over the test results from the Nonfunctional Requirement System Tests as
+specified in the VnV Plan.
 
 \subsection{Usability}
 		
@@ -74,11 +97,38 @@ This document ...
 
 \subsection{etc.}
 	
-\section{Comparison to Existing Implementation}	
+% \section{Comparison to Existing Implementation}	
 
-This section will not be appropriate for every project.
+% This section will not be appropriate for every project.
 
 \section{Unit Testing}
+
+This section will go over the test results from the unit tests made as part of the
+verification and validation process.
+
+\subsection{Receipt Extraction Module}
+
+...
+
+\subsection{User Analytics Module}
+
+...
+
+\subsection{Users Module}
+
+...
+
+\subsection{Authentication Module}
+
+...
+
+\subsection{Recommendation Engine}
+
+...
+
+\subsection{Classification Engine}
+
+...
 
 \section{Changes Due to Testing}
 
@@ -88,6 +138,23 @@ the feedback from the Rev 0 demo to the supervisor (or to potential users)
 should be highlighted.}
 
 \section{Automated Testing}
+
+On the frontend, all automated tests are carried out using Flutter's built-in testing package.
+All tests are located in the "test" folder which is organized by components being tested (found 
+\href{https://github.com/allanfang1/grocery_spending_tracker_app/tree/main}{here}). For example,
+the \textit{profile\_provider\_test} file executes tests related to the provider for profile functionality.
+These tests are executed twice during the development workflow: the first is locally while working on
+individual feature branches and the second is on merges/pushes to the "dev" branch of the frontend repository.
+The first execution is done manually using \textit{flutter test} in the command line and the second is done
+automatically using \textit{Github Actions}.\\
+
+On the backend, automated tests are done using Chai HTTP. Tests are located in the "tests" folder which
+is then organized by component and the module being tested 
+(found \href{https://github.com/grocery-spending-tracker/grocery-spending-tracker-backend/tree/master/tests}{here}).
+As an example, the \textit{userController.analytics.test} file contains unit tests related to the Analytics Module
+functionality in the user controller.
+These tests are automatically executed during the deployment process of the backend when code is pushed to the
+"master" branch of the backend repository. This process is handled by \textit{Github Actions}.
 		
 \section{Trace to Requirements}
 		

@@ -1190,124 +1190,60 @@ How test will be performed: The tester will perform a variety of user actions an
 
 \section{Unit Test Description}
 
-\wss{This section should not be filled in until after the MIS (detailed design
-  document) has been completed.}
-
-\wss{Reference your MIS (detailed design document) and explain your overall
-philosophy for test case selection.}  
-
-\wss{To save space and time, it may be an option to provide less detail in this section.  
-For the unit tests you can potentially layout your testing strategy here.  That is, you 
-can explain how tests will be selected for each module.  For instance, your test building 
-approach could be test cases for each access program, including one test for normal behaviour 
-and as many tests as needed for edge cases.  Rather than create the details of the input 
-and output here, you could point to the unit testing code.  For this to work, you code 
-needs to be well-documented, with meaningful names for all of the tests.}
+This section details the unit tests that will be performed by the team during development. The
+unit tests will be focused on the modules of the application as written in the
+\href{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/Design/SoftDetailedDes/MIS.pdf}{MIS}.
 
 \subsection{Unit Testing Scope}
 
-\wss{What modules are outside of the scope.  If there are modules that are
-  developed by someone else, then you would say here if you aren't planning on
-  verifying them.  There may also be modules that are part of your software, but
-  have a lower priority for verification than others.  If this is the case,
-  explain your rationale for the ranking of module importance.}
+  All modules described in the \href{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/Design/SoftDetailedDes/MIS.pdf}{MIS}
+  will be within the scope of unit testing except for the Receipt Vision Module, Database
+  Driver Module and Locations Module. The Receipt Vision Module is excluded due to it largely being implemented via a third-party
+  package called Google ML Kit. It is assumed this is a well-tested package and is thus excluded. Other functionality
+  such as camera operation is already being tested via System Tests. Similarly, the Database Driver Module is being implemented
+  using PostgreSQL which is also assumed to be properly tested. Additionally, the database will be tested through
+  System Tests rather than individual unit tests. Finally, the Locations Module is being excluded because the team
+  has decided it is out of scope for our current implementation. As a result, implementation and testing related to
+  the module is being pushed to a future version.
 
 \subsection{Tests for Functional Requirements}
 
-\wss{Most of the verification will be through automated unit testing.  If
-  appropriate specific modules can be verified by a non-testing based
-  technique.  That can also be documented in this section.}
+% \wss{Most of the verification will be through automated unit testing.  If
+%   appropriate specific modules can be verified by a non-testing based
+%   technique.  That can also be documented in this section.}
 
-\subsubsection{Module 1}
+  \subsubsection{Receipt Extraction Module}
 
-\wss{Include a blurb here to explain why the subsections below cover the module.
-  References to the MIS would be good.  You will want tests from a black box
-  perspective and from a white box perspective.  Explain to the reader how the
-  tests were selected.}
+  All the unit tests for the Receipt Extraction Module can be found in the following file: 
+  \href{https://github.com/allanfang1/grocery_spending_tracker_app/blob/main/test/receipt_extraction_test.dart}{Receipt Extraction
+  Unit Tests}. The tests focus on the individual aspects/tasks of the Receipt Extraction process and try to verify
+  the "happy paths" and edge cases such as empty inputs for each. The tests are all being performed automatically
+  and dynamically through Flutter's testing package.
 
-\begin{enumerate}
+\subsubsection{User Analytics Module}
 
-\item{test-id1\\}
+...
 
-Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
-  be automatic}
-					
-Initial State: 
-					
-Input: 
-					
-Output: \wss{The expected result for the given inputs}
+\subsubsection{Users Module}
 
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
+...
 
-How test will be performed: 
-					
-\item{test-id2\\}
+\subsubsection{Authentication Module}
 
-Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
-  be automatic}
-					
-Initial State: 
-					
-Input: 
-					
-Output: \wss{The expected result for the given inputs}
+...
 
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
+\subsubsection{Recommendation Engine}
 
-How test will be performed: 
+...
 
-\item{...\\}
-    
-\end{enumerate}
-
-\subsubsection{Module 2}
+\subsubsection{Classification Engine}
 
 ...
 
 \subsection{Tests for Nonfunctional Requirements}
 
-\wss{If there is a module that needs to be independently assessed for
-  performance, those test cases can go here.  In some projects, planning for
-  nonfunctional tests of units will not be that relevant.}
-
-\wss{These tests may involve collecting performance data from previously
-  mentioned functional tests.}
-
-\subsubsection{Module ?}
-		
-\begin{enumerate}
-
-\item{test-id1\\}
-
-Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
-  be automatic}
-					
-Initial State: 
-					
-Input/Condition: 
-					
-Output/Result: 
-					
-How test will be performed: 
-					
-\item{test-id2\\}
-
-Type: Functional, Dynamic, Manual, Static etc.
-					
-Initial State: 
-					
-Input: 
-					
-Output: 
-					
-How test will be performed: 
-
-\end{enumerate}
-
-\subsubsection{Module ?}
-
-...
+The team does not plan to use unit testing for nonfunctional requirements. All testing for
+nonfunctional requirements will be done via System Tests.
 
 \subsection{Traceability Between Test Cases and Modules}
 
