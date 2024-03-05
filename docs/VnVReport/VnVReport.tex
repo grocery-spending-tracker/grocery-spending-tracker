@@ -11,6 +11,8 @@
     urlcolor=blue
 }
 \usepackage[round]{natbib}
+\usepackage{longtable}
+\usepackage{amsfonts}
 
 \input{../Comments}
 \input{../Common}
@@ -108,7 +110,44 @@ verification and validation process.
 
 \subsection{Receipt Extraction Module}
 
-...
+The section provides a brief overview of the unit tests performed and their results for the
+Receipt Extraction Module.
+
+\begin{longtable}{|l|c|l|c|l|c|}
+  \caption{Receipt Extraction Unit Testing Summary} \label{Receipt Extraction Unit Test Summary} \\
+  \toprule
+  \textbf{Test ID} & \textbf{Result} & \textbf{Test ID} & \textbf{Result} & \textbf{Test ID} & \textbf{Result} \\
+  \midrule
+  FRT-M3-1 & $\checkmark$ & FRT-M3-2 & $\checkmark$ & FRT-M3-3 & $\checkmark$ \\
+  \midrule
+  FRT-M3-4 & $\checkmark$ & FRT-M3-5 & $\checkmark$ & FRT-M3-6 & $\checkmark$ \\
+  \midrule
+  FRT-M3-7 & $\checkmark$ & FRT-M3-8 & $\checkmark$ & FRT-M3-9 & $\checkmark$ \\
+  \midrule
+  FRT-M3-10 & $\checkmark$ & FRT-M3-11 & $\checkmark$ & FRT-M3-12 & $\checkmark$ \\
+  \midrule
+  FRT-M3-13 & $\checkmark$ & FRT-M3-14 & $\checkmark$ & FRT-M3-15 & $\checkmark$ \\
+  \midrule
+  FRT-M3-16 & $\checkmark$ & FRT-M3-17 & $\checkmark$ & FRT-M3-18 & $\checkmark$ \\
+  \midrule
+  FRT-M3-19 & $\checkmark$ & FRT-M3-20 & $\checkmark$ & FRT-M3-21 & $\checkmark$ \\
+  \midrule
+  FRT-M3-22 & $\checkmark$ & FRT-M3-23 & $\checkmark$ & FRT-M3-24 & $\checkmark$ \\
+  \midrule
+  FRT-M3-25 & $\checkmark$ & FRT-M3-26 & $\checkmark$ & ~ & ~ \\
+  \bottomrule
+\end{longtable}
+
+To summarize, tests FRT-M3-1 to FRT-M3-26 are all frontend tests. These tests focus on the helper functions used
+to extract specific information when receiving a chunk of receipt text. FRT-M3-1 to FRT-M3-6 focus on date
+extraction with different formats, FRT-M3-7 to FRT-M3-13 test address extraction, FRT-M3-14 to FRT-M3-16 target grocery item extraction,
+FRT-M3-17 to FRT-M3-19 focus on subtotal cost extraction, and FRT-M3-20 to FRT-M3-22 tests total cost extraction.
+Finally, FRT-M3-23 to FRT-M3-24 and FRT-M3-25 to FRT-M3-26 test updating and JSON conversion for the Item and Grocery Trip
+objects respectively. In general, these
+tests consist of ideal use cases as well as some edge cases that may appear during use.
+For more detailed information regarding the Receipt Extraction Module unit tests, the testing file
+can be found here: \href{https://github.com/allanfang1/grocery_spending_tracker_app/blob/main/test/receipt_extraction_test.dart}{receipt extraction
+unit tests}.
 
 \subsection{User Analytics Module}
 
