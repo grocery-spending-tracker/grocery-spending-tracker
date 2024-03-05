@@ -50,6 +50,8 @@ Date 2 & 1.1 & Notes\\
   SRS & Software Requirements Specification\\
   MIS & Module Interface Specification\\
   VnV & Verfication and Validation\\
+  UI & User Interface\\
+  UX & User Experience\\
   \bottomrule
 \end{tabular}\\
 
@@ -191,13 +193,15 @@ input.\\
 
 During formal usability testing of the current application version, much of the feedback had to do with robustness
 of the application as opposed to functionality. In particular, the request for submitting a trip
-ended up taking close to 10 seconds due to the current Classification Engine implementation. As
-a result, users tended to believe that there was something wrong with the application. In response to this,
+in some cases ended up taking close to 10 seconds due to the current Classification Engine implementation. As
+a result, users believed that there was something wrong with the application. In response to this,
 a backend fix is being worked on to reduce the response time which will be done prior to Revision 1.
 Additionally, some users had some issues with the receipt capture, not knowing that they had to get the
 receipt to occupy as much of the camera frame as possible for the best results, so an information screen
 on this page is being worked on to better help users with receipt capture which will also be finished
-prior to Revision 1.
+prior to Revision 1. Outside of the UI/UX, users found that recommendations could be improved more
+in terms of accuracy relating to the user's purchase history which the team will try to do before Revision 1
+as well.
 
 \section{Automated Testing}
 
@@ -230,43 +234,115 @@ These tests are automatically executed during the deployment process of the back
 \newpage{}
 \section{Appendix --- Survey Results}
 
-\noindent \textbf{Question 1:} How easy was it to log into the application?
+\subsection{Functional Requirement Survey Questions}
+\subsubsection{Survey questions for \textbf{FRT-FR1-2}.}
+
+\begin{enumerate}
+\item How easy was it to log into the application?
 Responses: \{(not easy) 1, 2, 3, 4, 5 (very easy)\} \\
+  \begin{itemize}
+    \item On average, a 5. The login process was as expected for users.
+  \end{itemize}
+\end{enumerate}
 
 \subsubsection{Survey questions for \textbf{FRT-FR8-2}.}
 
-\noindent \textbf{Question 1:} How useful would you say that the application recommendations are to you?
-Responses: \{(not useful) 1, 2, 3, 4, 5 (very useful)\} \\
-
-\noindent \textbf{Question 2:} How likely are you to act the recommendation provided to you by the application?
-Responses: \{(not likely) 1, 2, 3, 4, 5 (very likely)\}
+\begin{enumerate}
+  \item How useful would you say that the application recommendations are to you?
+  Responses: \{(not useful) 1, 2, 3, 4, 5 (very useful)\} \\
+    \begin{itemize}
+      \item On average, a 3.5. Some recommendations were not 100\% accurate for the user but about at the
+      expected value for fit criterion.
+    \end{itemize}
+  \item How likely are you to act the recommendation provided to you by the application?
+  Responses: \{(not likely) 1, 2, 3, 4, 5 (very likely)\}
+    \begin{itemize}
+      \item On average, a 3. Users would need to see some more accuracy improvements before acting on a recommendation.
+    \end{itemize}
+\end{enumerate}
 
 \subsection{Look and Feel Survey Questions}
 
 \begin{enumerate}
   \item Did you feel the colour scheme was cohesive and consistent throughout the application?
+    \begin{itemize}
+      \item General consensus was that colour scheme consistency and cohesiveness was not an issue.
+    \end{itemize}
   \item On a scale of 1-10, how would you rate the general layouts of each of the pages?
-  \item Were there any pages that felt too cluttered or too sparse?
+    \begin{itemize}
+      \item On average, an 8. Users found the layouts easy to understand and navigate.
+      \item Pages were not found to be too overwhelming in terms of features.
+      \item Layouts/components on the page could be more creative.
+    \end{itemize}
   \item Did the general layouts of the application pages appear consistent throughout navigation?
+    \begin{itemize}
+      \item The consensus was that layouts were pretty consistent across the different pages.
+      \item Layouts were similar enough where users were generally able to figure out the different
+      features on the pages without issue.
+    \end{itemize}
   \item On a scale of 1-10, how would you rate how features were organized?
-  \item Were there any features that seemed out of place relative to the pages they were present on?
+    \begin{itemize}
+      \item On average, a 9. All features were where users expected them.
+      \item Features generally fit the main idea of the pages that they were present on.
+    \end{itemize}
   \item Were there any places where you expected loading indicators but there weren't any or vice versa?
+    \begin{itemize}
+      \item Loading indicators/communication was well received for this version of the application.
+      \item Many of the users who had seen the previous version of the application with less loading screens
+      said the application was much improved in that aspect.
+      \item Users felt that the application properly communicated when processes were occurring throughout
+      the application.
+    \end{itemize}
   \item Do you have any feedback on the overall look and feel of the application?
+    \begin{itemize}
+      \item In terms of how functional the appearance of the application was, there were no complaints.
+      \item Some users voiced that in terms of visual appeal, the application was lacking (i.e. boring/lacking
+      in creativity compared to other apps).
+    \end{itemize}
 \end{enumerate}
 
 \subsection{Usability Survey Questions}
 
 \begin{enumerate}
   \item What parts of the application were easiest for you to understand/learn?
+    \begin{itemize}
+      \item Receipt confirmation form was easy for users to fill out for the first time
+      \item History page was also very easy for users to use and understand
+      \item Goals page took users slightly longer than the other pages but were able to figure features
+      out without intervention and in reasonable time
+    \end{itemize}
   \item What parts of the application do you feel additional explanation or clarity could be provided?
+    \begin{itemize}
+      \item The receipt capture functionality could use some more clarification as it is not intuitively
+      clear that filling the receipt in the camera frame produces the best results
+    \end{itemize}
   \item Was the language and wording used in the application understandable and inoffensive? If not, please
   provide where and how the wording could be improved?
+    \begin{itemize}
+      \item Language was generally understood and nothing was offensive to the users.
+    \end{itemize}
   \item Were there any issues you encountered while using the application?
+    \begin{itemize}
+      \item For some users, the submission of their grocery trip took a very long time, close to 10 seconds.
+      This caused them to believe something was wrong with the application due to the length of time it was processing
+      for.
+    \end{itemize}
   \item Did you have any issues with navigating the application? If you made a mistake, were you able to navigate
   back to where you started?
-  \item How was your experience with the available accessibility settings? Do you have any feedback or suggestions for
-  improvements that could be made.
+    \begin{itemize}
+      \item No issues with navigation. Navigation bar was very responsive and navigating back to previous
+      pages was always available.
+      \item Users liked how navigation was always available making it easy to find their way back to where
+      they started.
+    \end{itemize}
   \item On a scale of 1-10, how would you rate the usability and intuitiveness of the application?
+    \begin{itemize}
+      \item On average, the score was an 8. Besides the hiccups with receipt submission and better communication
+      for how the receipt should be captured, users found the app to be easy to navigate.
+      \item Navigation and layouts were similar to other apps they had used so learning curve was not
+      too difficult.
+      \item Very little intervention from members of the team was needed to help users.
+    \end{itemize}
 \end{enumerate}
 
 \newpage{}
@@ -286,4 +362,24 @@ graduate attribute of Reflection.  Please answer the following question:
   teams will have had to deviate from their original VnV Plan.)
 \end{enumerate}
 
+During the testing process, we found that the scope of our actual
+implementation had changed somewhat compared to what we had planned the application to be
+initially. Given the VnV Plan was written prior to any implementation, we did not have
+the clearest vision of what the project was going to be. One big example of this was
+with the Recommendation Engine and User Goals. When writing the VnV Plan, we had imagined them
+to be more coupled such that we could have recommendations that would specifically help users
+stay within goals and goals would be available for specific products. The actual implementation
+we ended up creating ended up being more general, where User Goals are more related to overall
+spending and recommendations currently exclusively consider a user's purchase history.
+Similar scope/requirement changes appeared in other parts of the development process resulting in
+various changes overall being made to the VnV Plan such that it aligned better with our implementation.\\
+
+In order to better anticipate this kind of change in future projects, we believe that better planning
+would be needed. The reason these changes had to be made was because we had not fully realized our ideas
+for the project. Additionally, as development occurred, we realized certain aspects of the application
+were less feasible than we thought given our development period and knowledge of the technology. If more research
+and planning had been done prior to the creation of the VnV Plan, it is possible that the tests would have been closer
+to our current product. In conclusion, changes to the VnV Plan had to be made due to scope changes throughout
+development. These changes could be better anticipated if more research and planning had been done at
+an earlier point.
 \end{document}
