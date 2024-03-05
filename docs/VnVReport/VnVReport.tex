@@ -13,6 +13,7 @@
 \usepackage[round]{natbib}
 \usepackage{longtable}
 \usepackage{amsfonts}
+\usepackage{float}
 
 \input{../Comments}
 \input{../Common}
@@ -286,6 +287,66 @@ These tests are automatically executed during the deployment process of the back
 \section{Trace to Modules}		
 
 \section{Code Coverage Metrics}
+
+This section goes over the code coverage of the unit tests created for the Grocery Spending Tracker.
+For the .dart files, code coverage was calculated using Flutter's built-in testing package. For the .js files,
+code coverage was calculated using a Node.js package called c8. A summary of the code coverage achieved for
+each tested file can be found in the table below. All files not listed below were considered either out of scope for
+unit testing or is being tested as part of the System Tests.
+
+\begin{table}[H]
+  \centering
+  \caption{Code Coverage Summary} \label{Code Coverage Summary}
+  \begin{tabular}{|l|l|}
+    \hline
+    \textbf{File Name} & \textbf{Line Coverage} \\
+    \hline
+    extract\_data.dart & 75.9\% \\
+    \hline
+    capture\_item.dart & 100\% \\
+    \hline
+    grocery\_trip.dart & 100\% \\
+    \hline
+    goals\_repository.dart & 86.4\% \\
+    \hline
+    profile\_repository.dart & 87.9\% \\
+    \hline
+    history\_repository.dart & 73.7\% \\
+    \hline
+    db.js & 100\% \\
+    \hline
+    authController.js & 100\% \\
+    \hline
+    recommendationController.js & 88.82\% \\
+    \hline
+    usersController.js & 92.2\% \\
+    \hline
+    authentication.js & 96.49\% \\
+    \hline
+    main.js & 81.39\% \\
+    \hline
+    classifyItem.js & 100\% \\
+    \hline
+    fuzzyMatching.js & 90.97\% \\
+    \hline
+    src/classification/util.js & 63.82\% \\
+    \hline
+    brand.js & 89.47\% \\
+    \hline
+    fetchProductDetails.js & 94.87\% \\
+    \hline
+    image.js & 100\% \\
+    \hline
+    name.js & 89.47\% \\
+    \hline
+    price.js & 89.47\% \\
+    \hline
+    productNumber.js & 62.96\% \\
+    \hline
+    src/scraper/util.js & 100\% \\
+    \hline 
+  \end{tabular}
+\end{table}
 
 \bibliographystyle{plainnat}
 \bibliography{../../refs/References}
