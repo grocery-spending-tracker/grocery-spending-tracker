@@ -14,6 +14,7 @@
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{float}
+\usepackage[normalem]{ulem}
 \graphicspath{ {./res/} }
 \usepackage{amsmath, mathtools}
 \usepackage{pdflscape}
@@ -54,6 +55,8 @@
 \toprule {\textbf{Date}} & {\textbf{Version}} & {\textbf{Notes}}\\
 \midrule
 06/10/23 & 1.0 & Initial version of the SRS\\
+05/03/24 & 2.0 & Removed/updated the following sections with outdated features to reflect the current state of the app:
+FR4, FR6, FR9, AR3, PIR2, LR2, SLR1, EPER2, EPER3, IASR1, SPR2, APR1, ACCR1, ACR2, PRR1, PRR2, AUR1, CUR1, CUR3\\
 \bottomrule
 \end{tabularx}
 
@@ -699,11 +702,12 @@ formal specifications for some of the requirements.
 \textbf{Fit Criterion:} The system must successfully recognize and extract data from uploaded receipt photos with an accuracy rate over 90\% under typical lighting conditions.\\
 
 \medskip
-\noindent \textbf{Requirement ID:} FR4\\
+\noindent
+\sout{\textbf{Requirement ID:} FR4\\
 \textbf{Use Case:} 4, 7\\
 \textbf{Description:} The system must offer an interface that allows users to specify and update their current physical location and set a desired radius for area coverage.\\
 \textbf{Rationale:} Enabling users to input and adjust their location and area of coverage is vital for providing customized and relevant information, services, or offers specific to their locale.\\
-\textbf{Fit Criterion:} Users must be able to set and update their location and preferred area of coverage, with changes reflected in the system within 3 seconds.\\
+\textbf{Fit Criterion:} Users must be able to set and update their location and preferred area of coverage, with changes reflected in the system within 3 seconds.\\}
 
 \medskip
 \noindent \textbf{Requirement ID:} FR5\\
@@ -713,11 +717,11 @@ formal specifications for some of the requirements.
 \textbf{Fit Criterion:} Users must be able to change their spending goals with the updated information displayed in less than a second after input.\\
 
 \medskip
-\noindent \textbf{Requirement ID:} FR6\\
+\noindent \sout{\textbf{Requirement ID:} FR6\\
 \textbf{Use Case:} 5, 7\\
 \textbf{Description:} The system must offer a feature where users can specify their preferred price ranges for goods and set comprehensive budgeting parameters.\\
 \textbf{Rationale:} Providing users with the ability to define their price ranges and budgeting preferences is necessary for personalized shopping experience to match user constraints.\\
-\textbf{Fit Criterion:} The system must reflect user's preferences in filtering and recommending products with an accuracy rate of at least 90\%.\\
+\textbf{Fit Criterion:} The system must reflect user's preferences in filtering and recommending products with an accuracy rate of at least 90\%.\\}
 
 \medskip
 \noindent \textbf{Requirement ID:} FR7\\
@@ -736,9 +740,9 @@ formal specifications for some of the requirements.
 \medskip
 \noindent \textbf{Requirement ID:} FR9\\
 \textbf{Use Case:} 12\\
-\textbf{Description:} The system must actively monitor prices of items that a user has purchased within the last 10 days. When it detects that an item is available at a lower price, it should promptly notify the user.\\
+\textbf{Description:} The system must detect that an item relevant to the user's purchase history is available at a lower price and report the item to the user on request.\\
 \textbf{Rationale:} Notifying users about lower price alternatives on grocery items they recently purchased enlightens users about potential cost saving alternatives and emphasizes the usefulness of the application.\\
-\textbf{Fit Criterion:} Notifications on lower price alternatives must be delivered to the user within 24 hours of detection.\\
+\textbf{Fit Criterion:} The system should report deals and lower-priced items to the user with over 70\% accuracy on relevance (useful to the user).\\
 
 \medskip
 \noindent \textbf{Requirement ID:} FR10\\
@@ -828,8 +832,8 @@ to the label for the relevant question.
   validated through an 80\% acceptance rate from stakeholder surveys.
   \item \textbf{AR2}: App icons should convey the related feature to improve intuitiveness as requested in \textit{E1}. This
   would be validated with an 85\% success rate when asking stakeholders to pair features with icon during testing.
-  \item \textbf{AR3}: The user interface should avoid clutter and features should only take up 85\% at most of available screen space
-  as requested in \textit{E1}.
+  \item \sout{\textbf{AR3}: The user interface should avoid clutter and features should only take up 85\% at most of available screen space
+  as requested in \textit{E1}.}
 \end{itemize}
 \subsection{Style Requirements}
 \begin{itemize}
@@ -853,14 +857,13 @@ to the label for the relevant question.
 \subsection{Personalization and Internationalization Requirements}
 \begin{itemize}
   \item \textbf{PIR1}: English will be supported.
-  \item \textbf{PIR2}: The app should have dark and light mode colour schemes as requested in \textit{E7}.
+  \item \sout{\textbf{PIR2}: The app should have dark and light mode colour schemes as requested in \textit{E7}.}
   \item \textbf{PIR3}: The app should allow users to enable/disable external notifications as requested in \textit{E7}.
 \end{itemize}
 \subsection{Learning Requirements}
 \begin{itemize}
   \item \textbf{LR1}: The app should have an FAQ or Help page to assist users as requested in \textit{E5}.
-  \item \textbf{LR2}: The app should have a tutorial to assist users in learning the available
-  features as requested in \textit{E5}.
+  \item \sout{\textbf{LR2}: The app should have a tutorial to assist users in learning the available features as requested in \textit{E5}.}
   \item \textbf{LR3}: Users should be able to understand core functionality of the app within 15 minutes as requested in
   \textit{E4}.
 \end{itemize}
@@ -883,8 +886,8 @@ to the label for the relevant question.
 
 \subsection{Speed and Latency Requirements}
 \begin{itemize}
-  \item \textbf{SLR1}: The app should take on average 1 second to complete backend tasks and at worst should never
-  exceed 12 seconds as elicited in \textit{E8}.
+  \item \textbf{SLR1}: The app should take on average 2 second to complete backend tasks and at worst should never
+  exceed 20 seconds as elicited in \textit{E8}.
   \item \textbf{SLR2}: The navigation of the app should be smooth, taking no more than 1 second to render and handle page changes
   as elicited in \textit{E8}.
 \end{itemize}
@@ -921,8 +924,8 @@ to the label for the relevant question.
 \subsection{Expected Physical Environment}
 \begin{itemize}
     \item \textbf{EPER1} The application is expected to be compatible with smart mobile devices running Android.
-    \item \textbf{EPER2} The application is expected to be compatible with smart mobile devices running IOS.
-    \item \textbf{EPER3} The application is expected to be compatible with tablet devices running iPadOS or Android. 
+    \sout{\item \textbf{EPER2} The application is expected to be compatible with smart mobile devices running IOS.}
+    \item \textbf{EPER3} The application is expected to be compatible with tablet devices running \sout{iPadOS or} Android. 
 \end{itemize}
 \subsection{Wider Environment Requirements}
 \begin{itemize}
@@ -931,7 +934,7 @@ to the label for the relevant question.
 \end{itemize}
 \subsection{Requirements for Interfacing with Adjacent Systems}
 \begin{itemize}
-    \item \textbf{IASR1}: The application shall work with iOS 16.
+    \item \sout{\textbf{IASR1}: The application shall work with iOS 16.}
     \item \textbf{IASR2}: The application shall work with Android 13.
 \end{itemize}
 \subsection{Productization Requirements}
@@ -955,18 +958,18 @@ to the label for the relevant question.
 \subsection{Supportability Requirements}
 \begin{itemize}
   \item \textbf{SPR1}: Users should be able to operate and navigate the system without any additional manual or instruction.
-  \item \textbf{SPR2}: There will be a function built into the system for users to report usage issues or bugs to the developers.
+  \item \sout{\textbf{SPR2}: There will be a function built into the system for users to report usage issues or bugs to the developers.}
 \end{itemize}
 \subsection{Adaptability Requirements}
 \begin{itemize}
-  \item \textbf{APR1}: System must operate on IOS and Android Devices.
+  \item \textbf{APR1}: System must operate on \sout{IOS and} Android devices.
   \item \textbf{APR2}: System is intended to be used when the user is out of their home. 
 \end{itemize}
 
 \section{Security Requirements}
 \subsection{Access Requirements}
 \begin{itemize}
-    \item \textbf{ACR1}: The application shall require acceptance of terms and services to allow access to application's database at all times. 
+    \item \sout{\textbf{ACCR1}: The application shall require acceptance of terms and services to allow access to application's database at all times.}
 \end{itemize}
 \subsection{Integrity Requirements}
 \begin{itemize}
@@ -975,12 +978,12 @@ to the label for the relevant question.
 \end{itemize}
 \subsection{Privacy Requirements}
 \begin{itemize}
-    \item \textbf{PRR1}: The application shall maintain  proper data anonymization and sanitation techniques.
-    \item \textbf{PRR2}: The application shall require explicit user consent to collect, process, and share user data.
+    \item \sout{\textbf{PRR1}: The application shall maintain proper data anonymization and sanitation techniques.}
+    \item \sout{\textbf{PRR2}: The application shall require explicit user consent to collect, process, and share user data.}
 \end{itemize}
 \subsection{Audit Requirements}
 \begin{itemize}
-    \item \textbf{AUR1}: The application shall maintain audit logs that capture user activities and system events which can be reviewed by authorized system administrators.
+    \item \sout{\textbf{AUR1}: The application shall maintain audit logs that capture user activities and system events which can be reviewed by authorized system administrators.}
 \end{itemize}
 \subsection{Immunity Requirements}
 \begin{itemize}
@@ -991,9 +994,9 @@ to the label for the relevant question.
 In this section, any references to an \textit{E\#} refers to elicitation notes in Appendix B. \textit{E\#} corresponds to the label for the relevant question.
 \subsection{Cultural Requirements}
 \begin{itemize}
-    \item \textbf{CUR1:} The app should allow users to use the metric system, imperial system, or a combination of the two (Canadian) as requested in \textit{E12} to accommodate a diverse user base and regional preferences.
+    \item \textbf{CUR1:} The app should allow users to use the metric system \sout{, imperial system, or a combination of the two (Canadian) as requested in \textit{E12}} to accommodate \sout{a diverse user base and} regional preferences.
     \item \textbf{CUR2:} The app should have full functionality for uncommon purchase items as requested in \textit{E12} to ensure the software is usable in the real-life dynamic market environment
-    \item \textbf{CUR3:} The app should differentiate different currencies used (specifically USD and CAD) as requested in \textit{E12} to accommodate regional preferences.
+    \item \sout{\textbf{CUR3:} The app should differentiate different currencies used (specifically USD and CAD) as requested in \textit{E12} to accommodate regional preferences.}
 \end{itemize}
 
 \section{Compliance Requirements}
