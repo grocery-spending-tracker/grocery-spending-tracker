@@ -1,5 +1,7 @@
 \documentclass[12pt, titlepage]{article}
 
+\usepackage{graphicx}
+\graphicspath{ {./res/} }
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
@@ -13,6 +15,7 @@
 \usepackage[round]{natbib}
 \usepackage{longtable}
 \usepackage{amsfonts}
+\usepackage{float}
 
 \input{../Comments}
 \input{../Common}
@@ -52,6 +55,9 @@ Date 2 & 1.1 & Notes\\
   VnV & Verfication and Validation\\
   UI & User Interface\\
   UX & User Experience\\
+  ms & milliseconds\\
+  GB & gigabyte\\
+  MB & megabyte\\
   \bottomrule
 \end{tabular}\\
 
@@ -97,6 +103,8 @@ specified in the VnV Plan.
 
 \subsection{Look and Feel}
 
+This section provides a brief overview of the Look and Feel test results from the VnV Plan.
+
 \begin{longtable}{|l|c|}
   \caption{Look and Feel Testing Summary} \label{Look and Feel Testing Summary} \\
   \toprule
@@ -110,7 +118,21 @@ specified in the VnV Plan.
   \bottomrule
 \end{longtable}
 
+All the above tests were manually performed by external users under the supervision of the team.
+NFRT-LF1 involved the team walking users through the application and giving the users some time
+to go through the pages on their own. Afterwards, users were given surveys where results
+were positive. All ratings regarding the UI and UX were an 8 or higher on average and general feedback was positive
+with some minor complaints regarding blandness in terms of UI design. Altogether, users reacted positively
+to the general UI/UX of the application which is within the team's 80\% overall acceptance rate for various aspects
+of the Look and Feel as documented in the SRS. More detailed information
+regarding the survey can be found in Section 11.2 of this document. NFRT-LF2 involved users being given a list of features
+and a list of icons. They would be tasked with matching the features to the icons which all users were
+able to do without difficulty. Finally, NFRT-LF4 was testing that the user is notified if they lose internet
+connection while using the application.
+
 \subsection{Usability}
+
+This section provides a brief overview of the Usability test results from the VnV Plan.
 
 \begin{longtable}{|l|c|}
   \caption{Usability Testing Summary} \label{Usability Testing Summary} \\
@@ -128,8 +150,19 @@ specified in the VnV Plan.
   NFRT-UH6 & $\checkmark$ \\
   \bottomrule
 \end{longtable}
+
+All the above tests were by external users with supervision and instruction from members of the team. NFRT-UH1 was a test
+to verify how easy the application is to learn. This was done by having them go through the application on their own
+and they were then asked to navigate to different pages. NFRT-UH2 had users testing whether processes on the
+application were reversible/cancellable in terms of the receipt submission process. NFRT-UH3 and NFRT-UH5 were
+accessibility tests in regards to adjustable text size of the application. Finally, NFRT-UH6 was a survey where users
+were asked several questions related to the application's usability. This survey and its results can be found
+in Section 11.3 of this document. In general though, survey results were positive with some issues that have been noted down and
+the team has plans to work on, for example, better instructions for receipt capture.
 		
 \subsection{Performance}
+
+This section covers the test results from Performance tests, as described in the VnV Plan.
 
 \begin{longtable}{|l|c|}
   \caption{Performance Testing Summary} \label{Performance Testing Summary} \\
@@ -150,7 +183,44 @@ specified in the VnV Plan.
   \bottomrule
 \end{longtable}
 
+All above tests were performed by the team using various tools like Flutter Performance Profiling and Postman
+as described in the VnV Plan. NFRT-PR1 focused on testing render performance of the application. Overall, render
+performance was consistently below 17 ms and at worst, never exceeded 60 ms. These results fall well below the team's
+upper-limit of render times which was set at 1 second according to the SRS. Below is a snapshot of the Flutter Profiling graph that
+shows render times for each frame, with 52 ms being the highest in this instance:
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{frontend_performance_graph.pdf}
+  \caption{Frontend Render Performance Graph}
+  \label{fig:FrontendPerformanceGraph}
+\end{figure}
+
+Similarly, NFRT-PR2 focused on general performance on the backend, in particular, response times from the
+different endpoints. Various endpoints were accessed about 10 times using Postman and results showed that
+backend performance was within expectation for the project. Most of the responses were within 200 ms with the
+worst being below 600 ms. The team's expectations for backend performance were for responses to be below 2 seconds
+on average according to the SRS, which results from this test show. Below is a graphical representation of the
+trials performed and the endpoints tested:
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{backend_performance_graph.pdf}
+  \caption{Backend Endpoint Performance Graph}
+  \label{fig:BacendPerformanceGraph}
+\end{figure}
+
+NFRT-PR3 tested the robustness of the backend and involved passing faulty data to see if anything would cause the
+system to produce unwanted results. NFRT-PR4 and NFRT-PR5 tested the correctness of the system by verifying how
+often users need to correct the OCR and the accuracy of the spending data being returned. Both of these results
+were above the expected values, with user correction rate being 5\% and 0.1\% relative error on spending data. Finally,
+NFRT-PR6 verifies that the application is within reasonable size, taking up less than 1GB of the user's device
+storage. Actual storage consumption was between 300 to 400 MB depending on application usage.
+
 \subsection{Cultural}
+
+This section describes test results for Cultural tests performed as part of the verification
+and validation process.
 
 \begin{longtable}{|l|c|}
   \caption{Cultural Testing Summary} \label{Cultural Testing Summary} \\
@@ -161,7 +231,14 @@ specified in the VnV Plan.
   \bottomrule
 \end{longtable}
 
+This test was performed internally by team members. NFRT-CUR2 verifies the Classification Engine
+and checks that if a new item is submitted into the database, the item's product information can be
+properly retrieved.
+
 \subsection{Operation and Environment}
+
+This section describes test results for Operation and Environment tests performed as documented
+in the VnV Plan.
 
 \begin{longtable}{|l|c|}
   \caption{Operation and Environment Testing Summary} \label{Operation and Environment Testing Summary} \\
@@ -176,7 +253,14 @@ specified in the VnV Plan.
   \bottomrule
 \end{longtable}
 
+These tests were performed internally by team members. NFRT-OER1 verifies the compatibility of the application
+on devices using Android 13 or higher. NFRT-OER2 tests that the application interfaces with peripherals properly
+such as the device camera. Finally, NFRT-OER3 verifies the CI/CD process and ensures proper unit testing is performed
+for updates.
+
 \subsection{Security}
+
+This section covers the test results for Security tests performed as documented in the VnV Plan.
 
 \begin{longtable}{|l|c|}
   \caption{Security Testing Summary} \label{Security Testing Summary} \\
@@ -186,6 +270,9 @@ specified in the VnV Plan.
   NFRT-SR2 & $\checkmark$ \\
   \bottomrule
 \end{longtable}
+
+This test was performed internally by team members. NFRT-SR2 is a test that verifies protections are properly put in
+place such that a user cannot modify the database directly (i.e., without using the endpoint).
 	
 % \section{Comparison to Existing Implementation}	
 
