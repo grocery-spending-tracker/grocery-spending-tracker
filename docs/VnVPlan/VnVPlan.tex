@@ -4,6 +4,7 @@
 \usepackage{tabularx}
 \usepackage{float}
 \usepackage{hyperref}
+\usepackage[normalem]{ulem}
 \hypersetup{
     colorlinks,
     citecolor=blue,
@@ -35,6 +36,8 @@
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
 03/11/23 & 1.0 & Created initial version of the VnV Plan\\
+05/03/24 & 2.0 & Removed/updated the following sections with outdated features to reflect the current state of the app:
+4.1.3: Location-based Recommendations, FRT-FR6-1, FRT-FR6-1, FRT-FR9-2, NFRT-CUR1, NFRT-CUR3, FRT-FR11-1, FRT-FR8-1, NFRT-LF3, NFRT-UH2, NFRT-UH4, NFRT-OER1, NFRT-SR1, NFRT-SR3, NFRT-SR4, NFRT-SR5, NFRT-SR6\\
 \bottomrule
 \end{tabularx}
 
@@ -397,7 +400,7 @@ Initial State: User has physical receipt and the system has access to the device
 
 Input: User scans a physical receipt in bad conditions.
           
-Output: User is provided with a list of all the scanned grocery items and prices on the receipt with a strong recommendation to retake the photo in better conditions or manually enter or edit them.
+Output: User is provided with a list of all the scanned grocery items and prices on the receipt with the option to retake the photo in better conditions or manually enter or edit them.
 
 Test Case Derivation: In poor lighting conditions where the receipt is not clearly visible by the camera, the application should still
 attempt to scan the receipt but should prompt the user to retake the photo in better conditions to ensure accuracy of the data.
@@ -440,56 +443,57 @@ How test will be performed: Tester will revoke application access to device came
 
 These tests pertain to all the functional requirements related to the user's account preferences, goals, or details that affect the system's performance.
 
-\paragraph{Location-based Recommendations}
+\paragraph{\sout{Location-based Recommendations}}
 
-These tests pertain to all the functional requirements related to the user's location and how it affects their grocery recommendations.
+\sout{
+These tests pertain to all the functional requirements related to the user's location and how it affects their grocery recommendations.}
 
 \begin{enumerate}
 
-\item{\textbf{FRT-FR4-1}}
-
-Control: Manual
+\item{\sout{\textbf{FRT-FR4-1}}}
+\sout{Control: Manual}
           
-Initial State: The system does not have access to the user's device location.
+\sout{Initial State: The system does not have access to the user's device location.}
 
-Input: User prevents location access for the application
+\sout{Input: User prevents location access for the application}
           
-Output: User is prompted that the system has no location access and given the option to manually enter their general home location and desired recommendation radius.
+\sout{Output: User is prompted that the system has no location access and given the option to manually enter their general home location and desired recommendation radius.}
 
-Test Case Derivation: If the application is not given access to the device's location, then the application should allow for
-manual entry by the user to prevent feature disruption.
+\sout{Test Case Derivation: If the application is not given access to the device's location, then the application should allow for
+manual entry by the user to prevent feature disruption.}
           
-How test will be performed: Tester will revoke application access to location  and then attempt to receive location-based grocery recommendations. Validate that system provides prompt.
+\sout{How test will be performed: Tester will revoke application access to location  and then attempt to receive location-based grocery recommendations. Validate that system provides prompt.}
 
-\item{\textbf{FRT-FR4-2}}
 
-Control: Manual
+\item{\sout{\textbf{FRT-FR4-2}}}
+
+\sout{Control: Manual}
           
-Initial State: The system has access to the user's device location but user wants to manually set a different one.
+\sout{Initial State: The system has access to the user's device location but user wants to manually set a different one.}
 
-Input: User changes preferences to use manually entered home location and recommendation radius rather than device location.
+\sout{Input: User changes preferences to use manually entered home location and recommendation radius rather than device location.}
           
-Output: System provides accurate location-based recommendations regarding the manually entered location.
+\sout{Output: System provides accurate location-based recommendations regarding the manually entered location.}
 
-Test Case Derivation: If the user wishes to use a manually set location rather than their device's location, then the
-application should still function the same in both scenarios.
+\sout{Test Case Derivation: If the user wishes to use a manually set location rather than their device's location, then the
+application should still function the same in both scenarios.}
           
-How test will be performed: Tester will go to preferences and opt to use manually provided home location and recommendation radius. Validate that the system is providing correct grocery recommendations for the manually inputted location and radius.
+\sout{How test will be performed: Tester will go to preferences and opt to use manually provided home location and recommendation radius. Validate that the system is providing correct grocery recommendations for the manually inputted location and radius.}
 
-\item{\textbf{FRT-FR4-3}}
+\item{\sout{\textbf{FRT-FR4-3}}}
 
-Control: Manual
+\sout{Control: Manual}
           
-Initial State: The system has access to the user's device location.
+\sout{Initial State: The system has access to the user's device location.}
 
-Input: System has location access on device.
+\sout{Input: System has location access on device.}
           
-Output: Application provides recommendations to the user for stored that are within the default radius of their location.
+\sout{Output: Application provides recommendations to the user for stored that are within the default radius of their location.}
 
-Test Case Derivation: Should the application have access to the device location, then all location preferences should be
-relative to the device's active location.
+\sout{Test Case Derivation: Should the application have access to the device location, then all location preferences should be
+relative to the device's active location.}
           
-How test will be performed: Tester will enable location services for the application and validate that the system is providing correct grocery recommendations for the current device location.
+\sout{How test will be performed: Tester will enable location services for the application and validate that the system is providing correct grocery recommendations for the current device location.}
 
 \end{enumerate}
 
@@ -528,34 +532,34 @@ for correctness.
           
 How test will be performed: Tester will navigate to the application preferences and validate that the existing spending goals are displayed. They will then attempt to change the values of the spending goals and then save the changes.
 
-\item{\textbf{FRT-FR6-1}}
+\item{\sout{\textbf{FRT-FR6-1}}}
 
-Control: Manual
+\sout{Control: Manual}
           
-Initial State: The system has no budgeting constraints stored.
+\sout{Initial State: The system has no budgeting constraints stored.}
 
-Input: User navigates to the preferences of their application.
+\sout{Input: User navigates to the preferences of their application.}
           
-Output: The system provides a space for the user to input their budgeting constraints.
+\sout{Output: The system provides a space for the user to input their budgeting constraints.}
 
-Test Case Derivation: The system must provide an interface for the user to input their budgeting constraints.
+\sout{Test Case Derivation: The system must provide an interface for the user to input their budgeting constraints.}
           
-How test will be performed: Tester will navigate to the application preferences and validate that an interface exists for inputting user budgeting constraints.
+\sout{How test will be performed: Tester will navigate to the application preferences and validate that an interface exists for inputting user budgeting constraints.}
 
-\item{\textbf{FRT-FR6-2}}
+\item{\sout{\textbf{FRT-FR6-2}}}
 
-Control: Manual
+\sout{Control: Manual}
           
-Initial State: The system has existing budgeting constraints stored.
+\sout{Initial State: The system has existing budgeting constraints stored.}
 
-Input: User navigates to the preferences of their application and changes their budgeting constraints.
+\sout{Input: User navigates to the preferences of their application and changes their budgeting constraints.}
           
-Output: The system displays the new budgeting constraints.
+\sout{Output: The system displays the new budgeting constraints.}
 
-Test Case Derivation: If budgeting constraints are ever updated, then the application should take the new constraints into account
-for correctness.
+\sout{Test Case Derivation: If budgeting constraints are ever updated, then the application should take the new constraints into account
+for correctness.}
 
-How test will be performed: Tester will navigate to the application preferences and validate that the existing goals are displayed. They will then attempt to change the budgeting constraints values and save the changes.
+\sout{How test will be performed: Tester will navigate to the application preferences and validate that the existing goals are displayed. They will then attempt to change the budgeting constraints values and save the changes.}
 
 \end{enumerate}
 
@@ -626,14 +630,14 @@ Control: Manual
           
 Initial State: User has set budget information.
 
-Input: User submits a receipt containing commonly purchased items plus a new highly priced item that puts them over budget.
+Input: User submits a receipt containing commonly purchased items plus a new item that puts them over budget.
           
-Output: The system should identify the newly purchased item as the cause for the user going over budget and will recommend that the user stop purchasing it. If available, the system will also recommend alternatives that are in-line with the user's budget.
+Output: The system should indicate the newly purchased item has caused the user to go over budget.
 
 Test Case Derivation: System must be aware of the users purchasing activity and budget. If the user ever goes over budget when entering
-a receipt, the system should identify why they went over budget and offer some advice.
+a receipt, the system should identify why they went over budget.
           
-How test will be performed: Tester will input receipt meeting the above conditions. The tester will then validate that the new item is correctly identified as putting the user over budget and confirm if they get a recommendation for an alternative.
+How test will be performed: Tester will input receipt meeting the above conditions. The tester will then validate that the new item is correctly identified as putting the user over budget.
 
 \item{\textbf{FRT-FR8-2}}
 
@@ -664,7 +668,7 @@ Initial State: The database has an entry for a grocery item that is purchased fr
 
 Input: User submits a receipt containing the grocery item in the database but at a cheaper price from location Y.
           
-Output: The database should be updated such that the cheapest price, location, and purchase date for that item are equal to the input data. Location Y should then be recommended to users who purchase that item.
+Output: System provides recommendation to purchase item from location Y.
 
 Test Case Derivation: System must be aware of the users purchasing activity and recommend the user with cheaper alternative locations for
 the same item.
@@ -730,13 +734,13 @@ How test will be performed: Tester will submit a receipt and then verify to see 
   unlabelled icons corresponding to each of the features. They will be asked to match which feature
   they believe pairs with which icon.
 
-  \item{NFRT-LF3\\}
+  \item{\sout{NFRT-LF3\\}}
 
-  Type: Manual, Static
+  \sout{Type: Manual, Static}
 
-  How test will be performed: Walkthroughs will be performed on the code of each of the frontend pages
+  \sout{How test will be performed: Walkthroughs will be performed on the code of each of the frontend pages
   using the \textit{Flutter Inspector} to check size of components and layouts. This will be to ensure no more than
-  85\% of the page is occupied and a numerical balance is achieved in the layout.
+  85\% of the page is occupied and a numerical balance is achieved in the layout.}
 
   \item{NFRT-LF4\\}
 
@@ -769,12 +773,11 @@ How test will be performed: Tester will submit a receipt and then verify to see 
 					
   Initial State: The application is opened on a device and logged into a user's account with internet access available.
 					
-  Input: The user attempts to input a receipt but cancels the process.
+  Input: The user attempts to input a receipt but aborts the process.
 					
   Output: No changes should be made to the user's account data.
   
-  How test will be performed: Testers will be given a receipt to input and asked to input it into the application.
-  Testers will then be asked to cancel the input before the process completes.
+  How test will be performed: Testers will be given a receipt to input and asked to input it into the application. Testers will then be asked to abort the input and observe for unintended changes in the app.
 
   \item{NFRT-UH3\\}
 
@@ -790,19 +793,19 @@ How test will be performed: Tester will submit a receipt and then verify to see 
   How test will be performed: Testers will be asked to change the font size to their desired size and
   navigate through the application to check usability.
 
-  \item{NFRT-UH4\\}
+  \item{\sout{NFRT-UH4\\}}
 
-  Type: Manual, Dynamic
+  \sout{Type: Manual, Dynamic}
 					
-  Initial State: The application is opened on a device and logged in to a user's account with internet access available.
+  \sout{Initial State: The application is opened on a device and logged in to a user's account with internet access available.}
 					
-  Input: The user changes the accessibility colour scheme.
+  \sout{Input: The user changes the accessibility colour scheme.}
 					
-  Output: The colour scheme should be changed throughout the application without negatively impacting readability
-  or general functionality.
+  \sout{Output: The colour scheme should be changed throughout the application without negatively impacting readability
+  or general functionality.}
   
-  How test will be performed: Testers will be asked to change the accessibility colour scheme to their desired setting and
-  navigate through the application to check usability.
+  \sout{How test will be performed: Testers will be asked to change the accessibility colour scheme to their desired setting and
+  navigate through the application to check usability.}
 
   \item{NFRT-UH5\\}
 
@@ -895,17 +898,17 @@ How test will be performed: Tester will submit a receipt and then verify to see 
 
 \begin{enumerate}
 
-\item{NFRT-CUR1\\}
+\item{\sout{NFRT-CUR1}}
 
-Type: Manual, Dynamic
+\sout{Type: Manual, Dynamic}
 					
-Initial State: The app is running and set to the default system of measurement (e.g., metric).
+\sout{Initial State: The app is running and set to the default system of measurement (e.g., metric).}
 					
-Input: The user selects their preferred units of measurement from the app settings.
+\sout{Input: The user selects their preferred units of measurement from the app settings.}
 					
-Output: The app interface and displayed measurements change to the selected units of measurement as per the user's choice.
+\sout{Output: The app interface and displayed measurements change to the selected units of measurement as per the user's choice.}
 					
-How test will be performed: The tester will change the units of measurement from the app settings and verify that the interface and displayed measurements switch to the selected units.
+\sout{How test will be performed: The tester will change the units of measurement from the app settings and verify that the interface and displayed measurements switch to the selected units.}
 					
 \item{NFRT-CUR2\\}
 
@@ -919,17 +922,17 @@ Output: The app successfully adds the new purchase item to the user's purchase h
 					
 How test will be performed: The tester will attempt to add a product not present in the app product database to the purchase history and verify that the item is added without any issues.
 
-\item{NFRT-CUR3\\}
+\item{\sout{NFRT-CUR3}}
 
-Type: Manual, Dynamic
+\sout{Type: Manual, Dynamic}
 					
-Initial State: The app is set to the default currency (e.g., CAD).
+\sout{Initial State: The app is set to the default currency (e.g., CAD).}
 					
-Input: The user selects the American currency in the app settings.
+\sout{Input: The user selects the American currency in the app settings.}
 					
-Output: The app logs all future purchases all in USD based on the user's selection and will not compare the prices of similar products nearby of a different currency.
+\sout{Output: The app logs all future purchases all in USD based on the user's selection and will not compare the prices of similar products nearby of a different currency.}
 					
-How test will be performed: The tester will access the app's settings, change the currency to USD. The tester will then verify that all prices of future purchases are logged in USD and similar products priced with CAD are not compared.
+\sout{How test will be performed: The tester will access the app's settings, change the currency to USD. The tester will then verify that all prices of future purchases are logged in USD and similar products priced with CAD are not compared.}
 
 \end{enumerate}
 
@@ -947,7 +950,7 @@ Input: The user will install and run the application on various devices.
                 
 Output: The application will be successfully installed. The application is operational.
                 
-How test will be performed: The tester will install the application on various mobile devices running Android on version 13 (IASR2) and iOS on version 16 (IASR1). The tester will also test on various tablet devices running Android or iPadOS. The tester will confirm that all functionalities work as expected on each device by conducting variety of actions and system events (including logging in to an user account, input receipt data, analyzing spending analytics, etc.).
+How test will be performed: The tester will install the application on various mobile devices running Android on version 13 (IASR2). The tester will also test on various tablet devices running Android. The tester will confirm that all functionalities work as expected on each device by conducting variety of actions and system events (including logging in to an user account, input receipt data, analyzing spending analytics, etc.).
 
 \item{NFRT-OER2\\}
 
@@ -957,7 +960,7 @@ Initial State: The application is installed on a device that has an operable cam
                 
 Input: The user will attempt to use application features that require a camera and/or internet access.
                 
-Output: The application will successfully operate the induced features that require the use of camera and/or internet.
+Output: The application will successfully operate the features that require the use of camera and/or internet.
                 
 How test will be performed: The tester will test the application on devices with and without camera peripherals to validate (WER1). The tester will disconnect devices from the internet to test offline functionality. The tester will then reconnect the device to the internet to test online features (WER2). The tester will confirm that all functionalities work on devices that have access to camera peripherals and internet access.
 
@@ -978,17 +981,17 @@ How test will be performed: The tester will use automated testing tools (that ca
 \subsubsection{Security Requirements}
 
 \begin{enumerate}
-\item{NFRT-SR1\\}
+\item{\sout{NFRT-SR1\\}}
 
-Type: Manual, Dynamic
+\sout{Type: Manual, Dynamic}
 
-Initial State: User is not logged in or terms are not accepted.
+\sout{Initial State: User is not logged in or terms are not accepted.}
                 
-Input: User tries to access the application's database.
+\sout{Input: User tries to access the application's database.}
                 
-Output: Access will be denied until the user accepts terms and services.
+\sout{Output: Access will be denied until the user accepts terms and services.}
                 
-How test will be performed: Attempts will take place to access the database without accepting terms. The tester will confirm denial of access. Then, attempt access after accepting terms and services. The tester will confirm successful database access.
+\sout{How test will be performed: Attempts will take place to access the database without accepting terms. The tester will confirm denial of access. Then, attempt access after accepting terms and services. The tester will confirm successful database access.}
 
 \item{NFRT-SR2\\}
 
@@ -1002,53 +1005,53 @@ Output: Stored data is encrypted. Therefore, modifications to the data are denie
                 
 How test will be performed: The tester will attempt to use database tools to try to modify data within the application database. Then, the tester will confirm that the application backend database is secure and has not been modified.
 
-\item{NFRT-SR3\\}
+\item{\sout{NFRT-SR3\\}}
 
-Type: Manual, Dynamic
+\sout{Type: Manual, Dynamic}
 
-Initial State: Application is in operation.
+\sout{Initial State: Application is in operation.}
                 
-Input: User will attempt simulated attacks like SQL injection, cross-site scripting, etc.
+\sout{Input: User will attempt simulated attacks like SQL injection, cross-site scripting, etc.}
                 
-Output: Application will remain secure without any data breaches.
+\sout{Output: Application will remain secure without any data breaches.}
                 
-How test will be performed: The tester will conduct a series of different types of simulated cyber attacks. The tester will then observe application response and monitor application database.
+\sout{How test will be performed: The tester will conduct a series of different types of simulated cyber attacks. The tester will then observe application response and monitor application database.}
 
-\item{NFRT-SR4\\}
+\item{\sout{NFRT-SR4\\}}
 
-Type: Manual, Dynamic
+\sout{Type: Manual, Dynamic}
 
-Initial State: Raw user data is stored in the application database.
+\sout{Initial State: Raw user data is stored in the application database.}
                 
-Input: The raw user data is processed and then stored in the application database.
+\sout{Input: The raw user data is processed and then stored in the application database.}
                 
-Output: The data is anonymized by data perturbation (inducing small amount of noise) and encryption. The data is also sanitized by data deletion or masking.
+\sout{Output: The data is anonymized by data perturbation (inducing small amount of noise) and encryption. The data is also sanitized by data deletion or masking.}
                 
-How test will be performed: The tester will inspect the stored user data for any personal identifiers. The tester will search for any presence of accessible sensitive user data.
+\sout{How test will be performed: The tester will inspect the stored user data for any personal identifiers. The tester will search for any presence of accessible sensitive user data.}
 
-\item{NFRT-SR5\\}
+\item{\sout{NFRT-SR5\\}}
 
-Type: Manual, Dynamic
+\sout{Type: Manual, Dynamic}
 
-Initial State: Application has yet to collect user data.
+\sout{Initial State: Application has yet to collect user data.}
                 
-Input: User will start using the application.
+\sout{Input: User will start using the application.}
                 
-Output: A consent form will pop up before any user data is collected. No user data will be collected without explicit consent given by user.
+\sout{Output: A consent form will pop up before any user data is collected. No user data will be collected without explicit consent given by user.}
                 
-How test will be performed: The tester will check for prompts that ask users to consent to data collection. The tester will then test the application with and without user consent to ensure compliance. The tester will confirm no user data was collected and stored in the database without user consent.
+\sout{How test will be performed: The tester will check for prompts that ask users to consent to data collection. The tester will then test the application with and without user consent to ensure compliance. The tester will confirm no user data was collected and stored in the database without user consent.}
 
-\item{NFRT-SR6\\}
+\item{\sout{NFRT-SR6\\}}
 
-Type: Manual, Dynamic
+\sout{Type: Manual, Dynamic}
 
-Initial State: Application is in operation.
+\sout{Initial State: Application is in operation.}
                 
-Input: User will attempt various actions to induce system events (including logging in to an user account, input receipt data, analyzing spending analytics, etc.).
+\sout{Input: User will attempt various actions to induce system events (including logging in to an user account, input receipt data, analyzing spending analytics, etc.).}
                 
-Output: Activities and events will be accurately logged. The log can be reviewed by authorized administrators.
+\sout{Output: Activities and events will be accurately logged. The log can be reviewed by authorized administrators.}
                 
-How test will be performed: The tester will perform a variety of user actions and try to trigger system events (including logging in to an user account, input receipt data, analyzing spending analytics, etc.). The tester will verify if these actions and events are accurately logged to system log. The tester will confirm that only authorized administrators can access these logs.
+\sout{How test will be performed: The tester will perform a variety of user actions and try to trigger system events (including logging in to an user account, input receipt data, analyzing spending analytics, etc.). The tester will verify if these actions and events are accurately logged to system log. The tester will confirm that only authorized administrators can access these logs.}
 
 \end{enumerate}
 
@@ -1102,7 +1105,7 @@ How test will be performed: The tester will perform a variety of user actions an
 		\hline
     \textbf{NFR ID}   & \multicolumn{6}{c|}{\textbf{Test ID}} \\
     \hline
-    ~ & \textbf{AR1} & \textbf{AR2} & \textbf{AR3} & \textbf{SR1} & \textbf{SR2} & \textbf{SR3} \\
+    ~ & \textbf{AR1} & \textbf{AR2} & \sout{\textbf{AR3}} & \textbf{SR1} & \textbf{SR2} & \textbf{SR3} \\
     \hline
     NFRT-LF1 & X & ~ & X & X & X & X \\
     NFRT-LF2 & ~ & X & ~ & ~ & ~ & ~ \\
@@ -1116,7 +1119,7 @@ How test will be performed: The tester will perform a variety of user actions an
 		\hline
     \textbf{NFR ID}   & \multicolumn{11}{c|}{\textbf{Test ID}} \\
     \hline
-    ~ & \textbf{EUR1} & \textbf{EUR2} & \textbf{EUR3} & \textbf{PIR1} & \textbf{LR1} & \textbf{LR2} & \textbf{LR3} & \textbf{UPR1} & \textbf{UPR2} & \textbf{ACR1} & \textbf{ACR2} \\
+    ~ & \textbf{EUR1} & \textbf{EUR2} & \textbf{EUR3} & \textbf{PIR1} & \textbf{LR1} & \sout{\textbf{LR2}} & \textbf{LR3} & \textbf{UPR1} & \textbf{UPR2} & \textbf{ACR1} & \sout{\textbf{ACR2}} \\
     \hline
     NFRT-UH1 & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ \\
     NFRT-UH2 & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
@@ -1163,7 +1166,7 @@ How test will be performed: The tester will perform a variety of user actions an
 		\hline
     \textbf{NFR ID}   & \multicolumn{10}{c|}{\textbf{Test ID}} \\
     \hline
-    ~ & \textbf{EPER1} & \textbf{EPER2} & \textbf{EPER3} & \textbf{WER1} & \textbf{WER2} & \textbf{IASR1} & \textbf{IASR2} & \textbf{RER1} & \textbf{RER2} & \textbf{RER3} \\
+    ~ & \textbf{EPER1} & \sout{\textbf{EPER2}} & \textbf{EPER3} & \textbf{WER1} & \textbf{WER2} & \sout{\textbf{IASR1}} & \textbf{IASR2} & \textbf{RER1} & \textbf{RER2} & \textbf{RER3} \\
     \hline
     NFRT-OER1 & X & X & X & ~ & ~ & X & X & ~ & ~ & ~ \\
     NFRT-OER2 & ~ & ~ & ~ & X & X & ~ & ~ & ~ & ~ & ~ \\
@@ -1176,7 +1179,7 @@ How test will be performed: The tester will perform a variety of user actions an
 		\hline
     \textbf{NFR ID}   & \multicolumn{6}{c|}{\textbf{Test ID}} \\
     \hline
-    ~ & \textbf{ACR1} & \textbf{INR1} & \textbf{INR2} & \textbf{PRR1} & \textbf{PRR2} & \textbf{AUR1} \\
+    ~ & \textbf{ACR1} & \textbf{INR1} & \textbf{INR2} & \sout{\textbf{PRR1}} & \sout{\textbf{PRR2}} & \sout{\textbf{AUR1}} \\
     \hline
     NFRT-SR1 & X & ~ & ~ & ~ & ~ & ~ \\
     NFRT-SR2 & ~ & X & ~ & ~ & ~ & ~ \\
