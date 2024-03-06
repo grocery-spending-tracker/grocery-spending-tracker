@@ -478,11 +478,41 @@ Tests FRT-M7-6 to FRT-M7-8 are all back-end tests and can be found in the follow
 
 \subsection{Recommendation Engine}
 
-...
+The section provides a brief overview of the unit tests performed and their results for the
+Recommendation Module.
+
+\begin{longtable}{|l|c|l|c|l|c|}
+  \caption{Recommendation Unit Testing Summary} \label{Recommendation Unit Test Summary} \\
+  \toprule
+  \textbf{Test ID} & \textbf{Result} & \textbf{Test ID} & \textbf{Result} & \textbf{Test ID} & \textbf{Result} \\
+  \midrule
+  FRT-M8-1 & $\checkmark$ & FRT-M8-2 & $\checkmark$ &  &  \\
+  \bottomrule
+\end{longtable}
+
+Tests FRT-M8-1 and FRT-M8-2 are both back-end tests and can be found in the following file: \href{https://github.com/grocery-spending-tracker/grocery-spending-tracker-backend/blob/314b/unit-test/tests/controllers/recommendationController.test.js}{Back-end Recommendation Module Controller Tests}. Each test has several sub-tests (a, b, c, etc) that tests the function's primary and edge-cases.
 
 \subsection{Classification Engine}
 
-...
+The section provides a brief overview of the unit tests performed and their results for the
+Classification Module.
+
+\begin{longtable}{|l|c|l|c|l|c|}
+  \caption{Classification Unit Testing Summary} \label{Classification Unit Test Summary} \\
+  \toprule
+  \textbf{Test ID} & \textbf{Result} & \textbf{Test ID} & \textbf{Result} & \textbf{Test ID} & \textbf{Result} \\
+  \midrule
+  FRT-M9-1 & $\checkmark$ & FRT-M9-2 & $\checkmark$ & FRT-M9-3 & $\checkmark$ \\
+  \midrule
+  FRT-M9-4 & $\checkmark$ & FRT-M9-5 & $\checkmark$ & FRT-M9-6 & $\checkmark$ \\
+  \midrule
+  FRT-M9-7 & $\checkmark$ & FRT-M9-8 & $\checkmark$  & FRT-M9-9 & $\checkmark$ \\
+  \midrule
+  FRT-M9-10 & $\checkmark$ & FRT-M9-11 & $\checkmark$  &  &  \\
+  \bottomrule
+\end{longtable}
+
+Tests FRT-M9-1 to FRT-M9-11 are all back-end tests and can be found in the following file: \href{https://github.com/grocery-spending-tracker/grocery-spending-tracker-classification/blob/main/test/main.test.js}{Back-end Classification Module Main Test}, \href{https://github.com/grocery-spending-tracker/grocery-spending-tracker-classification/tree/main/test/classification}{Back-end Classification Module Item Matching Tests}, \href{https://github.com/grocery-spending-tracker/grocery-spending-tracker-classification/tree/main/test/scraper}{Back-end Classification Module Web Scraping Tests}. Each test has several sub-tests (a, b, c, etc) that tests the function's primary and edge-cases.
 
 \section{Changes Due to Testing}
 
