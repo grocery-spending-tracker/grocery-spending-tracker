@@ -16,6 +16,7 @@
 \usepackage{longtable}
 \usepackage{amsfonts}
 \usepackage{float}
+\usepackage{pdflscape}
 
 \input{../Comments}
 \input{../Common}
@@ -425,8 +426,123 @@ As an example, the \textit{userController.analytics.test} file contains unit tes
 functionality in the user controller.
 These tests are automatically executed during the deployment process of the backend when code is pushed to the
 "master" branch of the backend repository. This process is handled by \textit{Github Actions}.
-		
+
+\newpage
+\begin{landscape}
 \section{Trace to Requirements}
+  \begin{longtable}{|l|ccccccccc|}
+    \caption{Traceability Between Functional System Test Cases and Functional Requirements} \\
+    \hline
+    \textbf{Functional Requirement ID}   & \multicolumn{9}{c|}{\textbf{Test ID}} \\
+    \hline
+    ~ & \textbf{FR1} & \textbf{FR2} & \textbf{FR3} & \textbf{FR5} & \textbf{FR7} & \textbf{FR8} & \textbf{FR9} & \textbf{FR10} & \textbf{FR11} \\
+    \hline
+    FRT-FR1-1 & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR1-2 & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR2-1 & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR2-2 & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR2-4 & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR2-5 & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR2-6 & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR2-7 & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR3-1 & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR11-1 & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X \\
+    FRT-FR11-2 & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X \\
+    FRT FR11-3 & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X \\
+    FRT-FR5-1 & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR5-2 & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR7-1 & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ \\
+    FRT-FR7-2 & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ \\
+    FRT-FR7-3 & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ \\
+    FRT-FR8-1 & ~ & ~ & ~ & ~ & ~ & X & X & ~ & ~ \\
+    FRT-FR8-2 & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ \\
+    FRT-FR9-1 & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ \\
+    FRT-FR9-2 & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ \\
+    FRT-FR10-1 & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ \\
+    FRT-FR10-2 & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ \\
+    \hline
+  \end{longtable}
+
+  \begin{longtable}{|l|ccccc|}
+		\caption{Traceability Between Nonfunctional System Test Cases and Look and Feel Requirements} \\
+		\hline
+    \textbf{NFR ID}   & \multicolumn{5}{c|}{\textbf{Test ID}} \\
+    \hline
+    ~ & \textbf{AR1} & \textbf{AR2} & \textbf{SR1} & \textbf{SR2} & \textbf{SR3} \\
+    \hline
+    NFRT-LF1 & X & ~ & X & X & X \\
+    NFRT-LF2 & ~ & X & ~ & ~ & ~ \\
+    NFRT-LF4 & ~ & ~ & ~ & ~ & X \\
+    \hline
+  \end{longtable}
+
+  \newpage
+  \begin{longtable}{|l|ccccccccc|}
+    \caption{Traceability Between Nonfunctional System Test Cases and Usability and Humanity Requirements} \\
+    \hline
+    \textbf{NFR ID}   & \multicolumn{9}{c|}{\textbf{Test ID}} \\
+    \hline
+    ~ & \textbf{EUR1} & \textbf{EUR2} & \textbf{EUR3} & \textbf{PIR1} & \textbf{LR1} & \textbf{LR3} & \textbf{UPR1} & \textbf{UPR2} & \textbf{ACR1} \\
+    \hline
+    NFRT-UH1 & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ \\
+    NFRT-UH2 & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    NFRT-UH3 & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X \\
+    NFRT-UH5 & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    NFRT-UH6 & ~ & ~ & X & X & X & ~ & X & X & X \\
+    \hline
+  \end{longtable}
+
+  \begin{longtable}{|l|cccccc|}
+		\caption{Traceability Between Nonfunctional System Test Cases and Performance Requirements} \\
+		\hline
+    \textbf{NFR ID}   & \multicolumn{6}{c|}{\textbf{Test ID}} \\
+    \hline
+    ~ & \textbf{SLR1} & \textbf{SLR2} & \textbf{PAR1} & \textbf{PAR2} & \textbf{RFR1} & \textbf{CR1} \\
+    \hline
+    NFRT-PR1 & ~ & X & ~ & ~ & ~ & ~ \\
+    NFRT-PR2 & X & ~ & ~ & ~ & ~ & ~ \\
+    NFRT-PR3 & ~ & ~ & ~ & ~ & X & ~ \\
+    NFRT-PR4 & ~ & ~ & X & ~ & ~ & ~ \\
+    NFRT-PR5 & ~ & ~ & ~ & X & ~ & ~ \\
+    NFRT-PR6 & ~ & ~ & ~ & ~ & ~ & X \\
+    \hline
+  \end{longtable}
+
+  \begin{longtable}{|l|c|}
+		\caption{Traceability Between Nonfunctional System Test Cases and Cultural Requirements} \\
+		\hline
+    \textbf{NFR ID}   & \multicolumn{1}{c|}{\textbf{Test ID}} \\
+    \hline
+    ~ & \textbf{CUR2} \\
+    \hline
+    NFRT-CUR2 & X \\
+    \hline
+  \end{longtable}
+
+  \begin{longtable}{|l|cccccccc|}
+		\caption{Traceability Between Nonfunctional System Test Cases and Operational and Environmental Requirements} \\
+		\hline
+    \textbf{NFR ID}   & \multicolumn{8}{c|}{\textbf{Test ID}} \\
+    \hline
+    ~ & \textbf{EPER1} & \textbf{EPER3} & \textbf{WER1} & \textbf{WER2} & \textbf{IASR2} & \textbf{RER1} & \textbf{RER2} & \textbf{RER3} \\
+    \hline
+    NFRT-OER1 & X & X & ~ & ~ & X & ~ & ~ & ~ \\
+    NFRT-OER2 & ~ & ~ & X & X & ~ & ~ & ~ & ~ \\
+    NFRT-OER3 & ~ & ~ & ~ & ~ & ~ & X & X & X \\
+    \hline
+  \end{longtable}
+
+  \begin{longtable}{|l|c|}
+		\caption{Traceability Between Nonfunctional System Test Cases and Security Requirements} \\
+		\hline
+    \textbf{NFR ID}   & \multicolumn{1}{c|}{\textbf{Test ID}} \\
+    \hline
+    ~ & \textbf{INR1} \\
+    \hline
+    NFRT-SR2 & X \\
+    \hline
+  \end{longtable}
+\end{landscape}
 		
 \section{Trace to Modules}		
 
