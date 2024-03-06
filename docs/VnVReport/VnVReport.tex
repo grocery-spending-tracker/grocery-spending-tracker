@@ -36,8 +36,7 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+06/03/2024 & 1.0 & Initial version of the VnV Report\\
 \bottomrule
 \end{tabularx}
 
@@ -59,6 +58,7 @@ Date 2 & 1.1 & Notes\\
   ms & milliseconds\\
   GB & gigabyte\\
   MB & megabyte\\
+  OCR & Optical Character Recognition\\
   \bottomrule
 \end{tabular}\\
 
@@ -121,6 +121,11 @@ profiles, and access to the system.
   \bottomrule
 \end{longtable}
 
+FRT-FR1-1 to FRT-FR2-7 were all manually performed tests to verify the login and authentication process.
+FRT-FR1-1 to FRT-FR1-2 were to verify the actual login process from an actual use case scenario. The remaining
+tests verify different input cases for authentication such as correct email but incorrect password and
+new user scenarios.
+
 \subsection{Receipt Scanning}
 
 These tests pertain to all the functional requirements related to the scanning
@@ -133,13 +138,18 @@ of receipts and inputting grocery data.
   \midrule
   FRT-FR3-1 & $\checkmark$ & 95\% accuracy from manual testing\\
   \midrule
-  FRT-FR11-1 & $\checkmark$ & Allow retake without prompting \\
+  FRT-FR11-1 & $\checkmark$ & Allows retake without prompting \\
   \midrule
   FRT-FR11-2 & $\checkmark$ & \\
   \midrule
   FRT-FR11-3 & $\checkmark$ & \\
   \bottomrule
 \end{longtable}
+
+The above tests were all manually performed tests primarily pertaining to the receipt scanning process.
+In terms of the tests themselves, FRT-FR3-1 involved measuring accuracy of the OCR and FRT-FR11-1 to
+FRT-FR11-3 verify different use cases that can occur while trying to input a receipt, such as handling
+camera permissions and manual entry of receipt data.
 
 \subsection{Account Goals and Preferences}
 
@@ -153,9 +163,12 @@ account goals and preferences.
   \midrule
   FRT-FR5-1 & $\checkmark$ & \\
   \midrule
-  FRT-FR5-2 & x & To be completed for Revision 1\\
+  FRT-FR5-2 & X & To be completed for Revision 1\\
   \bottomrule
 \end{longtable}
+
+FRT-FR5-1 and FRT-FR5-2 are manual tests verifying the User Goals functionality of the app. FRT-FR5-1 tests the ability
+to add new spending goals and FRT-FR5-2 tests the ability to update existing spending goals.
 
 \subsection{System Behaviour and Recommendations}
 
@@ -186,6 +199,14 @@ system responds to the data that is provided to it. This includes receiving purc
   FRT-FR10-2 & $\checkmark$ & \\
   \bottomrule
 \end{longtable}
+
+The above tests were all manually performed and verifies how the system responds to data input, such
+as with the Classification Engine and Recommendations. FRT-FR7-1 to FRT-FR7-3 test the system's ability
+to take an item from the receipt and match it to an actual grocery product (including full product name, an image, etc.)
+before placing it into the database. FRT-FR8-1 to FRT-FR9-2 test the Recommendation functionality of the
+application in different use cases, such as suggesting cheaper products related to ones the user has purchased
+in the past. Finally, FRT-FR10-1 and FRT-FR10-2 test that the user is able to verify all data that has been
+submitted into the system, such as review receipts before submission and viewing previously submitted receipts.
 
 \section{Nonfunctional Requirements Evaluation}
 
