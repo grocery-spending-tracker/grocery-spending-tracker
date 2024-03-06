@@ -1,5 +1,7 @@
 \documentclass[12pt, titlepage]{article}
 
+\usepackage{graphicx}
+\graphicspath{ {./res/} }
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
@@ -11,6 +13,10 @@
     urlcolor=blue
 }
 \usepackage[round]{natbib}
+\usepackage{longtable}
+\usepackage{amsfonts}
+\usepackage{float}
+\usepackage{pdflscape}
 
 \input{../Comments}
 \input{../Common}
@@ -20,7 +26,7 @@
 \title{Verification and Validation Report: \progname} 
 \author{\authname}
 \date{\today}
-	
+
 \maketitle
 
 \pagenumbering{roman}
@@ -30,8 +36,7 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+06/03/2024 & 1.0 & Initial version of the VnV Report\\
 \bottomrule
 \end{tabularx}
 
@@ -41,14 +46,23 @@ Date 2 & 1.1 & Notes\\
 
 \renewcommand{\arraystretch}{1.2}
 \begin{tabular}{l l} 
-  \toprule		
+  \toprule    
   \textbf{symbol} & \textbf{description}\\
   \midrule 
   T & Test\\
+  SRS & Software Requirements Specification\\
+  MIS & Module Interface Specification\\
+  VnV & Verfication and Validation\\
+  UI & User Interface\\
+  UX & User Experience\\
+  ms & milliseconds\\
+  GB & gigabyte\\
+  MB & megabyte\\
+  OCR & Optical Character Recognition\\
+  CRUD & Create, Read, Update, Delete\\
+  JWT & JSON Web Token\\
   \bottomrule
 \end{tabular}\\
-
-\wss{symbols, abbreviations or acronyms -- you can reference the SRS tables if needed}
 
 \newpage
 
@@ -62,41 +76,903 @@ Date 2 & 1.1 & Notes\\
 
 \pagenumbering{arabic}
 
-This document ...
+This document will primarily focus on the test results of the verification and validation process
+for the Grocery Spending Tracker application. In particular, the results of the Functional Requirement System Tests,
+Nonfunctional Requirement System Tests, and Unit Tests will be covered. Detailed information regarding
+the Functional Requirements and Nonfunctional Requirements can be found in the
+\href{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/SRS/SRS.pdf}{SRS}. Furthermore,
+unit tests will focus on the individual modules of the system which can be found in the
+\href{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/Design/SoftDetailedDes/MIS.pdf}{MIS}.
+Finally, detailed information regarding the overall test plan can be found in the
+\href{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/VnVPlan/VnVPlan.pdf}{VnV Plan}.\\
+
+In addition to test results, this document will also go over feedback from stakeholders and changes due to testing,
+the team's approach for automated testing, traceability between tests and requirements/modules, as well as
+overall code coverage.
 
 \section{Functional Requirements Evaluation}
 
+This section will cover the test results from the Functional Requirement System Tests
+performed for the verification and validation of the Grocery Spending Tracker application.
+
+\subsection{User Authentication}
+
+The following sections pertain to all tests that have to do with the user
+profiles, and access to the system.
+
+\begin{longtable}{|l|c|p{0.65\linewidth}|}
+  \caption{User Authentication Testing Summary} \label{User Authentication Testing Summary} \\
+  \toprule
+  \textbf{Test ID} & \textbf{Result} & \textbf{Details} \\
+  \midrule
+  FRT-FR1-1 & $\checkmark$ & Takes 3 steps to reach landing page (enter email, enter password, submit) \\
+  \midrule
+  FRT-FR1-2 & $\checkmark$ & 100\% positive response (graded 4 or above out of 5) from survey (Section 11.1.1 Appendix) \\
+  \midrule
+  FRT-FR2-1 & $\checkmark$ & \\
+  \midrule
+  FRT-FR2-2 & $\checkmark$ & \\
+  \midrule
+  FRT-FR2-4 & $\checkmark$ & \\
+  \midrule
+  FRT-FR2-5 & $\checkmark$ & \\
+  \midrule
+  FRT-FR2-6 & $\checkmark$ & \\
+  \midrule
+  FRT-FR2-7 & $\checkmark$ & \\
+  \bottomrule
+\end{longtable}
+
+FRT-FR1-1 to FRT-FR2-7 were all manually performed tests to verify the login and authentication process.
+FRT-FR1-1 to FRT-FR1-2 were to verify the actual login process from an actual use case scenario. The remaining
+tests verify different input cases for authentication such as correct email but incorrect password and
+new user scenarios.
+
+\subsection{Receipt Scanning}
+
+These tests pertain to all the functional requirements related to the scanning
+of receipts and inputting grocery data.
+
+\begin{longtable}{|l|c|p{0.65\linewidth}|}
+  \caption{Receipt Scanning Testing Summary} \label{Receipt Scanning Testing Summary} \\
+  \toprule
+  \textbf{Test ID} & \textbf{Result} & \textbf{Details} \\
+  \midrule
+  FRT-FR3-1 & $\checkmark$ & 95\% accuracy from manual testing\\
+  \midrule
+  FRT-FR11-1 & $\checkmark$ & Allows retake without prompting \\
+  \midrule
+  FRT-FR11-2 & $\checkmark$ & \\
+  \midrule
+  FRT-FR11-3 & $\checkmark$ & \\
+  \bottomrule
+\end{longtable}
+
+The above tests were all manually performed tests primarily pertaining to the receipt scanning process.
+In terms of the tests themselves, FRT-FR3-1 involved measuring accuracy of the OCR and FRT-FR11-1 to
+FRT-FR11-3 verify different use cases that can occur while trying to input a receipt, such as handling
+camera permissions and manual entry of receipt data.
+
+\subsection{Account Goals and Preferences}
+
+These tests pertain to all the functional requirements related to the user’s
+account goals and preferences.
+
+\begin{longtable}{|l|c|p{0.65\linewidth}|}
+  \caption{Account Goals and Preferences Testing Summary} \label{Account Goals and Preferences Testing Summary} \\
+  \toprule
+  \textbf{Test ID} & \textbf{Result} & \textbf{Details} \\
+  \midrule
+  FRT-FR5-1 & $\checkmark$ & \\
+  \midrule
+  FRT-FR5-2 & X & To be completed for Revision 1\\
+  \bottomrule
+\end{longtable}
+
+FRT-FR5-1 and FRT-FR5-2 are manual tests verifying the User Goals functionality of the app. FRT-FR5-1 tests the ability
+to add new spending goals and FRT-FR5-2 tests the ability to update existing spending goals.
+
+\subsection{System Behaviour and Recommendations}
+
+These tests pertain to all the functional requirements related to how the
+system responds to the data that is provided to it. This includes receiving purchase data, grocery recommendations, and grocery item interfaces.
+
+\begin{longtable}{|l|c|p{0.65\linewidth}|}
+  \caption{System Behaviour and Recommendations Testing Summary} \label{System Behaviour and Recommendations Testing Summary} \\
+  \toprule
+  \textbf{Test ID} & \textbf{Result} & \textbf{Details} \\
+  \midrule
+  FRT-FR7-1 & $\checkmark$ & \\
+  \midrule
+  FRT-FR7-2 & $\checkmark$ & \\
+  \midrule
+  FRT-FR7-3 & $\checkmark$ & \\
+  \midrule
+  FRT-FR8-1 & $\checkmark$ & \\
+  \midrule
+  FRT-FR8-2 & X & 50\% positive response (graded 4 or above out of 5) from survey (Section 11.1.2 Appendix), users would like to see higher accuracy on relevance to user \\
+  \midrule
+  FRT-FR9-1 & $\checkmark$ & \\
+  \midrule
+  FRT-FR9-2 & $\checkmark$ & \\
+  \midrule
+  FRT-FR10-1 & $\checkmark$ & \\
+  \midrule
+  FRT-FR10-2 & $\checkmark$ & \\
+  \bottomrule
+\end{longtable}
+
+The above tests were all manually performed and verifies how the system responds to data input, such
+as with the Classification Engine and Recommendations. FRT-FR7-1 to FRT-FR7-3 test the system's ability
+to take an item from the receipt and match it to an actual grocery product (including full product name, an image, etc.)
+before placing it into the database. FRT-FR8-1 to FRT-FR9-2 test the Recommendation functionality of the
+application in different use cases, such as suggesting cheaper products related to ones the user has purchased
+in the past. Finally, FRT-FR10-1 and FRT-FR10-2 test that the user is able to verify all data that has been
+submitted into the system, such as review receipts before submission and viewing previously submitted receipts.
+
 \section{Nonfunctional Requirements Evaluation}
 
+This section goes over the test results from the Nonfunctional Requirement System Tests as
+specified in the VnV Plan.
+
+\subsection{Look and Feel}
+
+This section provides a brief overview of the Look and Feel test results from the VnV Plan.
+
+\begin{longtable}{|l|c|}
+  \caption{Look and Feel Testing Summary} \label{Look and Feel Testing Summary} \\
+  \toprule
+  \textbf{Test ID} & \textbf{Result} \\
+  \midrule
+  NFRT-LF1 & $\checkmark$ \\
+  \midrule
+  NFRT-LF2 & $\checkmark$ \\
+  \midrule
+  NFRT-LF4 & $\checkmark$ \\
+  \bottomrule
+\end{longtable}
+
+All the above tests were manually performed by external users under the supervision of the team.
+NFRT-LF1 involved the team walking users through the application and giving the users some time
+to go through the pages on their own. Afterwards, users were given surveys where results
+were positive. All ratings regarding the UI and UX were an 8 or higher on average and general feedback was positive
+with some minor complaints regarding blandness in terms of UI design. Altogether, users reacted positively
+to the general UI/UX of the application which is within the team's 80\% overall acceptance rate for various aspects
+of the Look and Feel as documented in the SRS. More detailed information
+regarding the survey can be found in Section 11.2 of this document. NFRT-LF2 involved users being given a list of features
+and a list of icons. They would be tasked with matching the features to the icons which all users were
+able to do without difficulty. Finally, NFRT-LF4 was testing that the user is notified if they lose internet
+connection while using the application.
+
 \subsection{Usability}
-		
+
+This section provides a brief overview of the Usability test results from the VnV Plan.
+
+\begin{longtable}{|l|c|}
+  \caption{Usability Testing Summary} \label{Usability Testing Summary} \\
+  \toprule
+  \textbf{Test ID} & \textbf{Result} \\
+  \midrule
+  NFRT-UH1 & $\checkmark$ \\
+  \midrule
+  NFRT-UH2 & $\checkmark$ \\
+  \midrule
+  NFRT-UH3 & $\checkmark$ \\
+  \midrule
+  NFRT-UH5 & $\checkmark$ \\
+  \midrule
+  NFRT-UH6 & $\checkmark$ \\
+  \bottomrule
+\end{longtable}
+
+All the above tests were by external users with supervision and instruction from members of the team. NFRT-UH1 was a test
+to verify how easy the application is to learn. This was done by having them go through the application on their own
+and they were then asked to navigate to different pages. NFRT-UH2 had users testing whether processes on the
+application were reversible/cancellable in terms of the receipt submission process. NFRT-UH3 and NFRT-UH5 were
+accessibility tests in regards to adjustable text size of the application. Finally, NFRT-UH6 was a survey where users
+were asked several questions related to the application's usability. This survey and its results can be found
+in Section 11.3 of this document. In general though, survey results were positive with some issues that have been noted down and
+the team has plans to work on, for example, better instructions for receipt capture.
+
 \subsection{Performance}
 
-\subsection{etc.}
-	
-\section{Comparison to Existing Implementation}	
+This section covers the test results from Performance tests, as described in the VnV Plan.
 
-This section will not be appropriate for every project.
+\begin{longtable}{|l|c|}
+  \caption{Performance Testing Summary} \label{Performance Testing Summary} \\
+  \toprule
+  \textbf{Test ID} & \textbf{Result} \\
+  \midrule
+  NFRT-PR1 & $\checkmark$ \\
+  \midrule
+  NFRT-PR2 & $\checkmark$ \\
+  \midrule
+  NFRT-PR3 & $\checkmark$ \\
+  \midrule
+  NFRT-PR4 & $\checkmark$ \\
+  \midrule
+  NFRT-PR5 & $\checkmark$ \\
+  \midrule
+  NFRT-PR6 & $\checkmark$ \\
+  \bottomrule
+\end{longtable}
+
+All above tests were performed by the team using various tools like Flutter Performance Profiling and Postman
+as described in the VnV Plan. NFRT-PR1 focused on testing render performance of the application. Overall, render
+performance was consistently below 17 ms and at worst, never exceeded 60 ms. These results fall well below the team's
+upper-limit of render times which was set at 1 second according to the SRS. Below is a snapshot of the Flutter Profiling graph that
+shows render times for each frame, with 52 ms being the highest in this instance:
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{frontend_performance_graph.pdf}
+  \caption{Frontend Render Performance Graph}
+  \label{fig:FrontendPerformanceGraph}
+\end{figure}
+
+Similarly, NFRT-PR2 focused on general performance on the backend, in particular, response times from the
+different endpoints. Various endpoints were accessed about 10 times using Postman and results showed that
+backend performance was within expectation for the project. Most of the responses were within 200 ms with the
+worst being below 600 ms. The team's expectations for backend performance were for responses to be below 2 seconds
+on average according to the SRS, which results from this test show. Below is a graphical representation of the
+trials performed and the endpoints tested:
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{backend_performance_graph.pdf}
+  \caption{Backend Endpoint Performance Graph}
+  \label{fig:BacendPerformanceGraph}
+\end{figure}
+
+NFRT-PR3 tested the robustness of the backend and involved passing faulty data to see if anything would cause the
+system to produce unwanted results. NFRT-PR4 and NFRT-PR5 tested the correctness of the system by verifying how
+often users need to correct the OCR and the accuracy of the spending data being returned. Both of these results
+were above the expected values, with user correction rate being 5\% and 0.1\% relative error on spending data. Finally,
+NFRT-PR6 verifies that the application is within reasonable size, taking up less than 1GB of the user's device
+storage. Actual storage consumption was between 300 to 400 MB depending on application usage.
+
+\subsection{Cultural}
+
+This section describes test results for Cultural tests performed as part of the verification
+and validation process.
+
+\begin{longtable}{|l|c|}
+  \caption{Cultural Testing Summary} \label{Cultural Testing Summary} \\
+  \toprule
+  \textbf{Test ID} & \textbf{Result} \\
+  \midrule
+  NFRT-CUR2 & $\checkmark$ \\
+  \bottomrule
+\end{longtable}
+
+This test was performed internally by team members. NFRT-CUR2 verifies the Classification Engine
+and checks that if a new item is submitted into the database, the item's product information can be
+properly retrieved.
+
+\subsection{Operation and Environment}
+
+This section describes test results for Operation and Environment tests performed as documented
+in the VnV Plan.
+
+\begin{longtable}{|l|c|}
+  \caption{Operation and Environment Testing Summary} \label{Operation and Environment Testing Summary} \\
+  \toprule
+  \textbf{Test ID} & \textbf{Results} \\
+  \midrule
+  NFRT-OER1 & $\checkmark$ \\
+  \midrule
+  NFRT-OER2 & $\checkmark$ \\
+  \midrule
+  NFRT-OER3 & $\checkmark$ \\ 
+  \bottomrule
+\end{longtable}
+
+These tests were performed internally by team members. NFRT-OER1 verifies the compatibility of the application
+on devices using Android 13 or higher. NFRT-OER2 tests that the application interfaces with peripherals properly
+such as the device camera. Finally, NFRT-OER3 verifies the CI/CD process and ensures proper unit testing is performed
+for updates.
+
+\subsection{Security}
+
+This section covers the test results for Security tests performed as documented in the VnV Plan.
+
+\begin{longtable}{|l|c|}
+  \caption{Security Testing Summary} \label{Security Testing Summary} \\
+  \toprule
+  \textbf{Test ID} & \textbf{Results} \\
+  \midrule
+  NFRT-SR2 & $\checkmark$ \\
+  \bottomrule
+\end{longtable}
+
+This test was performed internally by team members. NFRT-SR2 is a test that verifies protections are properly put in
+place such that a user cannot modify the database directly (i.e., without using the endpoint).
+	
+% \section{Comparison to Existing Implementation}	
+
+% This section will not be appropriate for every project.
 
 \section{Unit Testing}
 
+This section will go over the test results from the unit tests made as part of the
+verification and validation process.
+
+\subsection{Receipt Extraction Module}
+
+The section provides a brief overview of the unit tests performed and their results for the
+Receipt Extraction Module.
+
+\begin{longtable}{|l|c|l|c|l|c|}
+  \caption{Receipt Extraction Unit Testing Summary} \label{Receipt Extraction Unit Test Summary} \\
+  \toprule
+  \textbf{Test ID} & \textbf{Result} & \textbf{Test ID} & \textbf{Result} & \textbf{Test ID} & \textbf{Result} \\
+  \midrule
+  FRT-M3-1 & $\checkmark$ & FRT-M3-2 & $\checkmark$ & FRT-M3-3 & $\checkmark$ \\
+  \midrule
+  FRT-M3-4 & $\checkmark$ & FRT-M3-5 & $\checkmark$ & FRT-M3-6 & $\checkmark$ \\
+  \midrule
+  FRT-M3-7 & $\checkmark$ & FRT-M3-8 & $\checkmark$ & FRT-M3-9 & $\checkmark$ \\
+  \midrule
+  FRT-M3-10 & $\checkmark$ & FRT-M3-11 & $\checkmark$ & FRT-M3-12 & $\checkmark$ \\
+  \midrule
+  FRT-M3-13 & $\checkmark$ & FRT-M3-14 & $\checkmark$ & FRT-M3-15 & $\checkmark$ \\
+  \midrule
+  FRT-M3-16 & $\checkmark$ & FRT-M3-17 & $\checkmark$ & FRT-M3-18 & $\checkmark$ \\
+  \midrule
+  FRT-M3-19 & $\checkmark$ & FRT-M3-20 & $\checkmark$ & FRT-M3-21 & $\checkmark$ \\
+  \midrule
+  FRT-M3-22 & $\checkmark$ & FRT-M3-23 & $\checkmark$ & FRT-M3-24 & $\checkmark$ \\
+  \midrule
+  FRT-M3-25 & $\checkmark$ & FRT-M3-26 & $\checkmark$ & ~ & ~ \\
+  \bottomrule
+\end{longtable}
+
+To summarize, tests FRT-M3-1 to FRT-M3-26 are all frontend tests. These tests focus on the helper functions used
+to extract specific information when receiving a chunk of receipt text. FRT-M3-1 to FRT-M3-6 focus on date
+extraction with different formats, FRT-M3-7 to FRT-M3-13 test address extraction, FRT-M3-14 to FRT-M3-16 target grocery item extraction,
+FRT-M3-17 to FRT-M3-19 focus on subtotal cost extraction, and FRT-M3-20 to FRT-M3-22 tests total cost extraction.
+Finally, FRT-M3-23 to FRT-M3-24 and FRT-M3-25 to FRT-M3-26 test updating and JSON conversion for the Item and Grocery Trip
+objects respectively. In general, these
+tests consist of ideal use cases as well as some edge cases that may appear during use.
+For more detailed information regarding the Receipt Extraction Module unit tests, the testing file
+can be found here: \href{https://github.com/allanfang1/grocery_spending_tracker_app/blob/main/test/receipt_extraction_test.dart}{receipt extraction
+unit tests}.
+
+\subsection{User Analytics Module}
+The section provides a brief overview of the unit tests performed and their results for the
+User Analytics Module.
+
+\begin{longtable}{|l|c|l|c|l|c|}
+  \caption{User Analytics Unit Testing Summary} \label{User Analytics Unit Test Summary} \\
+  \toprule
+  \textbf{Test ID} & \textbf{Result} & \textbf{Test ID} & \textbf{Result} & \textbf{Test ID} & \textbf{Result} \\
+  \midrule
+  FRT-M5-1 & $\checkmark$ & FRT-M5-2 & $\checkmark$ & FRT-M5-3 & $\checkmark$ \\
+  \midrule
+  FRT-M5-4 & $\checkmark$ & FRT-M5-5 & $\checkmark$ & FRT-M5-6 & $\checkmark$ \\
+  \midrule
+  FRT-M5-7 & $\checkmark$ & FRT-M5-8 & $\checkmark$  &  &\\
+  \bottomrule
+\end{longtable}
+
+Tests FRT-M5-1 to FRT-M5-5 are the front-end unit tests for the User Analytics Module. These tests focus on user budgeting goals and user purchase history. Details on these tests can be found in the following files: \href{https://github.com/allanfang1/grocery_spending_tracker_app/blob/main/test/goals_provider_test.dart}{Front-end User Analytics Module Spending Goals Tests}, \href{https://github.com/allanfang1/grocery_spending_tracker_app/blob/main/test/history_provider_test.dart}{Front-end User Analytics Module Spending History Tests}.
+
+Tests FRT-M5-6 to FRT-M5-8 are all back-end tests and can be found in the following file: \href{https://github.com/grocery-spending-tracker/grocery-spending-tracker-backend/blob/master/tests/controllers/usersController.analytics.test.js}{Back-end User Analytics Module Controller Tests}.
+These tests primarily focus on the endpoints responsible for CRUD operations related to user budget goals. Each of these tests have several sub-tests (a, b, c, etc.) that test the function's primary and edge-cases.
+
+\subsection{Users Module}
+The section provides a brief overview of the unit tests performed and their results for the
+Users Module.
+\begin{longtable}{|l|c|l|c|l|c|}
+  \caption{Authentication Unit Testing Summary} \label{Authentication Unit Test Summary} \\
+  \toprule
+  \textbf{Test ID} & \textbf{Result} & \textbf{Test ID} & \textbf{Result} & \textbf{Test ID} & \textbf{Result} \\
+  \midrule
+  FRT-M6-1 & $\checkmark$ & FRT-M6-2 & $\checkmark$ & FRT-M6-3 & $\checkmark$ \\
+  \midrule
+  FRT-M6-4 & $\checkmark$ & FRT-M6-5 & $\checkmark$ & FRT-M6-6 & $\checkmark$ \\
+  \bottomrule
+\end{longtable}
+
+Tests FRT-M6-1 to FRT-M6-6 are all back-end tests and can be found in the following file: \href{https://github.com/grocery-spending-tracker/grocery-spending-tracker-backend/blob/master/tests/controllers/usersController.users.test.js}{Back-end User Module Controller Tests}.
+These tests focus on the endpoints related to CRUD operations for users on the application. Each test has several sub-tests (a, b, c, etc.) that test the function's primary and edge-cases.
+
+\subsection{Authentication Module}
+
+The section provides a brief overview of the unit tests performed and their results for the
+Authentication Module.
+
+\begin{longtable}{|l|c|l|c|l|c|}
+  \caption{Authentication Unit Testing Summary} \label{Authentication Unit Test Summary} \\
+  \toprule
+  \textbf{Test ID} & \textbf{Result} & \textbf{Test ID} & \textbf{Result} & \textbf{Test ID} & \textbf{Result} \\
+  \midrule
+  FRT-M7-1 & $\checkmark$ & FRT-M7-2 & $\checkmark$ & FRT-M7-3 & $\checkmark$ \\
+  \midrule
+  FRT-M7-4 & $\checkmark$ & FRT-M7-5 & $\checkmark$ & FRT-M7-6 & $\checkmark$ \\
+  \midrule
+  FRT-M7-7 & $\checkmark$ & FRT-M7-8 & $\checkmark$  &  &\\
+  \bottomrule
+\end{longtable}
+
+Tests FRT-M7-1 to FRT-M7-5 are the front-end unit tests for the Authentication Module. These tests focus on the user flows for authenticating user identity on the mobile app. Details on these tests can be found in the following file: \href{https://github.com/allanfang1/grocery_spending_tracker_app/blob/main/test/profile_provider_test.dart}{Front-end Authentication Module Tests}.
+
+Tests FRT-M7-6 to FRT-M7-8 are all back-end tests and can be found in the following files: \href{https://github.com/grocery-spending-tracker/grocery-spending-tracker-backend/blob/master/tests/controllers/authController.test.js}{Back-end Authentication Module Controller Tests} and \href{https://github.com/grocery-spending-tracker/grocery-spending-tracker-backend/blob/master/tests/util/authentication.test.js}{Back-end Authentication Module Utility Tests}.
+FRT-M7-6 tests the login endpoint and FRT-M7-7 to FRT-M7-8 test the login utilities used such as returning a signed JWT token upon login.
+Each test has several sub-tests (a, b, c, etc.) that test the function's primary and edge-cases.
+
+\subsection{Recommendation Engine}
+
+The section provides a brief overview of the unit tests performed and their results for the
+Recommendation Module.
+
+\begin{longtable}{|l|c|l|c|l|c|}
+  \caption{Recommendation Unit Testing Summary} \label{Recommendation Unit Test Summary} \\
+  \toprule
+  \textbf{Test ID} & \textbf{Result} & \textbf{Test ID} & \textbf{Result} & \textbf{Test ID} & \textbf{Result} \\
+  \midrule
+  FRT-M8-1 & $\checkmark$ & FRT-M8-2 & $\checkmark$ &  &  \\
+  \bottomrule
+\end{longtable}
+
+Tests FRT-M8-1 and FRT-M8-2 are both back-end tests and can be found in the following file: \href{https://github.com/grocery-spending-tracker/grocery-spending-tracker-backend/blob/314b/unit-test/tests/controllers/recommendationController.test.js}{Back-end Recommendation Module Controller Tests}.
+FRT-M8-1 focuses on the endpoint for returning recommendations based on a user's frequency of purchase and FRT-M8-2
+focuses on the endpoint for returning recommendations based on low product prices. Each test has several sub-tests (a, b, c, etc) associated that test the function's primary and edge-cases.
+
+\subsection{Classification Engine}
+
+The section provides a brief overview of the unit tests performed and their results for the
+Classification Module.
+
+\begin{longtable}{|l|c|l|c|l|c|}
+  \caption{Classification Unit Testing Summary} \label{Classification Unit Test Summary} \\
+  \toprule
+  \textbf{Test ID} & \textbf{Result} & \textbf{Test ID} & \textbf{Result} & \textbf{Test ID} & \textbf{Result} \\
+  \midrule
+  FRT-M9-1 & $\checkmark$ & FRT-M9-2 & $\checkmark$ & FRT-M9-3 & $\checkmark$ \\
+  \midrule
+  FRT-M9-4 & $\checkmark$ & FRT-M9-5 & $\checkmark$ & FRT-M9-6 & $\checkmark$ \\
+  \midrule
+  FRT-M9-7 & $\checkmark$ & FRT-M9-8 & $\checkmark$  & FRT-M9-9 & $\checkmark$ \\
+  \midrule
+  FRT-M9-10 & $\checkmark$ & FRT-M9-11 & $\checkmark$  &  &  \\
+  \bottomrule
+\end{longtable}
+
+Tests FRT-M9-1 to FRT-M9-11 are all back-end tests and can be found in the following file:
+\href{https://github.com/grocery-spending-tracker/grocery-spending-tracker-classification/tree/main/test/scraper}{Back-end Classification Module Web Scraping Tests},
+\href{https://github.com/grocery-spending-tracker/grocery-spending-tracker-classification/tree/main/test/classification}{Back-end Classification Module Item Matching Tests},
+\href{https://github.com/grocery-spending-tracker/grocery-spending-tracker-classification/blob/main/test/main.test.js}{Back-end Classification Module Main Test}. 
+FRT-M9-1 to FRT-M9-6 tests the ability to fetch/scrape for different details regarding existing and new grocery items such the product name and price.
+FRT-M9-7 to FRT-M9-9 verifies the ability to match and classify an item from the receipt to existing/new web scraped items.
+Finally, FRT-M9-10 to FRT-M9-11 test the system's ability to cache items to make the classification process faster.
+Each test has several sub-tests (a, b, c, etc) that tests the function's primary and edge-cases.
+
 \section{Changes Due to Testing}
 
-\wss{This section should highlight how feedback from the users and from 
-the supervisor (when one exists) shaped the final product.  In particular 
-the feedback from the Rev 0 demo to the supervisor (or to potential users) 
-should be highlighted.}
+% \wss{This section should highlight how feedback from the users and from 
+% the supervisor (when one exists) shaped the final product.  In particular 
+% the feedback from the Rev 0 demo to the supervisor (or to potential users) 
+% should be highlighted.}
+
+Prior to formal usability testing, user impressions of the Revision 0 version of the app
+generally criticized the usability of the application. Specifically, better communication with
+the user in terms of loading. The previous version of the application lacked animated loading
+indicators so for forms that had a server request attached to them, they believed the application
+to be frozen after submission. This resulted in cases where users would try submitting again producing
+a duplicate server request. This has since been resolved by adding various animated loading indicators
+and overlays to prevent double clicking a submission and better communicate to users when server requests
+were being processed. Some intuitiveness features were also added as a result of user feedback such as
+tap focus on the receipt capture page. Additionally, some feedback received from the Revision 0 demo
+was addressed in the current version of the application. This included more detailed information
+on the Goals page and matching address to a list of known addresses to improve usability/reduce user
+input.\\
+
+During formal usability testing of the current application version, much of the feedback had to do with robustness
+of the application as opposed to functionality. In particular, the request for submitting a trip
+in some cases ended up taking close to 10 seconds due to the current Classification Engine implementation. As
+a result, users believed that there was something wrong with the application or that there was an error. In response to this,
+a backend fix is being worked on to reduce the response time which will be done prior to Revision 1.
+Additionally, some users had some issues with the receipt capture, not knowing that they had to get the
+receipt to occupy as much of the camera frame as possible for the best results, so an information screen
+on this page is being worked on to better help users with receipt capture which will also be finished
+prior to Revision 1. Outside of the UI/UX, users found that recommendations could be improved
+in terms of relating more to the user's purchase history which the team will try to do before Revision 1
+as well. Finally, during Functional Requirement Testing, it was found that the application was missing the
+ability to update user budget goals which is also now scheduled to be done prior to Revision 1.
 
 \section{Automated Testing}
-		
+
+On the frontend, all automated tests are carried out using Flutter's built-in testing package.
+All tests are located in the "test" folder which is organized by components being tested (found 
+\href{https://github.com/allanfang1/grocery_spending_tracker_app/tree/main}{here}). For example,
+the \textit{profile\_provider\_test} file executes tests related to the provider for profile functionality.
+These tests are executed twice during the development workflow: the first is locally while working on
+individual feature branches and the second is on merges/pushes to the "dev" branch of the frontend repository.
+The first execution is done manually using \textit{flutter test} in the command line and the second is done
+automatically using \textit{Github Actions}.\\
+
+On the backend, automated tests are done using Mocha, Chai, and Sinon. Tests are located in the "tests" folder which
+is then organized by component and the module being tested 
+(found \href{https://github.com/grocery-spending-tracker/grocery-spending-tracker-backend/tree/master/tests}{here}).
+As an example, the \textit{userController.analytics.test} file contains unit tests related to the Analytics Module
+functionality in the user controller.
+These tests are automatically executed when code is pushed to the "master" branch of the backend repository as part
+of the deployment process. This process is handled by \textit{Github Actions}.
+
+\newpage
+\begin{landscape}
 \section{Trace to Requirements}
+  \begin{longtable}{|l|ccccccccc|}
+    \caption{Traceability Between Functional System Test Cases and Functional Requirements} \\
+    \hline
+    \textbf{Functional Requirement ID}   & \multicolumn{9}{c|}{\textbf{Test ID}} \\
+    \hline
+    ~ & \textbf{FR1} & \textbf{FR2} & \textbf{FR3} & \textbf{FR5} & \textbf{FR7} & \textbf{FR8} & \textbf{FR9} & \textbf{FR10} & \textbf{FR11} \\
+    \hline
+    FRT-FR1-1 & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR1-2 & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR2-1 & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR2-2 & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR2-4 & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR2-5 & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR2-6 & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR2-7 & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR3-1 & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR11-1 & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X \\
+    FRT-FR11-2 & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X \\
+    FRT FR11-3 & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X \\
+    FRT-FR5-1 & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR5-2 & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR7-1 & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ \\
+    FRT-FR7-2 & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ \\
+    FRT-FR7-3 & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ \\
+    FRT-FR8-1 & ~ & ~ & ~ & ~ & ~ & X & X & ~ & ~ \\
+    FRT-FR8-2 & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ \\
+    FRT-FR9-1 & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ \\
+    FRT-FR9-2 & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ \\
+    FRT-FR10-1 & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ \\
+    FRT-FR10-2 & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ \\
+    \hline
+  \end{longtable}
+
+  \begin{longtable}{|l|ccccc|}
+		\caption{Traceability Between Nonfunctional System Test Cases and Look and Feel Requirements} \\
+		\hline
+    \textbf{NFR ID}   & \multicolumn{5}{c|}{\textbf{Test ID}} \\
+    \hline
+    ~ & \textbf{AR1} & \textbf{AR2} & \textbf{SR1} & \textbf{SR2} & \textbf{SR3} \\
+    \hline
+    NFRT-LF1 & X & ~ & X & X & X \\
+    NFRT-LF2 & ~ & X & ~ & ~ & ~ \\
+    NFRT-LF4 & ~ & ~ & ~ & ~ & X \\
+    \hline
+  \end{longtable}
+
+  \newpage
+  \begin{longtable}{|l|ccccccccc|}
+    \caption{Traceability Between Nonfunctional System Test Cases and Usability and Humanity Requirements} \\
+    \hline
+    \textbf{NFR ID}   & \multicolumn{9}{c|}{\textbf{Test ID}} \\
+    \hline
+    ~ & \textbf{EUR1} & \textbf{EUR2} & \textbf{EUR3} & \textbf{PIR1} & \textbf{LR1} & \textbf{LR3} & \textbf{UPR1} & \textbf{UPR2} & \textbf{ACR1} \\
+    \hline
+    NFRT-UH1 & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ \\
+    NFRT-UH2 & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    NFRT-UH3 & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X \\
+    NFRT-UH5 & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    NFRT-UH6 & ~ & ~ & X & X & X & ~ & X & X & X \\
+    \hline
+  \end{longtable}
+
+  \begin{longtable}{|l|cccccc|}
+		\caption{Traceability Between Nonfunctional System Test Cases and Performance Requirements} \\
+		\hline
+    \textbf{NFR ID}   & \multicolumn{6}{c|}{\textbf{Test ID}} \\
+    \hline
+    ~ & \textbf{SLR1} & \textbf{SLR2} & \textbf{PAR1} & \textbf{PAR2} & \textbf{RFR1} & \textbf{CR1} \\
+    \hline
+    NFRT-PR1 & ~ & X & ~ & ~ & ~ & ~ \\
+    NFRT-PR2 & X & ~ & ~ & ~ & ~ & ~ \\
+    NFRT-PR3 & ~ & ~ & ~ & ~ & X & ~ \\
+    NFRT-PR4 & ~ & ~ & X & ~ & ~ & ~ \\
+    NFRT-PR5 & ~ & ~ & ~ & X & ~ & ~ \\
+    NFRT-PR6 & ~ & ~ & ~ & ~ & ~ & X \\
+    \hline
+  \end{longtable}
+
+  \begin{longtable}{|l|c|}
+		\caption{Traceability Between Nonfunctional System Test Cases and Cultural Requirements} \\
+		\hline
+    \textbf{NFR ID}   & \multicolumn{1}{c|}{\textbf{Test ID}} \\
+    \hline
+    ~ & \textbf{CUR2} \\
+    \hline
+    NFRT-CUR2 & X \\
+    \hline
+  \end{longtable}
+
+  \begin{longtable}{|l|cccccccc|}
+		\caption{Traceability Between Nonfunctional System Test Cases and Operational and Environmental Requirements} \\
+		\hline
+    \textbf{NFR ID}   & \multicolumn{8}{c|}{\textbf{Test ID}} \\
+    \hline
+    ~ & \textbf{EPER1} & \textbf{EPER3} & \textbf{WER1} & \textbf{WER2} & \textbf{IASR2} & \textbf{RER1} & \textbf{RER2} & \textbf{RER3} \\
+    \hline
+    NFRT-OER1 & X & X & ~ & ~ & X & ~ & ~ & ~ \\
+    NFRT-OER2 & ~ & ~ & X & X & ~ & ~ & ~ & ~ \\
+    NFRT-OER3 & ~ & ~ & ~ & ~ & ~ & X & X & X \\
+    \hline
+  \end{longtable}
+
+  \begin{longtable}{|l|c|}
+		\caption{Traceability Between Nonfunctional System Test Cases and Security Requirements} \\
+		\hline
+    \textbf{NFR ID}   & \multicolumn{1}{c|}{\textbf{Test ID}} \\
+    \hline
+    ~ & \textbf{INR1} \\
+    \hline
+    NFRT-SR2 & X \\
+    \hline
+  \end{longtable}
+\end{landscape}
 		
-\section{Trace to Modules}		
+\section{Trace to Modules}
+
+\begin{longtable}{|l|cccccc|}
+	\caption{Traceability Between Test Cases and Modules}                                                                                             \\
+	\hline
+	\textbf{Test IDs}  & \multicolumn{6}{c|}{\textbf{Module IDs}}                                                                                     \\
+	\hline
+  ~ & \textbf{M3} & \textbf{M5} & \textbf{M6} & \textbf{M7} & \textbf{M8} & \textbf{M9} \\
+	\hline
+  \textbf{FRT-M3-1} & X & ~ & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M3-2} & X & ~ & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M3-3} & X & ~ & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M3-4} & X & ~ & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M3-5} & X & ~ & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M3-6} & X & ~ & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M3-7} & X & ~ & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M3-8} & X & ~ & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M3-9} & X & ~ & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M3-10} & X & ~ & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M3-11} & X & ~ & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M3-12} & X & ~ & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M3-13} & X & ~ & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M3-14} & X & ~ & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M3-15} & X & ~ & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M3-16} & X & ~ & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M3-17} & X & ~ & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M3-18} & X & ~ & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M3-19} & X & ~ & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M3-20} & X & ~ & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M3-21} & X & ~ & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M3-22} & X & ~ & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M3-23} & X & ~ & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M3-24} & X & ~ & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M3-25} & X & ~ & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M3-26} & X & ~ & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M5-1} & ~ & X & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M5-2} & ~ & X & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M5-3} & ~ & X & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M5-4} & ~ & X & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M5-5} & ~ & X & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M5-6} & ~ & X & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M5-7} & ~ & X & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M5-8} & ~ & X & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M6-1} & ~ & ~ & X & ~ & ~ & ~ \\
+  \textbf{FRT-M6-2} & ~ & ~ & X & ~ & ~ & ~ \\
+  \textbf{FRT-M6-3} & ~ & ~ & X & ~ & ~ & ~ \\
+  \textbf{FRT-M6-4} & ~ & ~ & X & ~ & ~ & ~ \\
+  \textbf{FRT-M6-5} & ~ & ~ & X & ~ & ~ & ~ \\
+  \textbf{FRT-M6-6} & ~ & ~ & X & ~ & ~ & ~ \\
+  \textbf{FRT-M7-1} & ~ & ~ & ~ & X & ~ & ~ \\
+  \textbf{FRT-M7-2} & ~ & ~ & ~ & X & ~ & ~ \\
+  \textbf{FRT-M7-3} & ~ & ~ & ~ & X & ~ & ~ \\
+  \textbf{FRT-M7-4} & ~ & ~ & ~ & X & ~ & ~ \\
+  \textbf{FRT-M7-5} & ~ & ~ & ~ & X & ~ & ~ \\
+  \textbf{FRT-M7-6} & ~ & ~ & ~ & X & ~ & ~ \\
+  \textbf{FRT-M7-7} & ~ & ~ & ~ & X & ~ & ~ \\
+  \textbf{FRT-M7-8} & ~ & ~ & ~ & X & ~ & ~ \\
+  \textbf{FRT-M8-1} & ~ & ~ & ~ & ~ & X & ~ \\
+  \textbf{FRT-M8-2} & ~ & ~ & ~ & ~ & X & ~ \\
+  \textbf{FRT-M9-1} & ~ & ~ & ~ & ~ & ~ & X \\
+  \textbf{FRT-M9-2} & ~ & ~ & ~ & ~ & ~ & X \\
+  \textbf{FRT-M9-3} & ~ & ~ & ~ & ~ & ~ & X \\
+  \textbf{FRT-M9-4} & ~ & ~ & ~ & ~ & ~ & X \\
+  \textbf{FRT-M9-5} & ~ & ~ & ~ & ~ & ~ & X \\
+  \textbf{FRT-M9-6} & ~ & ~ & ~ & ~ & ~ & X \\
+  \textbf{FRT-M9-7} & ~ & ~ & ~ & ~ & ~ & X \\
+  \textbf{FRT-M9-8} & ~ & ~ & ~ & ~ & ~ & X \\
+  \textbf{FRT-M9-9} & ~ & ~ & ~ & ~ & ~ & X \\
+  \textbf{FRT-M9-10} & ~ & ~ & ~ & ~ & ~ & X \\
+  \textbf{FRT-M9-11} & ~ & ~ & ~ & ~ & ~ & X \\
+  \hline
+\end{longtable}
 
 \section{Code Coverage Metrics}
 
+This section goes over the code coverage of the unit tests created for the Grocery Spending Tracker.
+For the .dart files, code coverage was calculated using Flutter's built-in testing package. For the .js files,
+code coverage was calculated using a Node.js package called c8. A summary of the code coverage achieved for
+each tested file can be found in the table below. All files not listed below were considered either out of scope for
+unit testing or is being tested as part of the System Tests.
+
+\begin{table}[H]
+  \centering
+  \caption{Code Coverage Summary} \label{Code Coverage Summary}
+  \begin{tabular}{|l|l|}
+    \hline
+    \textbf{File Name} & \textbf{Line Coverage} \\
+    \hline
+    extract\_data.dart & 75.9\% \\
+    \hline
+    capture\_item.dart & 100\% \\
+    \hline
+    grocery\_trip.dart & 100\% \\
+    \hline
+    goals\_repository.dart & 86.4\% \\
+    \hline
+    profile\_repository.dart & 87.9\% \\
+    \hline
+    history\_repository.dart & 73.7\% \\
+    \hline
+    db.js & 100\% \\
+    \hline
+    authController.js & 100\% \\
+    \hline
+    recommendationController.js & 88.82\% \\
+    \hline
+    usersController.js & 92.2\% \\
+    \hline
+    authentication.js & 96.49\% \\
+    \hline
+    main.js & 81.39\% \\
+    \hline
+    classifyItem.js & 100\% \\
+    \hline
+    fuzzyMatching.js & 90.97\% \\
+    \hline
+    src/classification/util.js & 63.82\% \\
+    \hline
+    brand.js & 89.47\% \\
+    \hline
+    fetchProductDetails.js & 94.87\% \\
+    \hline
+    image.js & 100\% \\
+    \hline
+    name.js & 89.47\% \\
+    \hline
+    price.js & 89.47\% \\
+    \hline
+    productNumber.js & 62.96\% \\
+    \hline
+    src/scraper/util.js & 100\% \\
+    \hline 
+  \end{tabular}
+\end{table}
+
 \bibliographystyle{plainnat}
 \bibliography{../../refs/References}
+
+\newpage{}
+\section{Appendix --- Survey Results}
+
+\subsection{Functional Requirement Survey Questions}
+\subsubsection{Survey questions for \textbf{FRT-FR1-2}.}
+
+\begin{enumerate}
+\item How easy was it to log into the application?
+Responses: \{(not easy) 1, 2, 3, 4, 5 (very easy)\} \\
+  \begin{itemize}
+    \item On average, a 5. The login process was as expected for users.
+  \end{itemize}
+\end{enumerate}
+
+\subsubsection{Survey questions for \textbf{FRT-FR8-2}.}
+
+\begin{enumerate}
+  \item How useful would you say that the application recommendations are to you?
+  Responses: \{(not useful) 1, 2, 3, 4, 5 (very useful)\} \\
+    \begin{itemize}
+      \item On average, a 3.5. Some recommendations were not 100\% accurate for the user but about at the
+      expected value for fit criterion.
+    \end{itemize}
+  \item How likely are you to act on the recommendations provided to you by the application?
+  Responses: \{(not likely) 1, 2, 3, 4, 5 (very likely)\}
+    \begin{itemize}
+      \item On average, a 3. Users would need to see some more accuracy improvements before acting on a recommendation.
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Look and Feel Survey Questions}
+
+\begin{enumerate}
+  \item Did you feel the colour scheme was cohesive and consistent throughout the application?
+    \begin{itemize}
+      \item General consensus was that colour scheme consistency and cohesiveness was not an issue.
+      \item General theme had purples and whites, which was consistent overall.
+    \end{itemize}
+  \item On a scale of 1-10, how would you rate the general layouts of each of the pages?
+    \begin{itemize}
+      \item On average, an 8. Users found the layouts easy to understand and navigate.
+      \item Pages were not found to be too overwhelming in terms of features.
+      \item Layouts/components on the page could be more creative.
+      \item Similar to existing applications such as Instagram.
+    \end{itemize}
+  \item Did the general layouts of the application pages appear consistent throughout navigation?
+    \begin{itemize}
+      \item The consensus was that layouts were pretty consistent across the different pages.
+      \item Layouts were similar enough where users were generally able to figure out the different
+      features on the pages without issue.
+    \end{itemize}
+  \item On a scale of 1-10, how would you rate how features were organized?
+    \begin{itemize}
+      \item On average, a 9. All features were where users expected them.
+      \item Features generally fit the main idea of the pages that they were present on.
+    \end{itemize}
+  \item Were there any places where you expected loading indicators but there weren't any or vice versa?
+    \begin{itemize}
+      \item Loading indicators/communication was well received for this version of the application.
+      \item Many of the users who had seen the previous version of the application with less loading screens
+      said the application was much improved in that aspect.
+      \item Users felt that the application properly communicated when processes were occurring throughout
+      the application.
+      \item With general usage, users found that application never felt "frozen" or "stuck".
+    \end{itemize}
+  \item Do you have any feedback on the overall look and feel of the application?
+    \begin{itemize}
+      \item In terms of how functional the appearance of the application was, there were no complaints.
+      \item Some users voiced that in terms of visual appeal, the application was lacking (i.e. boring/lacking
+      in creativity compared to other apps).
+      \item Application is very minimal so some minor decorations could help make app more engaging, but generally
+      a minor complaint.
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Usability Survey Questions}
+
+\begin{enumerate}
+  \item What parts of the application were easiest for you to understand/learn?
+    \begin{itemize}
+      \item Receipt confirmation form was easy for users to fill out for the first time
+      \item History page was also very easy for users to use and understand
+      \item Goals page took users slightly longer than the other pages but were able to figure features
+      out without intervention and in reasonable time
+    \end{itemize}
+  \item What parts of the application do you feel additional explanation or clarity could be provided?
+    \begin{itemize}
+      \item The receipt capture functionality could use some more clarification as it is not intuitively
+      clear that filling the receipt in the camera frame produces the best results
+    \end{itemize}
+  \item Was the language and wording used in the application understandable and inoffensive? If not, please
+  provide where and how the wording could be improved?
+    \begin{itemize}
+      \item Language was generally understood and nothing was offensive to the users.
+    \end{itemize}
+  \item Were there any issues you encountered while using the application?
+    \begin{itemize}
+      \item For some users, the submission of their grocery trip took a very long time, close to 10 seconds.
+      This caused them to believe something was wrong with the application due to the length of time it was processing
+      for.
+    \end{itemize}
+  \item Did you have any issues with navigating the application? If you made a mistake, were you able to navigate
+  back to where you started?
+    \begin{itemize}
+      \item No issues with navigation. Navigation bar was very responsive and navigating back to previous
+      pages was always available.
+      \item Users liked how navigation was always available making it easy to find their way back to where
+      they started.
+    \end{itemize}
+  \item On a scale of 1-10, how would you rate the usability and intuitiveness of the application?
+    \begin{itemize}
+      \item On average, the score was an 8. Besides the hiccups with receipt submission and better communication
+      for how the receipt should be captured, users found the app to be easy to navigate.
+      \item Navigation and layouts were similar to other apps they had used so learning curve was not
+      too difficult.
+      \item Very little intervention from members of the team was needed to help users.
+    \end{itemize}
+\end{enumerate}
 
 \newpage{}
 \section*{Appendix --- Reflection}
@@ -115,4 +991,24 @@ graduate attribute of Reflection.  Please answer the following question:
   teams will have had to deviate from their original VnV Plan.)
 \end{enumerate}
 
+During the testing process, we found that the scope of our actual
+implementation had changed somewhat compared to what we had planned the application to be
+initially. Given the VnV Plan was written prior to any implementation, we did not have
+the clearest vision of what the project was going to be. One big example of this was
+with the Recommendation Engine and User Goals. When writing the VnV Plan, we had imagined them
+to be more coupled such that we could have recommendations that would specifically help users
+stay within goals and goals would be available for specific products. The actual implementation
+we ended up creating ended up being more general, where User Goals are more related to overall
+spending and recommendations currently exclusively consider a user's purchase history.
+Similar scope/requirement changes appeared in other parts of the development process resulting in
+various changes overall being made to the VnV Plan such that it aligned better with our implementation.\\
+
+In order to better anticipate this kind of change in future projects, we believe that better planning
+would be needed. The reason these changes had to be made was because we had not fully realized our ideas
+for the project. Additionally, as development occurred, we realized certain aspects of the application
+were less feasible than we thought given our development period and knowledge of the technology. If more research
+and planning had been done prior to the creation of the VnV Plan, it is possible that the tests would have been closer
+to our current product. In conclusion, changes to the VnV Plan had to be made due to scope changes throughout
+development. These changes could be better anticipated if more research and planning had been done at
+an earlier point.
 \end{document}
