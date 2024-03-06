@@ -48,6 +48,18 @@ jobs:
             root_file: HazardAnalysis.tex
             working_directory: ./docs/HazardAnalysis
 
+      - name: Compile MG
+        uses: xu-cheng/latex-action@3.1.0
+        with:
+            root_file: MG.tex
+            working_directory: ./docs/Design/SoftArchitecture
+
+      - name: Compile MIS
+        uses: xu-cheng/latex-action@3.1.0
+        with:
+            root_file: MIS.tex
+            working_directory: ./docs/Design/SoftDetailedDes
+
       - name: Compile VnV Plan
         uses: xu-cheng/latex-action@3.1.0
         with:

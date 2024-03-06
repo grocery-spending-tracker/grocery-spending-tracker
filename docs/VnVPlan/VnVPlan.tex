@@ -38,7 +38,7 @@
 03/11/23 & 1.0 & Created initial version of the VnV Plan\\
 04/03/24 & 1.5 & Modified surveys to better algin with current version of the application\\
 05/03/24 & 2.0 & Removed/updated the following sections with outdated features to reflect the current state of the app:
-4.1.3: Location-based Recommendations, FRT-FR6-1, FRT-FR6-1, FRT-FR9-2, NFRT-CUR1, NFRT-CUR3, FRT-FR11-1, FRT-FR8-1, NFRT-LF3, NFRT-UH2, NFRT-UH4, NFRT-OER1, NFRT-SR1, NFRT-SR3, NFRT-SR4, NFRT-SR5, NFRT-SR6\\
+4.1.3: Location-based Recommendations, FRT-FR2-3, FRT-FR6-1, FRT-FR6-1, FRT-FR9-2, NFRT-CUR1, NFRT-CUR3, FRT-FR11-1, FRT-FR8-1, NFRT-LF3, NFRT-UH2, NFRT-UH4, NFRT-OER1, NFRT-SR1, NFRT-SR3, NFRT-SR4, NFRT-SR5, NFRT-SR6\\
 \bottomrule
 \end{tabularx}
 
@@ -270,7 +270,7 @@ Control: Manual
 					
 Initial State: User with no existing account on file.
 					
-Input: User signs up for account with valid name, email, phone-number, and password.
+Input: User signs up for account with valid name, email, and password.
 					
 Output: User is directed to landing page. Account is successfully created and verification email is sent.
 
@@ -285,7 +285,7 @@ Control: Manual
 					
 Initial State: User with no existing account on file.
 					
-Input: User signs up for account with valid name, phone-number, and password however
+Input: User signs up for account with a valid password however
 an invalid email is used (i.e. not following the format of a prefix prior to the @ symbol and a domain afterwards).
 					
 Output: Error message should be displayed on the screen detailing an invalid email within 3 seconds.
@@ -295,21 +295,21 @@ not be allowed.
 
 How test will be performed: Tester will open the application and attempt to create a new account with the pertaining credentials and details. 
 
-\item{\textbf{FRT-FR2-3}}
+\item{\sout{\textbf{FRT-FR2-3}}}
 
-Control: Manual
+\sout{Control: Manual}
           
-Initial State: User with no existing account on file.
+\sout{Initial State: User with no existing account on file.}
           
-Input: User signs up for account with valid name, email, and password however an
-invalid phone number is used, for instance, a number less than 10 digits.
+\sout{Input: User signs up for account with valid name, email, and password however an
+invalid phone number is used, for instance, a number less than 10 digits.}
           
-Output: Error message should be displayed on the screen detailing an invalid phone number within 3 seconds.
+\sout{Output: Error message should be displayed on the screen detailing an invalid phone number within 3 seconds.}
 
-Test Case Derivation: If incorrect/invalid data is used during sign up, the user should be notified and sign up should
-not be allowed.
+\sout{Test Case Derivation: If incorrect/invalid data is used during sign up, the user should be notified and sign up should
+not be allowed.}
 
-How test will be performed: Tester will open the application and attempt to create a new account with the pertaining credentials and details. 
+\sout{How test will be performed: Tester will open the application and attempt to create a new account with the pertaining credentials and details. }
 
 \item{\textbf{FRT-FR2-4}}
 
@@ -631,9 +631,9 @@ Control: Manual
           
 Initial State: User has set budget information.
 
-Input: User submits a receipt containing commonly purchased items plus a new item that puts them over budget.
+Input: User submits a receipt that puts them over budget.
           
-Output: The system should indicate the newly purchased item has caused the user to go over budget.
+Output: The system should indicate that the new purchases has caused the user to go over budget.
 
 Test Case Derivation: System must be aware of the users purchasing activity and budget. If the user ever goes over budget when entering
 a receipt, the system should identify why they went over budget.
