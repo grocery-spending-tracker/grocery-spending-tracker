@@ -65,6 +65,12 @@ jobs:
         with:
             root_file: VnVPlan.tex
             working_directory: ./docs/VnVPlan
+      
+      - name: Compile VnV Report
+        uses: xu-cheng/latex-action@3.1.0
+        with:
+            root_file: VnVReport.tex
+            working_directory: ./docs/VnVReport
             
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v5
