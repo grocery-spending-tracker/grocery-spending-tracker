@@ -59,6 +59,8 @@
   GB & gigabyte\\
   MB & megabyte\\
   OCR & Optical Character Recognition\\
+  CRUD & Create, Read, Update, Delete\\
+  JWT & JSON Web Token\\
   \bottomrule
 \end{tabular}\\
 
@@ -188,7 +190,7 @@ system responds to the data that is provided to it. This includes receiving purc
   \midrule
   FRT-FR8-1 & $\checkmark$ & \\
   \midrule
-  FRT-FR8-2 & x & 50\% positive response (graded 4 or above out of 5) from survey (Section 11.1.2 Appendix), users would like to see higher accuracy on relevance to user \\
+  FRT-FR8-2 & X & 50\% positive response (graded 4 or above out of 5) from survey (Section 11.1.2 Appendix), users would like to see higher accuracy on relevance to user \\
   \midrule
   FRT-FR9-1 & $\checkmark$ & \\
   \midrule
@@ -455,7 +457,8 @@ User Analytics Module.
 
 Tests FRT-M5-1 to FRT-M5-5 are the front-end unit tests for the User Analytics Module. These tests focus on user budgeting goals and user purchase history. Details on these tests can be found in the following files: \href{https://github.com/allanfang1/grocery_spending_tracker_app/blob/main/test/goals_provider_test.dart}{Front-end User Analytics Module Spending Goals Tests}, \href{https://github.com/allanfang1/grocery_spending_tracker_app/blob/main/test/history_provider_test.dart}{Front-end User Analytics Module Spending History Tests}.
 
-Tests FRT-M5-6 to FRT-M5-8 are all back-end tests and can be found in the following file: \href{https://github.com/grocery-spending-tracker/grocery-spending-tracker-backend/blob/master/tests/controllers/usersController.analytics.test.js}{Back-end User Analytics Module Controller Tests}. Each test has several sub-tests (a, b, c, etc.) that test the function's primary and edge-cases.
+Tests FRT-M5-6 to FRT-M5-8 are all back-end tests and can be found in the following file: \href{https://github.com/grocery-spending-tracker/grocery-spending-tracker-backend/blob/master/tests/controllers/usersController.analytics.test.js}{Back-end User Analytics Module Controller Tests}.
+These tests primarily focus on the endpoints responsible for CRUD operations related to user budget goals. Each of these tests have several sub-tests (a, b, c, etc.) that test the function's primary and edge-cases.
 
 \subsection{Users Module}
 The section provides a brief overview of the unit tests performed and their results for the
@@ -471,8 +474,8 @@ Users Module.
   \bottomrule
 \end{longtable}
 
-Tests FRT-M6-1 to FRT-M6-6 are all back-end tests and can be found in the following file: \href{https://github.com/grocery-spending-tracker/grocery-spending-tracker-backend/blob/master/tests/controllers/usersController.users.test.js}{Back-end User Module Controller Tests}. Each test has several sub-tests (a, b, c, etc.) that test the function's primary and edge-cases.
-
+Tests FRT-M6-1 to FRT-M6-6 are all back-end tests and can be found in the following file: \href{https://github.com/grocery-spending-tracker/grocery-spending-tracker-backend/blob/master/tests/controllers/usersController.users.test.js}{Back-end User Module Controller Tests}.
+These tests focus on the endpoints related to CRUD operations for users on the application. Each test has several sub-tests (a, b, c, etc.) that test the function's primary and edge-cases.
 
 \subsection{Authentication Module}
 
@@ -494,7 +497,9 @@ Authentication Module.
 
 Tests FRT-M7-1 to FRT-M7-5 are the front-end unit tests for the Authentication Module. These tests focus on the user flows for authenticating user identity on the mobile app. Details on these tests can be found in the following file: \href{https://github.com/allanfang1/grocery_spending_tracker_app/blob/main/test/profile_provider_test.dart}{Front-end Authentication Module Tests}.
 
-Tests FRT-M7-6 to FRT-M7-8 are all back-end tests and can be found in the following files: \href{https://github.com/grocery-spending-tracker/grocery-spending-tracker-backend/blob/master/tests/controllers/authController.test.js}{Back-end Authentication Module Controller Tests} and \href{https://github.com/grocery-spending-tracker/grocery-spending-tracker-backend/blob/master/tests/util/authentication.test.js}{Back-end Authentication Module Utility Tests}. Each test has several sub-tests (a, b, c, etc.) that test the function's primary and edge-cases.
+Tests FRT-M7-6 to FRT-M7-8 are all back-end tests and can be found in the following files: \href{https://github.com/grocery-spending-tracker/grocery-spending-tracker-backend/blob/master/tests/controllers/authController.test.js}{Back-end Authentication Module Controller Tests} and \href{https://github.com/grocery-spending-tracker/grocery-spending-tracker-backend/blob/master/tests/util/authentication.test.js}{Back-end Authentication Module Utility Tests}.
+FRT-M7-6 tests the login endpoint and FRT-M7-7 to FRT-M7-8 test the login utilities used such as returning a signed JWT token upon login.
+Each test has several sub-tests (a, b, c, etc.) that test the function's primary and edge-cases.
 
 \subsection{Recommendation Engine}
 
@@ -510,7 +515,9 @@ Recommendation Module.
   \bottomrule
 \end{longtable}
 
-Tests FRT-M8-1 and FRT-M8-2 are both back-end tests and can be found in the following file: \href{https://github.com/grocery-spending-tracker/grocery-spending-tracker-backend/blob/314b/unit-test/tests/controllers/recommendationController.test.js}{Back-end Recommendation Module Controller Tests}. Each test has several sub-tests (a, b, c, etc) that tests the function's primary and edge-cases.
+Tests FRT-M8-1 and FRT-M8-2 are both back-end tests and can be found in the following file: \href{https://github.com/grocery-spending-tracker/grocery-spending-tracker-backend/blob/314b/unit-test/tests/controllers/recommendationController.test.js}{Back-end Recommendation Module Controller Tests}.
+FRT-M8-1 focuses on the endpoint for returning recommendations based on a user's frequency of purchase and FRT-M8-2
+focuses on the endpoint for returning recommendations based on low product prices. Each test has several sub-tests (a, b, c, etc) associated that test the function's primary and edge-cases.
 
 \subsection{Classification Engine}
 
@@ -532,7 +539,14 @@ Classification Module.
   \bottomrule
 \end{longtable}
 
-Tests FRT-M9-1 to FRT-M9-11 are all back-end tests and can be found in the following file: \href{https://github.com/grocery-spending-tracker/grocery-spending-tracker-classification/blob/main/test/main.test.js}{Back-end Classification Module Main Test}, \href{https://github.com/grocery-spending-tracker/grocery-spending-tracker-classification/tree/main/test/classification}{Back-end Classification Module Item Matching Tests}, \href{https://github.com/grocery-spending-tracker/grocery-spending-tracker-classification/tree/main/test/scraper}{Back-end Classification Module Web Scraping Tests}. Each test has several sub-tests (a, b, c, etc) that tests the function's primary and edge-cases.
+Tests FRT-M9-1 to FRT-M9-11 are all back-end tests and can be found in the following file:
+\href{https://github.com/grocery-spending-tracker/grocery-spending-tracker-classification/tree/main/test/scraper}{Back-end Classification Module Web Scraping Tests},
+\href{https://github.com/grocery-spending-tracker/grocery-spending-tracker-classification/tree/main/test/classification}{Back-end Classification Module Item Matching Tests},
+\href{https://github.com/grocery-spending-tracker/grocery-spending-tracker-classification/blob/main/test/main.test.js}{Back-end Classification Module Main Test}. 
+FRT-M9-1 to FRT-M9-6 tests the ability to fetch/scrape for different details regarding existing and new grocery items such the product name and price.
+FRT-M9-7 to FRT-M9-9 verifies the ability to match and classify an item from the receipt to existing/new web scraped items.
+Finally, FRT-M9-10 to FRT-M9-11 test the system's ability to cache items to make the classification process faster.
+Each test has several sub-tests (a, b, c, etc) that tests the function's primary and edge-cases.
 
 \section{Changes Due to Testing}
 
@@ -562,9 +576,10 @@ a backend fix is being worked on to reduce the response time which will be done 
 Additionally, some users had some issues with the receipt capture, not knowing that they had to get the
 receipt to occupy as much of the camera frame as possible for the best results, so an information screen
 on this page is being worked on to better help users with receipt capture which will also be finished
-prior to Revision 1. Outside of the UI/UX, users found that recommendations could be improved more
-in terms of accuracy relating to the user's purchase history which the team will try to do before Revision 1
-as well.
+prior to Revision 1. Outside of the UI/UX, users found that recommendations could be improved
+in terms of relating more to the user's purchase history which the team will try to do before Revision 1
+as well. Finally, during Functional Requirement Testing, it was found that the application was missing the
+ability to update user budget goals which is also now scheduled to be done prior to Revision 1.
 
 \section{Automated Testing}
 
@@ -582,8 +597,8 @@ is then organized by component and the module being tested
 (found \href{https://github.com/grocery-spending-tracker/grocery-spending-tracker-backend/tree/master/tests}{here}).
 As an example, the \textit{userController.analytics.test} file contains unit tests related to the Analytics Module
 functionality in the user controller.
-These tests are automatically executed during the deployment process of the backend when code is pushed to the
-"master" branch of the backend repository. This process is handled by \textit{Github Actions}.
+These tests are automatically executed when code is pushed to the "master" branch of the backend repository as part
+of the deployment process. This process is handled by \textit{Github Actions}.
 
 \newpage
 \begin{landscape}
