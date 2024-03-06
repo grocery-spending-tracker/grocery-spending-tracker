@@ -16,6 +16,7 @@
 \usepackage{longtable}
 \usepackage{amsfonts}
 \usepackage{float}
+\usepackage{pdflscape}
 
 \input{../Comments}
 \input{../Common}
@@ -60,8 +61,6 @@ Date 2 & 1.1 & Notes\\
   MB & megabyte\\
   \bottomrule
 \end{tabular}\\
-
-\wss{symbols, abbreviations or acronyms -- you can reference the SRS tables if needed}
 
 \newpage
 
@@ -564,10 +563,196 @@ As an example, the \textit{userController.analytics.test} file contains unit tes
 functionality in the user controller.
 These tests are automatically executed during the deployment process of the backend when code is pushed to the
 "master" branch of the backend repository. This process is handled by \textit{Github Actions}.
-    
+
+\newpage
+\begin{landscape}
 \section{Trace to Requirements}
-    
-\section{Trace to Modules}    
+  \begin{longtable}{|l|ccccccccc|}
+    \caption{Traceability Between Functional System Test Cases and Functional Requirements} \\
+    \hline
+    \textbf{Functional Requirement ID}   & \multicolumn{9}{c|}{\textbf{Test ID}} \\
+    \hline
+    ~ & \textbf{FR1} & \textbf{FR2} & \textbf{FR3} & \textbf{FR5} & \textbf{FR7} & \textbf{FR8} & \textbf{FR9} & \textbf{FR10} & \textbf{FR11} \\
+    \hline
+    FRT-FR1-1 & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR1-2 & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR2-1 & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR2-2 & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR2-4 & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR2-5 & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR2-6 & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR2-7 & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR3-1 & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR11-1 & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X \\
+    FRT-FR11-2 & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X \\
+    FRT FR11-3 & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X \\
+    FRT-FR5-1 & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR5-2 & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ & ~ \\
+    FRT-FR7-1 & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ \\
+    FRT-FR7-2 & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ \\
+    FRT-FR7-3 & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ & ~ \\
+    FRT-FR8-1 & ~ & ~ & ~ & ~ & ~ & X & X & ~ & ~ \\
+    FRT-FR8-2 & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ \\
+    FRT-FR9-1 & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ \\
+    FRT-FR9-2 & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ \\
+    FRT-FR10-1 & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ \\
+    FRT-FR10-2 & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X & ~ \\
+    \hline
+  \end{longtable}
+
+  \begin{longtable}{|l|ccccc|}
+		\caption{Traceability Between Nonfunctional System Test Cases and Look and Feel Requirements} \\
+		\hline
+    \textbf{NFR ID}   & \multicolumn{5}{c|}{\textbf{Test ID}} \\
+    \hline
+    ~ & \textbf{AR1} & \textbf{AR2} & \textbf{SR1} & \textbf{SR2} & \textbf{SR3} \\
+    \hline
+    NFRT-LF1 & X & ~ & X & X & X \\
+    NFRT-LF2 & ~ & X & ~ & ~ & ~ \\
+    NFRT-LF4 & ~ & ~ & ~ & ~ & X \\
+    \hline
+  \end{longtable}
+
+  \newpage
+  \begin{longtable}{|l|ccccccccc|}
+    \caption{Traceability Between Nonfunctional System Test Cases and Usability and Humanity Requirements} \\
+    \hline
+    \textbf{NFR ID}   & \multicolumn{9}{c|}{\textbf{Test ID}} \\
+    \hline
+    ~ & \textbf{EUR1} & \textbf{EUR2} & \textbf{EUR3} & \textbf{PIR1} & \textbf{LR1} & \textbf{LR3} & \textbf{UPR1} & \textbf{UPR2} & \textbf{ACR1} \\
+    \hline
+    NFRT-UH1 & ~ & ~ & ~ & ~ & ~ & X & ~ & ~ & ~ \\
+    NFRT-UH2 & ~ & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    NFRT-UH3 & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ & X \\
+    NFRT-UH5 & X & ~ & ~ & ~ & ~ & ~ & ~ & ~ & ~ \\
+    NFRT-UH6 & ~ & ~ & X & X & X & ~ & X & X & X \\
+    \hline
+  \end{longtable}
+
+  \begin{longtable}{|l|cccccc|}
+		\caption{Traceability Between Nonfunctional System Test Cases and Performance Requirements} \\
+		\hline
+    \textbf{NFR ID}   & \multicolumn{6}{c|}{\textbf{Test ID}} \\
+    \hline
+    ~ & \textbf{SLR1} & \textbf{SLR2} & \textbf{PAR1} & \textbf{PAR2} & \textbf{RFR1} & \textbf{CR1} \\
+    \hline
+    NFRT-PR1 & ~ & X & ~ & ~ & ~ & ~ \\
+    NFRT-PR2 & X & ~ & ~ & ~ & ~ & ~ \\
+    NFRT-PR3 & ~ & ~ & ~ & ~ & X & ~ \\
+    NFRT-PR4 & ~ & ~ & X & ~ & ~ & ~ \\
+    NFRT-PR5 & ~ & ~ & ~ & X & ~ & ~ \\
+    NFRT-PR6 & ~ & ~ & ~ & ~ & ~ & X \\
+    \hline
+  \end{longtable}
+
+  \begin{longtable}{|l|c|}
+		\caption{Traceability Between Nonfunctional System Test Cases and Cultural Requirements} \\
+		\hline
+    \textbf{NFR ID}   & \multicolumn{1}{c|}{\textbf{Test ID}} \\
+    \hline
+    ~ & \textbf{CUR2} \\
+    \hline
+    NFRT-CUR2 & X \\
+    \hline
+  \end{longtable}
+
+  \begin{longtable}{|l|cccccccc|}
+		\caption{Traceability Between Nonfunctional System Test Cases and Operational and Environmental Requirements} \\
+		\hline
+    \textbf{NFR ID}   & \multicolumn{8}{c|}{\textbf{Test ID}} \\
+    \hline
+    ~ & \textbf{EPER1} & \textbf{EPER3} & \textbf{WER1} & \textbf{WER2} & \textbf{IASR2} & \textbf{RER1} & \textbf{RER2} & \textbf{RER3} \\
+    \hline
+    NFRT-OER1 & X & X & ~ & ~ & X & ~ & ~ & ~ \\
+    NFRT-OER2 & ~ & ~ & X & X & ~ & ~ & ~ & ~ \\
+    NFRT-OER3 & ~ & ~ & ~ & ~ & ~ & X & X & X \\
+    \hline
+  \end{longtable}
+
+  \begin{longtable}{|l|c|}
+		\caption{Traceability Between Nonfunctional System Test Cases and Security Requirements} \\
+		\hline
+    \textbf{NFR ID}   & \multicolumn{1}{c|}{\textbf{Test ID}} \\
+    \hline
+    ~ & \textbf{INR1} \\
+    \hline
+    NFRT-SR2 & X \\
+    \hline
+  \end{longtable}
+\end{landscape}
+		
+\section{Trace to Modules}
+
+\begin{longtable}{|l|cccccc|}
+	\caption{Traceability Between Test Cases and Modules}                                                                                             \\
+	\hline
+	\textbf{Test IDs}  & \multicolumn{6}{c|}{\textbf{Module IDs}}                                                                                     \\
+	\hline
+  ~ & \textbf{M3} & \textbf{M5} & \textbf{M6} & \textbf{M7} & \textbf{M8} & \textbf{M9} \\
+	\hline
+  \textbf{FRT-M3-1} & X & ~ & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M3-2} & X & ~ & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M3-3} & X & ~ & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M3-4} & X & ~ & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M3-5} & X & ~ & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M3-6} & X & ~ & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M3-7} & X & ~ & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M3-8} & X & ~ & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M3-9} & X & ~ & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M3-10} & X & ~ & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M3-11} & X & ~ & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M3-12} & X & ~ & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M3-13} & X & ~ & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M3-14} & X & ~ & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M3-15} & X & ~ & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M3-16} & X & ~ & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M3-17} & X & ~ & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M3-18} & X & ~ & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M3-19} & X & ~ & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M3-20} & X & ~ & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M3-21} & X & ~ & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M3-22} & X & ~ & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M3-23} & X & ~ & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M3-24} & X & ~ & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M3-25} & X & ~ & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M3-26} & X & ~ & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M5-1} & ~ & X & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M5-2} & ~ & X & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M5-3} & ~ & X & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M5-4} & ~ & X & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M5-5} & ~ & X & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M5-6} & ~ & X & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M5-7} & ~ & X & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M5-8} & ~ & X & ~ & ~ & ~ & ~ \\
+  \textbf{FRT-M6-1} & ~ & ~ & X & ~ & ~ & ~ \\
+  \textbf{FRT-M6-2} & ~ & ~ & X & ~ & ~ & ~ \\
+  \textbf{FRT-M6-3} & ~ & ~ & X & ~ & ~ & ~ \\
+  \textbf{FRT-M6-4} & ~ & ~ & X & ~ & ~ & ~ \\
+  \textbf{FRT-M6-5} & ~ & ~ & X & ~ & ~ & ~ \\
+  \textbf{FRT-M6-6} & ~ & ~ & X & ~ & ~ & ~ \\
+  \textbf{FRT-M7-1} & ~ & ~ & ~ & X & ~ & ~ \\
+  \textbf{FRT-M7-2} & ~ & ~ & ~ & X & ~ & ~ \\
+  \textbf{FRT-M7-3} & ~ & ~ & ~ & X & ~ & ~ \\
+  \textbf{FRT-M7-4} & ~ & ~ & ~ & X & ~ & ~ \\
+  \textbf{FRT-M7-5} & ~ & ~ & ~ & X & ~ & ~ \\
+  \textbf{FRT-M7-6} & ~ & ~ & ~ & X & ~ & ~ \\
+  \textbf{FRT-M7-7} & ~ & ~ & ~ & X & ~ & ~ \\
+  \textbf{FRT-M7-8} & ~ & ~ & ~ & X & ~ & ~ \\
+  \textbf{FRT-M8-1} & ~ & ~ & ~ & ~ & X & ~ \\
+  \textbf{FRT-M8-2} & ~ & ~ & ~ & ~ & X & ~ \\
+  \textbf{FRT-M9-1} & ~ & ~ & ~ & ~ & ~ & X \\
+  \textbf{FRT-M9-2} & ~ & ~ & ~ & ~ & ~ & X \\
+  \textbf{FRT-M9-3} & ~ & ~ & ~ & ~ & ~ & X \\
+  \textbf{FRT-M9-4} & ~ & ~ & ~ & ~ & ~ & X \\
+  \textbf{FRT-M9-5} & ~ & ~ & ~ & ~ & ~ & X \\
+  \textbf{FRT-M9-6} & ~ & ~ & ~ & ~ & ~ & X \\
+  \textbf{FRT-M9-7} & ~ & ~ & ~ & ~ & ~ & X \\
+  \textbf{FRT-M9-8} & ~ & ~ & ~ & ~ & ~ & X \\
+  \textbf{FRT-M9-9} & ~ & ~ & ~ & ~ & ~ & X \\
+  \textbf{FRT-M9-10} & ~ & ~ & ~ & ~ & ~ & X \\
+  \textbf{FRT-M9-11} & ~ & ~ & ~ & ~ & ~ & X \\
+  \hline
+\end{longtable}
 
 \section{Code Coverage Metrics}
 
@@ -657,7 +842,7 @@ Responses: \{(not easy) 1, 2, 3, 4, 5 (very easy)\} \\
       \item On average, a 3.5. Some recommendations were not 100\% accurate for the user but about at the
       expected value for fit criterion.
     \end{itemize}
-  \item How likely are you to act the recommendation provided to you by the application?
+  \item How likely are you to act on the recommendations provided to you by the application?
   Responses: \{(not likely) 1, 2, 3, 4, 5 (very likely)\}
     \begin{itemize}
       \item On average, a 3. Users would need to see some more accuracy improvements before acting on a recommendation.
