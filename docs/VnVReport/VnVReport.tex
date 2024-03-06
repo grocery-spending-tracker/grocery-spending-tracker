@@ -22,7 +22,7 @@
 \title{Verification and Validation Report: \progname} 
 \author{\authname}
 \date{\today}
-	
+
 \maketitle
 
 \pagenumbering{roman}
@@ -43,7 +43,7 @@ Date 2 & 1.1 & Notes\\
 
 \renewcommand{\arraystretch}{1.2}
 \begin{tabular}{l l} 
-  \toprule		
+  \toprule    
   \textbf{symbol} & \textbf{description}\\
   \midrule 
   T & Test\\
@@ -126,7 +126,7 @@ specified in the VnV Plan.
   NFRT-UH6 & $\checkmark$ \\
   \bottomrule
 \end{longtable}
-		
+    
 \subsection{Performance}
 
 \begin{longtable}{|l|c|}
@@ -184,8 +184,8 @@ specified in the VnV Plan.
   NFRT-SR2 & $\checkmark$ \\
   \bottomrule
 \end{longtable}
-	
-% \section{Comparison to Existing Implementation}	
+  
+% \section{Comparison to Existing Implementation} 
 
 % This section will not be appropriate for every project.
 
@@ -254,9 +254,24 @@ User Analytics Module.
 
 Tests FRT-M5-1 to FRT-M5-5 are the front-end unit tests for the User Analytics Module. These tests focus on user budgeting goals and user purchase history. Details on these tests can be found in the following files: \href{https://github.com/allanfang1/grocery_spending_tracker_app/blob/main/test/goals_provider_test.dart}{Front-end User Analytics Module Spending Goals Tests}, \href{https://github.com/allanfang1/grocery_spending_tracker_app/blob/main/test/history_provider_test.dart}{Front-end User Analytics Module Spending History Tests}.
 
-\subsection{Users Module}
+Tests FRT-M5-6 to FRT-M5-8 are all back-end tests and can be found in the following file: \href{https://github.com/grocery-spending-tracker/grocery-spending-tracker-backend/blob/master/tests/controllers/usersController.analytics.test.js}{Back-end User Analytics Module Controller Tests}. Each test has several sub-tests (a, b, c, etc.) that test the function's primary and edge-cases.
 
-...
+\subsection{Users Module}
+The section provides a brief overview of the unit tests performed and their results for the
+Users Module.
+\begin{longtable}{|l|c|l|c|l|c|}
+  \caption{Authentication Unit Testing Summary} \label{Authentication Unit Test Summary} \\
+  \toprule
+  \textbf{Test ID} & \textbf{Result} & \textbf{Test ID} & \textbf{Result} & \textbf{Test ID} & \textbf{Result} \\
+  \midrule
+  FRT-M6-1 & $\checkmark$ & FRT-M6-2 & $\checkmark$ & FRT-M6-3 & $\checkmark$ \\
+  \midrule
+  FRT-M6-4 & $\checkmark$ & FRT-M6-5 & $\checkmark$ & FRT-M6-6 & $\checkmark$ \\
+  \bottomrule
+\end{longtable}
+
+Tests FRT-M6-1 to FRT-M6-6 are all back-end tests and can be found in the following file: \href{https://github.com/grocery-spending-tracker/grocery-spending-tracker-backend/blob/master/tests/controllers/usersController.users.test.js}{Back-end User Module Controller Tests}. Each test has several sub-tests (a, b, c, etc.) that test the function's primary and edge-cases.
+
 
 \subsection{Authentication Module}
 
@@ -277,6 +292,8 @@ Authentication Module.
 \end{longtable}
 
 Tests FRT-M7-1 to FRT-M7-5 are the front-end unit tests for the Authentication Module. These tests focus on the user flows for authenticating user identity on the mobile app. Details on these tests can be found in the following file: \href{https://github.com/allanfang1/grocery_spending_tracker_app/blob/main/test/profile_provider_test.dart}{Front-end Authentication Module Tests}.
+
+Tests FRT-M7-6 to FRT-M7-8 are all back-end tests and can be found in the following files: \href{https://github.com/grocery-spending-tracker/grocery-spending-tracker-backend/blob/master/tests/controllers/authController.test.js}{Back-end Authentication Module Controller Tests} and \href{https://github.com/grocery-spending-tracker/grocery-spending-tracker-backend/blob/master/tests/util/authentication.test.js}{Back-end Authentication Module Utility Tests}. Each test has several sub-tests (a, b, c, etc.) that test the function's primary and edge-cases.
 
 \subsection{Recommendation Engine}
 
@@ -311,10 +328,10 @@ As an example, the \textit{userController.analytics.test} file contains unit tes
 functionality in the user controller.
 These tests are automatically executed during the deployment process of the backend when code is pushed to the
 "master" branch of the backend repository. This process is handled by \textit{Github Actions}.
-		
+    
 \section{Trace to Requirements}
-		
-\section{Trace to Modules}		
+    
+\section{Trace to Modules}    
 
 \section{Code Coverage Metrics}
 
