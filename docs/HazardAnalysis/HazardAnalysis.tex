@@ -108,7 +108,7 @@ trying to break the application or use it maliciously.
 		& \multicolumn{1}{|c|}{\textbf{Ref.}}  \\
         \hline
         Authenti\-cation
-        & User is unable to login
+        & User is unable to log in
         & User cannot access their account and application features
         & \begin{enumerate}[label=\alph*., leftmargin=*]
             \item User entered incorrect credentials
@@ -121,14 +121,14 @@ trying to break the application or use it maliciously.
         \end{enumerate}
         & HA1 \\
         \cline{2-7}
-        & User's account is hacked by a third-party
-        & User's data can be read and modified by third-party
+        & User's account is hacked by a third party
+        & User's data can be read and modified by third party
         & \begin{enumerate}[label=\alph*., leftmargin=*]
             \item Third-party gains access to the  user's account without their permission
         \end{enumerate}
         & \begin{enumerate}[label=\alph*., leftmargin=*]
             \item Refer to HA1-a
-            \item Limit the number of login attempts a person has for a given time period
+            \item Limit the number of log in attempts a person has for a given time period
         \end{enumerate}
         & \begin{enumerate}[label=\alph*., leftmargin=*]
             \item SSR1
@@ -254,10 +254,10 @@ trying to break the application or use it maliciously.
 \begin{enumerate}[label=SSR\arabic*.]
 
     \item The system shall allow users to reset their password without logging in and without knowledge of their current password.
-    \item[] \emph{Rationale:} Users cannot be relied on to remember their login credentials correctly. There must be a method of allowing the user to access their account despite this as well as recover their accounts should a malicious third-party gain access.
+    \item[] \emph{Rationale:} Users cannot be relied on to remember their login credentials correctly. There must be a method of allowing the user to access their account despite this as well as recover their accounts should a malicious third party gain access.
     \item[] \emph{Associated Hazards:} HA1, HA2
 
-    \item The system shall limit the number of login attempts to 5 times within 10 minutes before login is disabled for a 1 hour cooldown period.
+    \item The system shall limit the number of log in attempts to 5 times within 10 minutes before log in is disabled for a 1 hour cooldown period.
     \item[] \emph{Rationale:} Malicious actors may gain access to an account by a brute-force attack. This requirement significantly reduces this possibility.
     \item[] \emph{Associated Hazards:} HA2
 
