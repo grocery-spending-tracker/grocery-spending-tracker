@@ -55,8 +55,12 @@
 \toprule {\textbf{Date}} & {\textbf{Version}} & {\textbf{Notes}}\\
 \midrule
 06/10/23 & 1.0 & Initial version of the SRS\\
+29/11/23 & 1.5 & Added statistics to the User Business section, citations, and changed images to pdf\\
+30/11/23 & 1.5 & Added intros to Scope of Product and Functional Requirements sections\\
+01/12/23 & 1.5 & Added product use case numbers to Section 8.3 and added priorities/timelines to Section 21.2\\
 05/03/24 & 2.0 & Removed/updated the following sections with outdated features to reflect the current state of the app:
 FR4, FR6, FR9, AR3, PIR2, LR2, SLR1, EPER2, EPER3, IASR1, SPR2, APR1, ACCR1, ACR2, PRR1, PRR2, AUR1, CUR1, CUR3\\
+01/04/24 & 2.0 & Added intros to all remaining sections of the SRS\\
 \bottomrule
 \end{tabularx}
 
@@ -89,6 +93,10 @@ will help users stay more informed and reduce grocery spending in the long-term.
   \item The application will provide accurate spending data and suggestions to end users.
 \end{itemize}  
 \section{Stakeholders}
+
+This section will go over the various stakeholders involved in the project including the actual users
+and personas for the application.
+
 \subsection{Client}
 Both the client and customer will be the users of the system. These primary stakeholders are made up of low-income households of Hamilton and university students from McMaster who want to save money on groceries. The stakeholders will make decisions that influence the system through surveys, studies, and focus groups.
 \subsection{Customer}
@@ -153,6 +161,10 @@ From an elicitation perspective, a sample of users will be responsible for provi
 N/A
 
 \section{Mandated Constraints}
+
+This section summarizes the various constraints involved in this project as well as the expected
+implementation environment and off-the-shelf software that could be leveraged.
+
 \subsection{Solution Constraints}
 \textbf{Mobile Device}\\
 \underline{Description}: User will interact with the system through an app on their mobile device (smartphone).\\
@@ -198,6 +210,10 @@ The project budget is \$750 paid for directly by the developers.
 \subsection{Enterprise Constraints}
 N/A
 \section{Naming Conventions and Terminology}
+
+This section contains the terminology and naming conventions that are used throughout
+this document.
+
 \subsection{Glossary of All Terms, Including Acronyms, Used by Stakeholders
 involved in the Project}
 \begin{table}[htbp]
@@ -224,6 +240,9 @@ involved in the Project}
 \end{table}
 
 \section{Relevant Facts And Assumptions}
+
+This section goes over the relevant facts and assumptions applicable to the scope and usage of the application.
+
 \subsection{Relevant Facts}
 \begin{enumerate}
     \item The cost of groceries in Hamilton and across Canada is steadily increasing, making it challenging for households to manage their budgets effectively.
@@ -247,6 +266,10 @@ N/A
 \end{enumerate}
 
 \section{The Scope of the Work}
+
+This section covers the overall business events related to the application as well as the current situation,
+context of the work, and work partitioning as they pertain to the Grocery Spending Tracker.
+
 \subsection{The Current Situation}
 \begin{figure}[H]
     \centering
@@ -387,6 +410,9 @@ N/A
 \end{enumerate}
 
 \section{Business Data Model and Data Dictionary}
+
+This section goes over the business data model and data dictionary for the application.
+
 \subsection{Business Data Model}
 \begin{figure}[H]
     \centering
@@ -823,7 +849,9 @@ In regards to identifying functions for project:
 \end{itemize}
 
 \section{Look and Feel Requirements}
-In this section, any references to an \textit{E\#} refers to elicitation notes in Appendix B. \textit{E\#} corresponds
+
+This section details the appearance, style and usability and humanity requirements for the application.
+Any references to an \textit{E\#} refers to elicitation notes in Appendix B. \textit{E\#} corresponds
 to the label for the relevant question.
 
 \subsection{Appearance Requirements}
@@ -845,7 +873,9 @@ to the label for the relevant question.
 \end{itemize}
 
 \section{Usability and Humanity Requirements}
-In this section, any references to an \textit{E\#} refers to elicitation notes in Appendix B. \textit{E\#} corresponds
+This section details the ease of use, personalization and internationalization, learning, understandability and
+politeness, as well as accessibility requirements for the project.
+Any references to an \textit{E\#} refers to elicitation notes in Appendix B. \textit{E\#} corresponds
 to the label for the relevant question.
 
 \subsection{Ease of Use Requirements}
@@ -881,7 +911,9 @@ to the label for the relevant question.
 \end{itemize}
 
 \section{Performance Requirements}
-In this section, any references to an \textit{E\#} refers to elicitation notes in Appendix B. \textit{E\#} corresponds
+This section goes over the speed and latency, safety-critical, precision/accuracy, robustness/fault-tolerance,
+capacity, scalability/extensibility, and longevity requirements for the project.
+Any references to an \textit{E\#} refers to elicitation notes in Appendix B. \textit{E\#} corresponds
 to the label for the relevant question.
 
 \subsection{Speed and Latency Requirements}
@@ -921,6 +953,10 @@ to the label for the relevant question.
 \end{itemize}
 
 \section{Operational and Environmental Requirements}
+
+This section covers the expected physical environment, wider environment, productization and release requirements
+relevant to the product.
+
 \subsection{Expected Physical Environment}
 \begin{itemize}
     \item \textbf{EPER1} The application is expected to be compatible with smart mobile devices running Android.
@@ -949,6 +985,10 @@ to the label for the relevant question.
 \end{itemize}
 
 \section{Maintainability and Support Requirements}
+
+This section covers the maintenance, supportability, and adaptability requirements relevant to the Grocery
+Spending Tracker.
+
 \subsection{Maintenance Requirements}
 \begin{itemize}
   \item \textbf{MTR1}: All back-end maintenance and upgrades should be completed between the hours of 12:00am and 5:00am.
@@ -967,6 +1007,10 @@ to the label for the relevant question.
 \end{itemize}
 
 \section{Security Requirements}
+
+This section details the access, integrity, privacy, audit, and immunity requirements for the Grocery Spending
+Tracker.
+
 \subsection{Access Requirements}
 \begin{itemize}
     \item \sout{\textbf{ACCR1}: The application shall require acceptance of terms and services to allow access to application's database at all times.}
@@ -991,7 +1035,8 @@ to the label for the relevant question.
 \end{itemize}
 
 \section{Cultural Requirements}
-In this section, any references to an \textit{E\#} refers to elicitation notes in Appendix B. \textit{E\#} corresponds to the label for the relevant question.
+This section covers the cultural requirements of the application.
+Any references to an \textit{E\#} refers to elicitation notes in Appendix B. \textit{E\#} corresponds to the label for the relevant question.
 \subsection{Cultural Requirements}
 \begin{itemize}
     \item \textbf{CUR1:} The app should allow users to use the metric system \sout{, imperial system, or a combination of the two (Canadian) as requested in \textit{E12}} to accommodate \sout{a diverse user base and} regional preferences.
@@ -1000,6 +1045,7 @@ In this section, any references to an \textit{E\#} refers to elicitation notes i
 \end{itemize}
 
 \section{Compliance Requirements}
+This section goes over the legal and standards compliance requirements for the Grocery Spending Tracker.
 \subsection{Legal Requirements}
 \begin{itemize}
     \item \textbf{LR1:} The app should comply with the app distribution platform guidelines: Google Play Store for Android, App Store for iOS
@@ -1012,6 +1058,11 @@ N/A
 There are currently no open issues for this project.
 
 \section{Off-the-Shelf Solutions}
+
+This section details the various off-the-shelf solutions that could be leveraged for the project.
+This includes various ready-made products, reusable components, and products that can be copied that
+could ease the development of the application.
+
 \subsection{Ready-Made Products}
 There exists some existing products that address the problem we are also addressing. \\
 
@@ -1030,6 +1081,10 @@ There exists some existing products that address the problem we are also address
 There are no known products that can legally be copied to form a solution for this problem.
 
 \section{New Problems}
+
+This section covers the various problems that could be encountered with the application's use. These are issues
+the team will have to consider during the development of the project.
+
 \subsection{Effects on the Current Environment}
 \begin{itemize}
     \item The introduction of the new system for analyzing user spending may require integration with existing systems or databases to ensure a seamless flow of data. Changes to data connectors and interfaces may be necessary as a result, which could have an impact on the current environment.
@@ -1056,6 +1111,10 @@ Inhibit the New Product}
 \end{itemize}
 
 \section{Tasks}
+
+This section summarizes the overall development plan of the project. It goes over the different phases
+that are expected for the project as well as deliverables that will be completed for each.
+
 \subsection{Project Planning}
 \begin{table}[H]
   \centering
@@ -1175,6 +1234,9 @@ The team currently has no intention of spending money and aims to utilize free s
 for this project.
 
 \section{User Documentation and Training}
+
+This section goes over the user documentation and training requirements for the project.
+
 \subsection{User Documentation Requirements}
 \begin{itemize}
     \item The application shall give detailed instructions on how to use the application in user manuals or guides. Registration, sign-in, data entry, budgeting, spending analysis, and any other key features should all be included in this documentation.
