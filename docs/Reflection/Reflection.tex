@@ -46,13 +46,71 @@ can point to the specific commit that made the changes.}
 
 \section{Design Iteration (LO11)}
 
-\plt{Explain how you arrived at your final design and implementation.  How did
-the design evolve from the first version to the final version?} 
+% \plt{Explain how you arrived at your final design and implementation.  How did
+% the design evolve from the first version to the final version?} 
+
+The biggest design change in the application had to do with the receipt scanning portion of the
+application. Initially, the vision for the application was to have our own optical character recognition (OCR)
+system as part of the application. As such, the original implementation of the OCR involved the use
+of various Python scripts using Tesseract OCR and OpenCV. This was demonstrated as part of the proof of concept demo,
+however soon afterwards, we realized we were having issues with robustness, accuracy, and speed. Given that this
+was meant to be a consumer application, usability was a very important trait for the app to have and these issues
+were significant roadblocks for us. After talking to Dr. Smith, he referred us to Dr. Anand who gave us
+feedback regarding our implementation. He suggested us to use an existing OCR implementation given
+that there was already existing technology that solved what we were trying to do. Additionally, in the interest of time,
+we did not have the resources to create our own, optimized OCR implementation in addition to a full
+mobile app. As a result, we decided to take Dr. Anand's advice and use Google MLKit as our final OCR implementation. This
+design change provided significant improvements to the app's usability, with robustness, accuracy, and speed all being
+positively impacted. This also allowed us to dedicate resources to other parts of the application resulting in a
+more complete app than what otherwise would have likely been created. This design change had the biggest impact on
+the final outcome of the project and we believe the current implementation is far better than the original implementation
+we had originally planned.
+
+The other large design change for the application had to do with the user interface (UI). In our Revision 0 demo,
+we had a very preliminary UI that simply served to navigate to the different features we wanted to show. At the time,
+we had put very limited thought into the actual user experience and visual appeal of the app due to prioritization of
+features, however part of the feedback we got from the demo was finalizing a UI design since we would have to do
+usability testing as part of the following deliverable. This resulted in us looking back to the data we had originally
+elicited from McMaster students during the SRS creation. The general consensus from the original user feedback was that
+they wanted an application that felt familiar. As a result, we referenced several existing applications during this development
+period and settled on the final design which takes inspiration from apps such as Instagram, McDonald's, and Apple Health. We ended
+up finalizing a colour scheme and polishing some of the components to make everything look more cohesive as well. After
+completion, this final UI design was very positively received by the McMaster students we showed it to and during usability tests, 
+these same students were able to figure out general functionality within 15 minutes. As a result of putting more emphasis on
+user feedback, we were able to create a UI design that was more usable and appealing than the original implementation we had
+demonstrated.
+
+Based on feedback during the Revision 0 demo, we also made changes to the budgets such as showing the total budget for each,
+rather than only showing a bar of progress as was initially done. Additionally, based on user feedback, tap focus was added
+to the receipt capture in order to improve the user experience.
 
 \section{Design Decisions (LO12)}
 
-\plt{Reflect and justify your design decisions.  How did limitations,
- assumptions, and constraints influence your decisions?}
+% \plt{Reflect and justify your design decisions.  How did limitations,
+%  assumptions, and constraints influence your decisions?}
+
+Due to limited time, some of the design decisions we made involved scoping down or changing
+the project. For instance, as previously mentioned, we used Google MLKit for our OCR implementation
+rather than making our own. This was due to Dr. Anand's recommendation but also due to the fact that
+there was more to our capstone project than just the OCR portion. As a result, we used an existing implementation
+in order to focus efforts on other portions of the app. We also had to scope down some of the features we
+had originally planned. We had initially intended to have location support in order to give recommendations
+based on user and store location, however, we found that we had overcommitted and did not have enough time to
+implement this functionality. As a result, it had to be removed from the current scope of the project.
+
+Another design decision that had to be changed during the development period pertains to the Classification
+Engine. Originally, we had planned to construct a database of products in order to classify items from different
+grocery stores. This, however, was not feasible as after contacting different stores, we were not able to acquire
+a list of product data. As a result, we had to use web scraping and approximate string matching to construct our own database
+as users input receipts into the system.
+
+Finally, we had planned for iOS and Android support in the final version of the application however the final version
+is only supported by Android devices. This was a result of limited time, but also restrictions placed on developers
+by Apple themselves. Apple only allows users with Apple devices to develop iOS applications. Furthermore, only two members of the
+team had Mac computers/iPhones while the other two had Android and
+Windows devices. This meant all developers could work on Android support but only two developers could handle iOS
+support. Since not everyone was able to work on it, we decided that iOS support would be out of scope for the current
+implementation. In other words, iOS support had to be pushed due to constraints put on iOS development by Apple.
 
 \section{Economic Considerations (LO23)}
 
