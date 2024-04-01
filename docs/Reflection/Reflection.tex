@@ -123,26 +123,76 @@ users currently exist?}
 
 \section{Reflection on Project Management (LO24)}
 
-\plt{This question focuses on processes and tools used for project management.}
+% \plt{This question focuses on processes and tools used for project management.}
 
 \subsection{How Does Your Project Management Compare to Your Development Plan}
 
-\plt{Did you follow your Development plan, with respect to the team meeting plan, 
-team communication plan, team member roles and workflow plan.  Did you use the 
-technology you planned on using?}
+% \plt{Did you follow your Development plan, with respect to the team meeting plan, 
+% team communication plan, team member roles and workflow plan.  Did you use the 
+% technology you planned on using?}
+
+In terms of the team meeting and team communication plan, both were followed closely as documented.
+Meetings took place weekly on Wednesdays and Sundays with certain exceptions such as the exam period. Roles were
+also followed closely for each meeting and were consistent throughout the project's duration. Moreover, we used Discord,
+SMS, and GitHub for communication as was described.
+
+For the team member roles documented, they were generally followed with one change. Jason Nam and Sawyer Tang
+followed their roles as described however Allan Fang's and Ryan Yeh's roles slightly changed due to workload capacity.
+Allan Fang led frontend development as written but due to extra capacity, Ryan Yeh took on the lead for OCR development in addition
+to his other roles. Besides that, the team roles were followed as written.
+
+Regarding the workflow plan, Git and GitHub were used as described in the document with issue tracking and the
+version control process being followed.
+
+Finally, the technologies described were followed throughout the project with the exception of the usage of
+node-tesseract-ocr. This library was included due to the assumption we would be implementing our own OCR, however
+we ended up using Google MLKit instead to handle the receipt capture process.
 
 \subsection{What Went Well?}
 
-\plt{What went well for your project management in terms of processes and 
-technology?}
+% \plt{What went well for your project management in terms of processes and 
+% technology?}
+
+The scheduled meetings were very useful to ensure everyone was on track for deadlines.
+It also gave transparency regarding any roadblocks and offered an opportunity for other members
+of the team to offer suggestions and problem solve together. Overall, it helped keep everyone accountable
+which ensured quality work was delivered on time. The GitHub issue tracking process was also very
+useful in tracking what was being worked on and what still needed to be worked on. The issues also helped us to organize
+our work and isolate different tasks through the use of labels. This made the division and tracking of work
+very easy and more efficient overall. Finally, the CI/CD pipeline via GitHub Actions was very helpful in terms
+of development. In particular, having unit tests automatically execute when new code is
+pushed helped us to ensure that high quality features were being produced and that there were no new problems being introduced.
 
 \subsection{What Went Wrong?}
 
-\plt{What went wrong in terms of processes and technology?}
+% \plt{What went wrong in terms of processes and technology?}
+
+We did not have anything that explicitly went wrong however one problem that was encountered multiple times during
+the project's duration had to do with the workflow process and pull requests. Part of the workflow
+involved waiting for two reviewers to approve a pull request before a merge could take place. Often,
+pull requests would get ``stuck'' because reviews were not occurring as frequently
+as they should have. As a result, pull request would pile up and merged in bulk rather than a constant stream
+of work being pushed through. This would often mean that before a deadline, everyone would go through
+a large number of pull requests to push everything that was required for a deliverable which was not ideal.
 
 \subsection{What Would you Do Differently Next Time?}
 
-\plt{What will you do differently for your next project?}
+% \plt{What will you do differently for your next project?}
+
+For projects in the future, we would like to improve the overall planning. For this project, we had to change scope/design decisions several
+times which albeit, is expected, however better planning could have reduced the number of
+times we had to do it. Next time, we would like to create more detailed timelines for development with exact
+expectations documented for each period. This would help with deciding feasibility for features and allow us
+to set a better initial scope. More research would also help during the initial phases of the project.
+For instance, by researching more OCR approaches/libraries, we might have been able to settle on an off-the-shelf solution
+earlier rather than putting resources into something we would eventually scrap. Lastly, we think that speaking with experts/more
+knowledgeable individuals before starting a project would be very important as well. Our meeting with Dr. Anand was very insightful
+and if we had the opportunity to speak earlier, we likely would have been able to make better design decisions right away.
+
+We also believe that communication could have been improved, especially in regards to pull requests.
+Something as simple as more frequent reminders could have improved the throughput of code merges and produced a more
+consistent stream of pull requests. As such, frequent communication and reminders would likely be beneficial for more efficient future
+projects.
 
 \section{Reflection on Capstone}
 
