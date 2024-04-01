@@ -40,6 +40,7 @@
 05/03/24 & 2.0 & Removed/updated the following sections with outdated features to reflect the current state of the app:
 4.1.3: Location-based Recommendations, FRT-FR2-3, FRT-FR6-1, FRT-FR6-1, FRT-FR9-2, NFRT-CUR1, NFRT-CUR3, FRT-FR11-1, FRT-FR8-1, NFRT-LF3, NFRT-UH2, NFRT-UH4, NFRT-OER1, NFRT-SR1, NFRT-SR3, NFRT-SR4, NFRT-SR5, NFRT-SR6\\
 06/03/24 & 2.5 & Added unit tests and unit test traceability\\
+31/03/24 & 3.0 & Updated symbolic constants, added testing details for \{NFRT-UH1, FRT-FR1-2\}, updated implementation plan for code review and survey plan details\\
 \bottomrule
 \end{tabularx}
 
@@ -209,7 +210,7 @@ The VnV plan will be verified with an informal walk-through by stakeholders and 
 \end{itemize}
 
 \subsection{Implementation Verification Plan}
-The verification of the implementation will be done with static and dynamic tests as well as surveys and interviews with stakeholders. Dynamic tests will be done according to Sections 4 and 5 of this document. For static tests, the development team will conduct a code walk-through to check for incorrect code along with using the linter and coding standards detailed in Section 3.6.
+The verification of the implementation will be done with static and dynamic tests as well as surveys and interviews with stakeholders. Dynamic tests will be done according to Sections 4 and 5 of this document. For static tests, the development team will conduct a code walk-through to check for incorrect code along with using the linter and coding standards detailed in Section 3.6. According to the version control process outlined in Section 4 of the \href{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/DevelopmentPlan/DevelopmentPlan.pdf}{Development Plan}, all code will reviewed by at least 2 other team members before being merged to production. Survey and interview results will be documented and evaluated in the testing report. Elicited feedback that require changes will be added to the development pipeline. 
 
 \subsection{Automated Testing and Verification Tools}
 Refer to Sections 6 and 7 of the \href{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/DevelopmentPlan/DevelopmentPlan.pdf}{Development Plan} for the automated testing and verification tools the team will be using.
@@ -252,9 +253,11 @@ How test will be performed: Tester will attempt to log into the application. Val
 \item{\textbf{FRT-FR1-2}}
 
 Control: Manual
+
+Test Case Derivation: Gathering feedback on the overall login experience of the application to test for FR1.
           
 How test will be performed: Survey is presented to the user for them to respond how easy it is to log into the system.
-A success is determined by at least a 70\% positive response. The survey question is detailed in Section 6.2.1.
+A success is determined by at least a PASSING\_RESPONSE\_RATE positive response. The survey question is detailed in Section 6.2.1.
 
 \end{enumerate}
 
@@ -289,7 +292,7 @@ Initial State: User with no existing account on file.
 Input: User signs up for account with a valid password however
 an invalid email is used (i.e. not following the format of a prefix prior to the @ symbol and a domain afterwards).
 					
-Output: Error message should be displayed on the screen detailing an invalid email within 3 seconds.
+Output: Error message should be displayed on the screen detailing an invalid email within MAX\_ERROR\_DELAY seconds.
 
 Test Case Derivation: If incorrect/invalid data is used during sign up, the user should be notified and sign up should
 not be allowed.
@@ -305,7 +308,7 @@ How test will be performed: Tester will open the application and attempt to crea
 \sout{Input: User signs up for account with valid name, email, and password however an
 invalid phone number is used, for instance, a number less than 10 digits.}
           
-\sout{Output: Error message should be displayed on the screen detailing an invalid phone number within 3 seconds.}
+\sout{Output: Error message should be displayed on the screen detailing an invalid phone number within MAX\_ERROR\_DELAY seconds.}
 
 \sout{Test Case Derivation: If incorrect/invalid data is used during sign up, the user should be notified and sign up should
 not be allowed.}
@@ -321,7 +324,7 @@ Initial State: User with no existing account on file.
 Input: User signs up for account with valid name, email, and phone-number however an invalid password
 is used, such as an empty string.
           
-Output: Error message should be displayed on the screen detailing an invalid password within 3 seconds.
+Output: Error message should be displayed on the screen detailing an invalid password within MAX\_ERROR\_DELAY seconds.
 
 Test Case Derivation: If incorrect/invalid data is used during sign up, the user should be notified and sign up should
 not be allowed.
@@ -364,7 +367,7 @@ Initial State: User with existing account on file.
           
 Input: User signs into an account with an existing email and non-matching password to that user.
           
-Output: Error message displayed on the screen saying the password is incorrect for the entered email. Prompt to reset password is highlighted within 3 seconds.
+Output: Error message displayed on the screen saying the password is incorrect for the entered email. Prompt to reset password is highlighted within MAX\_ERROR\_DELAY seconds.
 
 Test Case Derivation: If both email and password do not match the credentials set for a user in the database, sign in
 should be rejected.
@@ -392,7 +395,7 @@ Output: User is provided with a list of all their grocery items and prices on th
 Test Case Derivation: Assuming optimal conditions, the application should be able to capture the items and corresponding prices
 of each. The user should then have the opportunity to review the data and make changes before submitting.
           
-How test will be performed: In even lighting, tester will run the system and photograph a receipt. They will then validate that the systems interpretation of the photograph matches that of the physical receipt with above 90\% precision.
+How test will be performed: In even lighting, tester will run the system and photograph a receipt. They will then validate that the systems interpretation of the photograph matches that of the physical receipt with above MIN\_PRECISION\_THRESHOLD precision.
 
 \item{\textbf{FRT-FR11-1}}
 
@@ -645,7 +648,7 @@ How test will be performed: Tester will input receipt meeting the above conditio
 
 Control: Manual
 
-How test will be performed: Survey is presented to the user for them to respond how useful the system recommendations are. A success is determined by at least a 70\% positive response. The survey question is detailed in Section 6.2.2.
+How test will be performed: Survey is presented to the user for them to respond how useful the system recommendations are. A success is determined by at least a PASSING\_RESPONSE\_RATE positive response. The survey question is detailed in Section 6.2.2.
 
 \item{\textbf{FRT-FR9-1}}
 
@@ -763,11 +766,16 @@ How test will be performed: Tester will submit a receipt and then verify to see 
   \item{NFRT-UH1\\}
 
   Type: Manual, Dynamic
+
+  Initial State: The tester has no prior experience with the application.
+
+  Input: A fresh initial state of the application.
+					
+  Output: PASSING\_RESPONSE\_RATE of testers should be able to perform basic functionality of inputting a receipt and viewing purchase analytics after using the app for FIRST\_IMPRESSION\_TIME.
             
   How test will be performed: Testers will be presented with the
-  application and given a brief overview of its purpose. They will then be given 15 minutes to use the application
-  under supervision by the team but without instruction. After that time period, the testers will be asked to input
-  a receipt and navigate to the purchase analytics.
+  application and given a brief overview of its purpose. They will then be given FIRST\_IMPRESSION\_TIME to use the application
+  under supervision by the team but without instruction. After that time period, the testers will be asked to input a receipt and navigate to the purchase analytics.
 
   \item{NFRT-UH2\\}
 
@@ -880,7 +888,7 @@ How test will be performed: Tester will submit a receipt and then verify to see 
   Type: Manual, Dynamic
 
   How test will be performed: For tests performed for \textit{FRT-FR10-1} and \textit{FRT-FR10-2}, the relative
-  error of data such as average spending will be computed and should be less than 5\%.
+  error of data such as average spending will be computed and should be less than MAX\_RELATIVE\_ERROR.
 
   \item{NFRT-PR6\\}
 
@@ -890,7 +898,7 @@ How test will be performed: Tester will submit a receipt and then verify to see 
 
   Input: The application is installed onto the device.
 
-  Output: The device storage should indicate that the application uses less than 1GB of storage.
+  Output: The device storage should indicate that the application uses less than MAX\_APP\_SIZE of storage.
 
   How test will be performed: The tester will install the application onto a device without the application currently
   installed.
@@ -974,9 +982,9 @@ Initial State: The application is ready for new releases or any updates.
                 
 Input: Test suites will be executed against new releases and updates.
                 
-Output: The application will identify defects. The team will resolve identified defects. In doing so, the application testing prior to new releases and updates will achieve 80\% code coverage.
+Output: The application will identify defects. The team will resolve identified defects. In doing so, the application testing prior to new releases and updates will achieve MIN\_CODE\_COVERAGE code coverage.
                 
-How test will be performed: The tester will use automated testing tools (that can include \textit{Postman}, \textit{Flutter}, etc) to achieve 80\% code coverage (RER1). The tester will then perform issue tracking and resolution processes (RER2). The tester will organize a Final Demonstration (RER3) between March 18 and March 29 of 2024, involving stakeholders to validate the final product against requirements.
+How test will be performed: The tester will use automated testing tools (that can include \textit{Postman}, \textit{Flutter}, etc) to achieve MIN\_CODE\_COVERAGE code coverage (RER1). The tester will then perform issue tracking and resolution processes (RER2). The tester will organize a Final Demonstration (RER3) between March 18 and March 29 of 2024, involving stakeholders to validate the final product against requirements.
 
 \end{enumerate}
 
@@ -1229,24 +1237,24 @@ unit tests will be focused on the modules of the application as written in the
 The front-end unit tests for the User Analytics Module can be found in the following files: \href{https://github.com/allanfang1/grocery_spending_tracker_app/blob/main/test/goals_provider_test.dart}{Front-end User Analytics Module Spending Goals Tests}, \href{https://github.com/allanfang1/grocery_spending_tracker_app/blob/main/test/history_provider_test.dart}{Front-end User Analytics Module Spending History Tests}. The tests are created to have complete path coverage constrained by the user interface control flows. The tests are all being performed automatically and dynamically through Flutter's testing package.
 
 \noindent
-The back-end unit tests for the User Analytics Module can be found in the following file: \href{https://github.com/grocery-spending-tracker/grocery-spending-tracker-backend/blob/master/tests/controllers/usersController.analytics.test.js}{Back-end User Analytics Module Controller Tests}. The tests conform to an 80\% coverage of the endpoint and logic functions and are run using Mocha, Chai, and Sinon for the framework and c8 for the coverage.
+The back-end unit tests for the User Analytics Module can be found in the following file: \href{https://github.com/grocery-spending-tracker/grocery-spending-tracker-backend/blob/master/tests/controllers/usersController.analytics.test.js}{Back-end User Analytics Module Controller Tests}. The tests conform to an MIN\_CODE\_COVERAGE coverage of the endpoint and logic functions and are run using Mocha, Chai, and Sinon for the framework and c8 for the coverage.
 
 
 \subsubsection{Users Module}
-The back-end unit tests for the Users Module can be found in the following file: \href{https://github.com/grocery-spending-tracker/grocery-spending-tracker-backend/blob/master/tests/controllers/usersController.users.test.js}{Back-end User Module Controller Tests}. The tests conform to an 80\% coverage of the endpoint and logic functions and are run using Mocha, Chai, and Sinon for the framework and c8 for the coverage.
+The back-end unit tests for the Users Module can be found in the following file: \href{https://github.com/grocery-spending-tracker/grocery-spending-tracker-backend/blob/master/tests/controllers/usersController.users.test.js}{Back-end User Module Controller Tests}. The tests conform to an MIN\_CODE\_COVERAGE coverage of the endpoint and logic functions and are run using Mocha, Chai, and Sinon for the framework and c8 for the coverage.
 
 
 \subsubsection{Authentication Module}
 The front-end unit tests for the Authentication Module can be found in the following file: \href{https://github.com/allanfang1/grocery_spending_tracker_app/blob/main/test/profile_provider_test.dart}{Front-end Authentication Module Tests}. The tests are created to have complete path coverage constrained by the user interface control flows. The tests are all being performed automatically and dynamically through Flutter's testing package.
 
 \noindent
-The back-end unit tests for the Authentication Module can be found in the following files: \href{https://github.com/grocery-spending-tracker/grocery-spending-tracker-backend/blob/master/tests/controllers/authController.test.js}{Back-end Authentication Module Controller Tests} and \href{https://github.com/grocery-spending-tracker/grocery-spending-tracker-backend/blob/master/tests/util/authentication.test.js}{Back-end Authentication Module Utility Tests}. The tests conform to an 80\% coverage of the endpoint and logic functions and are run using Mocha, Chai, and Sinon for the framework and c8 for the coverage.
+The back-end unit tests for the Authentication Module can be found in the following files: \href{https://github.com/grocery-spending-tracker/grocery-spending-tracker-backend/blob/master/tests/controllers/authController.test.js}{Back-end Authentication Module Controller Tests} and \href{https://github.com/grocery-spending-tracker/grocery-spending-tracker-backend/blob/master/tests/util/authentication.test.js}{Back-end Authentication Module Utility Tests}. The tests conform to an MIN\_CODE\_COVERAGE coverage of the endpoint and logic functions and are run using Mocha, Chai, and Sinon for the framework and c8 for the coverage.
 
 \subsubsection{Recommendation Engine}
-The back-end unit tests for the Recommendation Module can be found in the following files: \href{https://github.com/grocery-spending-tracker/grocery-spending-tracker-backend/blob/314b/unit-test/tests/controllers/recommendationController.test.js}{Back-end Recommendation Module Tests}. The tests conform to an 80\% coverage of the endpoint and logic functions and are tested using Mocha, Chai, and Sinon for the framework and c8 for the coverage of the tests.
+The back-end unit tests for the Recommendation Module can be found in the following files: \href{https://github.com/grocery-spending-tracker/grocery-spending-tracker-backend/blob/314b/unit-test/tests/controllers/recommendationController.test.js}{Back-end Recommendation Module Tests}. The tests conform to an MIN\_CODE\_COVERAGE coverage of the endpoint and logic functions and are tested using Mocha, Chai, and Sinon for the framework and c8 for the coverage of the tests.
 
 \subsubsection{Classification Engine}
-The back-end unit tests for the Classification Engine Module can be found in the following files: \href{https://github.com/grocery-spending-tracker/grocery-spending-tracker-classification/blob/main/test/main.test.js}{Back-end Classification Module Main Test}, \href{https://github.com/grocery-spending-tracker/grocery-spending-tracker-classification/tree/main/test/classification}{Back-end Classification Module Item Matching Tests}, \href{https://github.com/grocery-spending-tracker/grocery-spending-tracker-classification/tree/main/test/scraper}{Back-end Classification Module Web Scraping Tests}. The tests conform to an 80\% coverage of the logic functions and are tested using Mocha, Chai, Sinon for the framework and c8 for the coverage of the tests.
+The back-end unit tests for the Classification Engine Module can be found in the following files: \href{https://github.com/grocery-spending-tracker/grocery-spending-tracker-classification/blob/main/test/main.test.js}{Back-end Classification Module Main Test}, \href{https://github.com/grocery-spending-tracker/grocery-spending-tracker-classification/tree/main/test/classification}{Back-end Classification Module Item Matching Tests}, \href{https://github.com/grocery-spending-tracker/grocery-spending-tracker-classification/tree/main/test/scraper}{Back-end Classification Module Web Scraping Tests}. The tests conform to an MIN\_CODE\_COVERAGE coverage of the logic functions and are tested using Mocha, Chai, Sinon for the framework and c8 for the coverage of the tests.
 
 \subsection{Tests for Nonfunctional Requirements}
 
@@ -1334,12 +1342,25 @@ nonfunctional requirements will be done via System Tests.
 
 \section{Appendix}
 
-This is where you can place additional information.
-
 \subsection{Symbolic Parameters}
 
-The definition of the test cases will call for SYMBOLIC\_CONSTANTS.
-Their values are defined in this section for easy maintenance.
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{cc}
+        \toprule
+        \textbf{Constant Name} & \textbf{Constant Value} \\
+        \midrule
+        PASSING\_RESPONSE\_RATE & 70\%\\
+        MAX\_ERROR\_DELAY & 3 \\
+        MIN\_PRECISION\_THRESHOLD & 90\%\\
+        MAX\_RELATIVE\_ERROR & 5\%\\
+        MAX\_APP\_SIZE & 1GB\\
+        MIN\_CODE\_COVERAGE & 80\%\\
+        FIRST\_IMPRESSION\_TIME & 15 minutes\\
+        \bottomrule
+    \end{tabular}
+    \label{tab:Symbolic Parameters}
+\end{table}
 
 \subsection{Functional Requirement Survey Questions}
 \subsubsection{Survey questions for \textbf{FRT-FR1-2}.}
