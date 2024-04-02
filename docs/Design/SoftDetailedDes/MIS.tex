@@ -55,6 +55,7 @@ urlcolor=cyan          % color of external links
 \midrule
 17/01/2024 & 1.0 & Initial version of MIS\\
 01/04/2024 & 1.1 & Converted Syntax to proper format for definition of variables and their types and fixed multi-character variables to use proper text format instead of italics\\
+02/04/2024 & 1.2 & Specified Module Type for each modules\\
 \bottomrule
 \end{tabularx}
 
@@ -184,6 +185,9 @@ capture of the receipt. This includes responsibilities like handling device perm
 
 receiptVision
 
+\subsubsection{Module Type}
+Library Module
+
 \subsection{Uses}
 
 None
@@ -276,6 +280,9 @@ prices, and date of transaction from a parsed receipt.
 \subsection{Module}
 
 receiptExtraction
+
+\subsubsection{Module Type}
+Library Module
 
 \subsection{Uses}
 
@@ -490,6 +497,9 @@ The Location Management Module manages user location data and outputs relevant r
 
 locationManagement
 
+\subsubsection{Module Type}
+Library Module
+
 \subsection{Uses}
 
 Database Driver Module (Section \ref{mDBDriver})
@@ -571,6 +581,9 @@ The User Analytics Module provides analytics and feedback on user purchasing beh
 \subsection{Module}
 
 userAnalytics
+
+\subsubsection{Module Type}
+Library Module
 
 \subsection{Uses}
 
@@ -679,6 +692,9 @@ The Users Module exists to handle CRUD operations for operations related to user
 \subsection{Module}
 
 users
+
+\subsubsection{Module Type}
+Library Module
 
 \subsection{Uses}
 
@@ -832,6 +848,9 @@ The Authentication module acts to "log-in" the user by providing the client with
 
 authentication
 
+\subsubsection{Module Type}
+Library Module
+
 \subsection{Uses}
 
 Database Driver Module (Section \ref{mDBDriver}) 
@@ -907,6 +926,9 @@ Module for recommending user purchases.
 \subsection{Module}
 
 recommendationModule
+
+\subsubsection{Module Type}
+Library Module
 
 \subsection{Uses}
 
@@ -994,6 +1016,9 @@ The Classification Module is responsible for interpreting and identifying recogn
 \subsection{Module}
 
 classificationModule
+
+\subsubsection{Module Type}
+Library Module
 
 \subsection{Uses}
 
@@ -1118,6 +1143,9 @@ Module for hiding database implementation. Database schema and tables are detail
 
 \subsection{Module}
 dbModule
+
+\subsubsection{Module Type}
+Library Module
 
 \subsection{Uses}
 None
