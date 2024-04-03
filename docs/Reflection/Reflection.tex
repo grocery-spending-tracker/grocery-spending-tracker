@@ -16,11 +16,11 @@
 
 \maketitle
 
-\plt{Reflection is an important component of getting the full benefits from a
-learning experience.  Besides the intrinsic benefits of reflection, this
-document will be used to help the TAs grade how well your team responded to
-feedback.  In addition, several CEAB (Canadian Engineering Accreditation Board)
-Learning Outcomes (LOs) will be assessed based on your reflections.}
+% \plt{Reflection is an important component of getting the full benefits from a
+% learning experience.  Besides the intrinsic benefits of reflection, this
+% document will be used to help the TAs grade how well your team responded to
+% feedback.  In addition, several CEAB (Canadian Engineering Accreditation Board)
+% Learning Outcomes (LOs) will be assessed based on your reflections.}
 
 \section{Changes in Response to Feedback}
 
@@ -40,7 +40,16 @@ Learning Outcomes (LOs) will be assessed based on your reflections.}
 
 \subsection{SRS and Hazard Analysis}
 
-
+For the SRS, several changes were made based on TA feedback. In the User Business
+section of the document, we added statistics and citations to make the project's purpose
+more compelling. Introductions were also added to all sections in order to give readers an
+overview of what information would be covered. Furthermore, product use case numbers were added
+in the Individual Product Use Cases section for better traceability. Changes were also made
+to the Tasks section of the document. Here, we added timelines and priorities for each development
+phase based on feedback. Lastly, formatting issues were addressed such as changing the image formats
+of all images to pdf in order to improve their quality. After the Revision 0 demo, we also made
+some changes due to internal decisions. In particular, we had to reduce the scope of the project
+due to time constraints and as a result, some requirements were removed.
 
 \subsection{Design and Design Documentation}
 
@@ -65,9 +74,11 @@ using a fixed number such as 70\% in our test descriptions, we changed it to a c
 as PASSING\_RESPONSE\_RATE. Additionally, we were asked to provide more details on some tests. Specifically,
 what constitutes as a pass and some other ambiguity regarding survey usage. Lastly, the
 Implementation Verification Plan was missing some details so those were added as well. Based on peer review feedback,
-some tests were updated to include missing information such as an initial state, input, and expected output.
+some test cases were updated to include missing information such as an initial state, input, and expected output.
 There was also feedback to add some more detail to the Design Verification Plan and alphabetize the Symbols,
-Abbreviations, and Acronyms table, both of which were addressed.
+Abbreviations, and Acronyms table, both of which were addressed. Finally, based on internal decision making
+after the Revision 0 demo, we decided to reduce scope and had to remove some test cases that were no longer
+relevant to the application.
 
 For the VnV Report, many of the TA feedback changes that were addressed had to do with formatting and
 appearance of the document. This included alphabetizing the Symbols, Abbreviations and Acronyms table,
@@ -88,10 +99,10 @@ application. Initially, the vision for the application was to have our own optic
 system as part of the application. As such, the original implementation of the OCR involved the use
 of various Python scripts using Tesseract OCR and OpenCV. This was demonstrated as part of the proof of concept demo,
 however soon afterwards, we realized we were having issues with robustness, accuracy, and speed. Given that this
-was meant to be a consumer application, usability was a very important trait for the app to have and these issues
+was meant to be a consumer application, usability was a very important trait for the app and these issues
 were significant roadblocks for us. After talking to Dr. Smith, he referred us to Dr. Anand who gave us
 feedback regarding our implementation. He suggested us to use an existing OCR implementation given
-that there was already existing technology that solved what we were trying to do. Additionally, in the interest of time,
+that there was already existing technology that solved what we were trying to accomplish. Additionally, in the interest of time,
 we did not have the resources to create our own, optimized OCR implementation in addition to a full
 mobile app. As a result, we decided to take Dr. Anand's advice and use Google MLKit as our final OCR implementation. This
 design change provided significant improvements to the app's usability, with robustness, accuracy, and speed all being
@@ -114,9 +125,9 @@ these same students were able to figure out general functionality within 15 minu
 user feedback, we were able to create a UI design that was more usable and appealing than the original implementation we had
 demonstrated.
 
-Based on feedback during the Revision 0 demo, we also made changes to the budgets such as showing the total budget for each,
-rather than only showing a bar of progress as was initially done. Additionally, based on user feedback, tap focus was added
-to the receipt capture in order to improve the user experience.
+Based on feedback during the Revision 0 demo, we also made changes to the budgets. For example, we  displayed the user's
+total budget allocated to each goal, rather than only showing a bar of progress as was initially done. Additionally, based
+on user feedback, tap focus was added to the receipt capture in order to improve the user experience.
 
 \section{Design Decisions (LO12)}
 
@@ -167,7 +178,7 @@ Since this product was developed with the low-income public as the primary stake
 % technology you planned on using?}
 
 In terms of the team meeting and team communication plan, both were followed closely as documented.
-Meetings took place weekly on Wednesdays and Sundays with certain exceptions such as the exam period. Roles were
+Meetings took place weekly on Wednesdays and Sundays with certain exceptions such as exam periods. Roles were
 also followed closely for each meeting and were consistent throughout the project's duration. Moreover, we used Discord,
 SMS, and GitHub for communication as was described.
 
@@ -192,10 +203,10 @@ The scheduled meetings were very useful to ensure everyone was on track for dead
 It also gave transparency regarding any roadblocks and offered an opportunity for other members
 of the team to offer suggestions and problem solve together. Overall, it helped keep everyone accountable
 which ensured quality work was delivered on time. The GitHub issue tracking process was also very
-useful in tracking what was being worked on and what still needed to be worked on. The issues also helped us to organize
-our work and isolate different tasks through the use of labels. This made the division and tracking of work
+useful in tracking what was being worked on and what still needed to be worked on. The issues helped us to organize
+our work and isolate different tasks through the use of labels as well. This made the division and tracking of work
 very easy and more efficient overall. Finally, the CI/CD pipeline via GitHub Actions was very helpful in terms
-of development. In particular, having unit tests automatically execute when new code is
+of development. In particular, having unit tests automatically execute when new code was
 pushed helped us to ensure that high quality features were being produced and that there were no new problems being introduced.
 
 \subsection{What Went Wrong?}
@@ -206,7 +217,7 @@ We did not have anything that explicitly went wrong however one problem that was
 the project's duration had to do with the workflow process and pull requests. Part of the workflow
 involved waiting for two reviewers to approve a pull request before a merge could take place. Often,
 pull requests would get ``stuck'' because reviews were not occurring as frequently
-as they should have. As a result, pull request would pile up and merged in bulk rather than a constant stream
+as they should have. As a result, pull requests would pile up and merged in bulk rather than a constant stream
 of work being pushed through. This would often mean that before a deadline, everyone would go through
 a large number of pull requests to push everything that was required for a deliverable which was not ideal.
 
@@ -215,7 +226,7 @@ a large number of pull requests to push everything that was required for a deliv
 % \plt{What will you do differently for your next project?}
 
 For projects in the future, we would like to improve the overall planning. For this project, we had to change scope/design decisions several
-times which albeit, is expected, however better planning could have reduced the number of
+times which was to be expected, however better planning could have reduced the number of
 times we had to do it. Next time, we would like to create more detailed timelines for development with exact
 expectations documented for each period. This would help with deciding feasibility for features and allow us
 to set a better initial scope. More research would also help during the initial phases of the project.
@@ -240,16 +251,16 @@ projects.
 In terms of documentation, SFWRENG 2AA4 was very helpful for this capstone project. This course was our first
 introduction to \LaTeX{} and writing software documentation. Working on documentation in that class greatly helped
 with writing and working with the documentation for this project. Similarly, SFWRENG 2DM3, SFWRENG 2FA3, and SFWRENG 3RA3
-all helped with documentation as well. SFWRENG 2DM3 and SFWRENG 2FA3 were introductory courses for discrete mathematics
-which was needed for formalizing our requirements and design, such as in the MIS. SFWRENG 3RA3 taught about software requirements and was the course
-that introduced us to different elicitation techniques. This course was leveraged for the different meetings we had with users to elicit
+all helped with documentation as well. SFWRENG 2DM3 and SFWRENG 2FA3 were introductory courses to discrete mathematics
+which was needed for formalizing our requirements and design, such as in the MIS. SFWRENG 3RA3 taught software requirements and was the course
+that introduced us to different elicitation techniques. This course was leveraged for the different meetings we had with stakeholders to elicit
 various requirements. It also taught the different kinds of requirements (function and non-functional) which also used for this project, particularly
 in the SRS. Outside of documentation, SFWRENG 3DB3 introduced us to relational databases which we used in our final
 implementation. This course built the fundamentals which allowed us to plan and construct our own database for this application.
 Furthermore, SFWRENG 3A04 taught the basics of software architecture which greatly helped with the design process of our
 application. Referencing the different architectures covered, we were able to build out our own application for this project. Finally,
 SFWRENG 3S03 was important because it taught the basics of software testing and the different testing methodologies available. This
-course helped us to build out our own testing library with the appropriate code coverage to ensure our application was reliable
+course helped us to build our own testing library with the appropriate code coverage to ensure our application was reliable
 and functioning as intended.
 
 \subsection{Knowledge/Skills Outside of Courses}
@@ -260,12 +271,12 @@ and functioning as intended.
 Much of the knowledge/skills related to specific technologies required learning and research outside of our coursework.
 In particular, Flutter/Dart was a new programming language for all of us so we had to do research on the documentation as well
 as watch some videos to familiarize ourselves with it. Likewise, not all of us had worked with NodeJS before or PostgreSQL
-so similar learning had to be done. This involved learning more than just the language as well, we tried to familiarize ourselves
+so similar learning had to be done. This involved learning more than just the language as well; we tried to familiarize ourselves
 with the best coding practices and syntax too. Another skill we had to learn was using Azure and how to deploy an application on it.
 We decided to use Azure to host our backend and database, so there was a learning curve to configure everything properly. There was
 also a great deal of troubleshooting required which we had to utilize external resources to solve. CI/CD and specifically,
-CI/CD through GitHub Actions was also new for most of us. All of us understood what it was conceptually as it had been briefly
-covered in courses, however using it in practice was something we had to teach ourselves. This involved learning the
+CI/CD through GitHub Actions was also new for most of us. All of us understood CI/CD conceptually as it had been briefly
+covered in coursework, however using it in practice was something we had to teach ourselves. This involved learning the
 file structure for workflows, the syntax, and importing of existing actions to create our CI/CD pipeline. Overall, the knowledge/skills
 outside of courses were mostly technology specific and although some of the concepts were familiar, we still had to learn how
 to actually use them in practice.
