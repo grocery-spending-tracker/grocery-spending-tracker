@@ -1,3 +1,4 @@
+<!---
 <Please keep the folder structure as given in the template repo.  We will
 discuss each artifact as we get to it in the course.  In some cases, like for
 the SRS, you should have a file of the same name.  For other cases, like the
@@ -26,7 +27,17 @@ the template that Dr. Mosser now uses in the third year requirements course.>
 with a template other than the Scientific Computing template, you will have to delete
 the unnecessary folders and rename your folder to SRS.>
 # Documentation folders
+-->
 
 The folders and files for this folder are as follows:
 
-Describe ...
+- [Development Plan](./DevelopmentPlan/)
+- [Hazard Analysis](./HazardAnalysis/)
+- [Module Guide](./Design/SoftArchitecture)
+- [Module Interface Specification](./Design/SoftDetailedDes/)
+- [Presentations](./Presentations)
+- [Problem Statement and Goals](./ProblemStatementAndGoals/)
+- [Reflection](./Reflection/)
+- [Software Requirements Specification](./SRS/)
+- [Verification and Validation Plan](./VnVPlan/)
+- [Verification and Validation Report](./VnVReport/)

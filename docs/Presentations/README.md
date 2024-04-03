@@ -2,4 +2,6 @@
 
 The folders and files for this folder are as follows:
 
-- <fill in details>
+- [EXPO](./EXPO)
+
+This folder contains the Grocery Spending Tracker poster used for the McMaster Capstone EXPO.
