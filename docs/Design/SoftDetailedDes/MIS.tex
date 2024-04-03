@@ -54,6 +54,8 @@ urlcolor=cyan          % color of external links
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
 17/01/2024 & 1.0 & Initial version of MIS\\
+01/04/2024 & 1.1 & Converted Syntax to proper format for definition of variables and their types and fixed multi-character variables to use proper text format instead of italics\\
+02/04/2024 & 1.2 & Specified Module Type for each modules\\
 \bottomrule
 \end{tabularx}
 
@@ -183,6 +185,9 @@ capture of the receipt. This includes responsibilities like handling device perm
 
 receiptVision
 
+\subsubsection{Module Type}
+Library Module
+
 \subsection{Uses}
 
 None
@@ -215,14 +220,14 @@ None
 
 \subsubsection{State Variables}
 
-\textbf{App Lifecycle} \textit{appLifecycle}: Tracks module activity on the user's device. \\
-\textbf{$\mathbb{B}$} \textit{isPermissionGranted}: Stores camera permission status. \\
-\textbf{Device Camera} \textit{selectedCamera}: Stores data on which camera to use.
+\text{appLifecycle} : \textbf{App Lifecycle} $\rightarrow$ Tracks module activity on the user's device. \\
+\text{isPermissionGranted} : \textbf{$\mathbb{B}$} $\rightarrow$ Stores camera permission status. \\
+\text{selectedCamera} : \textbf{Device Camera} $\rightarrow$ Stores data on which camera to use.
 
 \subsubsection{Environment Variables}
 
-\textbf{Device Camera} User Camera \\
-\textbf{2D Sequence of Pixels} User Display
+User Camera : \textbf{Device Camera} \\
+User Display : \textbf{2D Sequence of Pixels} 
 
 \subsubsection{Assumptions}
 
@@ -275,6 +280,9 @@ prices, and date of transaction from a parsed receipt.
 \subsection{Module}
 
 receiptExtraction
+
+\subsubsection{Module Type}
+Library Module
 
 \subsection{Uses}
 
@@ -395,7 +403,7 @@ None
 
 \subsubsection{Environment Variables}
 
-\textbf{2D Sequence of Pixels} User Display
+User Display : \textbf{2D Sequence of Pixels} 
 
 \subsubsection{Assumptions}
 \begin{itemize}
@@ -489,6 +497,9 @@ The Location Management Module manages user location data and outputs relevant r
 
 locationManagement
 
+\subsubsection{Module Type}
+Library Module
+
 \subsection{Uses}
 
 Database Driver Module (Section \ref{mDBDriver})
@@ -571,6 +582,9 @@ The User Analytics Module provides analytics and feedback on user purchasing beh
 
 userAnalytics
 
+\subsubsection{Module Type}
+Library Module
+
 \subsection{Uses}
 
 Database Driver Module (Section \ref{mDBDriver})
@@ -606,7 +620,7 @@ getBudgetGoals & - & List$<$($\mathbb{N}^3$, String)$>$ & - \\
 \subsection{Semantics}
 
 \subsubsection{State Variables}
-\textbf{$\mathbb{N}$} \textit{pageSize}: number of trips in a page of shopping trips 
+\text{pageSize} : \textbf{$\mathbb{N}$} $\rightarrow$ number of trips in a page of shopping trips 
 
 \subsubsection{Environment Variables}
 \textbf{GroceryTrip} (Section \ref{mExtraction})
@@ -678,6 +692,9 @@ The Users Module exists to handle CRUD operations for operations related to user
 \subsection{Module}
 
 users
+
+\subsubsection{Module Type}
+Library Module
 
 \subsection{Uses}
 
@@ -831,6 +848,9 @@ The Authentication module acts to "log-in" the user by providing the client with
 
 authentication
 
+\subsubsection{Module Type}
+Library Module
+
 \subsection{Uses}
 
 Database Driver Module (Section \ref{mDBDriver}) 
@@ -864,8 +884,8 @@ verifyToken & String & String & invalidTokenException \\
 None
 
 \subsubsection{Environment Variables}
-\textbf{String} PrivateKey (for JWT) \\
-\textbf{String} PublicKey (for JWT)
+PrivateKey : \textbf{String} $\rightarrow$ used for JSON Web Tokens (JWT) \\
+PublicKey : \textbf{String} $\rightarrow$ used for JSON Web Tokens (JWT)
 
 \subsubsection{Assumptions}
 None
@@ -906,6 +926,9 @@ Module for recommending user purchases.
 \subsection{Module}
 
 recommendationModule
+
+\subsubsection{Module Type}
+Library Module
 
 \subsection{Uses}
 
@@ -993,6 +1016,9 @@ The Classification Module is responsible for interpreting and identifying recogn
 \subsection{Module}
 
 classificationModule
+
+\subsubsection{Module Type}
+Library Module
 
 \subsection{Uses}
 
@@ -1118,6 +1144,9 @@ Module for hiding database implementation. Database schema and tables are detail
 \subsection{Module}
 dbModule
 
+\subsubsection{Module Type}
+Library Module
+
 \subsection{Uses}
 None
 
@@ -1150,7 +1179,7 @@ select & String$^3$ & String & - \\
 None
 
 \subsubsection{Environment Variables}
-\textbf{Relational Database} db
+db : \textbf{Relational Database} 
 
 \subsubsection{Assumptions}
 \begin{itemize}
