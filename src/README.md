@@ -1,4 +1,4 @@
-# Project Name Source Code
+# Grocery Spending Tracker Source Code
 
 The folders and files for this project are as follows:
 
