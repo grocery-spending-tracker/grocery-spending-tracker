@@ -41,6 +41,7 @@
 4.1.3: Location-based Recommendations, FRT-FR2-3, FRT-FR6-1, FRT-FR6-1, FRT-FR9-2, NFRT-CUR1, NFRT-CUR3, FRT-FR11-1, FRT-FR8-1, NFRT-LF3, NFRT-UH2, NFRT-UH4, NFRT-OER1, NFRT-SR1, NFRT-SR3, NFRT-SR4, NFRT-SR5, NFRT-SR6\\
 06/03/24 & 2.5 & Added unit tests and unit test traceability\\
 31/03/24 & 3.0 & Updated symbolic constants, added testing details for \{NFRT-UH1, FRT-FR1-2\}, updated implementation plan for code review and survey plan details\\
+02/04/24 & 3.5 &Alphabetized symbols, updated \{design verification plan, FRT-FR2-1, FRT-FR8-2, NFRT-LF1, NFRT-LF2, NFRT-UH6, NFRT-PR1, NFRT-PR2, NFRT-PR4, NFRT-PR5\} for feedback\\
 \bottomrule
 \end{tabularx}
 
@@ -64,13 +65,15 @@ used in this document and their definitions. \\
   \toprule		
   \textbf{symbol} & \textbf{description}\\
   \midrule 
-  SRS & Software Requirements Specification\\
-  OCR & Optical Character Recognition\\
+  DP & Development Plan\\
+  FR & Functional Requirement\\
   HA & Hazard Analysis\\
-  VnV & Verification and Validation\\
   MG & Module Guide\\
   MIS & Module Interface Specification\\
-  DP & Development Plan\\
+  NFR & Non-Functional Requirement\\
+  OCR & Optical Character Recognition\\
+  SRS & Software Requirements Specification\\
+  VnV & Verification and Validation\\
   \bottomrule
 \end{tabular}\\
 
@@ -192,7 +195,7 @@ The design documentation will be verified with an informal walk-through by stake
 \end{itemize}
 
 \subsection{Design Verification Plan}
-The design documentation will be verified with an informal walk-through by stakeholders and peers of the SFWRENG 4G06 course who will provide ad-hoc review as well as an inspection by the development team. The review will address the following issues and be guided by the checklist:
+The software design documentation in the form of the MIS and MG will be verified with an informal walk-through by stakeholders and peers of the SFWRENG 4G06 course who will provide ad-hoc review as well as an inspection by the development team. The review will address the following issues and be guided by the checklist:
 \begin{itemize}
     \item Design adequacy and conformance to software requirements: assess whether the design adequately meets the specified requirements (\href{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/SRS/SRS.pdf}{SRS})
     \item Internal consistency: different components of the design are coherent
@@ -253,6 +256,12 @@ How test will be performed: Tester will attempt to log into the application. Val
 \item{\textbf{FRT-FR1-2}}
 
 Control: Manual
+
+Initial State: User is not signed into the system.
+          
+Input: User attempts to sign into the system with the correct username and credentials.
+
+Output: User is successfully signed in and on the application landing page.
 
 Test Case Derivation: Gathering feedback on the overall login experience of the application to test for FR1.
           
@@ -648,6 +657,12 @@ How test will be performed: Tester will input receipt meeting the above conditio
 
 Control: Manual
 
+Initial State: User an account on the app with some purchase history.
+
+Input: Recommendations based on user's purchase history.
+          
+Output: The system should produce recommendations relevant to the user.
+
 How test will be performed: Survey is presented to the user for them to respond how useful the system recommendations are. A success is determined by at least a PASSING\_RESPONSE\_RATE positive response. The survey question is detailed in Section 6.2.2.
 
 \item{\textbf{FRT-FR9-1}}
@@ -726,6 +741,12 @@ How test will be performed: Tester will submit a receipt and then verify to see 
   \item{NFRT-LF1\\}
 
   Type: Manual, Dynamic
+
+  Initial State: User has not previously used the application.
+
+Input: User is given the application for the first time.
+          
+Output: The user should communicate opinions on look and feel of the app.
             
   How test will be performed: Testers will be presented with the application and guided through navigation of various
   pages available and asked to take note of the aesthetics, appearance and feel of the application. A survey
@@ -734,6 +755,13 @@ How test will be performed: Tester will submit a receipt and then verify to see 
   \item{NFRT-LF2\\}
 
   Type: Manual
+  
+  Initial State: User has not previously used the application.
+
+Input: User is given a list of features for the application and a list of
+  unlabelled icons corresponding to each of the features.
+          
+Output: The user be able to match all icons with features.
             
   How test will be performed: Testers will be given a list of features for the application and a list of
   unlabelled icons corresponding to each of the features. They will be asked to match which feature
@@ -836,6 +864,12 @@ How test will be performed: Tester will submit a receipt and then verify to see 
 
   Type: Manual
 
+    Initial State: Completed NFRT-UH1
+					
+  Input: The user is to freely explore the application.
+					
+  Output: The user will provide feedback on the usability of the app.
+
   How test will be performed: A survey will be presented to testers to evaluate the overall usability of the
   application after first going through \textit{NFRT-UH1}. Afterwards, the team will show them any remaining features
   they had not yet experienced and given the opportunity to freely experiment with the applications. A survey will then be
@@ -849,6 +883,12 @@ How test will be performed: Tester will submit a receipt and then verify to see 
 
   Type: Manual, Dynamic
 
+    Initial State: App is running.
+
+  Input: All pages of the app will be navigated to.
+
+  Output: Flutter performance profiling will provide performance timing data.
+
   How test will be performed: All pages of the application will be navigated through while using the
   \textit{Flutter Performance Profiling} tools. Times for rendering and frontend loading will then be recorded
   to ensure that frontend performance is within expectation.
@@ -856,6 +896,12 @@ How test will be performed: Tester will submit a receipt and then verify to see 
   \item{NFRT-PR2\\}
 
   Type: Automatic, Dynamic
+
+Initial State: Backend is running.
+
+  Input: All backend endpoints will be hit.
+
+  Output: Response times will be recorded.
 
   How test will be performed: Requests will be sent to all backend endpoints via \textit{Postman} and after
   all requests are sent, the times for each request will be recorded. The team will then confirm that
@@ -880,12 +926,25 @@ How test will be performed: Tester will submit a receipt and then verify to see 
   
   Type: Manual, Dynamic
 
-  How test will be performed: Based on tests performed for \textit{FRT-FR3-1}, the tester should have to
-  modify and correct data scanned for less than 10\% of total scanned items.
+  Initial State: FRT-FR3-1 has been performed.
+
+  Input: Receipt is scanned.
+
+  Output: The computed results should have accuracy greater than MIN\_PRECISION\_THRESHOLD of items.
+  
+  How test will be performed: Based on tests performed for \textit{FRT-FR3-1}, the tester should not have to
+  modify and correct data scanned for greater than MIN\_PRECISION\_THRESHOLD of total scanned items.
 
   \item{NFRT-PR5\\}
 
   Type: Manual, Dynamic
+
+  Initial State: \textit{FRT-FR10-1} and \textit{FRT-FR10-2} have been performed.
+
+  Input: \textit{FRT-FR10-1} and \textit{FRT-FR10-2} test results.
+
+  Output: The relative
+  error of data such as average spending will be computed and should be less than MAX\_RELATIVE\_ERROR.
 
   How test will be performed: For tests performed for \textit{FRT-FR10-1} and \textit{FRT-FR10-2}, the relative
   error of data such as average spending will be computed and should be less than MAX\_RELATIVE\_ERROR.
