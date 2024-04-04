@@ -56,6 +56,7 @@ urlcolor=cyan          % color of external links
 17/01/2024 & 1.0 & Initial version of MIS\\
 01/04/2024 & 1.1 & Converted Syntax to proper format for definition of variables and their types and fixed multi-character variables to use proper text format instead of italics\\
 02/04/2024 & 1.2 & Specified Module Type for each modules\\
+03/04/2024 & 1.3 & Added definitions for Optional and Object$^n$ in Notations section, clarification for Section 7.4 assumption\\
 \bottomrule
 \end{tabularx}
 
@@ -140,7 +141,11 @@ different types. Furthermore, some exported data types using a combination of th
 primitive and derived data types will be defined as required in certain
 MIS sections. In addition, \progname \ uses functions, which
 are defined by the data types of their inputs and outputs. Local functions are
-described by giving their type signature followed by their specification.
+described by giving their type signature followed by their specification. Some additional notations
+that are used in this specification are Optional$<$Object$>$ and Object$^n$. Optional$<$Object$>$ means
+the field is of type Object but it can be left empty. In other words, a user can choose whether to include
+the field or not. Object$^n$ means that the field is comprised of $n$ instances of type Object. As an example,
+if $n = 2$, then the field would consist of 2 Objects.
 
 \section{Module Decomposition}
 
@@ -408,6 +413,7 @@ User Display : \textbf{2D Sequence of Pixels}
 \subsubsection{Assumptions}
 \begin{itemize}
   \item \textit{createItem} will always be working with strings of the format "\textit{itemKey itemDesc Optional$<$H$>$ price}"
+  where ``H'' is a character on the receipt indicating whether an item is taxed or not.
 \end{itemize}
 
 \subsubsection{Access Routine Semantics}
