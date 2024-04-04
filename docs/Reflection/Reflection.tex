@@ -2,6 +2,7 @@
 
 \usepackage{tabularx}
 \usepackage{booktabs}
+\usepackage{amsfonts}
 
 \title{Reflection Report on \progname}
 
@@ -51,6 +52,14 @@ of all images to pdf in order to improve their quality. After the Revision 0 dem
 some changes due to internal decisions. In particular, we had to reduce the scope of the project
 due to time constraints and as a result, some requirements were removed.
 
+From TA feedback, the critical assumptions made in the Hazard Analysis were updated. In particular,
+assumptions in regards to the hosting service we would be using for the backend and the user's
+camera functionality, both of which are largely out of our control. We also removed the weak assumption
+we originally had in the section. Additionally, we were given some additional suggestions to prevent
+the log in hazards we had identified, so those were included and a new security requirement was created.
+From peer feedback, we included the critical assumption that the user's phone would be functioning
+properly since that is out of our control as well.
+
 \subsection{Design and Design Documentation}
 
 For the Module Guide, several changes were made based on TA feedback. One such change was
@@ -60,12 +69,18 @@ module. Additionally, there were some implementation details regarding specific 
 should not have been present in the document. As a result, these were removed. Lastly, we were
 informed that we should be more specific in regards to the Hardware Hiding Module. Therefore,
 we added more details to that module section including specific hardware devices such as a camera.
+From peer feedback, a minor change was made to update the name of M2 to be consistent with the
+name it has in other sections of the MG and MIS.
 
 In the Module Interface Specification, we were informed via TA feedback that some of our syntax
 was incorrect. Specifically, syntax regarding types on declared variables and their definitions.
 There was also some improper text formatting problems with multi-character variables, all of which
 have since been resolved. Additionally, modules in the MIS were missing their Module Types so a new
-section was added for all modules to define their module types.
+section was added for all modules to define their module types. Based on peer review feedback, we
+added definitions for some additional notations (i.e. Optional$<$Object$>$ and $\mathbb{N}^2$)
+we used throughout the document. We also clarified an unclear assumption
+made in Section 7.4 where the other team did not understand what ``H'' meant in the context
+of a receipt input.
 
 \subsection{VnV Plan and Report}
 
