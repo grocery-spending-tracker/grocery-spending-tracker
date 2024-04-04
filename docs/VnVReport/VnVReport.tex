@@ -38,7 +38,7 @@
 \hline
 06/03/2024 & 1.0 & Initial version of the VnV Report\\
 \hline
-31/03/2024 & 1.0 & Fixed table appearances, GitHub stylizing, added table rows describing test groupings, explicitly mentioned tables, alphabetized symbols table\\
+31/03/2024 & 2.0 & Fixed table appearances, GitHub stylizing, added table rows describing test groupings, explicitly mentioned tables, alphabetized symbols table, backend performance graph fix, link stakeholder to SRS, FRT-FR5-2 details, sub-test details fix,\\
 \hline
 \end{tabularx}
 
@@ -81,7 +81,7 @@
 This document will primarily focus on the test results of the verification and validation process
 for the Grocery Spending Tracker application. In particular, the results of the Functional Requirement System Tests,
 Nonfunctional Requirement System Tests, and Unit Tests will be covered. Detailed information regarding
-the Functional Requirements and Nonfunctional Requirements can be found in the
+the Functional Requirements, Nonfunctional Requirements and stakeholders can be found in the
 \href{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/SRS/SRS.pdf}{SRS}. Furthermore,
 unit tests will focus on the individual modules of the system which can be found in the
 \href{https://github.com/r-yeh/grocery-spending-tracker/blob/master/docs/Design/SoftDetailedDes/MIS.pdf}{MIS}.
@@ -179,7 +179,7 @@ account goals and preferences.
   \hline
   \multicolumn{3}{|c|}{\small \textit{Edit goal tests}} \\
   \hline
-  FRT-FR5-2 & X & To be completed for Revision 1\\
+  FRT-FR5-2 & X & Unimplemented functionality, to be completed for Revision 1\\
   \hline
 \end{longtable}
 
@@ -332,7 +332,7 @@ shows render times for each frame, with 52 ms being the highest in this instance
 
 Similarly, NFRT-PR2 focused on general performance on the backend, in particular, response times from the
 different endpoints. Various endpoints were accessed about 10 times using Postman and results showed that
-backend performance was within expectation for the project. Most of the responses were within 200 ms with the
+backend performance was within expectation for the project (different colours are simply to distinguish between trials). Most of the responses were within 200 ms with the
 worst being below 600 ms. The team's expectations for backend performance were for responses to be below 2 seconds
 on average according to the SRS, which results from this test show. Below is a graphical representation of the
 trials performed and the endpoints tested:
@@ -478,7 +478,7 @@ User Analytics Module.
 Table 12 shows test results for the user analytics module. Tests FRT-M5-1 to FRT-M5-5 are the front-end unit tests for the User Analytics Module. These tests focus on user budgeting goals and user purchase history. Details on these tests can be found in the following files: \href{https://github.com/allanfang1/grocery_spending_tracker_app/blob/main/test/goals_provider_test.dart}{Front-end User Analytics Module Spending Goals Tests}, \href{https://github.com/allanfang1/grocery_spending_tracker_app/blob/main/test/history_provider_test.dart}{Front-end User Analytics Module Spending History Tests}.
 
 Tests FRT-M5-6 to FRT-M5-8 are all back-end tests and can be found in the following file: \href{https://github.com/grocery-spending-tracker/grocery-spending-tracker-backend/blob/master/tests/controllers/usersController.analytics.test.js}{Back-end User Analytics Module Controller Tests}.
-These tests primarily focus on the endpoints responsible for CRUD operations related to user budget goals. Each of these tests have several sub-tests (a, b, c, etc.) that test the function's primary and edge-cases.
+These tests primarily focus on the endpoints responsible for CRUD operations related to user budget goals. Each of these tests require all sub-tests (a, b, c, etc.) to pass that test the function's primary and edge-cases.
 
 \subsection{Users Module}
 The section provides a brief overview of the unit tests performed and their results for the
@@ -495,7 +495,7 @@ Users Module.
 \end{longtable}
 
 Table 13 shows test results for the users module. Tests FRT-M6-1 to FRT-M6-6 are all back-end tests and can be found in the following file: \href{https://github.com/grocery-spending-tracker/grocery-spending-tracker-backend/blob/master/tests/controllers/usersController.users.test.js}{Back-end User Module Controller Tests}.
-These tests focus on the endpoints related to CRUD operations for users on the application. Each test has several sub-tests (a, b, c, etc.) that test the function's primary and edge-cases.
+These tests focus on the endpoints related to CRUD operations for users on the application. Each test requires all sub-tests (a, b, c, etc.) to pass that test the function's primary and edge-cases.
 
 \subsection{Authentication Module}
 
@@ -519,7 +519,7 @@ Table 14 shows test results for the authentication module. Tests FRT-M7-1 to FRT
 
 Tests FRT-M7-6 to FRT-M7-8 are all back-end tests and can be found in the following files: \href{https://github.com/grocery-spending-tracker/grocery-spending-tracker-backend/blob/master/tests/controllers/authController.test.js}{Back-end Authentication Module Controller Tests} and \href{https://github.com/grocery-spending-tracker/grocery-spending-tracker-backend/blob/master/tests/util/authentication.test.js}{Back-end Authentication Module Utility Tests}.
 FRT-M7-6 tests the login endpoint and FRT-M7-7 to FRT-M7-8 test the login utilities used such as returning a signed JWT token upon login.
-Each test has several sub-tests (a, b, c, etc.) that test the function's primary and edge-cases.
+Each test has requires all sub-tests (a, b, c, etc.) to pass that test the function's primary and edge-cases.
 
 \subsection{Recommendation Engine}
 
@@ -537,7 +537,7 @@ Recommendation Module.
 
 Table 15 shows test results for the recommendation engine. Tests FRT-M8-1 and FRT-M8-2 are both back-end tests and can be found in the following file: \href{https://github.com/grocery-spending-tracker/grocery-spending-tracker-backend/blob/314b/unit-test/tests/controllers/recommendationController.test.js}{Back-end Recommendation Module Controller Tests}.
 FRT-M8-1 focuses on the endpoint for returning recommendations based on a user's frequency of purchase and FRT-M8-2
-focuses on the endpoint for returning recommendations based on low product prices. Each test has several sub-tests (a, b, c, etc) associated that test the function's primary and edge-cases.
+focuses on the endpoint for returning recommendations based on low product prices. Each test require all sub-tests (a, b, c, etc) to pass that test the function's primary and edge-cases.
 
 \subsection{Classification Engine}
 
@@ -566,7 +566,7 @@ Table 16 shows test results for the classification engine. Tests FRT-M9-1 to FRT
 FRT-M9-1 to FRT-M9-6 tests the ability to fetch/scrape for different details regarding existing and new grocery items such the product name and price.
 FRT-M9-7 to FRT-M9-9 verifies the ability to match and classify an item from the receipt to existing/new web scraped items.
 Finally, FRT-M9-10 to FRT-M9-11 test the system's ability to cache items to make the classification process faster.
-Each test has several sub-tests (a, b, c, etc) that tests the function's primary and edge-cases.
+Each test requires all sub-tests (a, b, c, etc) to pass that tests the function's primary and edge-cases.
 
 \section{Changes Due to Testing}
 
