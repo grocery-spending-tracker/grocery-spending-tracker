@@ -49,7 +49,37 @@
 17/10/23 & Ryan Yeh & Added Critical Assumptions\\
 19/10/23 & Sawyer Tang & Initial Version of Safety and Security Requirements\\
 19/10/23 & Ryan Yeh & Added Roadmap\\
-01/04/24 & Sawyer Tang & Addressed Feedback: assumptions, HA2 \\
+01/04/24 & Sawyer Tang & Addressed Feedback: updated assumptions for camera availability and web service, updated HA2 to include\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+~\newpage
+
+\tableofcontents
+
+~\newpage
+
+\listoftables
+
+\listoffigures
+
+\newpage
+
+\pagenumbering{roman}
+
+\begin{table}[hp]
+\caption{Revision History} \label{TblRevisionHistory}
+\begin{tabularx}{\textwidth}{llX}
+\toprule
+\textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
+\midrule
+16/10/23 & Ryan Yeh & Added List of Tables, List of Figures, and Failure Mode and Effect Analyis\\
+16/10/23 & Allan Fang & Added sections 1, 2, 3\\
+17/10/23 & Ryan Yeh & Added Critical Assumptions\\
+19/10/23 & Sawyer Tang & Initial Version of Safety and Security Requirements\\
+19/10/23 & Ryan Yeh & Added Roadmap\\
+01/04/24 & Sawyer Tang & Addressed Feedback: updated assumptions for camera availability and web service, updated HA1 and HA2 to include newly added SSR11\\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -121,7 +151,7 @@ One assumption being made by the team is that, because we are using an existing 
         \end{enumerate}
         & \begin{enumerate}[label=\alph*., leftmargin=*]
             \item SSR1
-            \item SSR11
+            \item SSR12
         \end{enumerate}
         & HA1 \\
         \cline{2-7}
@@ -134,13 +164,15 @@ One assumption being made by the team is that, because we are using an existing 
             \item Refer to HA1-a
             \item Limit the number of log in attempts a person has for a given time period
             \item Periodic database backups so that user data can be recovered.
-            \item Refer to HA1-a
+            \item Require users to create \textit{strong} password.
+            \item Refer to HA1-b
         \end{enumerate}
         & \begin{enumerate}[label=\alph*., leftmargin=*]
             \item SSR1
             \item SSR2
-            \item SSR12
+            \item SSR10
             \item SSR11
+            \item SSR12
         \end{enumerate}
         & HA2 \\
         \hline
@@ -304,6 +336,10 @@ One assumption being made by the team is that, because we are using an existing 
     \item The system shall require users to create a \textit{strong} password when making their account or changing their password. (ie. includes at least one special char and one number).
     \item[] \emph{Rationale:} Numbers and special characters make it more difficult for malicious actors to obtain a user's password.
     \item[] \emph{Associated Hazards:} HA2
+
+    \item The system shall allow users to use the users email as a two-factor authentication. The system will send the user a verification code to input both after login and when attempting to reset the users password.
+    \item[] \emph{Rationale:} Users should have the option to enhance the security of their account in the case their password is compromised.
+    \item[] \emph{Associated Hazards:} HA1, HA2
 
 
 \end{enumerate}
