@@ -49,6 +49,37 @@
 17/10/23 & Ryan Yeh & Added Critical Assumptions\\
 19/10/23 & Sawyer Tang & Initial Version of Safety and Security Requirements\\
 19/10/23 & Ryan Yeh & Added Roadmap\\
+01/04/24 & Sawyer Tang & Addressed Feedback: updated assumptions for camera availability and web service, updated HA2 to include\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+~\newpage
+
+\tableofcontents
+
+~\newpage
+
+\listoftables
+
+\listoffigures
+
+\newpage
+
+\pagenumbering{roman}
+
+\begin{table}[hp]
+\caption{Revision History} \label{TblRevisionHistory}
+\begin{tabularx}{\textwidth}{llX}
+\toprule
+\textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
+\midrule
+16/10/23 & Ryan Yeh & Added List of Tables, List of Figures, and Failure Mode and Effect Analyis\\
+16/10/23 & Allan Fang & Added sections 1, 2, 3\\
+17/10/23 & Ryan Yeh & Added Critical Assumptions\\
+19/10/23 & Sawyer Tang & Initial Version of Safety and Security Requirements\\
+19/10/23 & Ryan Yeh & Added Roadmap\\
+01/04/24 & Sawyer Tang & Addressed Feedback: updated assumptions for camera availability and web service, updated HA1 and HA2 to include newly added SSR11\\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -90,49 +121,58 @@ The system that this hazard analysis will be conducted on consists of the follow
 
 \section{Critical Assumptions}
 
-The primary assumption being made by the team is that primary users are not intentionally
-trying to break the application or use it maliciously.
+One assumption being made by the team is that, because we are using an existing service to host our back end and database, such as Azure or Amazon Web Service, they will have security protocols in place to mitigate malicious parties. At the current time, all user data will be private and not shared with any party outside of the application.\\
+
+\noindent Another assumption is that the camera is not broken.
 
 \newpage
 \begin{landscape}
     \section{Failure Mode and Effect Analysis}
-    \begin{longtable}{|>{\raggedright\arraybackslash}p{0.15\textwidth}|>{\raggedright\arraybackslash}p{0.15\textwidth}|>{\raggedright\arraybackslash}p{0.25\textwidth}|>{\raggedright\arraybackslash}p{0.25\textwidth}|>{\raggedright\arraybackslash}p{0.35\textwidth}|>{\raggedright\arraybackslash}p{0.12\textwidth}|>{\raggedright\arraybackslash}p{0.03\textwidth}|}
+    \begin{longtable}{|>{\raggedright\arraybackslash}p{0.15\textwidth}|>{\raggedright\arraybackslash}p{0.15\textwidth}|>{\raggedright\arraybackslash}p{0.25\textwidth}|>{\raggedright\arraybackslash}p{0.25\textwidth}|>{\raggedright\arraybackslash}p{0.35\textwidth}|>{\raggedright\arraybackslash}p{0.14\textwidth}|>{\raggedright\arraybackslash}p{0.03\textwidth}|}
         \caption{Failure Mode and Effect Analysis Table}  \\
-		\hline
+        \hline
         \multicolumn{1}{|c|}{\textbf{Component}}
-		& \multicolumn{1}{|c|}{\textbf{Failure Modes}}
-		& \multicolumn{1}{|c|}{\textbf{Effects of Failure}}
-		& \multicolumn{1}{|c|}{\textbf{Causes of Failure}}
-		& \multicolumn{1}{|c|}{\textbf{Recommended Action}}
-		& \multicolumn{1}{|c|}{\textbf{Req ID}}
-		& \multicolumn{1}{|c|}{\textbf{Ref.}}  \\
+        & \multicolumn{1}{|c|}{\textbf{Failure Modes}}
+        & \multicolumn{1}{|c|}{\textbf{Effects of Failure}}
+        & \multicolumn{1}{|c|}{\textbf{Causes of Failure}}
+        & \multicolumn{1}{|c|}{\textbf{Recommended Action}}
+        & \multicolumn{1}{|c|}{\textbf{Req ID}}
+        & \multicolumn{1}{|c|}{\textbf{Ref.}}  \\
         \hline
         Authenti\-cation
-        & User is unable to login
+        & User is unable to log in
         & User cannot access their account and application features
         & \begin{enumerate}[label=\alph*., leftmargin=*]
             \item User entered incorrect credentials
         \end{enumerate}
         & \begin{enumerate}[label=\alph*., leftmargin=*]
             \item Allow users to reset their password
+            \item Two factor authentication for login and password reset.
         \end{enumerate}
         & \begin{enumerate}[label=\alph*., leftmargin=*]
             \item SSR1
+            \item SSR12
         \end{enumerate}
         & HA1 \\
         \cline{2-7}
-        & User's account is hacked by a third-party
-        & User's data can be read and modified by third-party
+        & User's account is hacked by a third party
+        & User's data can be read and modified by third party
         & \begin{enumerate}[label=\alph*., leftmargin=*]
             \item Third-party gains access to the  user's account without their permission
         \end{enumerate}
         & \begin{enumerate}[label=\alph*., leftmargin=*]
             \item Refer to HA1-a
-            \item Limit the number of login attempts a person has for a given time period
+            \item Limit the number of log in attempts a person has for a given time period
+            \item Periodic database backups so that user data can be recovered.
+            \item Require users to create \textit{strong} password.
+            \item Refer to HA1-b
         \end{enumerate}
         & \begin{enumerate}[label=\alph*., leftmargin=*]
             \item SSR1
             \item SSR2
+            \item SSR10
+            \item SSR11
+            \item SSR12
         \end{enumerate}
         & HA2 \\
         \hline
@@ -254,10 +294,10 @@ trying to break the application or use it maliciously.
 \begin{enumerate}[label=SSR\arabic*.]
 
     \item The system shall allow users to reset their password without logging in and without knowledge of their current password.
-    \item[] \emph{Rationale:} Users cannot be relied on to remember their login credentials correctly. There must be a method of allowing the user to access their account despite this as well as recover their accounts should a malicious third-party gain access.
+    \item[] \emph{Rationale:} Users cannot be relied on to remember their login credentials correctly. There must be a method of allowing the user to access their account despite this as well as recover their accounts should a malicious third party gain access.
     \item[] \emph{Associated Hazards:} HA1, HA2
 
-    \item The system shall limit the number of login attempts to 5 times within 10 minutes before login is disabled for a 1 hour cooldown period.
+    \item The system shall limit the number of log in attempts to 5 times within 10 minutes before log in is disabled for a 1 hour cooldown period.
     \item[] \emph{Rationale:} Malicious actors may gain access to an account by a brute-force attack. This requirement significantly reduces this possibility.
     \item[] \emph{Associated Hazards:} HA2
 
@@ -296,6 +336,10 @@ trying to break the application or use it maliciously.
     \item The system shall require users to create a \textit{strong} password when making their account or changing their password. (ie. includes at least one special char and one number).
     \item[] \emph{Rationale:} Numbers and special characters make it more difficult for malicious actors to obtain a user's password.
     \item[] \emph{Associated Hazards:} HA2
+
+    \item The system shall allow users to use the users email as a two-factor authentication. The system will send the user a verification code to input both after login and when attempting to reset the users password.
+    \item[] \emph{Rationale:} Users should have the option to enhance the security of their account in the case their password is compromised.
+    \item[] \emph{Associated Hazards:} HA1, HA2
 
 
 \end{enumerate}
