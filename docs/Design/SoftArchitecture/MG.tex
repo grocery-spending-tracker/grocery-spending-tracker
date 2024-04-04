@@ -48,6 +48,10 @@
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
 17/01/2024 & 1.0 & Initial version of Module Guide\\
+01/04/2024 & 1.1 & Included traceability for Timelines\\
+01/04/2024 & 1.2 & Removed specific technological choices from Unlikely Changes categorization as needs may change in the future\\
+01/04/2024 & 1.3 & Included more specific details about the Hardware Hiding Module\\
+04/04/2024 & 1.4 & Updated Vision Module to Receipt Vision Module in Section 7.2\\
 \bottomrule
 \end{tabularx}
 
@@ -177,9 +181,6 @@ decisions will be changed.
 
 \begin{description}
 \item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] The user interface will be on a mobile device that has a camera for primary input.
-\item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] The server will run on NodeJS.
-\item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] The front end mobile app will be built on Flutter.
-\item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] The database will be PostgreSQL.
 
 \end{description}
 
@@ -263,15 +264,17 @@ to be implemented.
 \begin{description}
 \item[Secrets:]The data structure and algorithm used to implement the virtual
   hardware.
-\item[Services:]Serves as a virtual hardware used by the rest of the
+  \item[Services:]Serves as a virtual hardware used by the rest of the
   system. This module provides the interface between the hardware and the
-  software. So, the system can use it to display outputs or to accept inputs.
+  software. So, the system can use it to display outputs or to accept inputs. This allows the 
+  software to operate independently of the hardware, such as the camera, making it easier to port
+  the software to different platforms or to upgrade the hardware without significant changes to the application logic.
 \item[Implemented By:] OS
 \end{description}
 
 \subsection{Behaviour-Hiding Module}
 
-\subsubsection{Vision Module (\mref{mRVision})}
+\subsubsection{Receipt Vision Module (\mref{mRVision})}
 
 \begin{description}
 \item[Secrets:] The dependencies and algorithms required to facilitate text recognition of receipts.
@@ -484,23 +487,23 @@ The timeline is also shown graphically in Figure \ref{FigureModuleDevelopmentTim
     \hline
     \textbf{Module Name} & \textbf{Development Start/End Date} & \textbf{Developer(s)} \\
     \hline
-    Database Driver Module & Dec. 3 2023 \textemdash{} Jan. 31, 2024 & Jason Nam, Sawyer Tang, Ryan Yeh, Allan Fang \\
+    Database Driver Module (\mref{mDBDriver}) & Dec. 3 2023 \textemdash{} Jan. 31, 2024 & Jason Nam, Sawyer Tang, Ryan Yeh, Allan Fang \\
     \hline
-    Recommendation Engine & Dec. 3 2023 \textemdash{} Jan. 31, 2024 & Jason Nam \\
+    Recommendation Engine (\mref{mRec}) & Dec. 3 2023 \textemdash{} Jan. 31, 2024 & Jason Nam \\
     \hline
-    Classification Engine & Dec. 3, 2023 \textemdash{} Jan 31, 2024 & Jason Nam\\
+    Classification Engine (\mref{mClassification}) & Dec. 3, 2023 \textemdash{} Jan 31, 2024 & Jason Nam\\
     \hline
-    Receipt Vision Module & Dec. 3 2023 \textemdash{} Dec. 23, 2023 & Ryan Yeh \\
+    Receipt Vision Module (\mref{mRVision}) & Dec. 3 2023 \textemdash{} Dec. 23, 2023 & Ryan Yeh \\
     \hline
-    Receipt Extraction Module & Dec. 23, 2023 \textemdash{} Jan. 20, 2024 & Ryan Yeh \\
+    Receipt Extraction Module (\mref{mReview}) & Dec. 23, 2023 \textemdash{} Jan. 20, 2024 & Ryan Yeh \\
     \hline
-    User Analytics Module & Dec. 23, 2023 \textemdash{} Jan. 20, 2024 & Allan Fang \\
+    User Analytics Module (\mref{mAnalytics}) & Dec. 23, 2023 \textemdash{} Jan. 20, 2024 & Allan Fang \\
     \hline
-    Location Management Module & Jan. 1, 2024 \textemdash{} Jan. 20, 2024 & Allan Fang \\
+    Location Management Module (\mref{mLocation}) & Jan. 1, 2024 \textemdash{} Jan. 20, 2024 & Allan Fang \\
     \hline
-    Authentication Module & Jan. 1, 2024 \textemdash{} Jan. 31, 2024 & Sawyer Tang \\
+    Authentication Module (\mref{mAuth}) & Jan. 1, 2024 \textemdash{} Jan. 31, 2024 & Sawyer Tang \\
     \hline
-    Users Module & Jan. 1, 2024 \textemdash{} Jan. 31, 2024 & Sawyer Tang \\
+    Users Module (\mref{mUsers}) & Jan. 1, 2024 \textemdash{} Jan. 31, 2024 & Sawyer Tang \\
     \hline
   \end{tabular}
 \end{table}
@@ -528,23 +531,23 @@ in Figure \ref{FigureModuleTestingTimeline}.
     \hline
     \textbf{Module Name} & \textbf{Testing Start/End Date} & \textbf{Developer(s)} \\
     \hline
-    Database Driver Module & Dec. 3 2023 \textemdash{} Jan. 31, 2024 & Jason Nam, Sawyer Tang, Ryan Yeh, Allan Fang \\
+    Database Driver Module (\mref{mDBDriver}) & Dec. 3 2023 \textemdash{} Jan. 31, 2024 & Jason Nam, Sawyer Tang, Ryan Yeh, Allan Fang \\
     \hline
-    Recommendation Engine & Dec. 3 2023 \textemdash{} Jan. 31, 2024 & Jason Nam, Sawyer Tang \\
+    Recommendation Engine (\mref{mRec}) & Dec. 3 2023 \textemdash{} Jan. 31, 2024 & Jason Nam, Sawyer Tang \\
     \hline
-    Classification Engine & Dec. 3, 2023 \textemdash{} Jan 31, 2024 & Jason Nam, Ryan Yeh\\
+    Classification Engine (\mref{mClassification}) & Dec. 3, 2023 \textemdash{} Jan 31, 2024 & Jason Nam, Ryan Yeh\\
     \hline
-    Receipt Vision Module & Dec. 23, 2023 \textemdash{} Dec 30, 2023 & Ryan Yeh, Allan Fang \\
+    Receipt Vision Module (\mref{mRVision}) & Dec. 23, 2023 \textemdash{} Dec 30, 2023 & Ryan Yeh, Allan Fang \\
     \hline
-    Receipt Extraction Module & Jan. 20, 2023 \textemdash{} Jan. 27, 2024 & Ryan Yeh, Jason Nam \\
+    Receipt Extraction Module (\mref{mReview}) & Jan. 20, 2023 \textemdash{} Jan. 27, 2024 & Ryan Yeh, Jason Nam \\
     \hline
-    User Analytics Module & Jan. 20, 2024 \textemdash{} Jan. 27, 2024 & Allan Fang, Sawyer Tang \\
+    User Analytics Module (\mref{mAnalytics}) & Jan. 20, 2024 \textemdash{} Jan. 27, 2024 & Allan Fang, Sawyer Tang \\
     \hline
-    Location Management Module & Jan. 20, 2024 \textemdash{} Jan. 27, 2024 & Allan Fang, Ryan Yeh \\
+    Location Management Module (\mref{mLocation}) & Jan. 20, 2024 \textemdash{} Jan. 27, 2024 & Allan Fang, Ryan Yeh \\
     \hline
-    Authentication Module & Jan. 1, 2024 \textemdash{} Jan. 31, 2024 & Sawyer Tang, Allan Fang \\
+    Authentication Module (\mref{mAuth}) & Jan. 1, 2024 \textemdash{} Jan. 31, 2024 & Sawyer Tang, Allan Fang \\
     \hline
-    Users Module & Jan. 1, 2024 \textemdash{} Jan. 31, 2024 & Sawyer Tang, Jason Nam \\
+    Users Module (\mref{mUsers}) & Jan. 1, 2024 \textemdash{} Jan. 31, 2024 & Sawyer Tang, Jason Nam \\
     \hline
   \end{tabular}
 \end{table}

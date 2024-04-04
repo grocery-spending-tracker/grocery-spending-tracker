@@ -25,8 +25,8 @@ With this app, we believe users will be able to make smarter decisions about wha
 ## Folders
 The folders and files for this project are as follows:
 
-docs - Documentation for the project
-refs - Reference material used for the project, including papers
-src - Source code
-test - Test cases
-etc.
+- docs - Documentation for the project
+- refs - Reference material used for the project, including papers
+- src - Source code
+
+Tests can be found within their respective submodules in the src folder.
