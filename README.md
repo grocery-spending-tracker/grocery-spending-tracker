@@ -4,6 +4,9 @@ Developer Names: Ryan Yeh, Allan Fang, Sawyer Tang, Jason Nam
 
 Date of project start: September 17, 2023
 
+- [DEMO](https://www.youtube.com/watch?v=Vu2afqidkwU)
+- [SLIDE DECK](https://docs.google.com/presentation/d/1NTXa1gkQiIFrZUatLq7uLJYjEOfFga2yqp_pvIQMpU4/edit?usp=sharing)
+
 ## Project Description
 
 With the ever-rising cost of living, the financial burden of everyday purchases is constantly growing. This is especially true for groceries which puts spending on food at an all time high. This is a problem for all households but is especially true for low-income individuals such a students. As a result, the emphasis on managing personal finance and spending has only grown. To assist these individuals, we want to develop an app to help them better understand their spending habits and make well-informed consumer decisions. 
